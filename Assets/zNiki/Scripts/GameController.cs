@@ -134,7 +134,7 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
     /// <returns>true:入力されている false:入力されていない</returns>
     public bool Move(Direction d)
     {
-        var limit = 0.25f;
+        var limit = 0.01f;
         switch (d)
         {
             case Direction.Front:
