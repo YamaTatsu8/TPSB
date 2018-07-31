@@ -132,6 +132,7 @@ public class Move : MonoBehaviour {
         {
             Debug.Log("地面");
             gage.GetComponent<EP>().RecoveryEP(10);
+
         }
     }
 
