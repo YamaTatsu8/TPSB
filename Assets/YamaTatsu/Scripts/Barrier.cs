@@ -23,6 +23,11 @@ public class Barrier : MonoBehaviour {
     [SerializeField]
     private float _limitTime = 2.0f;
 
+    //HP
+    [SerializeField]
+    private float _HP = 10.0f;
+
+
     // Use this for initialization
     void Start () {
 
@@ -40,7 +45,6 @@ public class Barrier : MonoBehaviour {
         {
             _flag = !_flag;
         }
-       
 
         if (_flag == true && _reFlag == false)
         {
