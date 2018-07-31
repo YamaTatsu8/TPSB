@@ -55,11 +55,14 @@ public class Attack : MonoBehaviour {
                 {
                     _timeCount = 0;
 
-                    //GameObject bullets = GameObject.Instantiate(_bullet) as GameObject;
+                    //画面の中央座標を取得
+                    Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+                   
+                    GameObject bullets = GameObject.Instantiate(_bullet,transform.position,Quaternion.identity) as GameObject;
 
                     Vector3 force;
 
-                    //force = this.gameObject.transform.forward * 1000;
+                    force = this.gameObject.transform.forward * 1000;
 
                     //弾にダメージをセット
                     Debug.Log("武器１");
