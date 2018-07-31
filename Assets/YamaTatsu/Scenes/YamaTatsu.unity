@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 697667345}
   m_Layer: 11
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -450,7 +450,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2b1643ea9969a024bbf396b53b1d3a5e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -485,7 +485,7 @@ Transform:
   m_GameObject: {fileID: 697667344}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 1, z: 3}
+  m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -676,6 +676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
+  canvas: {fileID: 599961514}
 --- !u!54 &1601165678
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -771,7 +772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c1af0981a4e3034eb50299060f9fa38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 0}
+  _bullet: {fileID: 1607767585201532, guid: 0488a4ddb6f47d84da837ee141b91dfd, type: 2}
   _bulletPower: 300
 --- !u!114 &1601165684
 MonoBehaviour:
@@ -800,6 +801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _barrier: {fileID: 1638128932335852, guid: c13edf3b0a4982246b404103bc0a42a7, type: 2}
   _limitTime: 2
+  _HP: 10
 --- !u!1 &1894512052
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,7 +933,7 @@ MonoBehaviour:
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 2
+  m_FillOrigin: 3
 --- !u!222 &1990864390
 CanvasRenderer:
   m_ObjectHideFlags: 0
