@@ -641,6 +641,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1481087605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1481087606}
+  m_Layer: 0
+  m_Name: Arm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1481087606
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1481087605}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1601165682}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1601165676
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,11 +782,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1601165676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -8.28}
+  m_LocalPosition: {x: 0, y: 1, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 153932284}
   - {fileID: 599961511}
+  - {fileID: 1481087606}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -773,8 +802,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c1af0981a4e3034eb50299060f9fa38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 1607767585201532, guid: 0488a4ddb6f47d84da837ee141b91dfd, type: 2}
+  _bullet: {fileID: 1998926860700700, guid: 0e8e576cad62f4c4495518d1f6e3179d, type: 2}
   _bulletPower: 300
+  _arm: {fileID: 0}
 --- !u!114 &1601165684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,7 +848,7 @@ MonoBehaviour:
   _fireRate: 0.1
   _destroyTime: 3
   _muzzle: {fileID: 1601165682}
-  _bulletPrefab: {fileID: 1607767585201532, guid: 0488a4ddb6f47d84da837ee141b91dfd,
+  _bulletPrefab: {fileID: 1998926860700700, guid: 0e8e576cad62f4c4495518d1f6e3179d,
     type: 2}
   _shotSound: {fileID: 0}
 --- !u!1 &1894512052
