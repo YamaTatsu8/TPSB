@@ -16,17 +16,7 @@ public class RayCastShoot : MonoBehaviour
     [SerializeField]
     private Transform _muzzle;              // 銃口
     [SerializeField]
-    private GameObject _bulletPrefab        // 弾のプレハブ
-    {
-        get
-        {
-            return _bulletPrefab;
-        }
-        set
-        {
-            _bulletPrefab = value;
-        }
-    }
+    private GameObject _bulletPrefab;       // 弾のプレハブ
 
     private float _range = 30.0f;           // 射程(DrawLineの距離)
 
