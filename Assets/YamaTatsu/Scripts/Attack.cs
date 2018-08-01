@@ -24,6 +24,8 @@ public class Attack : MonoBehaviour {
     //武器の切り替え
     private bool _changeWeapon = true;
 
+    [SerializeField]
+    private GameObject _arm;
 
 
 	// Use this for initialization
@@ -51,18 +53,10 @@ public class Attack : MonoBehaviour {
             if (_changeWeapon == true)
             {
                 //武器１
-                if (_timeCount > TIME_INTERVAL)
+                //if (_timeCount > TIME_INTERVAL)
                 {
-                    _timeCount = 0;
 
-                    //画面の中央座標を取得
-                    Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2, 0);
-                   
-                    GameObject bullets = GameObject.Instantiate(_bullet,transform.position,Quaternion.identity) as GameObject;
-
-                    Vector3 force;
-
-                    force = this.gameObject.transform.forward * 1000;
+                    this.gameObject.GetComponent<RayCastShoot>().Shot();
 
                     //弾にダメージをセット
                     Debug.Log("武器１");
@@ -73,6 +67,7 @@ public class Attack : MonoBehaviour {
             {
                 //武器２
                 Debug.Log("武器２");
+                _arm.GetComponent<RayCastShoot>().Shot();
             }
         }
         else

@@ -657,6 +657,7 @@ GameObject:
   - component: {fileID: 1601165683}
   - component: {fileID: 1601165684}
   - component: {fileID: 1601165685}
+  - component: {fileID: 1601165686}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -802,6 +803,24 @@ MonoBehaviour:
   _barrier: {fileID: 1638128932335852, guid: c13edf3b0a4982246b404103bc0a42a7, type: 2}
   _limitTime: 2
   _HP: 10
+--- !u!114 &1601165686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1601165676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 240faba787efbf14c950e56f0125df41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bulletSpeed: 50
+  _fireRate: 0.1
+  _destroyTime: 3
+  _muzzle: {fileID: 1601165682}
+  _bulletPrefab: {fileID: 1607767585201532, guid: 0488a4ddb6f47d84da837ee141b91dfd,
+    type: 2}
+  _shotSound: {fileID: 0}
 --- !u!1 &1894512052
 GameObject:
   m_ObjectHideFlags: 0
