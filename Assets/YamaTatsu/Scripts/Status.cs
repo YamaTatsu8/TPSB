@@ -33,7 +33,7 @@ public class Status : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Bullet")
         {
-            //_HP -=
+            _HP -= 1;
         }
     }
 
