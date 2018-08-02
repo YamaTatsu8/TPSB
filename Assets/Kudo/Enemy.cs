@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour {
         DistantAttack   // 遠距離時
     }
 
-    public GameObject _target;
+    public GameObject _player;
     public float _speed;
 
     public GameObject _gun;
@@ -47,32 +47,35 @@ public class Enemy : MonoBehaviour {
                 _sword.SetActive(true);
                 _gun.SetActive(false);
 
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_target.transform.position - transform.position), 0.3f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_player.transform.position - transform.position), 0.3f);
                 transform.position += transform.forward * _speed;
                 break;
             case State.DistantAttack:
                 _sword.SetActive(false);
                 _gun.SetActive(true);
 
-                Ray ray = new Ray(transform.position, _target.transform.position);
+                Ray ray = new Ray(_gun.transform.position, _player.transform.position);
                 RaycastHit hit = new RaycastHit();
 
-                if (Physics.Raycast(ray.origin, ray.direction, out hit,10))
+                if (Physics.Raycast(ray.origin, ray.direction, out hit, 5))
                 {
+                    // playerと当たったら当たらない位置まで後退する
                     if (hit.collider.gameObject.CompareTag("Player"))
                     {
-                        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_target.transform.position - transform.position), 0.3f);
+                        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_player.transform.position - transform.position), 0.3f);
                         transform.position -= transform.forward * _speed;
                     }
 
+                    // 壁と当たったときRayが当たらないところまで移動
                     //if (hit.collider.gameObject.CompareTag("Wall"))
                     //{
                     //}
 
                 }
 
-                Debug.DrawRay(ray.origin + ray.direction, ray.direction, Color.yellow);
+                Debug.DrawRay(ray.origin, ray.direction, Color.yellow);
 
+                // この辺に弾の発射について記入ーーーーーーーーーーーーーー
                 //_bulletCount++;
                 //if (_bulletCount > 30)
                 //{
@@ -88,6 +91,11 @@ public class Enemy : MonoBehaviour {
 
         }
 
+        if (transform.position.y < -10)
+        {
+            transform.position = new Vector3(0, 0, 0);
+        }
+
     }
 
     void OnCollisionEnter(Collision other)
@@ -100,7 +108,7 @@ public class Enemy : MonoBehaviour {
                     // ダメージ判定（プレイヤーへ
                     break;
                 case State.DistantAttack:
-                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_target.transform.position - transform.position), 0.3f);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_player.transform.position - transform.position), 0.3f);
                     transform.position -= transform.forward * _speed;
                     break;
                 default:
