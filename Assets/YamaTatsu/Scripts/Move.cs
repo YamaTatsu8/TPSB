@@ -122,6 +122,7 @@ public class Move : MonoBehaviour {
         else
         {
             _boostFlag = false;
+            gage.GetComponent<EP>().RecoveryEP(3);
         }
     }
 
@@ -131,8 +132,6 @@ public class Move : MonoBehaviour {
         if (collision.gameObject.tag == "Ground")
         {
             Debug.Log("地面");
-            gage.GetComponent<EP>().RecoveryEP(10);
-
         }
     }
 

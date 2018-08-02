@@ -84,6 +84,7 @@ public class Jump : MonoBehaviour
             //gage.GetComponent<EP>().get();
 
         }
+        
     }
 
     //ブーストする関数

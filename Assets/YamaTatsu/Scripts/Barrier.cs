@@ -69,7 +69,7 @@ public class Barrier : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Bullet")
         {
-
+            _HP -= 1;
         }
     }
 

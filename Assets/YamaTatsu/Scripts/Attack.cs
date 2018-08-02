@@ -25,15 +25,17 @@ public class Attack : MonoBehaviour {
     private bool _changeWeapon = true;
 
     [SerializeField]
-    private GameObject _arm;
+    private GameObject _Bullet1;
+    [SerializeField]
+    private GameObject _Bullet2;
 
 
 	// Use this for initialization
 	void Start () {
 
         controller = GameController.Instance;
-
-	}
+        this.gameObject.GetComponent<Shot>()._bulletPrefab = _Bullet1;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -44,6 +46,15 @@ public class Attack : MonoBehaviour {
         if(controller.ButtonDown(Button.X))
         {
             _changeWeapon = !_changeWeapon;
+
+            if (_changeWeapon == true)
+            {
+                this.gameObject.GetComponent<Shot>()._bulletPrefab = _Bullet1;
+            }
+            else
+            {
+                this.gameObject.GetComponent<Shot>()._bulletPrefab = _Bullet2;
+            }
         }
 
         if (controller.TriggerDown(Trigger.Left))
@@ -55,8 +66,8 @@ public class Attack : MonoBehaviour {
                 //武器１
                 //if (_timeCount > TIME_INTERVAL)
                 {
-
-                    this.gameObject.GetComponent<RayCastShoot>().Shot();
+                    
+                    this.gameObject.GetComponent<Shot>().Shot1();
 
                     //弾にダメージをセット
                     Debug.Log("武器１");
@@ -67,7 +78,8 @@ public class Attack : MonoBehaviour {
             {
                 //武器２
                 Debug.Log("武器２");
-                _arm.GetComponent<RayCastShoot>().Shot();
+               
+                this.gameObject.GetComponent<Shot>().Shot1();
             }
         }
         else
