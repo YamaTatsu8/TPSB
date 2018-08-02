@@ -25,8 +25,7 @@ public class Barrier : MonoBehaviour {
 
     //HP
     [SerializeField]
-    private float _HP = 10.0f;
-
+    private int _HP = 10;
 
     // Use this for initialization
     void Start () {
@@ -40,7 +39,7 @@ public class Barrier : MonoBehaviour {
 
         controller.ControllerUpdate();
 
-
+        //左ショルダーボタンが押された時
         if (controller.ButtonDown(Button.L1))
         {
             _flag = !_flag;
@@ -60,6 +59,11 @@ public class Barrier : MonoBehaviour {
         if(_reFlag == true)
         {
             _object.transform.position = transform.position;
+        }
+
+        if(_HP <= 0)
+        {
+            Destroy(_object);
         }
 
     }

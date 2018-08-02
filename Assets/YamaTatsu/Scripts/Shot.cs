@@ -21,7 +21,6 @@ public class Shot : MonoBehaviour {
         get;
 
         set;
-       
     }
 
     private float _range = 30.0f;           // 射程(DrawLineの距離)
