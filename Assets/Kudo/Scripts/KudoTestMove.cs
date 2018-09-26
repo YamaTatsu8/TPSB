@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMove : MonoBehaviour {
+public class KudoTestMove : MonoBehaviour {
 
     public float _speed;
 
