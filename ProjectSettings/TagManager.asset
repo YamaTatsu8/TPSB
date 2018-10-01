@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Wall
+  - Ground
+  - Enemy
+  - Bullet
+  - Undefined
+  - Barrier
   layers:
   - Default
   - TransparentFX
@@ -20,7 +25,7 @@ TagManager:
   - Bullet
   - HitChecker
   - Wall
-  - 
+  - Barrier
   - 
   - 
   - 

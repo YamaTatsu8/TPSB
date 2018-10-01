@@ -73,6 +73,7 @@ public class Barrier : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Bullet")
         {
+            Debug.Log("Hit");
             _HP -= 1;
         }
     }

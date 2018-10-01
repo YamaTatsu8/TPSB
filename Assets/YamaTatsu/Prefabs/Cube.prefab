@@ -8,15 +8,15 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1254902660000786}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1
 --- !u!1 &1063633830547736
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4585597279512674}
   m_Layer: 0
@@ -29,14 +29,16 @@ GameObject:
 --- !u!1 &1254902660000786
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4400856784590856}
   - component: {fileID: 33551241679804270}
   - component: {fileID: 23059592723143828}
   - component: {fileID: 65939961545465076}
+  - component: {fileID: 114772230154501344}
+  - component: {fileID: 114718396998503028}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Enemy
@@ -47,9 +49,9 @@ GameObject:
 --- !u!1 &1395688057686224
 GameObject:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4723555800783832}
   m_Layer: 0
@@ -62,7 +64,7 @@ GameObject:
 --- !u!4 &4400856784590856
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1254902660000786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -76,7 +78,7 @@ Transform:
 --- !u!4 &4585597279512674
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1063633830547736}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -90,7 +92,7 @@ Transform:
 --- !u!4 &4723555800783832
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1395688057686224}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -103,7 +105,7 @@ Transform:
 --- !u!23 &23059592723143828
 MeshRenderer:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1254902660000786}
   m_Enabled: 1
@@ -113,6 +115,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: e78d6653fedb7ac4bbeb3d9aad6c14e2, type: 2}
   m_StaticBatchInfo:
@@ -137,14 +140,14 @@ MeshRenderer:
 --- !u!33 &33551241679804270
 MeshFilter:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1254902660000786}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &65939961545465076
 BoxCollider:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1254902660000786}
   m_Material: {fileID: 0}
@@ -153,3 +156,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114718396998503028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254902660000786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f9de3c4fc688345ad2f65885ba6afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114772230154501344
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1254902660000786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef56e09ed3a3eec4cb16636d2ddd2e6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  _speed: 0
+  _gun: {fileID: 1017113235278598, guid: 1a96bd3103f42c34bb1b93bff1a11079, type: 2}
+  _sword: {fileID: 1998926860700700, guid: 0e8e576cad62f4c4495518d1f6e3179d, type: 2}
+  _bullet: {fileID: 1998926860700700, guid: 0e8e576cad62f4c4495518d1f6e3179d, type: 2}
