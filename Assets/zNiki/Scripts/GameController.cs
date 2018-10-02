@@ -128,7 +128,7 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
     }
 
     /// <summary>
-    /// 指定した向きに左スティック/十字キーが入力されているか
+    /// 指定した向きにスティック/十字キーが入力されているか
     /// </summary>
     /// <param name="d">向き</param>
     /// <returns>true:入力されている false:入力されていない</returns>
@@ -172,11 +172,23 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
     }
 
     /// <summary>
-    /// 指定した向きに右スティックが入力されているか
+    /// Moveの単発型
     /// </summary>
     /// <param name="d">向き</param>
     /// <returns>true:入力されている false:入力されていない</returns>
-    public bool ViewpointMove(Direction d)
+    public bool OneShotMove(Direction d)
+    {
+        if (!_isUseAxis && Move(d))
+        {
+            _isUseAxis = true;
+            _prevDir = d;
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool ViewpoinMove(Direction d)
     {
         var limit = 0.01f;
         switch (d)
@@ -211,22 +223,6 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
 
             default:
                 break;
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// Moveの単発型
-    /// </summary>
-    /// <param name="d">向き</param>
-    /// <returns>true:入力されている false:入力されていない</returns>
-    public bool OneShotMove(Direction d)
-    {
-        if (!_isUseAxis && Move(d))
-        {
-            _isUseAxis = true;
-            _prevDir = d;
-            return true;
         }
         return false;
     }
