@@ -2,13 +2,16 @@
 
 public class RayViewer : MonoBehaviour
 {
+    [SerializeField]
+    private float _lineLength = 30f;
+
     // カメラ                             
-    private Camera _camera;            
+    private Camera _camera;
 
     void Start()
     {
         // カメラを取得
-        _camera = GetComponentInParent<Camera>();
+        _camera = GetComponent<Camera>();
     }
 
     void Update()
@@ -17,6 +20,6 @@ public class RayViewer : MonoBehaviour
         Vector3 rayOrigin = _camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
 
         // ラインの描画
-        Debug.DrawRay(rayOrigin, _camera.transform.forward * 30f, Color.green);
+        Debug.DrawRay(rayOrigin, _camera.transform.forward * _lineLength, Color.green);
     }
 }

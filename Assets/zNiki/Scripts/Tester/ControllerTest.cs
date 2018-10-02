@@ -115,19 +115,19 @@ public class ControllerTest : MonoBehaviour
             }
 
             // 右スティックの入力を取る
-            if (con.ViewpoinMove(Direction.Front))
+            if (con.ViewpointMove(Direction.Front))
             {
                 Debug.Log("ViewPoint Front");
             }
-            if (con.ViewpoinMove(Direction.Back))
+            if (con.ViewpointMove(Direction.Back))
             {
                 Debug.Log("ViewPoint Back");
             }
-            if (con.ViewpoinMove(Direction.Left))
+            if (con.ViewpointMove(Direction.Left))
             {
                 Debug.Log("ViewPoint left");
             }
-            if (con.ViewpoinMove(Direction.Right))
+            if (con.ViewpointMove(Direction.Right))
             {
                 Debug.Log("ViewPoint Right");
             }
