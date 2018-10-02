@@ -8,8 +8,8 @@ public class Attack : MonoBehaviour {
     GameController controller;
 
     //弾
-    [SerializeField]
-    private GameObject _bullet;
+    //[SerializeField]
+    //private GameObject _bullet;
 
     //弾を飛ばす力
     [SerializeField]
@@ -42,6 +42,7 @@ public class Attack : MonoBehaviour {
 
         controller.ControllerUpdate();
 
+        Debug.Log(_changeWeapon);
 
         if(controller.ButtonDown(Button.X))
         {
