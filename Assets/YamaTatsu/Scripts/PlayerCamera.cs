@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour {
+public class PlayerCamera : MonoBehaviour {
 
     //コントローラー
     GameController controller;
@@ -25,17 +25,19 @@ public class CameraController : MonoBehaviour {
     //ロックオンしてるかのフラグ
     private bool _LookFlag = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
 
         mainCamera = Camera.main.gameObject;
         player = GameObject.FindGameObjectWithTag("Player");
         controller = GameController.Instance;
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
 
         controller.ControllerUpdate();
 
@@ -43,13 +45,13 @@ public class CameraController : MonoBehaviour {
         transform.position = player.transform.position;
 
         //R1を押したとき、相手をロックオンする
-        if(controller.ButtonDown(Button.R1))
+        if (controller.ButtonDown(Button.R1))
         {
             GameObject target = GameObject.FindGameObjectWithTag("Enemy");
 
             _LookFlag = !_LookFlag;
 
-            if(target != null && _LookFlag == true)
+            if (target != null && _LookFlag == true)
             {
                 lockOnTarget = target;
             }
@@ -63,7 +65,7 @@ public class CameraController : MonoBehaviour {
 
         }
 
-        if(lockOnTarget)
+        if (lockOnTarget)
         {
             lockOnTargetObject(lockOnTarget);
         }
@@ -77,8 +79,8 @@ public class CameraController : MonoBehaviour {
             Mathf.Clamp(angle_x, ANGLE_LIMIT_DOWN, ANGLE_LIMIT_UP),
             transform.eulerAngles.y,
             transform.eulerAngles.z);
-		
-	}
+
+    }
 
 
     //カメラアングル
@@ -98,5 +100,4 @@ public class CameraController : MonoBehaviour {
     {
         transform.LookAt(target.transform, Vector3.up);
     }
-
 }
