@@ -72,14 +72,12 @@ public class Move : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        moveDirection = Vector3.zero;
+        //moveDirection = Vector3.zero;
 
         moveDirection = new Vector3(moveX, 0, moveZ);
 
         if (_boostFlag == false)
         {
-
-
 
             if (moveDirection.magnitude > 0.1f)
             {
@@ -111,17 +109,17 @@ public class Move : MonoBehaviour {
         }
         else
         {
-            //カメラの方向から、ベクトルを取得
-            Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+            ////カメラの方向から、ベクトルを取得
+            //Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
 
-            Vector3 moveForward = cameraForward * moveZ + Camera.main.transform.right * moveX;
+            //Vector3 moveForward = cameraForward * moveZ + Camera.main.transform.right * moveX;
 
-            rb.velocity = moveForward * _speed * 10.0f + new Vector3(0, rb.velocity.y, 0);
+            //rb.velocity = moveForward * _speed * 10.0f + new Vector3(0, rb.velocity.y, 0);
 
-            if (moveForward != Vector3.zero)
-            {
-                transform.rotation = Quaternion.LookRotation(moveForward);
-            }
+            //if (moveForward != Vector3.zero)
+            //{
+            //    transform.rotation = Quaternion.LookRotation(moveForward);
+            //}
         }
 
         rb.velocity = new Vector3(moveX, rb.velocity.y, moveZ);
