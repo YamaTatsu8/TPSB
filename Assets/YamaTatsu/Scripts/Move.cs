@@ -18,6 +18,13 @@ public class Move : MonoBehaviour {
     [SerializeField]
     private float _speed = 4.0f;
 
+    //移動方向
+    private Vector3 moveDirection = Vector3.zero;
+
+    //カメラ
+    [SerializeField]
+    private GameObject camera;
+
     //
     private Rigidbody rb;
 
@@ -28,6 +35,9 @@ public class Move : MonoBehaviour {
 
     private Canvas gage;
 
+    //アニメーター
+    private Animator _animator;
+
     // Use this for initialization
     void Start () {
 
@@ -36,6 +46,8 @@ public class Move : MonoBehaviour {
         Player_pos = GetComponent<Transform>().position;
         //
         rb = GetComponent<Rigidbody>();
+
+        _animator = GetComponent<Animator>();
 
         gage = canvas;
 
@@ -51,29 +63,7 @@ public class Move : MonoBehaviour {
         moveX = Input.GetAxis("L-StickHorizontal") * _speed;
         moveZ = Input.GetAxis("L-StickVertical") * _speed;
 
-
-        //左スティックと十字キーの入力を取る
-        //if (controller.Move(Direction.Front))
-        //{
-        //    Debug.Log("UP");
-        //    moveZ = _speed;
-        //    rb.velocity = Vector3.forward * _speed;
-        //}
-        //if (controller.Move(Direction.Back))
-        //{
-        //    Debug.Log("DOWN");
-        //    rb.velocity = Vector3.back * _speed;
-        //}
-        //if (controller.Move(Direction.Left))
-        //{
-        //    Debug.Log("LEFT");
-        //    rb.velocity = Vector3.left * _speed;
-        //}
-        //if (controller.Move(Direction.Right))
-        //{
-        //    Debug.Log("RIGHT");
-        //    rb.velocity = Vector3.right * _speed;
-        //}
+       
 
         Boost();
 
@@ -82,19 +72,42 @@ public class Move : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        moveDirection = Vector3.zero;
+
+        moveDirection = new Vector3(moveX, 0, moveZ);
+
         if (_boostFlag == false)
         {
-            //カメラの方向から、ベクトルを取得
-            Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
 
-            Vector3 moveForward = cameraForward * moveZ + Camera.main.transform.right * moveX;
 
-            rb.velocity = moveForward * _speed + new Vector3(0, rb.velocity.y, 0);
 
-            if(moveForward != Vector3.zero)
+            if (moveDirection.magnitude > 0.1f)
             {
-                transform.rotation = Quaternion.LookRotation(moveForward);
+                _animator.SetFloat("Speed", moveDirection.magnitude);
+                transform.LookAt(transform.position + moveDirection);
             }
+            else
+            {
+                _animator.SetFloat("Speed", 0f);
+            }
+
+            //// カメラの方向から、X-Z平面の単位ベクトルを取得
+            //Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+
+            //// 方向キーの入力値とカメラの向きから、移動方向を決定
+            //Vector3 moveForward = cameraForward * moveZ + Camera.main.transform.right * moveX;
+
+            //// 移動方向にスピードを掛ける。ジャンプや落下がある場合は、別途Y軸方向の速度ベクトルを足す。
+            //rb.velocity = moveForward * _speed + new Vector3(0, rb.velocity.y, 0);
+
+            //Debug.Log("歩く");
+
+            //// キャラクターの向きを進行方向に
+            //if (moveForward != Vector3.zero)
+            //{
+            //    transform.rotation = Quaternion.LookRotation(moveForward);
+            //}
+
         }
         else
         {
@@ -110,6 +123,9 @@ public class Move : MonoBehaviour {
                 transform.rotation = Quaternion.LookRotation(moveForward);
             }
         }
+
+        rb.velocity = new Vector3(moveX, rb.velocity.y, moveZ);
+
     }
 
     private void Boost()
