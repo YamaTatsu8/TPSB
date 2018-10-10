@@ -21,10 +21,6 @@ public class Move : MonoBehaviour {
     //移動方向
     private Vector3 moveDirection = Vector3.zero;
 
-    //カメラ
-    [SerializeField]
-    private GameObject camera;
-
     //
     private Rigidbody rb;
 
