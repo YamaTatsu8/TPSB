@@ -279,7 +279,6 @@ public class Equipment : MonoBehaviour {
 
                 if (_weaponState == 0)
                 {
-
                     switch (_mainState)
                     {
                         case (int)WEAPON_STATE.WEAPON1:
@@ -292,6 +291,7 @@ public class Equipment : MonoBehaviour {
                 }
                 else if (_weaponState == 1)
                 {
+                    
                     switch (_mainState)
                     {
                         case (int)WEAPON_STATE.WEAPON1:
@@ -385,6 +385,12 @@ public class Equipment : MonoBehaviour {
 
             }
 
+            if(_controller.ButtonDown(Button.B))
+            {
+                _popFlag = false;
+                _nextFlag = false;
+            }
+
         }
 
 
@@ -405,6 +411,7 @@ public class Equipment : MonoBehaviour {
         }
         else
         {
+            _mainState = 0;
             ZoomBack();
             _mainFlag = false;
         }
