@@ -24,7 +24,7 @@ public class Equipment : MonoBehaviour {
     [SerializeField]
     private RectTransform _subWeapon;
     [SerializeField]
-    private RectTransform _next;
+    private RectTransform _start;
 
     //stateの値
     [SerializeField]
@@ -36,6 +36,10 @@ public class Equipment : MonoBehaviour {
 
     [SerializeField]
     private Vector3 _pos = new Vector3(-200, 0, 0);
+
+    //
+    [SerializeField]
+    private GameObject canvas;
 
     //Barのフラグ
     private bool _barFlag = false;
@@ -53,7 +57,11 @@ public class Equipment : MonoBehaviour {
     private List<string[]> _subWeaponList = new List<string[]>();
 
     //武器の画像リスト
-    private RectTransform[] _weaponImage;
+    private RectTransform[] _weaponImage = new RectTransform[5];
+
+    //
+    [SerializeField]
+    private RectTransform _cusor2;
 
     //武器数
     private int _weaponNum = 0;
@@ -97,7 +105,7 @@ public class Equipment : MonoBehaviour {
         _mainWeapon1 = GameObject.Find("MainWeapon1").GetComponent<RectTransform>();
         _mainWeapon2 = GameObject.Find("MainWeapon2").GetComponent<RectTransform>();
         _subWeapon = GameObject.Find("SubWeapon").GetComponent<RectTransform>();
-        _next = GameObject.Find("Next").GetComponent<RectTransform>();
+        _start = GameObject.Find("Start").GetComponent<RectTransform>();
 
         _bar = GameObject.Find("Bar").GetComponent<RectTransform>();
 
@@ -105,16 +113,36 @@ public class Equipment : MonoBehaviour {
         _bar.localScale = new Vector3(3, 0, 1);
 
         //
-        _cursor.position = _mainWeapon1.position + _pos;
+        _cursor.position = _mainWeapon1.position;
 
         //メイン武器のリスト作成
         WeaponAdd("WeaponList", _weaponList);
 
-        for(int i = 0; 0 < _weaponNum; i++)
+        Debug.Log(_weaponNum);
+
+        Vector3 rePos;
+
+        for (int i = 0; i < _weaponNum; i++)
         {
-            Debug.Log(_weaponList[i].ToString());
-            _weaponImage[i] = (RectTransform)Resources.Load("Images/" + _weaponList[i].ToString());
+            Debug.Log(i);
+            GameObject img = (GameObject)Instantiate(Resources.Load("Images/" + _weaponList[i][0].ToString()));
+            img.transform.SetParent(canvas.transform, false);
+            _weaponImage[i] = img.GetComponent<RectTransform>();
+
+            rePos = canvas.GetComponent<RectTransform>().position;
+
+            _weaponImage[i].localPosition = new Vector3(50, 20 * (i + 1), 0);
         }
+
+        GameObject cusor = (GameObject)Instantiate(Resources.Load("Images/Cusor2"));
+
+        cusor.transform.SetParent(canvas.transform, false);
+
+        _cusor2 = cusor.GetComponent<RectTransform>();
+
+        rePos = _weaponImage[0].localPosition;
+
+        _cusor2.localPosition = rePos;
 
     }
 	
@@ -146,16 +174,16 @@ public class Equipment : MonoBehaviour {
             switch (_state)
             {
                 case (int)EQUIPMENT_STATE.MAIN_WEAPON1:
-                    _cursor.position = _mainWeapon1.position + _pos;
+                    _cursor.position = _mainWeapon1.position;
                     break;
                 case (int)EQUIPMENT_STATE.MAIN_WEAPON2:
-                    _cursor.position = _mainWeapon2.position + _pos;
+                    _cursor.position = _mainWeapon2.position;
                     break;
                 case (int)EQUIPMENT_STATE.SUB_WEAPON:
-                    _cursor.position = _subWeapon.position + _pos;
+                    _cursor.position = _subWeapon.position;
                     break;
                 case (int)EQUIPMENT_STATE.NEXT:
-                    _cursor.position = _next.position + _pos;
+                    _cursor.position = _start.position;
                     break;
 
             }
@@ -168,12 +196,34 @@ public class Equipment : MonoBehaviour {
         }
         else
         {
+
+            //コントローラ操作
+            if (_controller.OneShotMove(Direction.Front))
+            {
+                _mainState -= 1;
+
+                if (_mainState < (int)WEAPON_STATE.WEAPON1)
+                {
+                    _mainState = (int)WEAPON_STATE.WEAPON2;
+                }
+            }
+            else if (_controller.OneShotMove(Direction.Back))
+            {
+                _mainState += 1;
+
+                if (_mainState > (int)WEAPON_STATE.WEAPON2)
+                {
+                    _mainState = (int)WEAPON_STATE.WEAPON1;
+                }
+            }
+
             switch (_mainState)
             {
                 case (int)WEAPON_STATE.WEAPON1:
+                    _cusor2.localPosition = _weaponImage[_mainState].localPosition;
                     break;
-
                 case (int)WEAPON_STATE.WEAPON2:
+                    _cusor2.localPosition = _weaponImage[_mainState].localPosition;
                     break;
             }
 
@@ -184,6 +234,12 @@ public class Equipment : MonoBehaviour {
     
                 //選んだ武器を装備
             }
+
+            if(_controller.ButtonDown(Button.B))
+            {
+                _barFlag = false;
+            }
+
         }
 
 
@@ -284,9 +340,6 @@ public class Equipment : MonoBehaviour {
 
             _weaponNum++;
         }
-
-
-        Debug.Log(list[0].ToString());
 
     }
 
