@@ -26,6 +26,10 @@ public class Equipment : MonoBehaviour {
     [SerializeField]
     private RectTransform _start;
 
+    //ポップ
+    [SerializeField]
+    private RectTransform _pop;
+
     //stateの値
     [SerializeField]
     private int _state = 0;
@@ -40,6 +44,10 @@ public class Equipment : MonoBehaviour {
     //
     [SerializeField]
     private GameObject canvas;
+
+    //PlayerSystem
+    [SerializeField]
+    private GameObject _playerSystem;
 
     //Barのフラグ
     private bool _barFlag = false;
@@ -62,6 +70,14 @@ public class Equipment : MonoBehaviour {
     //
     [SerializeField]
     private RectTransform _cusor2;
+
+    //
+    private RectTransform _cusor3;
+
+    //
+    private RectTransform _yes;
+
+    private RectTransform _no;
 
     //武器数
     private int _weaponNum = 0;
@@ -93,9 +109,30 @@ public class Equipment : MonoBehaviour {
     [SerializeField]
     private int _weaponState = 0;
 
+    private bool _nextFlag = false;
 
-	// Use this for initialization
-	void Start () {
+    private bool _popFlag = false;
+
+    private int _nextState = 0;
+
+    private enum NEXT_STATE
+    {
+        YES,
+        NO
+    }
+
+    IEnumerator GeneratePulseNoise(RectTransform rec)
+    {
+        for (int i = 0; i <= 180; i += 30)
+        {
+            rec.GetComponent<Image>().material.SetFloat("_Amount", 0.2f * Mathf.Sin(i * Mathf.Deg2Rad));
+            yield return null;
+        }
+    }
+
+
+    // Use this for initialization
+    void Start () {
 
         //初期化
         _controller = GameController.Instance;
@@ -109,6 +146,15 @@ public class Equipment : MonoBehaviour {
 
         _bar = GameObject.Find("Bar").GetComponent<RectTransform>();
 
+        _pop = GameObject.Find("Pop").GetComponent<RectTransform>();
+
+        _yes = GameObject.Find("Yes").GetComponent<RectTransform>();
+
+        _no = GameObject.Find("No").GetComponent<RectTransform>();
+
+        //popのスケールは最初は0にする
+        _pop.localScale = new Vector3(0, 0, 0);
+
         //最初バーのスケールは0にする
         _bar.localScale = new Vector3(3, 0, 1);
 
@@ -118,13 +164,11 @@ public class Equipment : MonoBehaviour {
         //メイン武器のリスト作成
         WeaponAdd("WeaponList", _weaponList);
 
-        Debug.Log(_weaponNum);
-
         Vector3 rePos;
 
         for (int i = 0; i < _weaponNum; i++)
         {
-            Debug.Log(i);
+            //Resources/Imagesから一致するものを探してくる
             GameObject img = (GameObject)Instantiate(Resources.Load("Images/" + _weaponList[i][0].ToString()));
             img.transform.SetParent(canvas.transform, false);
             _weaponImage[i] = img.GetComponent<RectTransform>();
@@ -144,6 +188,17 @@ public class Equipment : MonoBehaviour {
 
         _cusor2.localPosition = rePos;
 
+        //Pop部分
+        GameObject cusor2 = (GameObject)Instantiate(Resources.Load("Images/Cusor2"));
+
+        cusor2.transform.SetParent(_pop.transform, false);
+
+        _cusor3 = cusor2.GetComponent<RectTransform>();
+
+        rePos = _yes.localPosition;
+
+        _cusor3.localPosition = rePos;
+
     }
 	
 	// Update is called once per frame
@@ -152,96 +207,196 @@ public class Equipment : MonoBehaviour {
         _controller.ControllerUpdate();
 
         //どこを選択しているかのState
-        if (_mainFlag == false)
+        if (_nextFlag == false)
         {
-            if (_controller.OneShotMove(Direction.Front))
+            if (_mainFlag == false)
             {
-                _state -= 1;
-                if (_state < (int)EQUIPMENT_STATE.MAIN_WEAPON1)
+                if (_controller.OneShotMove(Direction.Front))
                 {
-                    _state = (int)EQUIPMENT_STATE.NEXT;
+                    _state -= 1;
+                    if (_state < (int)EQUIPMENT_STATE.MAIN_WEAPON1)
+                    {
+                        _state = (int)EQUIPMENT_STATE.NEXT;
+                    }
                 }
-            }
-            else if (_controller.OneShotMove(Direction.Back))
-            {
-                _state += 1;
-                if (_state > (int)EQUIPMENT_STATE.NEXT)
+                else if (_controller.OneShotMove(Direction.Back))
                 {
-                    _state = (int)EQUIPMENT_STATE.MAIN_WEAPON1;
+                    _state += 1;
+                    if (_state > (int)EQUIPMENT_STATE.NEXT)
+                    {
+                        _state = (int)EQUIPMENT_STATE.MAIN_WEAPON1;
+                    }
                 }
-            }
 
-            switch (_state)
+                switch (_state)
+                {
+                    case (int)EQUIPMENT_STATE.MAIN_WEAPON1:
+                        StartCoroutine(GeneratePulseNoise(_mainWeapon1));
+                        _cursor.position = _mainWeapon1.position;
+                        break;
+                    case (int)EQUIPMENT_STATE.MAIN_WEAPON2:
+                        StartCoroutine(GeneratePulseNoise(_mainWeapon2));
+                        _cursor.position = _mainWeapon2.position;
+                        break;
+                    case (int)EQUIPMENT_STATE.SUB_WEAPON:
+                        StartCoroutine(GeneratePulseNoise(_subWeapon));
+                        _cursor.position = _subWeapon.position;
+                        break;
+                    case (int)EQUIPMENT_STATE.NEXT:
+                        _cursor.position = _start.position;
+                        break;
+
+                }
+
+                if (_controller.ButtonDown(Button.A) && _barFlag == false)
+                {
+                    ChooseMenu((EQUIPMENT_STATE)_state);
+                }
+
+            }
+            else
             {
-                case (int)EQUIPMENT_STATE.MAIN_WEAPON1:
-                    _cursor.position = _mainWeapon1.position;
-                    break;
-                case (int)EQUIPMENT_STATE.MAIN_WEAPON2:
-                    _cursor.position = _mainWeapon2.position;
-                    break;
-                case (int)EQUIPMENT_STATE.SUB_WEAPON:
-                    _cursor.position = _subWeapon.position;
-                    break;
-                case (int)EQUIPMENT_STATE.NEXT:
-                    _cursor.position = _start.position;
-                    break;
+
+                //コントローラ操作
+                if (_controller.OneShotMove(Direction.Front))
+                {
+                    _mainState -= 1;
+
+                    if (_mainState < (int)WEAPON_STATE.WEAPON1)
+                    {
+                        _mainState = (int)WEAPON_STATE.WEAPON2;
+                    }
+                }
+                else if (_controller.OneShotMove(Direction.Back))
+                {
+                    _mainState += 1;
+
+                    if (_mainState > (int)WEAPON_STATE.WEAPON2)
+                    {
+                        _mainState = (int)WEAPON_STATE.WEAPON1;
+                    }
+                }
+
+                if (_weaponState == 0)
+                {
+
+                    switch (_mainState)
+                    {
+                        case (int)WEAPON_STATE.WEAPON1:
+                            _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                            break;
+                        case (int)WEAPON_STATE.WEAPON2:
+                            _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                            break;
+                    }
+                }
+                else if (_weaponState == 1)
+                {
+                    switch (_mainState)
+                    {
+                        case (int)WEAPON_STATE.WEAPON1:
+                            _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                            break;
+                        case (int)WEAPON_STATE.WEAPON2:
+                            _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                            break;
+                    }
+                }
+                else if (_weaponState == 2)
+                {
+
+                }
+
+
+                if (_controller.ButtonDown(Button.A))
+                {
+                    _barFlag = false;
+
+                    switch (_weaponState)
+                    {
+                        case (int)WEAPON_MAIN.MAIN1:
+                            //選んだ武器を装備
+                            _playerSystem.GetComponent<PlayerSystem>().setMain1(_weaponList[_mainState][0].ToString());
+                            break;
+                        case (int)WEAPON_MAIN.MAIN2:
+                            //選んだ武器を装備
+                            _playerSystem.GetComponent<PlayerSystem>().setMain2(_weaponList[_mainState][0].ToString());
+                            break;
+                        case (int)WEAPON_MAIN.SUB:
+                            //サブ武器の装備
+                            break;
+                    }
+
+                }
+
+                if (_controller.ButtonDown(Button.B))
+                {
+                    _barFlag = false;
+                }
 
             }
-
-            if (_controller.ButtonDown(Button.A) && _barFlag == false)
-            {
-                ChooseMenu((EQUIPMENT_STATE)_state);
-            }
-
         }
         else
         {
-
             //コントローラ操作
-            if (_controller.OneShotMove(Direction.Front))
+            if (_controller.OneShotMove(Direction.Left))
             {
-                _mainState -= 1;
+                _nextState -= 1;
 
-                if (_mainState < (int)WEAPON_STATE.WEAPON1)
+                if (_nextState < (int)NEXT_STATE.YES)
                 {
-                    _mainState = (int)WEAPON_STATE.WEAPON2;
+                    _nextState = (int)NEXT_STATE.NO;
                 }
             }
-            else if (_controller.OneShotMove(Direction.Back))
+            else if (_controller.OneShotMove(Direction.Right))
             {
-                _mainState += 1;
+                _nextState += 1;
 
-                if (_mainState > (int)WEAPON_STATE.WEAPON2)
+                if (_nextState > (int)NEXT_STATE.NO)
                 {
-                    _mainState = (int)WEAPON_STATE.WEAPON1;
+                    _nextState = (int)NEXT_STATE.YES;
                 }
             }
 
-            switch (_mainState)
+            switch (_nextState)
             {
-                case (int)WEAPON_STATE.WEAPON1:
-                    _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                case (int)NEXT_STATE.YES:
+                    _cusor3.localPosition = _yes.localPosition;
                     break;
-                case (int)WEAPON_STATE.WEAPON2:
-                    _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                case (int)NEXT_STATE.NO:
+                    _cusor3.localPosition = _no.localPosition;
                     break;
             }
 
 
             if (_controller.ButtonDown(Button.A))
             {
-                _barFlag = false;
-    
-                //選んだ武器を装備
-            }
 
-            if(_controller.ButtonDown(Button.B))
-            {
-                _barFlag = false;
+                switch (_nextState)
+                {
+                    case (int)NEXT_STATE.YES:
+                        //次のシーンに移動                        
+                        break;
+                    case (int)NEXT_STATE.NO:
+                        _popFlag = false;
+                        _nextFlag = false;
+                        break;
+                }
+
             }
 
         }
 
+
+        if(_popFlag == true)
+        {
+            PopZoom();
+            _nextFlag = true;
+        }
+        else
+        {
+            PopBack();
+        }
 
         if(_barFlag == true)
         {
@@ -263,41 +418,30 @@ public class Equipment : MonoBehaviour {
         {
             case EQUIPMENT_STATE.MAIN_WEAPON1:
                 _bar.position = _mainWeapon1.position + new Vector3(151,21,0);
+                _weaponState = 0;
                 _barFlag = true;
                 break;
 
             case EQUIPMENT_STATE.MAIN_WEAPON2:
                 _bar.position = _mainWeapon2.position + new Vector3(151, 21, 0);
+                _weaponState = 1;
                 _barFlag = true;
                 break;
 
             case EQUIPMENT_STATE.SUB_WEAPON:
                 _bar.position = _subWeapon.position + new Vector3(151, 21, 0);
+                _weaponState = 2;
                 _barFlag = true;
                 break;
             case EQUIPMENT_STATE.NEXT:
-                //シーン移動
+                //Popの表示
+                _popFlag = true;
                 break;
                
         }
 
     }
 
-    //選択した武器
-    private void ChooseWeapon(WEAPON_STATE d)
-    {
-        switch (d)
-        {
-            case WEAPON_STATE.WEAPON1:
-                //武器をセットする
-                break;
-
-            case WEAPON_STATE.WEAPON2:
-                //武器をセットする
-                break;
-        }
-
-    }
 
     //バーの拡大
     private void BarZoom()
@@ -314,6 +458,20 @@ public class Equipment : MonoBehaviour {
         {
             _bar.localScale = new Vector3(3, 0, 1);
         }
+    }
+
+    //Popの拡縮
+    private void PopZoom()
+    {
+        if(_pop.localScale.y < 1)
+        {
+            _pop.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+        }
+    }
+
+    private void PopBack()
+    {
+        _pop.localScale = new Vector3(0, 0, 0);
     }
 
     //csvファイルから読み込んだ武器名をリストに入れる関数
