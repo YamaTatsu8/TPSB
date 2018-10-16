@@ -29,12 +29,43 @@ public class Attack : MonoBehaviour {
     [SerializeField]
     private GameObject _Bullet2;
 
+    //武器の名前
+    [SerializeField]
+    private string _weponName1;
+    [SerializeField]
+    private string _weponName2;
+    [SerializeField]
+    private string _subWeponName;
+
+    [SerializeField]
+    private GameObject _wepon1;
+
+    [SerializeField]
+    private GameObject _wepon2;
+
+    [SerializeField]
+    private GameObject _subWepon;
+   
 
 	// Use this for initialization
 	void Start () {
 
         controller = GameController.Instance;
-        this.gameObject.GetComponent<Shot>()._bulletPrefab = _Bullet1;
+        //this.gameObject.GetComponent<Shot>()._bulletPrefab = _Bullet1;
+
+        //
+        PlayerSystem playerSystem = FindObjectOfType<PlayerSystem>();
+
+        _weponName1 = playerSystem.getMain1();
+
+        _weponName2 = playerSystem.getMain2();
+
+        _subWeponName = playerSystem.getSub();
+
+        //Resorcesから武器を探して装備する
+
+
+
     }
 	
 	// Update is called once per frame
@@ -44,49 +75,50 @@ public class Attack : MonoBehaviour {
 
         Debug.Log(_changeWeapon);
 
-        if(controller.ButtonDown(Button.X))
-        {
-            _changeWeapon = !_changeWeapon;
+        //if(controller.ButtonDown(Button.X))
+        //{
+        //    _changeWeapon = !_changeWeapon;
 
-            if (_changeWeapon == true)
-            {
-                this.gameObject.GetComponent<Shot>()._bulletPrefab = _Bullet1;
-            }
-            else
-            {
-                this.gameObject.GetComponent<Shot>()._bulletPrefab = _Bullet2;
-            }
-        }
+        //    if (_changeWeapon == true)
+        //    {
+        //        this.gameObject.GetComponent<Shot>()._bulletPrefab = _Bullet1;
+        //    }
+        //    else
+        //    {
+        //        this.gameObject.GetComponent<Shot>()._bulletPrefab = _Bullet2;
+        //    }
+        //}
 
-        if (controller.TriggerDown(Trigger.Left))
-        {
-            _timeCount += 1;
+        //if (controller.TriggerDown(Trigger.Left))
+        //{
+        //    _timeCount += 1;
 
-            if (_changeWeapon == true)
-            {
-                //武器１
-                //if (_timeCount > TIME_INTERVAL)
-                {
+        //    if (_changeWeapon == true)
+        //    {
+        //        //武器１
+        //        //if (_timeCount > TIME_INTERVAL)
+        //        {
                     
-                    this.gameObject.GetComponent<Shot>().Shot1();
+        //            this.gameObject.GetComponent<Shot>().Shot1();
 
-                    //弾にダメージをセット
-                    Debug.Log("武器１");
+        //            //弾にダメージをセット
+        //            Debug.Log("武器１");
 
-                }
-            }
-            else
-            {
-                //武器２
-                Debug.Log("武器２");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        //武器２
+        //        Debug.Log("武器２");
                
-                this.gameObject.GetComponent<Shot>().Shot1();
-            }
-        }
-        else
-        {
-            _timeCount = TIME_INTERVAL;
-        }
+        //        this.gameObject.GetComponent<Shot>().Shot1();
+        //    }
+        //}
+        //else
+        //{
+        //    _timeCount = TIME_INTERVAL;
+        //}
 
+        
     }
 }

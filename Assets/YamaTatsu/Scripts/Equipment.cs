@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class Equipment : MonoBehaviour {
 
@@ -228,6 +229,7 @@ public class Equipment : MonoBehaviour {
                     }
                 }
 
+                //メインからNextまでの選択
                 switch (_state)
                 {
                     case (int)EQUIPMENT_STATE.MAIN_WEAPON1:
@@ -375,7 +377,8 @@ public class Equipment : MonoBehaviour {
                 switch (_nextState)
                 {
                     case (int)NEXT_STATE.YES:
-                        //次のシーンに移動                        
+                        //次のシーンに移動          
+                        SceneManager.LoadScene("Test");
                         break;
                     case (int)NEXT_STATE.NO:
                         _popFlag = false;
