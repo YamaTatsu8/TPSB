@@ -5,42 +5,43 @@ using System;
 
 public class RayCastShoot : MonoBehaviour
 {
-    [SerializeField]
-    private float _bulletSpeed = 50.0f;     // 弾速
-    [SerializeField]
-    private float _fireRate = 0.1f;         // 連射速度
+    // 発射間隔
+    private float _fireRate;
 
-    [SerializeField]
-    private float _destroyTime = 3.0f;      // 消滅までの時間
+    // 次弾発射までの時間
+    private float _nextTime = 0;
 
-    [SerializeField]
-    private Transform _muzzle;              // 銃口
+    // カメラ
+    private Camera _fpsCam;
 
-    public GameObject _bulletPrefab       // 弾のプレハブ
-    {
-        get;
-        set;
-    }
+    // 銃口
+    private Transform _muzzle;
 
-    private float _range = 30.0f;           // 射程(DrawLineの距離)
+    // 弾のプレハブ
+    private GameObject _bulletPrefab;
 
-    private float _nextTime;                // 次弾発射までの時間
+    // 弾速
+    private float _bulletSpeed = 50.0f;
 
-    private Camera _fpsCam;                 // カメラ
+    // 消滅までの時間
+    private float _destroyTime = 3.0f;
 
-    private AudioSource _gunAudio;      
-    [SerializeField]
-    private AudioClip _shotSound;           // 発射音
+    // 射程(DrawLineの距離)
+    private float _range = 30.0f;
 
     // Use this for initialization
     void Start ()
     {
-        // 各コンポーネントの取得
-        _fpsCam = GetComponentInChildren<Camera>();
-        _gunAudio = GetComponent<AudioSource>();
-	}
+        _fireRate = 1.0f / this.GetComponent<WeaponManager>().RoundsPerSecond;
 
-    public void Shot()
+        _fpsCam = GetComponentInParent<Camera>();
+
+        _muzzle = this.GetComponent<WeaponManager>().Muzzle;
+
+        _bulletPrefab = this.GetComponent<WeaponManager>().BulletPrefab;
+    }
+
+    public bool Shot()
     {
         if (Time.time > _nextTime)
         {
@@ -70,19 +71,22 @@ public class RayCastShoot : MonoBehaviour
                 bulletClone.GetComponent<Rigidbody>().velocity = (ray.GetPoint(_range) - bulletClone.transform.position).normalized * _bulletSpeed;
             }
 
-            StartCoroutine(DelayMethod(_destroyTime, () =>
+            Coroutine coroutine = this.Delay(_destroyTime, () =>
             {
                 Destroy(bulletClone);
-            }));
+            });
 
             //_gunAudio.clip = _shotSound;
             //_gunAudio.Play();
-        }
-    }
 
-    private IEnumerator DelayMethod(float waitTime, Action action)
-    {
-        yield return new WaitForSeconds(waitTime);
-        action();
+            return true;
+        }
+        return false;
     }
+    
+    //private IEnumerator DelayMethod(float waitTime, Action action)
+    //{
+    //    yield return new WaitForSeconds(waitTime);
+    //    action();
+    //}
 }
