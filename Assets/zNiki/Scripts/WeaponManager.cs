@@ -18,11 +18,12 @@ public class WeaponManager : MonoBehaviour
     [SerializeField]
     private int _capacity = 30;
 
+    // 残弾数
     private int _remainingBullets = 0;
 
     // 秒間発射数
     [SerializeField]
-    private int _roundsPerSecond = 10;
+    private int _roundsPerSecond = 100;
 
     // リロードにかかる時間（秒）
     [SerializeField]
@@ -47,8 +48,6 @@ public class WeaponManager : MonoBehaviour
 
     private AudioSource _gunAudio;
 
-    Coroutine coroutine;
-
     // プロパティ -----------------------------------
 
     //public int Capacity
@@ -62,10 +61,10 @@ public class WeaponManager : MonoBehaviour
         get { return _roundsPerSecond; }
     }
 
-    public float ReloadTime
-    {
-        get { return _reloadTime; }
-    }
+    //public float ReloadTime
+    //{
+    //    get { return _reloadTime; }
+    //}
 
     public Transform Muzzle
     {
@@ -90,41 +89,63 @@ public class WeaponManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     }
 
     public void Shot()
     {
-
         if (_remainingBullets == 0)
         {
-            coroutine =  this.DelayOnce(_reloadTime, () =>
-            {
-                this.Reload();
-            });
+            this.Reload();
         }
         else
         {
             if (_isShot)
             {
-                if (_mode != Selector.AUTO)
+                Shoot();
+                if (_mode == Selector.SEMI)
                 {
                     _isShot = false;
                 }
-                if (this.GetComponent<RayCastShoot>().Shot())
+                else if (_mode == Selector.BURST)
                 {
-                    _remainingBullets--;
-                    Debug.Log(_remainingBullets);
-                }
+                    _isShot = false;
 
+                    this.Delay(1.0f / _roundsPerSecond, () =>
+                    {
+                        Shoot();
+
+                        this.Delay(1.0f / _roundsPerSecond, () =>
+                        {
+                            Shoot();
+                        });
+                    });
+                }
             }
         }
     }
 
-    public void Reload()
+    private void Reload()
     {
-        Debug.Log("Reload!");
-        _remainingBullets = _capacity;
+        if (_remainingBullets < 30)
+        {
+            this.DelayOnce(_reloadTime, () =>
+            {
+                Debug.Log("Reload!");
+                _remainingBullets = _capacity;
 
-        // UIを表示する
+                // UIを表示する
+
+            });
+        }
+    }
+
+    private void Shoot()
+    {
+        if (this.GetComponent<RayCastShoot>().Shot())
+        {
+            _remainingBullets--;
+            Debug.Log(_remainingBullets);
+        }
     }
 }
