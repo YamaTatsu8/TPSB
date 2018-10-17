@@ -35,6 +35,11 @@ public class Jump : MonoBehaviour
 
     public Canvas canvas;
 
+    //アニメーター
+    private Animator _animator;
+
+
+
 
     // Use this for initialization
     void Start()
@@ -48,6 +53,9 @@ public class Jump : MonoBehaviour
         gage = canvas;
 
         //_gage = gage.GetComponent<EP>();
+
+        //アニメーターのコンポーネント
+        _animator = GetComponent<Animator>();
 
     }
 
@@ -80,9 +88,16 @@ public class Jump : MonoBehaviour
             rb.velocity = new Vector3(moveX, _jumpPower, moveZ);
             _groundFlag = false;
 
+            //飛ぶモーションに変更
+            _animator.SetBool("Jump", true);
+
             gage.GetComponent<EP>().UseEp(5);
             //gage.GetComponent<EP>().get();
 
+        }
+        else
+        {
+            _animator.SetBool("Jump", false);
         }
         
     }

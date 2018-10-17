@@ -127,11 +127,13 @@ public class Move : MonoBehaviour {
         if(Input.GetButton("B") && gage.GetComponent<EP>().getBoostFlag() == true)
         {
             _boostFlag = true;
+            _animator.SetBool("Run", true);
             gage.GetComponent<EP>().UseEp(5);
         }
         else
         {
             _boostFlag = false;
+            _animator.SetBool("Run", false);
             gage.GetComponent<EP>().RecoveryEP(3);
         }
     }
