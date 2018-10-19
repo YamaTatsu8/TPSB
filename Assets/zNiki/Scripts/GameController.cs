@@ -19,16 +19,31 @@ public enum Button
 
 public enum Trigger
 {
-    Left,
-    Right,
+    LEFT,
+    RIGHT,
+}
+
+public enum Type
+{
+    LEFTSTICK,
+    RIGHTSTICK,
+    CLOSS,
 }
 
 public class GameController : Util.SingletonMonoBehaviour<GameController>
 {
+    private const float ZERO = 0.0f;
+    private const float LIMIT = 0.2f;
+
     private bool _connected = false;
     private bool _isUseAxis = false;
 
+    private Button _prevButton;
+    private Trigger _prevTrigger;
+    //private string _currentButton = null;
+
     private Direction _prevDir;
+    private Type _prevType;
 
     // Use this for initialization
     void Start()
@@ -40,7 +55,7 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
     {
         CheckUseAxis();
     }
-    
+
     public bool GetConnectFlag()
     {
         CheckConnect();
@@ -71,11 +86,35 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
     }
 
     /// <summary>
+    /// ボタンが入力されているかの確認
+    /// </summary>
+    public bool CheckUseButton()
+    {
+        if (ButtonDown(_prevButton))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// ボタンが入力されているかの確認
+    /// </summary>
+    public bool CheckUseTrigger()
+    {
+        if (TriggerDown(_prevTrigger))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
     /// スティックと十字キーが入力されているかの確認
     /// </summary>
     private void CheckUseAxis()
     {
-        if (!Move(_prevDir))
+        if (CheckDirection(_prevDir, _prevType) == 0.0f)
         {
             _isUseAxis = false;
         }
@@ -88,6 +127,8 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
     /// <returns>true:押されている false:押されていない</returns>
     public bool ButtonDown(Button b)
     {
+        _prevButton = b;
+
         string button = b.ToString();
 
         try
@@ -111,6 +152,8 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
     /// <returns>true:押されている false:押されていない</returns>
     public bool TriggerDown(Trigger t)
     {
+        _prevTrigger = t;
+
         string trigger = t.ToString();
 
         try
@@ -128,106 +171,78 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
     }
 
     /// <summary>
-    /// 指定した向きに左スティック/十字キーが入力されているか
+    /// 指定した向きに指定されたキーかスティックが入力されているか
     /// </summary>
     /// <param name="d">向き</param>
+    /// <param name="t">キーの種類</param>
     /// <returns>true:入力されている false:入力されていない</returns>
-    public bool Move(Direction d)
+    public float CheckDirection(Direction d, Type t)
     {
-        var limit = 0.01f;
-        switch (d)
+        switch (t)
         {
-            case Direction.Front:
-                if (Input.GetAxis("L-StickVertical") >= limit || Input.GetAxis("C-ButtonVertical") >= limit)
-                {
-                    return true;
-                }
-                break;
-
-            case Direction.Back:
-                if (Input.GetAxis("L-StickVertical") <= -limit || Input.GetAxis("C-ButtonVertical") <= -limit)
-                {
-                    return true;
-                }
-                break;
-
-            case Direction.Left:
-                if (Input.GetAxis("L-StickHorizontal") <= -limit || Input.GetAxis("C-ButtonHorizontal") <= -limit)
-                {
-                    return true;
-                }
-                break;
-
-            case Direction.Right:
-                if (Input.GetAxis("L-StickHorizontal") >= limit || Input.GetAxis("C-ButtonHorizontal") >= limit)
-                {
-                    return true;
-                }
-                break;
-
+            case Type.LEFTSTICK:
+                return CheckAxis(d, "L-Stick");
+            case Type.RIGHTSTICK:
+                return CheckAxis(d, "R-Stick");
+            case Type.CLOSS:
+                return CheckAxis(d, "C-Button");
             default:
                 break;
         }
-        return false;
+        return ZERO;
     }
-
-    /// <summary>
-    /// 指定した向きに右スティックが入力されているか
-    /// </summary>
-    /// <param name="d">向き</param>
-    /// <returns>true:入力されている false:入力されていない</returns>
-    public bool ViewpointMove(Direction d)
-    {
-        var limit = 0.01f;
-        switch (d)
-        {
-            case Direction.Front:
-                if (Input.GetAxis("R-StickVertical") >= limit)
-                {
-                    return true;
-                }
-                break;
-
-            case Direction.Back:
-                if (Input.GetAxis("R-StickVertical") <= -limit)
-                {
-                    return true;
-                }
-                break;
-
-            case Direction.Left:
-                if (Input.GetAxis("R-StickHorizontal") <= -limit)
-                {
-                    return true;
-                }
-                break;
-
-            case Direction.Right:
-                if (Input.GetAxis("R-StickHorizontal") >= limit)
-                {
-                    return true;
-                }
-                break;
-
-            default:
-                break;
-        }
-        return false;
-    }
-
+    
     /// <summary>
     /// Moveの単発型
     /// </summary>
     /// <param name="d">向き</param>
     /// <returns>true:入力されている false:入力されていない</returns>
-    public bool OneShotMove(Direction d)
+    public bool CheckDirectionOnce(Direction d, Type t)
     {
-        if (!_isUseAxis && Move(d))
+        if (!_isUseAxis && CheckDirection(d, t) != 0)
         {
             _isUseAxis = true;
             _prevDir = d;
+            _prevType = t;
             return true;
         }
         return false;
+    }
+
+    private float CheckAxis(Direction d, string n)
+    {
+        switch (d)
+        {
+            case Direction.Front:
+                if (Input.GetAxis(n + "Vertical") >= LIMIT)
+                {
+                    return Input.GetAxis(n + "Vertical");
+                }
+                break;
+
+            case Direction.Back:
+                if (Input.GetAxis(n + "Vertical") <= -LIMIT)
+                {
+                    return Input.GetAxis(n + "Vertical");
+                }
+                break;
+
+            case Direction.Left:
+                if (Input.GetAxis(n + "Horizontal") <= -LIMIT)
+                {
+                    return Input.GetAxis(n + "Horizontal");
+                }
+                break;
+
+            case Direction.Right:
+                if (Input.GetAxis(n + "Horizontal") >= LIMIT)
+                {
+                    return Input.GetAxis(n + "Horizontal");
+                }
+                break;
+            default:
+                break;
+        }
+        return ZERO;
     }
 }

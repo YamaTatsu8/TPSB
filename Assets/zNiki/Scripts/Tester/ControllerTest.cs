@@ -87,49 +87,66 @@ public class ControllerTest : MonoBehaviour
             //    Debug.Log("RIGHT");
             //}
 
-            if (con.OneShotMove(Direction.Front))
+            if (con.CheckDirection(Direction.Front, Type.LEFTSTICK) != 0)
+            {
+                Debug.Log(con.CheckDirection(Direction.Front, Type.LEFTSTICK));
+            }
+            if (con.CheckDirection(Direction.Back, Type.LEFTSTICK) != 0)
+            {
+                Debug.Log(con.CheckDirection(Direction.Back, Type.LEFTSTICK));
+            }
+            if (con.CheckDirection(Direction.Left, Type.LEFTSTICK) != 0)
+            {
+                Debug.Log(con.CheckDirection(Direction.Left, Type.LEFTSTICK));
+            }
+            if (con.CheckDirection(Direction.Right, Type.LEFTSTICK) != 0)
+            {
+                Debug.Log(con.CheckDirection(Direction.Right, Type.LEFTSTICK));
+            }
+
+            if (con.CheckDirectionOnce(Direction.Front, Type.CLOSS))
             {
                 Debug.Log("Move Front");
             }
-            if (con.OneShotMove(Direction.Back))
+            if (con.CheckDirectionOnce(Direction.Back, Type.CLOSS))
             {
                 Debug.Log("Move Back");
             }
-            if (con.OneShotMove(Direction.Left))
+            if (con.CheckDirectionOnce(Direction.Left, Type.CLOSS))
             {
                 Debug.Log("Move Left");
             }
-            if (con.OneShotMove(Direction.Right))
+            if (con.CheckDirectionOnce(Direction.Right, Type.CLOSS))
             {
                 Debug.Log("Move Right");
             }
 
             // トリガーの入力を取る
-            if (con.TriggerDown(Trigger.Left))
+            if (con.TriggerDown(Trigger.LEFT))
             {
                 Debug.Log("Left Trigger");
             }
-            if (con.TriggerDown(Trigger.Right))
+            if (con.TriggerDown(Trigger.RIGHT))
             {
                 Debug.Log("Right Trigger");
             }
 
             // 右スティックの入力を取る
-            if (con.ViewpointMove(Direction.Front))
+            if (con.CheckDirection(Direction.Front, Type.RIGHTSTICK) != 0)
             {
-                Debug.Log("ViewPoint Front");
+                Debug.Log(con.CheckDirection(Direction.Front, Type.RIGHTSTICK));
             }
-            if (con.ViewpointMove(Direction.Back))
+            if (con.CheckDirection(Direction.Back, Type.RIGHTSTICK) != 0)
             {
-                Debug.Log("ViewPoint Back");
+                Debug.Log(con.CheckDirection(Direction.Back, Type.RIGHTSTICK));
             }
-            if (con.ViewpointMove(Direction.Left))
+            if (con.CheckDirection(Direction.Left, Type.RIGHTSTICK) != 0)
             {
-                Debug.Log("ViewPoint left");
+                Debug.Log(con.CheckDirection(Direction.Left, Type.RIGHTSTICK));
             }
-            if (con.ViewpointMove(Direction.Right))
+            if (con.CheckDirection(Direction.Right, Type.RIGHTSTICK) != 0)
             {
-                Debug.Log("ViewPoint Right");
+                Debug.Log(con.CheckDirection(Direction.Right, Type.RIGHTSTICK));
             }
         }
         else

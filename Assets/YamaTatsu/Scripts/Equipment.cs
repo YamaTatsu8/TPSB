@@ -212,22 +212,22 @@ public class Equipment : MonoBehaviour {
         {
             if (_mainFlag == false)
             {
-                if (_controller.OneShotMove(Direction.Front))
-                {
-                    _state -= 1;
-                    if (_state < (int)EQUIPMENT_STATE.MAIN_WEAPON1)
-                    {
-                        _state = (int)EQUIPMENT_STATE.NEXT;
-                    }
-                }
-                else if (_controller.OneShotMove(Direction.Back))
-                {
-                    _state += 1;
-                    if (_state > (int)EQUIPMENT_STATE.NEXT)
-                    {
-                        _state = (int)EQUIPMENT_STATE.MAIN_WEAPON1;
-                    }
-                }
+                //if (_controller.OneShotMove(Direction.Front))
+                //{
+                //    _state -= 1;
+                //    if (_state < (int)EQUIPMENT_STATE.MAIN_WEAPON1)
+                //    {
+                //        _state = (int)EQUIPMENT_STATE.NEXT;
+                //    }
+                //}
+                //else if (_controller.OneShotMove(Direction.Back))
+                //{
+                //    _state += 1;
+                //    if (_state > (int)EQUIPMENT_STATE.NEXT)
+                //    {
+                //        _state = (int)EQUIPMENT_STATE.MAIN_WEAPON1;
+                //    }
+                //}
 
                 //メインからNextまでの選択
                 switch (_state)
@@ -259,25 +259,25 @@ public class Equipment : MonoBehaviour {
             else
             {
 
-                //コントローラ操作
-                if (_controller.OneShotMove(Direction.Front))
-                {
-                    _mainState -= 1;
+                ////コントローラ操作
+                //if (_controller.OneShotMove(Direction.Front))
+                //{
+                //    _mainState -= 1;
 
-                    if (_mainState < (int)WEAPON_STATE.WEAPON1)
-                    {
-                        _mainState = (int)WEAPON_STATE.WEAPON2;
-                    }
-                }
-                else if (_controller.OneShotMove(Direction.Back))
-                {
-                    _mainState += 1;
+                //    if (_mainState < (int)WEAPON_STATE.WEAPON1)
+                //    {
+                //        _mainState = (int)WEAPON_STATE.WEAPON2;
+                //    }
+                //}
+                //else if (_controller.OneShotMove(Direction.Back))
+                //{
+                //    _mainState += 1;
 
-                    if (_mainState > (int)WEAPON_STATE.WEAPON2)
-                    {
-                        _mainState = (int)WEAPON_STATE.WEAPON1;
-                    }
-                }
+                //    if (_mainState > (int)WEAPON_STATE.WEAPON2)
+                //    {
+                //        _mainState = (int)WEAPON_STATE.WEAPON1;
+                //    }
+                //}
 
                 if (_weaponState == 0)
                 {
@@ -340,25 +340,25 @@ public class Equipment : MonoBehaviour {
         }
         else
         {
-            //コントローラ操作
-            if (_controller.OneShotMove(Direction.Left))
-            {
-                _nextState -= 1;
+            ////コントローラ操作
+            //if (_controller.OneShotMove(Direction.Left))
+            //{
+            //    _nextState -= 1;
 
-                if (_nextState < (int)NEXT_STATE.YES)
-                {
-                    _nextState = (int)NEXT_STATE.NO;
-                }
-            }
-            else if (_controller.OneShotMove(Direction.Right))
-            {
-                _nextState += 1;
+            //    if (_nextState < (int)NEXT_STATE.YES)
+            //    {
+            //        _nextState = (int)NEXT_STATE.NO;
+            //    }
+            //}
+            //else if (_controller.OneShotMove(Direction.Right))
+            //{
+            //    _nextState += 1;
 
-                if (_nextState > (int)NEXT_STATE.NO)
-                {
-                    _nextState = (int)NEXT_STATE.YES;
-                }
-            }
+            //    if (_nextState > (int)NEXT_STATE.NO)
+            //    {
+            //        _nextState = (int)NEXT_STATE.YES;
+            //    }
+            //}
 
             switch (_nextState)
             {
