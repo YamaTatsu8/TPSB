@@ -122,6 +122,12 @@ public class Jump : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             _groundFlag = true;
+            _animator.SetBool("Fall", false);
+            Debug.Log("地面");
+        }
+        else
+        {
+            _animator.SetBool("Fall", true);
         }
     }
 

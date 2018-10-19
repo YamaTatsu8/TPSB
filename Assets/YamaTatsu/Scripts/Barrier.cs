@@ -27,10 +27,15 @@ public class Barrier : MonoBehaviour {
     [SerializeField]
     private int _HP = 10;
 
+    //アニメーター
+    private Animator _animator;
+
     // Use this for initialization
     void Start () {
 
         controller = GameController.Instance;
+
+        _animator = GetComponent<Animator>();
 
     }
 	
@@ -48,6 +53,7 @@ public class Barrier : MonoBehaviour {
         if (_flag == true && _reFlag == false)
         {
             _object = GameObject.Instantiate(_barrier);
+            _animator.SetBool("Guard", true);
             _reFlag = true;
         }
         else if(_flag == false)
