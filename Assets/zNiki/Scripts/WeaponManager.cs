@@ -12,8 +12,6 @@ public class WeaponManager : MonoBehaviour
         BURST,
     }
 
-    // 変数 ----------------------------------------
-
     // 装弾数
     [SerializeField]
     private int _capacity = 30;
@@ -45,18 +43,27 @@ public class WeaponManager : MonoBehaviour
     // 銃口
     private Transform _muzzle;
 
+    // コントローラー
     private GameController _con;
 
     // 弾のプレハブ
     [SerializeField]
     private GameObject _bulletPrefab;
 
-    //[SerializeField]
-    //private AudioClip _shotSound;
+    public int Capacity
+    {
+        get { return _capacity; }
+    }
 
-    //private AudioSource _gunAudio;
+    public int RemainingBullets
+    {
+        get { return _remainingBullets; }
+    }
 
-    // プロパティ -----------------------------------
+    public float ReloadTime
+    {
+        get { return _reloadTime; }
+    }
 
     public int RoundsPerSecond
     {
@@ -73,9 +80,7 @@ public class WeaponManager : MonoBehaviour
         get { return _bulletPrefab; }
         set { _bulletPrefab = value; }
     }
-
-    // 関数 ----------------------------------------
-
+    
     private void Awake()
     {
         _fireRate = 1.0f / _roundsPerSecond;
@@ -86,9 +91,8 @@ public class WeaponManager : MonoBehaviour
 
         _con = GameController.Instance;
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    private void Update()
     {
         _con.ControllerUpdate();
 
@@ -138,9 +142,6 @@ public class WeaponManager : MonoBehaviour
             this.DelayOnce(_reloadTime, () =>
             {
                 _remainingBullets = _capacity;
-
-                // UIを表示する
-
             });
         }
     }
