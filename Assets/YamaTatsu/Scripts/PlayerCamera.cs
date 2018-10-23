@@ -25,6 +25,9 @@ public class PlayerCamera : MonoBehaviour {
     //ロックオンしてるかのフラグ
     private bool _LookFlag = false;
 
+    [SerializeField]
+    private Vector3 _offset;
+
     // Use this for initialization
     void Start()
     {

@@ -7,10 +7,6 @@ public class Barrier : MonoBehaviour {
     //コントローラー
     GameController controller;
 
-    //バリア
-    [SerializeField]
-    private GameObject _barrier;
-
     private GameObject _object;
 
     //バるあフラグ
@@ -30,43 +26,47 @@ public class Barrier : MonoBehaviour {
     //アニメーター
     private Animator _animator;
 
+    //Guardのオブジェクト
+    [SerializeField]
+    private GameObject _guard;
+
     // Use this for initialization
     void Start () {
+
+        Debug.Log(_guard);
 
         controller = GameController.Instance;
 
         _animator = GetComponent<Animator>();
+
+        _guard = GameObject.Find("Guard");
+
+        _guard.SetActive(false);
 
     }
 	
 	// Update is called once per frame
 	void Update () {
 
+
+        GameObject target = GameObject.FindGameObjectWithTag("Player");
+
         controller.ControllerUpdate();
 
         //左ショルダーボタンが押された時
-        if (controller.ButtonDown(Button.L1))
+        if (Input.GetButton("L1"))
         {
-            _flag = !_flag;
-        }
-
-        if (_flag == true && _reFlag == false)
-        {
-            _object = GameObject.Instantiate(_barrier);
+            _guard.SetActive(true);
             _animator.SetBool("Guard", true);
-            _reFlag = true;
+            transform.LookAt(target.transform, Vector3.up);
         }
-        else if(_flag == false)
+        else
         {
-            Destroy(_object);
-            _reFlag = false;
+            _guard.SetActive(false);
+            _animator.SetBool("Guard", false);
         }
 
-        if(_reFlag == true)
-        {
-            _object.transform.position = transform.position;
-        }
-
+        // 0になったらバリアを消す       
         if(_HP <= 0)
         {
             Destroy(_object);
