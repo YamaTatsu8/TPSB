@@ -5,10 +5,7 @@ using UnityEngine;
 public class SuperTester : MonoBehaviour
 {
     GameController con;
-
-    [SerializeField]
-    private GameObject _bullet;
-
+    
     // Use this for initialization
     void Start ()
     {
@@ -21,22 +18,22 @@ public class SuperTester : MonoBehaviour
         // このUpdateは必須
         con.ControllerUpdate();
 
-        //// このifでコントローラが刺さってるか判定する
-        //if (con.GetConnectFlag())
-        //{
-        //    if (con.TriggerDown(Trigger.Left))
-        //    {
-        //        this.transform.GetChild(0).GetComponent<WeaponManager>().Shot();
-        //    }
-        //}
-        //else
-        //{
-        //    Debug.Log("つっかえ！");
-        //}
-
-        if (Input.GetMouseButton(0))
+        // このifでコントローラが刺さってるか判定する
+        if (con.GetConnectFlag())
         {
-            this.transform.GetChild(0).GetComponent<WeaponManager>().Shot();
+            if (con.TriggerDown(Trigger.LEFT))
+            {
+                this.transform.GetChild(0).GetComponent<WeaponManager>().Attack();
+            }
         }
+        else
+        {
+            Debug.Log(con.GetConnectFlag());
+        }
+
+        //if (Input.GetMouseButton(0))
+        //{
+        //    this.transform.GetChild(0).GetComponent<WeaponManager>().Shot();
+        //}
     }
 }

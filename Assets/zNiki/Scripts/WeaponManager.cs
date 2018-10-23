@@ -25,46 +25,43 @@ public class WeaponManager : MonoBehaviour
     [SerializeField]
     private int _roundsPerSecond = 100;
 
+    // 発射間隔
+    private float _fireRate;
+
     // リロードにかかる時間（秒）
     [SerializeField]
     private float _reloadTime = 2.0f;
 
     // 射撃モード
     [SerializeField]
-    private Selector _mode = Selector.SEMI;
+    private Selector _mode = Selector.AUTO;
 
     // 弾を撃てるか
     private bool _isShot = true;
 
+    // バースト射撃できるか
+    private bool _isBurst = true;
+
     // 銃口
     private Transform _muzzle;
+
+    private GameController _con;
 
     // 弾のプレハブ
     [SerializeField]
     private GameObject _bulletPrefab;
 
-    [SerializeField]
-    private AudioClip _shotSound;
+    //[SerializeField]
+    //private AudioClip _shotSound;
 
-    private AudioSource _gunAudio;
+    //private AudioSource _gunAudio;
 
     // プロパティ -----------------------------------
-
-    //public int Capacity
-    //{
-    //    get { return _capacity; }
-    //    set { _capacity = value; }
-    //}
 
     public int RoundsPerSecond
     {
         get { return _roundsPerSecond; }
     }
-
-    //public float ReloadTime
-    //{
-    //    get { return _reloadTime; }
-    //}
 
     public Transform Muzzle
     {
@@ -81,18 +78,30 @@ public class WeaponManager : MonoBehaviour
 
     private void Awake()
     {
+        _fireRate = 1.0f / _roundsPerSecond;
+
         _muzzle = this.transform.GetChild(0).transform;
 
         _remainingBullets = _capacity;
+
+        _con = GameController.Instance;
     }
 
     // Update is called once per frame
     void Update()
     {
+        _con.ControllerUpdate();
 
+        if (!_isShot)
+        {
+            if (!_con.CheckUseTrigger())
+            {
+                _isShot = true;
+            }
+        }
     }
 
-    public void Shot()
+    public void Attack()
     {
         if (_remainingBullets == 0)
         {
@@ -102,36 +111,32 @@ public class WeaponManager : MonoBehaviour
         {
             if (_isShot)
             {
-                Shoot();
-                if (_mode == Selector.SEMI)
+                switch (_mode)
                 {
-                    _isShot = false;
-                }
-                else if (_mode == Selector.BURST)
-                {
-                    _isShot = false;
-
-                    this.Delay(1.0f / _roundsPerSecond, () =>
-                    {
-                        Shoot();
-
-                        this.Delay(1.0f / _roundsPerSecond, () =>
-                        {
-                            Shoot();
-                        });
-                    });
+                    case Selector.SEMI:
+                        Shot(0.0f);
+                        _isShot = false;
+                        break;
+                    case Selector.AUTO:
+                        Shot(_fireRate);
+                        break;
+                    case Selector.BURST:
+                        BurstShot();
+                        _isShot = false;
+                        break;
+                    default:
+                        break;
                 }
             }
         }
     }
 
-    private void Reload()
+    public void Reload()
     {
         if (_remainingBullets < 30)
         {
             this.DelayOnce(_reloadTime, () =>
             {
-                Debug.Log("Reload!");
                 _remainingBullets = _capacity;
 
                 // UIを表示する
@@ -140,12 +145,35 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    private void Shot(float fireRate)
     {
-        if (this.GetComponent<RayCastShoot>().Shot())
+        if (this.GetComponent<RayCastShoot>().Shot(fireRate))
         {
             _remainingBullets--;
-            Debug.Log(_remainingBullets);
+        }
+    }
+
+    private void BurstShot()
+    {
+        if (_isBurst)
+        {
+            _isBurst = false;
+            this.Delay(0, () =>
+            {
+                Shot(_fireRate);
+                this.Delay(1.0f / _roundsPerSecond, () =>
+                {
+                    Shot(_fireRate);
+                    this.Delay(1.0f / _roundsPerSecond, () =>
+                    {
+                        Shot(0.0f);
+                        this.Delay(1.0f / _roundsPerSecond, () =>
+                        {
+                            _isBurst = true;
+                        });
+                    });
+                });
+            });
         }
     }
 }

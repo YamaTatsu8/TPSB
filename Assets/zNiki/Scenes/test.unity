@@ -282,7 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717595112da98c447a2a1c91ad2f7ef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: {fileID: 1851101392693190, guid: a2f9227168d7af146b8c13994fb0c9ef, type: 2}
 --- !u!45 &379077343
 Skybox:
   m_ObjectHideFlags: 0
@@ -615,13 +614,26 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1537488826}
+  - component: {fileID: 1537488827}
+  - component: {fileID: 1537488825}
   m_Layer: 0
   m_Name: Tester
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
+--- !u!114 &1537488825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1537488824}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717595112da98c447a2a1c91ad2f7ef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1537488826
 Transform:
   m_ObjectHideFlags: 0
@@ -635,3 +647,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1537488827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1537488824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4967cf201bff124692a6335b6aa855f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

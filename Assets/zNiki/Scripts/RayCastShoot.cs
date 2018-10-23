@@ -33,16 +33,18 @@ public class RayCastShoot : MonoBehaviour
     void Start ()
     {
         _fireRate = 1.0f / this.GetComponent<WeaponManager>().RoundsPerSecond;
-
-        _fpsCam = GetComponentInParent<Camera>();
+        
+        _fpsCam = Camera.FindObjectOfType<Camera>();
 
         _muzzle = this.GetComponent<WeaponManager>().Muzzle;
 
         _bulletPrefab = this.GetComponent<WeaponManager>().BulletPrefab;
     }
 
-    public bool Shot()
+    public bool Shot(float fireRate)
     {
+        _fireRate = fireRate;
+
         if (Time.time > _nextTime)
         {
             // 次弾発射までの時間更新
@@ -76,17 +78,8 @@ public class RayCastShoot : MonoBehaviour
                 Destroy(bulletClone);
             });
 
-            //_gunAudio.clip = _shotSound;
-            //_gunAudio.Play();
-
             return true;
         }
         return false;
     }
-    
-    //private IEnumerator DelayMethod(float waitTime, Action action)
-    //{
-    //    yield return new WaitForSeconds(waitTime);
-    //    action();
-    //}
 }
