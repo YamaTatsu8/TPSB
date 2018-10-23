@@ -21,6 +21,11 @@ public class LookCamera : MonoBehaviour {
     private const float ANGLE_LIMIT_UP = 60f;
     private const float ANGLE_LIMIT_DOWN = -60f;
 
+    //offset
+    private Vector3 _offset;
+
+    private GameObject target;
+
     // Use this for initialization
     void Start () {
 
@@ -28,17 +33,28 @@ public class LookCamera : MonoBehaviour {
         //_player = GameObject.FindGameObjectWithTag("Player");
         _lookOnTarget = _player.GetComponentInChildren<LookOnTarget>();
 
-	}
+        _offset = new Vector3(0, 2, 0);
+
+        target = GameObject.FindGameObjectWithTag("Player");
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
-        //playerのポジションに入れる
-        transform.position = _player.transform.position * 1.1f;
+        
 
-        GameObject target = GameObject.FindGameObjectWithTag("Player");
+        Vector3 pos;
+
+        //
+        pos = (_player.transform.position - target.transform.position);
+
+        //playerのポジションに入れる
+        transform.position = _player.transform.position + pos.normalized * 3 + _offset;
 
         _target = target;
+
+
 
         if(_target)
         {
