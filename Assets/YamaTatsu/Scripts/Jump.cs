@@ -14,7 +14,7 @@ public class Jump : MonoBehaviour
     private Vector3 _jump = new Vector3(0, 0, 0);
     //ジャンプ力
     [SerializeField]
-    private float _jumpPower = 5.0f;
+    private float _jumpPower = 10.0f;
 
     Rigidbody rb;
 
@@ -81,11 +81,13 @@ public class Jump : MonoBehaviour
     {
         if (Input.GetButton("A") && gage.GetComponent<EP>().getBoostFlag() == true)
         {
-            moveX = Input.GetAxis("L-StickHorizontal") * _speed;
+            //moveX = Input.GetAxis("L-StickHorizontal") * _speed;
 
-            moveZ = Input.GetAxis("L-StickVertical") * _speed;
+            //moveZ = Input.GetAxis("L-StickVertical") * _speed;
 
-            rb.velocity = new Vector3(moveX, _jumpPower, moveZ);
+            rb.AddForce(transform.up * 2,ForceMode.Impulse);
+
+            //rb.velocity = new Vector3(moveX, _jumpPower, moveZ);
             _groundFlag = false;
 
             //飛ぶモーションに変更
