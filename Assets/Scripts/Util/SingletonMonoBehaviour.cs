@@ -85,5 +85,6 @@ namespace Util
 
         // コンストラクタをprotectedにすることでインスタンスを生成出来なくする
         protected SingletonMonoBehaviour() { }
+
     }
 }

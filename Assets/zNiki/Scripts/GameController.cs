@@ -69,13 +69,20 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
     private void CheckConnect()
     {
         var names = Input.GetJoystickNames();
-        string controllerNames = string.Empty;
+        string controllerName = string.Empty;
         if (names.Any())
         {
-            controllerNames = names[0];
+            foreach (string name in names)
+            {
+                if (name != "")
+                {
+                    controllerName = name;
+                    break;
+                }
+            }
         }
 
-        if (controllerNames.Length > 0)
+        if (controllerName.Length > 0)
         {
             _connected = true;
         }
@@ -98,7 +105,7 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
     }
 
     /// <summary>
-    /// ボタンが入力されているかの確認
+    /// トリガーが入力されているかの確認
     /// </summary>
     public bool CheckUseTrigger()
     {
@@ -158,7 +165,7 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
 
         try
         {
-            if (Input.GetAxis(trigger) == 1)
+            if (Input.GetAxis(trigger) == 1.0f)
             {
                 return true;
             }
