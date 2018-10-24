@@ -35,6 +35,10 @@ public class Move : MonoBehaviour {
     [SerializeField]
     private GameObject _walkFoot;
 
+    //カメラ
+    [SerializeField]
+    private Camera _mainCamera;
+
     //アニメーター
     private Animator _animator;
 
@@ -108,10 +112,11 @@ public class Move : MonoBehaviour {
                 rb.velocity = moveForward * _speed + new Vector3(0, rb.velocity.y, 0);
                 _animator.SetFloat("Speed", moveDirection.magnitude);
 
-                if (moveForward != Vector3.zero)
-                {
-                    transform.rotation = Quaternion.LookRotation(moveForward);
-                }
+                //transform.LookAt(transform.position + moveForward);
+
+                transform.rotation = Quaternion.LookRotation(moveForward);
+
+                Debug.Log(Quaternion.LookRotation(moveForward));
 
             }
             else
@@ -130,11 +135,11 @@ public class Move : MonoBehaviour {
 
             // 移動方向にスピードを掛ける。ジャンプや落下がある場合は、別途Y軸方向の速度ベクトルを足す。
             rb.velocity = moveForward * _speed + new Vector3(0, rb.velocity.y, 0);
+
             //transform.LookAt(transform.position + moveForward);
-            if (moveForward != Vector3.zero)
-            {
-                transform.rotation = Quaternion.LookRotation(moveForward);
-            }
+
+             transform.rotation = Quaternion.LookRotation(moveForward);
+
         }
 
         //rb.velocity = new Vector3(moveX, rb.velocity.y, moveZ);
