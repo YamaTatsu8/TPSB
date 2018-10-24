@@ -11,10 +11,8 @@ public class LookCamera : MonoBehaviour {
     //カメラ
     private GameObject _mainCamera;
 
-    //LookOnスクリプト
-    private LookOnTarget _lookOnTarget;
-
     //ターゲット
+    
     private GameObject _target;
 
     //視界角度制限
@@ -24,18 +22,26 @@ public class LookCamera : MonoBehaviour {
     //offset
     private Vector3 _offset;
 
+    [SerializeField]
     private GameObject target;
+
+    //親の情報
+    [SerializeField]
+    private GameObject _parent;
 
     // Use this for initialization
     void Start () {
 
-        _mainCamera = Camera.main.gameObject;
-        //_player = GameObject.FindGameObjectWithTag("Player");
-        _lookOnTarget = _player.GetComponentInChildren<LookOnTarget>();
-
+        _mainCamera = this.gameObject;
+       
         _offset = new Vector3(0, 2, 0);
 
-        target = GameObject.FindGameObjectWithTag("Player");
+        _parent = gameObject.transform.parent.gameObject;
+
+        if(_parent.tag == "Player")
+        {
+            target = GameObject.FindGameObjectWithTag("Player2");
+        }
 
     }
 	
@@ -74,4 +80,5 @@ public class LookCamera : MonoBehaviour {
         transform.LookAt(target.transform, Vector3.up);
     }
 
+    
 }
