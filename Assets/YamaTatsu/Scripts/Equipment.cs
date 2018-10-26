@@ -172,6 +172,7 @@ public class Equipment : MonoBehaviour {
             //Resources/Imagesから一致するものを探してくる
             GameObject img = (GameObject)Instantiate(Resources.Load("Images/" + _weaponList[i][0].ToString()));
             img.transform.SetParent(canvas.transform, false);
+            img.GetComponent<WeaponName>().setName(_weaponList[i][0].ToString());
             _weaponImage[i] = img.GetComponent<RectTransform>();
 
             rePos = canvas.GetComponent<RectTransform>().position;
@@ -319,10 +320,12 @@ public class Equipment : MonoBehaviour {
                         case (int)WEAPON_MAIN.MAIN1:
                             //選んだ武器を装備
                             _playerSystem.GetComponent<PlayerSystem>().setMain1(_weaponList[_mainState][0].ToString());
+                            _mainWeapon1.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
                             break;
                         case (int)WEAPON_MAIN.MAIN2:
                             //選んだ武器を装備
                             _playerSystem.GetComponent<PlayerSystem>().setMain2(_weaponList[_mainState][0].ToString());
+                            _mainWeapon2.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
                             break;
                         case (int)WEAPON_MAIN.SUB:
                             //サブ武器の装備

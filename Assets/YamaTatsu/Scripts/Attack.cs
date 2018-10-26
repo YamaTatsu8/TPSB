@@ -31,94 +31,87 @@ public class Attack : MonoBehaviour {
 
     //武器の名前
     [SerializeField]
-    private string _weponName1;
+    private string _weaponName1;
     [SerializeField]
-    private string _weponName2;
+    private string _weaponName2;
     [SerializeField]
-    private string _subWeponName;
+    private string _subWeaponName;
+
+    //武器のオブジェクト
+    [SerializeField]
+    private GameObject _weapon1;
 
     [SerializeField]
-    private GameObject _wepon1;
+    private GameObject _weapon2;
 
     [SerializeField]
-    private GameObject _wepon2;
+    private GameObject _subWeapon;
 
+    //右手
     [SerializeField]
-    private GameObject _subWepon;
-   
+    private GameObject _rightHand;
 
-	// Use this for initialization
-	void Start () {
+    //アニメーター
+    private Animator _animator;
+
+    private Vector3 Player_pos;
+
+    // Use this for initialization
+    void Start () {
 
         controller = GameController.Instance;
         //this.gameObject.GetComponent<Shot>()._bulletPrefab = _Bullet1;
 
-        //
+        //PlayerSystemから情報をもらってくる
         PlayerSystem playerSystem = FindObjectOfType<PlayerSystem>();
 
-        _weponName1 = playerSystem.getMain1();
+        _weaponName1 = playerSystem.getMain1();
 
-        _weponName2 = playerSystem.getMain2();
+        _weaponName2 = playerSystem.getMain2();
 
-        _subWeponName = playerSystem.getSub();
+        _subWeaponName = playerSystem.getSub();
 
         //Resorcesから武器を探して装備する
+        _weapon1 = (GameObject)Instantiate(Resources.Load("Prefabs/" + _weaponName1));
 
+        //右手の子供にする
+        _weapon1.transform.parent = _rightHand.transform;
+        _weapon1.transform.position = _rightHand.transform.position;
 
+        //アニメーターのコンポーネント
+        _animator = GetComponent<Animator>();
 
     }
 	
 	// Update is called once per frame
 	void Update () {
 
+        GameObject target = GameObject.FindGameObjectWithTag("Player2");
+
         controller.ControllerUpdate();
 
         Debug.Log(_changeWeapon);
 
-        //if(controller.ButtonDown(Button.X))
-        //{
-        //    _changeWeapon = !_changeWeapon;
+        if (controller.TriggerDown(Trigger.LEFT))
+        {
+            Vector3 diff = transform.position - Player_pos;
 
-        //    if (_changeWeapon == true)
-        //    {
-        //        this.gameObject.GetComponent<Shot>()._bulletPrefab = _Bullet1;
-        //    }
-        //    else
-        //    {
-        //        this.gameObject.GetComponent<Shot>()._bulletPrefab = _Bullet2;
-        //    }
-        //}
+            _weapon1.GetComponent<WeaponManager>().Attack();
 
-        //if (controller.TriggerDown(Trigger.Left))
-        //{
-        //    _timeCount += 1;
+            //transform.rotation = Quaternion.LookRotation(new Vector3(diff.x, 0, diff.z));
 
-        //    if (_changeWeapon == true)
-        //    {
-        //        //武器１
-        //        //if (_timeCount > TIME_INTERVAL)
-        //        {
-                    
-        //            this.gameObject.GetComponent<Shot>().Shot1();
+            transform.LookAt(target.transform);
+            
+            //攻撃モーション
+            _animator.SetBool("Attack", true);
+        }
+        else
+        {
+            //攻撃モーション
+            _animator.SetBool("Attack", false);
+        }
 
-        //            //弾にダメージをセット
-        //            Debug.Log("武器１");
+        Player_pos = transform.position;
 
-        //        }
-        //    }
-        //    else
-        //    {
-        //        //武器２
-        //        Debug.Log("武器２");
-               
-        //        this.gameObject.GetComponent<Shot>().Shot1();
-        //    }
-        //}
-        //else
-        //{
-        //    _timeCount = TIME_INTERVAL;
-        //}
-
-        
     }
 }
