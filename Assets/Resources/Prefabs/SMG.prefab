@@ -612,10 +612,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _capacity: 30
-  _roundsPerSecond: 100
-  _reloadTime: 2
-  _mode: 1
-  _bulletPrefab: {fileID: 1166806312901748, guid: 8e6f70bc3d53d4440974079dd2b144fa,
+  _roundsPerSecond: 300
+  _reloadTime: 1
+  _mode: 0
+  _bulletPrefab: {fileID: 1517252947174306, guid: 7d4abc79392c89a419233c591e28f0e3,
     type: 2}
 --- !u!114 &114954712817104334
 MonoBehaviour:

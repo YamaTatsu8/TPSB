@@ -79,13 +79,15 @@ public class Jump : MonoBehaviour
     //飛ぶ関数
     private void Fly()
     {
-        if (Input.GetButton("A") && gage.GetComponent<EP>().getBoostFlag() == true)
+        if (controller.ButtonDown(Button.A) && gage.GetComponent<EP>().getBoostFlag() == true)
         {
             //moveX = Input.GetAxis("L-StickHorizontal") * _speed;
 
             //moveZ = Input.GetAxis("L-StickVertical") * _speed;
 
-            rb.AddForce(transform.up * 2,ForceMode.Impulse);
+            //rb.AddForce(transform.up * 2);
+
+            rb.velocity = new Vector3(0, 20, 0);
 
             //rb.velocity = new Vector3(moveX, _jumpPower, moveZ);
             _groundFlag = false;
@@ -121,16 +123,7 @@ public class Jump : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground")
-        {
-            _groundFlag = true;
-            _animator.SetBool("Fall", false);
-            Debug.Log("地面");
-        }
-        else
-        {
-            _animator.SetBool("Fall", true);
-        }
+       
     }
 
 }

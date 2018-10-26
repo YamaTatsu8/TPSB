@@ -18,6 +18,9 @@ public class Move : MonoBehaviour {
     [SerializeField]
     private float _speed = 8.0f;
 
+    [SerializeField]
+    private float _boost = 16.0f;
+
     //移動方向
     private Vector3 moveDirection = Vector3.zero;
 
@@ -138,13 +141,11 @@ public class Move : MonoBehaviour {
             Vector3 moveForward = cameraForward * moveZ + Camera.main.transform.right * moveX;
 
             // 移動方向にスピードを掛ける。ジャンプや落下がある場合は、別途Y軸方向の速度ベクトルを足す。
-            rb.velocity = moveForward * _speed + new Vector3(0, rb.velocity.y, 0);
+            rb.velocity = moveForward * _boost + new Vector3(0, rb.velocity.y, 0);
 
             transform.LookAt(transform.position + moveForward);
 
         }
-
-        //rb.velocity = new Vector3(moveX, rb.velocity.y, moveZ);
 
     }
 
@@ -171,6 +172,10 @@ public class Move : MonoBehaviour {
         {
             //Debug.Log("地面");
             _animator.SetBool("Fall", false);
+        }
+        else
+        {
+            _animator.SetBool("Fall", true);
         }
     }
 

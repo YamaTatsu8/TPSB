@@ -90,7 +90,7 @@ public class Attack : MonoBehaviour {
 
         controller.ControllerUpdate();
 
-        Debug.Log(_changeWeapon);
+        //Debug.Log(_changeWeapon);
 
         if (controller.TriggerDown(Trigger.LEFT))
         {
