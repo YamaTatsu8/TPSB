@@ -42,6 +42,7 @@ public class Move : MonoBehaviour {
     //アニメーター
     private Animator _animator;
 
+    
     // Use this for initialization
     void Start () {
 
@@ -65,7 +66,7 @@ public class Move : MonoBehaviour {
 
         controller.ControllerUpdate();
 
-        if(Input.GetAxis("L-StickHorizontal") > 0 || Input.GetAxis("L-StickVertical") > 0)
+        if (Input.GetAxis("L-StickHorizontal") > 0 || Input.GetAxis("L-StickVertical") > 0)
         {
             _walkFoot.SetActive(true);
         }
@@ -85,7 +86,6 @@ public class Move : MonoBehaviour {
             moveX = Input.GetAxis("L-StickHorizontal") * _speed * 2;
             moveZ = Input.GetAxis("L-StickVertical") * _speed * 2;
         }
-       
 
         Boost();
 
@@ -112,12 +112,16 @@ public class Move : MonoBehaviour {
                 rb.velocity = moveForward * _speed + new Vector3(0, rb.velocity.y, 0);
                 _animator.SetFloat("Speed", moveDirection.magnitude);
 
-                //transform.LookAt(transform.position + moveForward);
+                //カメラの方向に体を向ける
+                // = Quaternion.LookRotation(moveForward);
 
-                transform.rotation = Quaternion.LookRotation(moveForward);
+                transform.LookAt(transform.position + moveForward);
 
-                Debug.Log(Quaternion.LookRotation(moveForward));
-
+                {
+                    //Vector3 diff = transform.position - Player_pos;
+                    //transform.rotation = Quaternion.LookRotation(new Vector3(diff.x,0,diff.z));
+                    //Player_pos = transform.position;
+                }
             }
             else
             {
@@ -136,9 +140,7 @@ public class Move : MonoBehaviour {
             // 移動方向にスピードを掛ける。ジャンプや落下がある場合は、別途Y軸方向の速度ベクトルを足す。
             rb.velocity = moveForward * _speed + new Vector3(0, rb.velocity.y, 0);
 
-            //transform.LookAt(transform.position + moveForward);
-
-             transform.rotation = Quaternion.LookRotation(moveForward);
+            transform.LookAt(transform.position + moveForward);
 
         }
 
@@ -168,6 +170,7 @@ public class Move : MonoBehaviour {
         if (collision.gameObject.tag == "Ground")
         {
             //Debug.Log("地面");
+            _animator.SetBool("Fall", false);
         }
     }
 
