@@ -7,7 +7,7 @@ public static class MonoBehaviorExtentsion
 {
     private static bool _isRunning = false;
 
-    private static IEnumerator DelayMethod(this MonoBehaviour mono, float waitTime, Action action)
+    public static IEnumerator DelayMethod(this MonoBehaviour mono, float waitTime, Action action)
     {
         yield return new WaitForSeconds(waitTime);
         action();
@@ -18,12 +18,11 @@ public static class MonoBehaviorExtentsion
         return mono.StartCoroutine(DelayMethod(mono, waitTime, action));
     }
 
-    private static IEnumerator DelayMethodOnce(this MonoBehaviour mono, float waitTime, Action action)
+    public static IEnumerator DelayMethodOnce(this MonoBehaviour mono, float waitTime, Action action)
     {
         if (_isRunning) yield break;
 
         _isRunning = true;
-
         yield return new WaitForSeconds(waitTime);
         action();
 
