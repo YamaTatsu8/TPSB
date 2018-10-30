@@ -49,6 +49,8 @@ public class WeaponManager : MonoBehaviour
     // 弾のプレハブ
     [SerializeField]
     private GameObject _bulletPrefab;
+    
+    private IEnumerator _routine;
 
     public int Capacity
     {
@@ -105,6 +107,14 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (_routine != null)
+        {
+            StartCoroutine(_routine);
+        }
+    }
+
     public void Attack()
     {
         if (_remainingBullets == 0)
@@ -137,12 +147,17 @@ public class WeaponManager : MonoBehaviour
 
     public void Reload()
     {
-        if (_remainingBullets < 30)
+        if (_remainingBullets < _capacity && _routine == null)
         {
-            this.DelayOnce(_reloadTime, () =>
+            this.transform.GetChild(1).GetComponent<DisplayData>().IsReloading = true;
+
+            _routine = this.DelayMethod(_reloadTime, () =>
             {
                 _remainingBullets = _capacity;
+
+                _routine = null;
             });
+            StartCoroutine(_routine);
         }
     }
 
