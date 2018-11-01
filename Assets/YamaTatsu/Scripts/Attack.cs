@@ -7,10 +7,6 @@ public class Attack : MonoBehaviour {
     //コントローラのスクリプト
     GameController controller;
 
-    //弾
-    //[SerializeField]
-    //private GameObject _bullet;
-
     //弾を飛ばす力
     [SerializeField]
     private float _bulletPower = 300.0f;
@@ -56,6 +52,9 @@ public class Attack : MonoBehaviour {
 
     private Vector3 Player_pos;
 
+    //フラグ
+    private bool _flag;
+
     // Use this for initialization
     void Start () {
 
@@ -70,6 +69,8 @@ public class Attack : MonoBehaviour {
         _weaponName2 = playerSystem.getMain2();
 
         _subWeaponName = playerSystem.getSub();
+
+        _flag = false;
 
         //Resorcesから武器を探して装備する
         _weapon1 = (GameObject)Instantiate(Resources.Load("Prefabs/" + _weaponName1));
@@ -100,8 +101,11 @@ public class Attack : MonoBehaviour {
 
             //transform.rotation = Quaternion.LookRotation(new Vector3(diff.x, 0, diff.z));
 
-            transform.LookAt(target.transform);
-            
+            if (_flag == false)
+            {
+                transform.LookAt(target.transform);
+                _flag = true;
+            }
             //攻撃モーション
             _animator.SetBool("Attack", true);
         }
@@ -112,6 +116,19 @@ public class Attack : MonoBehaviour {
         }
 
         Player_pos = transform.position;
-
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        //
+        if (collision.gameObject.tag == "Ground")
+        {
+            _flag = false;
+        }
+        else
+        {
+
+        }
+    }
+
 }

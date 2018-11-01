@@ -56,9 +56,6 @@ public class Equipment : MonoBehaviour {
     //メインのフラグ
     private bool _mainFlag = false;
 
-    //武器一覧のフラグ
-    private bool _WeaponFlag = false;
-
     //武器リスト
     private List<string[]> _weaponList = new List<string[]>();
 
@@ -67,6 +64,9 @@ public class Equipment : MonoBehaviour {
 
     //武器の画像リスト
     private RectTransform[] _weaponImage = new RectTransform[5];
+
+    //サブ武器の画像リスト
+    private RectTransform[] _subWeaponImage = new RectTransform[5];
 
     //
     [SerializeField]
@@ -82,6 +82,10 @@ public class Equipment : MonoBehaviour {
 
     //武器数
     private int _weaponNum = 0;
+
+    //モデルに装備
+    [SerializeField]
+    private GameObject _model;
 
     //どこを選んでいるかのState
     private enum EQUIPMENT_STATE
@@ -131,7 +135,6 @@ public class Equipment : MonoBehaviour {
         }
     }
 
-
     // Use this for initialization
     void Start () {
 
@@ -157,13 +160,16 @@ public class Equipment : MonoBehaviour {
         _pop.localScale = new Vector3(0, 0, 0);
 
         //最初バーのスケールは0にする
-        _bar.localScale = new Vector3(3, 0, 1);
+        _bar.localScale = new Vector3(1.5f, 0, 1);
 
         //
         _cursor.position = _mainWeapon1.position;
 
         //メイン武器のリスト作成
         WeaponAdd("WeaponList", _weaponList);
+
+        //サブ武器のリスト作成
+        WeaponAdd("SubWeaponList", _subWeaponList);
 
         Vector3 rePos;
 
@@ -179,6 +185,21 @@ public class Equipment : MonoBehaviour {
 
             _weaponImage[i].localPosition = new Vector3(50, 20 * (i + 1), 0);
         }
+
+
+        //サブ武器の部分
+        //for(int i = 0; i < _weaponNum; i++)
+        //{
+        //    //Resources/Imagesから一致するものを探してくる
+        //    GameObject img = (GameObject)Instantiate(Resources.Load("Images/" + _subWeaponList[i][0].ToString()));
+        //    img.transform.SetParent(canvas.transform, false);
+        //    img.GetComponent<WeaponName>().setName(_subWeaponList[i][0].ToString());
+        //    _subWeaponImage[i] = img.GetComponent<RectTransform>();
+
+        //    rePos = canvas.GetComponent<RectTransform>().position;
+
+        //    _subWeaponImage[i].localPosition = new Vector3(50, 20 * (i + 1), 0);
+        //}
 
         GameObject cusor = (GameObject)Instantiate(Resources.Load("Images/Cusor2"));
 
@@ -201,6 +222,8 @@ public class Equipment : MonoBehaviour {
 
         _cusor3.localPosition = rePos;
 
+        _model = GameObject.Find("PlayerModel");
+
     }
 	
 	// Update is called once per frame
@@ -213,22 +236,17 @@ public class Equipment : MonoBehaviour {
         {
             if (_mainFlag == false)
             {
-                if (_controller.CheckDirectionOnce(Direction.Front, Type.LEFTSTICK))
+                _state = ChooseState(_state);
+
+                if (_state < (int)EQUIPMENT_STATE.MAIN_WEAPON1)
                 {
-                    _state -= 1;
-                    if (_state < (int)EQUIPMENT_STATE.MAIN_WEAPON1)
-                    {
-                        _state = (int)EQUIPMENT_STATE.NEXT;
-                    }
+                    _state = (int)EQUIPMENT_STATE.NEXT;
                 }
-                else if (_controller.CheckDirectionOnce(Direction.Back, Type.LEFTSTICK))
+
+                if (_state > (int)EQUIPMENT_STATE.NEXT)
                 {
-                    _state += 1;
-                    if (_state > (int)EQUIPMENT_STATE.NEXT)
-                    {
-                        _state = (int)EQUIPMENT_STATE.MAIN_WEAPON1;
-                    }
-                }
+                    _state = (int)EQUIPMENT_STATE.MAIN_WEAPON1;
+                }                
 
                 //メインからNextまでの選択
                 switch (_state)
@@ -258,27 +276,20 @@ public class Equipment : MonoBehaviour {
 
             }
             else
-            {
-
+            { 
                 //コントローラ操作
-                if (_controller.CheckDirectionOnce(Direction.Front,Type.LEFTSTICK))
+                _mainState = ChooseState(_mainState);
+               
+                if (_mainState < (int)WEAPON_STATE.WEAPON1)
                 {
-                    _mainState -= 1;
-
-                    if (_mainState < (int)WEAPON_STATE.WEAPON1)
-                    {
-                        _mainState = (int)WEAPON_STATE.WEAPON2;
-                    }
+                    _mainState = (int)WEAPON_STATE.WEAPON2;
                 }
-                else if (_controller.CheckDirectionOnce(Direction.Back, Type.LEFTSTICK))
+
+                if (_mainState > (int)WEAPON_STATE.WEAPON2)
                 {
-                    _mainState += 1;
-
-                    if (_mainState > (int)WEAPON_STATE.WEAPON2)
-                    {
-                        _mainState = (int)WEAPON_STATE.WEAPON1;
-                    }
+                    _mainState = (int)WEAPON_STATE.WEAPON1;
                 }
+                
 
                 if (_weaponState == 0)
                 {
@@ -293,8 +304,7 @@ public class Equipment : MonoBehaviour {
                     }
                 }
                 else if (_weaponState == 1)
-                {
-                    
+                {   
                     switch (_mainState)
                     {
                         case (int)WEAPON_STATE.WEAPON1:
@@ -321,11 +331,13 @@ public class Equipment : MonoBehaviour {
                             //選んだ武器を装備
                             _playerSystem.GetComponent<PlayerSystem>().setMain1(_weaponList[_mainState][0].ToString());
                             _mainWeapon1.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
+                            _model.GetComponent<WeaponEquipment>().setWeapon1(_weaponList[_mainState][0].ToString());
                             break;
                         case (int)WEAPON_MAIN.MAIN2:
                             //選んだ武器を装備
                             _playerSystem.GetComponent<PlayerSystem>().setMain2(_weaponList[_mainState][0].ToString());
                             _mainWeapon2.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
+                            _model.GetComponent<WeaponEquipment>().setWeapon2(_weaponList[_mainState][0].ToString());
                             break;
                         case (int)WEAPON_MAIN.SUB:
                             //サブ武器の装備
@@ -344,23 +356,17 @@ public class Equipment : MonoBehaviour {
         else
         {
             //コントローラ操作
-            if (_controller.CheckDirectionOnce(Direction.Left, Type.LEFTSTICK))
-            {
-                _nextState -= 1;
 
-                if (_nextState < (int)NEXT_STATE.YES)
-                {
-                    _nextState = (int)NEXT_STATE.NO;
-                }
+            _nextState = ChooseState(_nextState);
+
+            if (_nextState < (int)NEXT_STATE.YES)
+            {
+                _nextState = (int)NEXT_STATE.NO;
             }
-            else if (_controller.CheckDirectionOnce(Direction.Right, Type.LEFTSTICK))
-            {
-                _nextState += 1;
 
-                if (_nextState > (int)NEXT_STATE.NO)
-                {
-                    _nextState = (int)NEXT_STATE.YES;
-                }
+            if (_nextState > (int)NEXT_STATE.NO)
+            {
+                _nextState = (int)NEXT_STATE.YES;
             }
 
             switch (_nextState)
@@ -372,7 +378,6 @@ public class Equipment : MonoBehaviour {
                     _cusor3.localPosition = _no.localPosition;
                     break;
             }
-
 
             if (_controller.ButtonDown(Button.A))
             {
@@ -399,7 +404,7 @@ public class Equipment : MonoBehaviour {
 
         }
 
-
+        //確認場面
         if(_popFlag == true)
         {
             PopZoom();
@@ -409,7 +414,7 @@ public class Equipment : MonoBehaviour {
         {
             PopBack();
         }
-
+        //バーのフラグ
         if(_barFlag == true)
         {
             BarZoom();
@@ -459,7 +464,7 @@ public class Equipment : MonoBehaviour {
     //バーの拡大
     private void BarZoom()
     {
-        if (_bar.localScale.y > -5)
+        if (_bar.localScale.y > -2.5)
         {
             _bar.localScale += new Vector3(0, -0.3f, 0);
         }
@@ -469,14 +474,14 @@ public class Equipment : MonoBehaviour {
     {
         if (_bar.localScale.y < 0)
         {
-            _bar.localScale = new Vector3(3, 0, 1);
+            _bar.localScale = new Vector3(1.5f, 0, 1);
         }
     }
 
     //Popの拡縮
     private void PopZoom()
     {
-        if(_pop.localScale.y < 1)
+        if(_pop.localScale.y < 0.5f)
         {
             _pop.localScale += new Vector3(0.1f, 0.1f, 0.1f);
         }
@@ -511,6 +516,32 @@ public class Equipment : MonoBehaviour {
 
             _weaponNum++;
         }
+
+    }
+
+    //選択場面のステート
+    private int ChooseState(int state)
+    {
+        int _state = state;
+
+        if(_controller.CheckDirectionOnce(Direction.Left, Type.LEFTSTICK))
+        {
+            _state -= 1;
+        }
+        else if(_controller.CheckDirectionOnce(Direction.Right, Type.LEFTSTICK))
+        {
+            _state += 1;
+        }
+        else if (_controller.CheckDirectionOnce(Direction.Front, Type.LEFTSTICK))
+        {
+            _state -= 1;
+        }
+        else if (_controller.CheckDirectionOnce(Direction.Back, Type.LEFTSTICK))
+        {
+            _state += 1;
+        }
+
+        return _state;
 
     }
 
