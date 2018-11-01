@@ -55,6 +55,10 @@ public class Attack : MonoBehaviour {
     //フラグ
     private bool _flag;
 
+    //Model
+    [SerializeField]
+    private GameObject _model;
+
     // Use this for initialization
     void Start () {
 
@@ -87,7 +91,7 @@ public class Attack : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        GameObject target = GameObject.FindGameObjectWithTag("Player2");
+        GameObject target = GameObject.FindGameObjectWithTag("Enemy");
 
         controller.ControllerUpdate();
 
@@ -103,8 +107,8 @@ public class Attack : MonoBehaviour {
 
             if (_flag == false)
             {
-                transform.LookAt(target.transform);
-                _flag = true;
+                _model.transform.LookAt(target.transform);
+                //_flag = true;
             }
             //攻撃モーション
             _animator.SetBool("Attack", true);

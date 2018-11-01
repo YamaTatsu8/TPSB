@@ -40,7 +40,7 @@ public class LookCamera : MonoBehaviour {
 
         if(_parent.tag == "Player")
         {
-            target = GameObject.FindGameObjectWithTag("Player2");
+            target = GameObject.FindGameObjectWithTag("Enemy");
         }
 
     }

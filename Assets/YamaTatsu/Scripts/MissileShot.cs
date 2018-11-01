@@ -75,6 +75,7 @@ public class MissileShot : MonoBehaviour {
             if(_time > 5.0f)
             {
                 _reload = false;
+                _magazin = 0;
             }
         }
 

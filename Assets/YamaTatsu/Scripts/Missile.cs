@@ -9,6 +9,10 @@ public class Missile : MonoBehaviour
     //敵
     private GameObject _player;
 
+    //エフェクト
+    [SerializeField]
+    private GameObject _effect;
+
     //タイマー
     private float _timer;
 
@@ -47,13 +51,21 @@ public class Missile : MonoBehaviour
 
             _timer += Time.deltaTime;
 
+            if(4.0 < _timer)
+            {
+                Instantiate(_effect,this.transform.position,this.transform.rotation);
+                Destroy(this.gameObject);
+            }
+
+
         }
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Ground")
         {
+            Instantiate(_effect, this.transform.position, this.transform.rotation);
             Destroy(this.gameObject);
         }
         else

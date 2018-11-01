@@ -45,6 +45,10 @@ public class Move : MonoBehaviour {
     //アニメーター
     private Animator _animator;
 
+    //model
+    [SerializeField]
+    private GameObject _model;
+
     
     // Use this for initialization
     void Start () {
@@ -118,7 +122,7 @@ public class Move : MonoBehaviour {
                 //カメラの方向に体を向ける
                 // = Quaternion.LookRotation(moveForward);
 
-                transform.LookAt(transform.position + moveForward);
+                _model.transform.LookAt(transform.position + moveForward);
 
                 {
                     //Vector3 diff = transform.position - Player_pos;
@@ -143,7 +147,7 @@ public class Move : MonoBehaviour {
             // 移動方向にスピードを掛ける。ジャンプや落下がある場合は、別途Y軸方向の速度ベクトルを足す。
             rb.velocity = moveForward * _boost + new Vector3(0, rb.velocity.y, 0);
 
-            transform.LookAt(transform.position + moveForward);
+            _model.transform.LookAt(transform.position + moveForward);
 
         }
 

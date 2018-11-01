@@ -169,7 +169,7 @@ public class Equipment : MonoBehaviour {
         WeaponAdd("WeaponList", _weaponList);
 
         //サブ武器のリスト作成
-        WeaponAdd("SubWeaponList", _subWeaponList);
+        //WeaponAdd("SubWeaponList", _subWeaponList);
 
         Vector3 rePos;
 
