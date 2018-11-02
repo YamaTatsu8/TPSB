@@ -43,13 +43,10 @@ public class MissileShot : MonoBehaviour {
 
         controller.ControllerUpdate();
 
-        Debug.Log(_missiles[0]);
-       
         if (controller.TriggerDown(Trigger.RIGHT) && _flag == true) 
         {
             _flag = false;
-            Debug.Log("発射");
-
+    
             if (_magazin < 6)
             {
                 _missiles[_magazin] = (GameObject)Instantiate(Resources.Load("Prefabs/Missile"));
@@ -76,6 +73,7 @@ public class MissileShot : MonoBehaviour {
             {
                 _reload = false;
                 _magazin = 0;
+                _time = 0;
             }
         }
 
