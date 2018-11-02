@@ -32,14 +32,9 @@ public class Status : MonoBehaviour {
     //ダメージを与える処理
     public void hitDamage(int damage)
     {
+        Debug.Log("ダメージ");
         _HP -= damage;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "Bullet")
-        {
-            _HP -= 1;
-        }
-    }
+  
 }
