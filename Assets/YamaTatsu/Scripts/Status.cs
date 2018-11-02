@@ -36,5 +36,4 @@ public class Status : MonoBehaviour {
             _HP -= 1;
         }
     }
-
 }

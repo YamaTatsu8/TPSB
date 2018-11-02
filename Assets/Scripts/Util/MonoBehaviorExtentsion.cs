@@ -33,6 +33,24 @@ public static class MonoBehaviorExtentsion
     {
         return mono.StartCoroutine(DelayMethodOnce(mono, waitTime, action));
     }
+
+    public static IEnumerator DelayMethodForSpecifiedTime(this MonoBehaviour mono, float waitTime, Action action)
+    {
+        float time = 0;
+
+        // コルーチン進行中は数値を増加させる
+        while (time < waitTime)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+        action();        
+    }
+
+    public static Coroutine DelayForSpecifiedTime(this MonoBehaviour mono, float waitTime, Action action)
+    {
+        return mono.StartCoroutine(DelayMethodOnce(mono, waitTime, action));
+    }
 }
 
 /*

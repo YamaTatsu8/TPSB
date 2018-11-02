@@ -113,6 +113,16 @@ public class WeaponManager : MonoBehaviour
         {
             StartCoroutine(_routine);
         }
+
+        _isBurst = true;
+    }
+
+    private void OnDisable()
+    {
+        if (_routine != null)
+        {
+            StopCoroutine(_routine);
+        }
     }
 
     public void Attack()
@@ -151,8 +161,11 @@ public class WeaponManager : MonoBehaviour
         {
             this.transform.GetChild(1).GetComponent<DisplayData>().IsReloading = true;
 
-            _routine = this.DelayMethod(_reloadTime, () =>
+            _isBurst = true;
+
+            _routine = this.DelayMethodForSpecifiedTime(_reloadTime, () =>
             {
+                Debug.Log("Reload");
                 _remainingBullets = _capacity;
 
                 _routine = null;
@@ -174,22 +187,31 @@ public class WeaponManager : MonoBehaviour
         if (_isBurst)
         {
             _isBurst = false;
-            this.Delay(0, () =>
+            _routine = this.DelayMethodOnce(0, () =>
             {
                 Shot(_fireRate);
                 this.Delay(1.0f / _roundsPerSecond, () =>
                 {
-                    Shot(_fireRate);
-                    this.Delay(1.0f / _roundsPerSecond, () =>
+                    if (_remainingBullets > 0)
                     {
-                        Shot(0.0f);
+                        Shot(_fireRate);
                         this.Delay(1.0f / _roundsPerSecond, () =>
                         {
-                            _isBurst = true;
+                            if (_remainingBullets > 0)
+                            {
+                                Shot(0.0f);
+                                this.Delay(1.0f / _roundsPerSecond, () =>
+                                {
+                                    _isBurst = true;
+                                });
+                            }
                         });
-                    });
+                    }                    
+
                 });
+                _routine = null;
             });
+            StartCoroutine(_routine);
         }
     }
 }
