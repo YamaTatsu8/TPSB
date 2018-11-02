@@ -29,12 +29,26 @@ public class LookCamera : MonoBehaviour {
     [SerializeField]
     private GameObject _parent;
 
+    //コントローラのスクリプト
+    GameController controller;
+
+    //カメラ切り替え
+    //右側
+    private Vector3 _right = new Vector3(2, 2, 0);
+    //左側
+    private Vector3 _left = new Vector3(-2, 2, 0);
+
+    //切り替え
+    private bool _flag = true;
+
     // Use this for initialization
     void Start () {
 
+        controller = GameController.Instance;
+
         _mainCamera = this.gameObject;
        
-        _offset = new Vector3(0, 2, 0);
+        _offset = _right;
 
         _parent = gameObject.transform.parent.gameObject;
 
@@ -72,6 +86,13 @@ public class LookCamera : MonoBehaviour {
             Mathf.Clamp(angle_x, ANGLE_LIMIT_DOWN, ANGLE_LIMIT_UP),
             transform.eulerAngles.y,
             transform.eulerAngles.z);
+
+        if (controller.ButtonDown(Button.R3))
+        {
+            _flag = !_flag;
+
+            _offset = _flag ? _right : _left;
+        }
 
     }
 
