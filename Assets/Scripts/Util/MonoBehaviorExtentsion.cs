@@ -7,7 +7,7 @@ public static class MonoBehaviorExtentsion
 {
     private static bool _isRunning = false;
 
-    private static IEnumerator DelayMethod(this MonoBehaviour mono, float waitTime, Action action)
+    public static IEnumerator DelayMethod(this MonoBehaviour mono, float waitTime, Action action)
     {
         yield return new WaitForSeconds(waitTime);
         action();
@@ -18,12 +18,11 @@ public static class MonoBehaviorExtentsion
         return mono.StartCoroutine(DelayMethod(mono, waitTime, action));
     }
 
-    private static IEnumerator DelayMethodOnce(this MonoBehaviour mono, float waitTime, Action action)
+    public static IEnumerator DelayMethodOnce(this MonoBehaviour mono, float waitTime, Action action)
     {
         if (_isRunning) yield break;
 
         _isRunning = true;
-
         yield return new WaitForSeconds(waitTime);
         action();
 
@@ -31,6 +30,24 @@ public static class MonoBehaviorExtentsion
     }
 
     public static Coroutine DelayOnce(this MonoBehaviour mono, float waitTime, Action action)
+    {
+        return mono.StartCoroutine(DelayMethodOnce(mono, waitTime, action));
+    }
+
+    public static IEnumerator DelayMethodForSpecifiedTime(this MonoBehaviour mono, float waitTime, Action action)
+    {
+        float time = 0;
+
+        // コルーチン進行中は数値を増加させる
+        while (time < waitTime)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+        action();        
+    }
+
+    public static Coroutine DelayForSpecifiedTime(this MonoBehaviour mono, float waitTime, Action action)
     {
         return mono.StartCoroutine(DelayMethodOnce(mono, waitTime, action));
     }

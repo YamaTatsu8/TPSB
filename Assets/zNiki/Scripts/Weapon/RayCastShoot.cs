@@ -23,9 +23,6 @@ public class RayCastShoot : MonoBehaviour
     // 弾速
     private float _bulletSpeed = 50.0f;
 
-    // 消滅までの時間
-    private float _destroyTime = 3.0f;
-
     // 射程(DrawLineの距離)
     private float _range = 30.0f;
 
@@ -73,10 +70,7 @@ public class RayCastShoot : MonoBehaviour
                 bulletClone.GetComponent<Rigidbody>().velocity = (ray.GetPoint(_range) - bulletClone.transform.position).normalized * _bulletSpeed;
             }
 
-            Coroutine coroutine = this.Delay(_destroyTime, () =>
-            {
-                Destroy(bulletClone);
-            });
+            bulletClone.GetComponent<BulletController>().DeleteBullet(bulletClone);
 
             return true;
         }

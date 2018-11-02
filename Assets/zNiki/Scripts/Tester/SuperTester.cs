@@ -5,6 +5,17 @@ using UnityEngine;
 public class SuperTester : MonoBehaviour
 {
     GameController con;
+
+    private bool _isEquippedMain1 = true;
+
+    [SerializeField]
+    private GameObject _main1;
+
+    [SerializeField]
+    private GameObject _main2;
+
+    [SerializeField]
+    private GameObject _sub;
     
     // Use this for initialization
     void Start ()
@@ -23,12 +34,38 @@ public class SuperTester : MonoBehaviour
         {
             if (con.TriggerDown(Trigger.LEFT))
             {
-                this.transform.GetChild(0).GetComponent<WeaponManager>().Attack();
+                if (_isEquippedMain1)
+                {
+                    _main1.GetComponent<WeaponManager>().Attack();
+                }
+                else
+                {
+                    _main2.GetComponent<WeaponManager>().Attack();
+                }
+            }
+            if (con.TriggerDown(Trigger.RIGHT))
+            {
+                _sub.GetComponent<WeaponManager>().Attack();
+            }
+            if (con.ButtonDown(Button.X))
+            {
+                _isEquippedMain1 = !_isEquippedMain1;
             }
         }
         else
         {
             Debug.Log(con.GetConnectFlag());
+        }
+
+        if (_isEquippedMain1)
+        {
+            _main1.SetActive(true);
+            _main2.SetActive(false);
+        }
+        else
+        {
+            _main1.SetActive(false);
+            _main2.SetActive(true);
         }
 
         //if (Input.GetMouseButton(0))

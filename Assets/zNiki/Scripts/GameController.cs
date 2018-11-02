@@ -165,7 +165,7 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
 
         try
         {
-            if (Input.GetAxis(trigger) == 1.0f)
+            if (Input.GetAxis(trigger) >= 0.75f)
             {
                 return true;
             }

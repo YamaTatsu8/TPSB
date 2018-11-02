@@ -49,6 +49,8 @@ public class WeaponManager : MonoBehaviour
     // 弾のプレハブ
     [SerializeField]
     private GameObject _bulletPrefab;
+    
+    private IEnumerator _routine;
 
     public int Capacity
     {
@@ -105,6 +107,24 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        if (_routine != null)
+        {
+            StartCoroutine(_routine);
+        }
+
+        _isBurst = true;
+    }
+
+    private void OnDisable()
+    {
+        if (_routine != null)
+        {
+            StopCoroutine(_routine);
+        }
+    }
+
     public void Attack()
     {
         if (_remainingBullets == 0)
@@ -137,12 +157,20 @@ public class WeaponManager : MonoBehaviour
 
     public void Reload()
     {
-        if (_remainingBullets < 30)
+        if (_remainingBullets < _capacity && _routine == null)
         {
-            this.DelayOnce(_reloadTime, () =>
+            this.transform.GetChild(1).GetComponent<DisplayData>().IsReloading = true;
+
+            _isBurst = true;
+
+            _routine = this.DelayMethodForSpecifiedTime(_reloadTime, () =>
             {
+                Debug.Log("Reload");
                 _remainingBullets = _capacity;
+
+                _routine = null;
             });
+            StartCoroutine(_routine);
         }
     }
 
@@ -159,22 +187,31 @@ public class WeaponManager : MonoBehaviour
         if (_isBurst)
         {
             _isBurst = false;
-            this.Delay(0, () =>
+            _routine = this.DelayMethodOnce(0, () =>
             {
                 Shot(_fireRate);
                 this.Delay(1.0f / _roundsPerSecond, () =>
                 {
-                    Shot(_fireRate);
-                    this.Delay(1.0f / _roundsPerSecond, () =>
+                    if (_remainingBullets > 0)
                     {
-                        Shot(0.0f);
+                        Shot(_fireRate);
                         this.Delay(1.0f / _roundsPerSecond, () =>
                         {
-                            _isBurst = true;
+                            if (_remainingBullets > 0)
+                            {
+                                Shot(0.0f);
+                                this.Delay(1.0f / _roundsPerSecond, () =>
+                                {
+                                    _isBurst = true;
+                                });
+                            }
                         });
-                    });
+                    }                    
+
                 });
+                _routine = null;
             });
+            StartCoroutine(_routine);
         }
     }
 }
