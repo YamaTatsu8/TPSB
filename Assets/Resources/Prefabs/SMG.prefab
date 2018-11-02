@@ -872,9 +872,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _capacity: 30
-  _roundsPerSecond: 300
+  _roundsPerSecond: 200
   _reloadTime: 1
-  _mode: 0
+  _mode: 1
   _bulletPrefab: {fileID: 1728188175131922, guid: beced145914b18847bf9316bedccb44c,
     type: 2}
 --- !u!114 &114392141499232848
