@@ -25,6 +25,8 @@ public class BulletController : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<Status>().hitDamage(_bulletDamage);
+
+            Destroy(this.gameObject);
         }
     }
 }
