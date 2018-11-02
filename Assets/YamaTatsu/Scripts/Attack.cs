@@ -59,6 +59,9 @@ public class Attack : MonoBehaviour {
     [SerializeField]
     private GameObject _model;
 
+    //敵
+    private GameObject _target;
+
     // Use this for initialization
     void Start () {
 
@@ -86,12 +89,11 @@ public class Attack : MonoBehaviour {
         //アニメーターのコンポーネント
         _animator = GetComponent<Animator>();
 
+        _target = GameObject.Find("Enemy");
     }
 	
 	// Update is called once per frame
 	void Update () {
-
-        GameObject target = GameObject.FindGameObjectWithTag("Enemy");
 
         controller.ControllerUpdate();
 
@@ -107,7 +109,7 @@ public class Attack : MonoBehaviour {
 
             if (_flag == false)
             {
-                _model.transform.LookAt(target.transform);
+                _model.transform.LookAt(_target.transform);
                 //_flag = true;
             }
             //攻撃モーション
@@ -133,6 +135,12 @@ public class Attack : MonoBehaviour {
         {
 
         }
+    }
+
+    //
+    public Vector3 getPosition()
+    {
+        return _target.transform.position;
     }
 
 }

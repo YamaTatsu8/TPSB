@@ -22,10 +22,10 @@ GameObject:
   - component: {fileID: 65622392558737158}
   m_Layer: 0
   m_Name: Collision2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!1 &1019554493614398
 GameObject:
@@ -40,10 +40,10 @@ GameObject:
   - component: {fileID: 65402879466084768}
   m_Layer: 0
   m_Name: Box004
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!1 &1162765151501390
 GameObject:
@@ -58,10 +58,10 @@ GameObject:
   - component: {fileID: 65801897892967664}
   m_Layer: 0
   m_Name: Box005
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!1 &1164632522562400
 GameObject:
@@ -74,10 +74,10 @@ GameObject:
   - component: {fileID: 65233434718449892}
   m_Layer: 0
   m_Name: Collision1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!1 &1256850872725866
 GameObject:
@@ -92,10 +92,10 @@ GameObject:
   - component: {fileID: 65711438191034296}
   m_Layer: 0
   m_Name: Box006
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!1 &1269663990852402
 GameObject:
@@ -110,10 +110,10 @@ GameObject:
   - component: {fileID: 64019525690320900}
   m_Layer: 0
   m_Name: Stage
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!1 &1303419826773310
 GameObject:
@@ -128,10 +128,10 @@ GameObject:
   - component: {fileID: 65056765376258388}
   m_Layer: 0
   m_Name: Box001
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!1 &1309786953501624
 GameObject:
@@ -144,10 +144,10 @@ GameObject:
   - component: {fileID: 65204132902793934}
   m_Layer: 0
   m_Name: Collision5
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!1 &1336649050546520
 GameObject:
@@ -160,10 +160,10 @@ GameObject:
   - component: {fileID: 65913121235269892}
   m_Layer: 0
   m_Name: Collision4
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!1 &1576849756610076
 GameObject:
@@ -178,10 +178,10 @@ GameObject:
   - component: {fileID: 65904606463450302}
   m_Layer: 0
   m_Name: Box003
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!1 &1661792287092326
 GameObject:
@@ -193,10 +193,10 @@ GameObject:
   - component: {fileID: 4931501295085484}
   m_Layer: 0
   m_Name: WallCollision
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!1 &1713336285862016
 GameObject:
@@ -211,10 +211,10 @@ GameObject:
   - component: {fileID: 65144788806349824}
   m_Layer: 0
   m_Name: Box002
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!1 &1922226305360262
 GameObject:
@@ -227,10 +227,10 @@ GameObject:
   - component: {fileID: 65158608844846370}
   m_Layer: 0
   m_Name: Collision3
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!1 &1983752724479834
 GameObject:
@@ -247,7 +247,7 @@ GameObject:
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 18
   m_IsActive: 1
 --- !u!4 &4025226323398686
 Transform:
@@ -822,7 +822,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 50, z: 100}
+  m_Size: {x: 2, y: 50, z: 100}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65204132902793934
 BoxCollider:
@@ -834,7 +834,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 100, y: 1, z: 100}
+  m_Size: {x: 100, y: 2, z: 100}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65233434718449892
 BoxCollider:
@@ -846,7 +846,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 50, z: 100}
+  m_Size: {x: 2, y: 50, z: 100}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65402879466084768
 BoxCollider:
@@ -870,7 +870,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 100, y: 50, z: 1}
+  m_Size: {x: 100, y: 50, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65711438191034296
 BoxCollider:
@@ -918,7 +918,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 100, y: 50, z: 1}
+  m_Size: {x: 100, y: 50, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95378279519371130
 Animator:
