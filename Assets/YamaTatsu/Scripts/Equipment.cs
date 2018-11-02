@@ -92,7 +92,7 @@ public class Equipment : MonoBehaviour {
     {
         MAIN_WEAPON1,
         MAIN_WEAPON2,
-        SUB_WEAPON,
+        //SUB_WEAPON,
         NEXT
     }
 
@@ -145,7 +145,7 @@ public class Equipment : MonoBehaviour {
         _cursor = GameObject.Find("Cursor").GetComponent<RectTransform>();
         _mainWeapon1 = GameObject.Find("MainWeapon1").GetComponent<RectTransform>();
         _mainWeapon2 = GameObject.Find("MainWeapon2").GetComponent<RectTransform>();
-        _subWeapon = GameObject.Find("SubWeapon").GetComponent<RectTransform>();
+        //_subWeapon = GameObject.Find("SubWeapon").GetComponent<RectTransform>();
         _start = GameObject.Find("Start").GetComponent<RectTransform>();
 
         _bar = GameObject.Find("Bar").GetComponent<RectTransform>();
@@ -259,10 +259,10 @@ public class Equipment : MonoBehaviour {
                         StartCoroutine(GeneratePulseNoise(_mainWeapon2));
                         _cursor.position = _mainWeapon2.position;
                         break;
-                    case (int)EQUIPMENT_STATE.SUB_WEAPON:
-                        StartCoroutine(GeneratePulseNoise(_subWeapon));
-                        _cursor.position = _subWeapon.position;
-                        break;
+                    //case (int)EQUIPMENT_STATE.SUB_WEAPON:
+                    //    StartCoroutine(GeneratePulseNoise(_subWeapon));
+                    //    _cursor.position = _subWeapon.position;
+                    //    break;
                     case (int)EQUIPMENT_STATE.NEXT:
                         _cursor.position = _start.position;
                         break;
@@ -339,9 +339,9 @@ public class Equipment : MonoBehaviour {
                             _mainWeapon2.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
                             _model.GetComponent<WeaponEquipment>().setWeapon2(_weaponList[_mainState][0].ToString());
                             break;
-                        case (int)WEAPON_MAIN.SUB:
-                            //サブ武器の装備
-                            break;
+                        //case (int)WEAPON_MAIN.SUB:
+                        //    //サブ武器の装備
+                        //    break;
                     }
 
                 }
@@ -446,11 +446,11 @@ public class Equipment : MonoBehaviour {
                 _barFlag = true;
                 break;
 
-            case EQUIPMENT_STATE.SUB_WEAPON:
-                _bar.position = _subWeapon.position + new Vector3(151, 21, 0);
-                _weaponState = 2;
-                _barFlag = true;
-                break;
+            //case EQUIPMENT_STATE.SUB_WEAPON:
+            //    _bar.position = _subWeapon.position + new Vector3(151, 21, 0);
+            //    _weaponState = 2;
+            //    _barFlag = true;
+            //    break;
             case EQUIPMENT_STATE.NEXT:
                 //Popの表示
                 _popFlag = true;

@@ -29,6 +29,12 @@ public class Status : MonoBehaviour {
         return true;
     }
 
+    //ダメージを与える処理
+    public void hitDamage(int damage)
+    {
+        _HP -= damage;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Bullet")
