@@ -87,36 +87,36 @@ public class ControllerTest : MonoBehaviour
             //    Debug.Log("RIGHT");
             //}
 
-            if (con.CheckDirection(Direction.Front, Type.LEFTSTICK) != 0)
+            if (con.CheckDirection(Direction.Front, StickType.LEFTSTICK) != 0)
             {
-                Debug.Log(con.CheckDirection(Direction.Front, Type.LEFTSTICK));
+                Debug.Log(con.CheckDirection(Direction.Front, StickType.LEFTSTICK));
             }
-            if (con.CheckDirection(Direction.Back, Type.LEFTSTICK) != 0)
+            if (con.CheckDirection(Direction.Back, StickType.LEFTSTICK) != 0)
             {
-                Debug.Log(con.CheckDirection(Direction.Back, Type.LEFTSTICK));
+                Debug.Log(con.CheckDirection(Direction.Back, StickType.LEFTSTICK));
             }
-            if (con.CheckDirection(Direction.Left, Type.LEFTSTICK) != 0)
+            if (con.CheckDirection(Direction.Left, StickType.LEFTSTICK) != 0)
             {
-                Debug.Log(con.CheckDirection(Direction.Left, Type.LEFTSTICK));
+                Debug.Log(con.CheckDirection(Direction.Left, StickType.LEFTSTICK));
             }
-            if (con.CheckDirection(Direction.Right, Type.LEFTSTICK) != 0)
+            if (con.CheckDirection(Direction.Right, StickType.LEFTSTICK) != 0)
             {
-                Debug.Log(con.CheckDirection(Direction.Right, Type.LEFTSTICK));
+                Debug.Log(con.CheckDirection(Direction.Right, StickType.LEFTSTICK));
             }
 
-            if (con.CheckDirectionOnce(Direction.Front, Type.CLOSS))
+            if (con.CheckDirectionOnce(Direction.Front, StickType.CLOSS))
             {
                 Debug.Log("Move Front");
             }
-            if (con.CheckDirectionOnce(Direction.Back, Type.CLOSS))
+            if (con.CheckDirectionOnce(Direction.Back, StickType.CLOSS))
             {
                 Debug.Log("Move Back");
             }
-            if (con.CheckDirectionOnce(Direction.Left, Type.CLOSS))
+            if (con.CheckDirectionOnce(Direction.Left, StickType.CLOSS))
             {
                 Debug.Log("Move Left");
             }
-            if (con.CheckDirectionOnce(Direction.Right, Type.CLOSS))
+            if (con.CheckDirectionOnce(Direction.Right, StickType.CLOSS))
             {
                 Debug.Log("Move Right");
             }
@@ -132,21 +132,21 @@ public class ControllerTest : MonoBehaviour
             }
 
             // 右スティックの入力を取る
-            if (con.CheckDirection(Direction.Front, Type.RIGHTSTICK) != 0)
+            if (con.CheckDirection(Direction.Front, StickType.RIGHTSTICK) != 0)
             {
-                Debug.Log(con.CheckDirection(Direction.Front, Type.RIGHTSTICK));
+                Debug.Log(con.CheckDirection(Direction.Front, StickType.RIGHTSTICK));
             }
-            if (con.CheckDirection(Direction.Back, Type.RIGHTSTICK) != 0)
+            if (con.CheckDirection(Direction.Back, StickType.RIGHTSTICK) != 0)
             {
-                Debug.Log(con.CheckDirection(Direction.Back, Type.RIGHTSTICK));
+                Debug.Log(con.CheckDirection(Direction.Back, StickType.RIGHTSTICK));
             }
-            if (con.CheckDirection(Direction.Left, Type.RIGHTSTICK) != 0)
+            if (con.CheckDirection(Direction.Left, StickType.RIGHTSTICK) != 0)
             {
-                Debug.Log(con.CheckDirection(Direction.Left, Type.RIGHTSTICK));
+                Debug.Log(con.CheckDirection(Direction.Left, StickType.RIGHTSTICK));
             }
-            if (con.CheckDirection(Direction.Right, Type.RIGHTSTICK) != 0)
+            if (con.CheckDirection(Direction.Right, StickType.RIGHTSTICK) != 0)
             {
-                Debug.Log(con.CheckDirection(Direction.Right, Type.RIGHTSTICK));
+                Debug.Log(con.CheckDirection(Direction.Right, StickType.RIGHTSTICK));
             }
         }
         else
