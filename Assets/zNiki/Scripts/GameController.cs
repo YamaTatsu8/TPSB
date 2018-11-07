@@ -23,7 +23,7 @@ public enum Trigger
     RIGHT,
 }
 
-public enum Type
+public enum StickType
 {
     LEFTSTICK,
     RIGHTSTICK,
@@ -43,7 +43,7 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
     //private string _currentButton = null;
 
     private Direction _prevDir;
-    private Type _prevType;
+    private StickType _prevStickType;
 
     // Use this for initialization
     void Start()
@@ -121,7 +121,7 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
     /// </summary>
     private void CheckUseAxis()
     {
-        if (CheckDirection(_prevDir, _prevType) == 0.0f)
+        if (CheckDirection(_prevDir, _prevStickType) == 0.0f)
         {
             _isUseAxis = false;
         }
@@ -183,15 +183,15 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
     /// <param name="d">向き</param>
     /// <param name="t">キーの種類</param>
     /// <returns>true:入力されている false:入力されていない</returns>
-    public float CheckDirection(Direction d, Type t)
+    public float CheckDirection(Direction d, StickType t)
     {
         switch (t)
         {
-            case Type.LEFTSTICK:
+            case StickType.LEFTSTICK:
                 return CheckAxis(d, "L-Stick");
-            case Type.RIGHTSTICK:
+            case StickType.RIGHTSTICK:
                 return CheckAxis(d, "R-Stick");
-            case Type.CLOSS:
+            case StickType.CLOSS:
                 return CheckAxis(d, "C-Button");
             default:
                 break;
@@ -204,13 +204,13 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
     /// </summary>
     /// <param name="d">向き</param>
     /// <returns>true:入力されている false:入力されていない</returns>
-    public bool CheckDirectionOnce(Direction d, Type t)
+    public bool CheckDirectionOnce(Direction d, StickType t)
     {
         if (!_isUseAxis && CheckDirection(d, t) != 0)
         {
             _isUseAxis = true;
             _prevDir = d;
-            _prevType = t;
+            _prevStickType = t;
             return true;
         }
         return false;
