@@ -50,13 +50,10 @@ public class LookCamera : MonoBehaviour {
        
         _offset = _right;
 
-        _parent = gameObject.transform.parent.gameObject;
+        _parent = GameObject.Find("Player");
 
-        if(_parent.tag == "Player")
-        {
-            target = GameObject.FindGameObjectWithTag("Target");
-        }
-
+        target = GameObject.FindGameObjectWithTag("Target");
+        
     }
 	
 	// Update is called once per frame
