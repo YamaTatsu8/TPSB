@@ -8,11 +8,7 @@ public class LookCamera : MonoBehaviour {
     [SerializeField]
     private GameObject _player;
 
-    //カメラ
-    private GameObject _mainCamera;
-
     //ターゲット
-    
     private GameObject _target;
 
     //視界角度制限
@@ -20,23 +16,23 @@ public class LookCamera : MonoBehaviour {
     private const float ANGLE_LIMIT_DOWN = -60f;
 
     //offset
-    private Vector3 _offset;
+    private Vector3 _offset = new Vector3(0, 2, 0);
 
     [SerializeField]
     private GameObject target;
-
-    //親の情報
-    [SerializeField]
-    private GameObject _parent;
 
     //コントローラのスクリプト
     GameController controller;
 
     //カメラ切り替え
     //右側
-    private Vector3 _right = new Vector3(2, 2, 0);
+    private GameObject _right;
     //左側
-    private Vector3 _left = new Vector3(-2, 2, 0);
+    private GameObject _left;
+
+    //
+    [SerializeField]
+    private GameObject _tps;
 
     //切り替え
     private bool _flag = true;
@@ -46,17 +42,14 @@ public class LookCamera : MonoBehaviour {
 
         controller = GameController.Instance;
 
-        _mainCamera = this.gameObject;
-       
-        _offset = _right;
+        target = GameObject.FindGameObjectWithTag("Target");
 
-        _parent = gameObject.transform.parent.gameObject;
+        _right = GameObject.Find("CameraRight");
 
-        if(_parent.tag == "Player")
-        {
-            target = GameObject.FindGameObjectWithTag("Target");
-        }
+        _left = GameObject.Find("CameraLeft");
 
+        _tps = _right;
+        
     }
 	
 	// Update is called once per frame
@@ -67,14 +60,12 @@ public class LookCamera : MonoBehaviour {
         Vector3 pos;
 
         //
-        pos = (_player.transform.position - target.transform.position);
+        pos = (_tps.transform.position - target.transform.position);
 
         //playerのポジションに入れる
-        transform.position = _player.transform.position + pos.normalized * 3 + _offset;
+        transform.position = _tps.transform.position + pos.normalized * 3 + _offset;
 
         _target = target;
-
-
 
         if(_target)
         {
@@ -91,7 +82,7 @@ public class LookCamera : MonoBehaviour {
         {
             _flag = !_flag;
 
-            _offset = _flag ? _right : _left;
+            _tps = _flag ? _right : _left;
         }
 
     }

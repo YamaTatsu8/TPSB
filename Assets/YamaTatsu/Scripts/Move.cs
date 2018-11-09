@@ -11,9 +11,6 @@ public class Move : MonoBehaviour {
     private float moveX = 0;
     private float moveZ = 0;
 
-    //Playerの座標
-    private Vector3 Player_pos;
-
     //Speed
     [SerializeField]
     private float _speed = 8.0f;
@@ -55,7 +52,6 @@ public class Move : MonoBehaviour {
 
         controller = GameController.Instance;
 
-        Player_pos = GetComponent<Transform>().position;
         //
         rb = GetComponent<Rigidbody>();
 
@@ -123,6 +119,7 @@ public class Move : MonoBehaviour {
                 // = Quaternion.LookRotation(moveForward);
 
                 _model.transform.LookAt(transform.position + moveForward);
+                transform.LookAt(transform.position + moveForward);
 
                 {
                     //Vector3 diff = transform.position - Player_pos;

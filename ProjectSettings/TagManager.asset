@@ -12,6 +12,7 @@ TagManager:
   - Barrier
   - Player2
   - Target
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
@@ -30,7 +31,7 @@ TagManager:
   - Barrier
   - Player2
   - Enemy
-  - 
+  - EnemyBullet
   - 
   - 
   - 

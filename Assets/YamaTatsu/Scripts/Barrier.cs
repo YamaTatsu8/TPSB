@@ -30,6 +30,9 @@ public class Barrier : MonoBehaviour {
     [SerializeField]
     private GameObject _guard;
 
+    //展開
+    private bool _barrier = false;
+
     // Use this for initialization
     void Start () {
 
@@ -59,11 +62,15 @@ public class Barrier : MonoBehaviour {
             _guard.SetActive(true);
             _animator.SetBool("Guard", true);
             transform.LookAt(target.transform, Vector3.up);
+            _guard.GetComponent<BoxCollider>().enabled = true;
+            _barrier = true;
         }
         else
         {
             _guard.SetActive(false);
             _animator.SetBool("Guard", false);
+            _guard.GetComponent<BoxCollider>().enabled = false;
+            _barrier = false;
         }
 
         // 0になったらバリアを消す       
@@ -77,9 +84,9 @@ public class Barrier : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Bullet")
+        if(collision.gameObject.tag == "EnemyBullet" && _barrier == true)
         {
-            Debug.Log("Hit");
+            Debug.Log("Barrier");
             _HP -= 1;
         }
     }
