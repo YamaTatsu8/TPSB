@@ -7,13 +7,6 @@ public class Attack : MonoBehaviour {
     //コントローラのスクリプト
     GameController controller;
 
-    //弾を飛ばす力
-    [SerializeField]
-    private float _bulletPower = 300.0f;
-
-    //
-    private int _timeCount = 1;
-
     //インターバル
     const int TIME_INTERVAL = 5;
 

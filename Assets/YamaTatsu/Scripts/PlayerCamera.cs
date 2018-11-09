@@ -7,10 +7,6 @@ public class PlayerCamera : MonoBehaviour {
     //コントローラー
     GameController controller;
 
-    //カメラ
-    [SerializeField]
-    private GameObject mainCamera;
-
     //プレイヤー
     [SerializeField]
     private GameObject player;
@@ -32,7 +28,6 @@ public class PlayerCamera : MonoBehaviour {
     void Start()
     {
 
-        mainCamera = Camera.main.gameObject;
         player = GameObject.FindGameObjectWithTag("Player");
         controller = GameController.Instance;
 
