@@ -68,6 +68,9 @@ public class NPC : MonoBehaviour {
     private float _interval;
 
     private float _timer = 0.0f;
+
+    //左右移動フラグ
+    private bool _wallMoveFlag = false;
   
 	// Use this for initialization
 	void Start () {
@@ -92,19 +95,15 @@ public class NPC : MonoBehaviour {
         //
         float distance = (diff.x * diff.x) / 2 + (diff.z * diff.z) / 2;
 
-        //
-        if( Mathf.Abs(distance) >= _range && _rangeFlag == true)
+        if(_wallFlag == true && _wallMoveFlag == false)
         {
-           
+            _moveState = Random.Range(1, 2);
+            _wallMoveFlag = true;
         }
-        else
+        else if(_wallFlag == false)
         {
-            rb.velocity = new Vector3(0, rb.velocity.y, 0);
-        }
-
-        if(_wallFlag == true)
-        {
-            _moveState = 5;
+            _wallFlag = false;
+            _moveState = 0;
         }
 
         //
@@ -117,9 +116,24 @@ public class NPC : MonoBehaviour {
             _moveState = (int)Random.Range(0, 4);
         }
 
+        SetFunction(_moveState);
 
+        transform.LookAt(_player.transform);
+	}
 
-        switch (_moveState)
+    //
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Wall")
+        {
+
+        }
+    }
+
+    //行動関数
+    private void SetFunction(int num)
+    {
+        switch (num)
         {
             case (int)MOVE_STATE.FRONT:
                 Vector3 velocity = gameObject.transform.rotation * new Vector3(0, 0, _speed);
@@ -145,17 +159,6 @@ public class NPC : MonoBehaviour {
                 velocity = gameObject.transform.rotation * new Vector3(0, _speed, 0);
                 gameObject.transform.position += velocity * Time.deltaTime;
                 break;
-        }
-
-        transform.LookAt(_player.transform);
-	}
-
-    //
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "Wall")
-        {
-
         }
     }
 
