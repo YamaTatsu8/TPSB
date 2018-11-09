@@ -524,19 +524,19 @@ public class Equipment : MonoBehaviour {
     {
         int _state = state;
 
-        if(_controller.CheckDirectionOnce(Direction.Left, Type.LEFTSTICK))
+        if(_controller.CheckDirectionOnce(Direction.Left, StickType.LEFTSTICK))
         {
             _state -= 1;
         }
-        else if(_controller.CheckDirectionOnce(Direction.Right, Type.LEFTSTICK))
+        else if(_controller.CheckDirectionOnce(Direction.Right, StickType.LEFTSTICK))
         {
             _state += 1;
         }
-        else if (_controller.CheckDirectionOnce(Direction.Front, Type.LEFTSTICK))
+        else if (_controller.CheckDirectionOnce(Direction.Front, StickType.LEFTSTICK))
         {
             _state -= 1;
         }
-        else if (_controller.CheckDirectionOnce(Direction.Back, Type.LEFTSTICK))
+        else if (_controller.CheckDirectionOnce(Direction.Back, StickType.LEFTSTICK))
         {
             _state += 1;
         }
