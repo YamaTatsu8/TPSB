@@ -119,7 +119,7 @@ public class Move : MonoBehaviour {
                 // = Quaternion.LookRotation(moveForward);
 
                 _model.transform.LookAt(transform.position + moveForward);
-                transform.LookAt(transform.position + moveForward);
+                //transform.LookAt(transform.position + moveForward);
 
                 {
                     //Vector3 diff = transform.position - Player_pos;

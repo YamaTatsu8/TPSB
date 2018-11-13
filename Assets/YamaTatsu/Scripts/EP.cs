@@ -26,17 +26,26 @@ public class EP : MonoBehaviour {
     //ブーストできるかのフラグ
     private bool _boostFlag = true;
 
-    private float _fillProp = 0.25f;
+    private float _fillProp = 1.0f;
+
+    private bool _epFlag = false;
 
     // Use this for initialization
     void Start () {
 
-        gage = transform.Find("ep").GetComponent<Image>();
+        gage = null;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+
+        if(_epFlag == false)
+        {
+            _epFlag = true;
+            gage = transform.Find("ep").GetComponent<Image>();
+        }
 
         //　0になったらfalseにし使えなくする
         if(_EP < 0)
@@ -52,8 +61,6 @@ public class EP : MonoBehaviour {
         //gageの描画の変更
         gage.fillAmount = (_EP/ MAX_EP) * _fillProp;
 
-        //Debug.Log(gage.fillAmount);
-        //Debug.Log(_EP);
     }
 
     //
