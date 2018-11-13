@@ -24,7 +24,6 @@ public class Status : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
-
 	}
 
     public bool getDestroy()
@@ -37,8 +36,11 @@ public class Status : MonoBehaviour {
     {
         Debug.Log("ダメージ");
         _HP -= damage;
-        _hpGage.GetComponent<HP>().UseHp((float)damage);
     }
 
+    public float getHP()
+    {
+        return (float)_HP;
+    }
   
 }

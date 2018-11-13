@@ -13,17 +13,11 @@ public class Attack : MonoBehaviour {
     //武器の切り替え
     private bool _changeWeapon = true;
 
-    [SerializeField]
-    private GameObject _Bullet1;
-    [SerializeField]
-    private GameObject _Bullet2;
-
     //武器の名前
-    [SerializeField]
     private string _weaponName1;
-    [SerializeField]
+
     private string _weaponName2;
-    [SerializeField]
+
     private string _subWeaponName;
 
     //武器のオブジェクト
@@ -58,6 +52,12 @@ public class Attack : MonoBehaviour {
     //
     private bool _weaponFlag = true;
 
+    //
+    [SerializeField]
+    private GameObject[] _weapon;
+  
+
+
     // Use this for initialization
     void Start () {
 
@@ -72,21 +72,37 @@ public class Attack : MonoBehaviour {
 
         _subWeaponName = playerSystem.getSub();
 
+        for(int i = 0; i < _weapon.Length; i++)
+        {
+            if(_weapon[i].name == _weaponName1)
+            {
+                _weapon1 = _weapon[i];
+            }
+
+            if(_weapon[i].name == _weaponName2)
+            {
+                _weapon2 = _weapon[i];
+            }
+        }
+
+
         _flag = false;
 
         //Resorcesから武器を探して装備する
-        _weapon1 = (GameObject)Instantiate(Resources.Load("Prefabs/" + _weaponName1));
+        //_weapon1 = (GameObject)Instantiate(Resources.Load("Prefabs/" + _weaponName1));
 
-        _weapon2 = (GameObject)Instantiate(Resources.Load("Prefabs/" + _weaponName2));
+        //_weapon2 = (GameObject)Instantiate(Resources.Load("Prefabs/" + _weaponName2));
+
+        _weapon1.SetActive(true);
 
         _weapon2.SetActive(false);
 
         //右手の子供にする
-        _weapon1.transform.parent = _rightHand.transform;
-        _weapon1.transform.position = _rightHand.transform.position;
+        //_weapon1.transform.parent = _rightHand.transform;
+        //_weapon1.transform.position = _rightHand.transform.position;
 
-        _weapon2.transform.parent = _rightHand.transform;
-        _weapon2.transform.position = _rightHand.transform.position;
+        //_weapon2.transform.parent = _rightHand.transform;
+        //_weapon2.transform.position = _rightHand.transform.position;
 
         //アニメーターのコンポーネント
         _animator = GetComponent<Animator>();

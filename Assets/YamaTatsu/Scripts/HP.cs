@@ -19,7 +19,8 @@ public class HP : MonoBehaviour {
 
     private float _fillProp = 1.0f;
 
-
+    [SerializeField]
+    private GameObject _obj;
 
     // Use this for initialization
     void Start()
@@ -30,6 +31,7 @@ public class HP : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        _HP = _obj.GetComponent<Status>().getHP();
         //gageの描画の変更
         gage.fillAmount = (_HP / _MAX_HP) * _fillProp;
     }

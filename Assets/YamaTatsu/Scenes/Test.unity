@@ -734,6 +734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MAX_HP: 100
+  _obj: {fileID: 1794142803}
 --- !u!114 &1794142801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,9 +747,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MAX_HP: 100
+  _obj: {fileID: 0}
 --- !u!223 &1794142802 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 223375556116953822, guid: 9edd10be0fc5bba428a0bf4c36b93ed9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1794142797}
+--- !u!1 &1794142803 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1610579028674108, guid: 9edd10be0fc5bba428a0bf4c36b93ed9,
     type: 2}
   m_PrefabInternal: {fileID: 1794142797}
 --- !u!1001 &1988125614
