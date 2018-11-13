@@ -71,13 +71,13 @@ public class NPC : MonoBehaviour {
 
     //左右移動フラグ
     private bool _wallMoveFlag = false;
+
+    //
+    private bool _playerFlag = false;
   
 	// Use this for initialization
 	void Start () {
-
-        //敵を探す
-        _player = GameObject.Find("Player");
-
+    
         _rangeFlag = true;
 
         _interval = Random.Range(5.0f, 10.0f);
@@ -87,9 +87,18 @@ public class NPC : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if(_playerFlag == false)
+        {
+            _playerFlag = true;
+            //敵を探す
+            _player = GameObject.Find("Player");
+
+        }
+
         _wallFlag = _collider.GetComponent<WallCollider>().WallHit();
 
         //プレイヤーの方向に向かって移動
+        Debug.Log(_player);
         Vector3 diff = _player.transform.position - transform.position;
 
         //
