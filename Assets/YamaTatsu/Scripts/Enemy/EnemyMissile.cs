@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyMissile : MonoBehaviour {
 
     //プレイヤー
+    [SerializeField]
     private GameObject _player;
 
     //エフェクト
@@ -17,10 +18,13 @@ public class EnemyMissile : MonoBehaviour {
     //発射フラグ
     private bool _flag = true;
 
+    //ロックフラグ
+    private bool _lockFlag = false;
+
     // Use this for initialization
     void Start () {
 
-        _player = GameObject.Find("Player");
+        //_player = GameObject.Find("Player");
 
         _timer = 0.0f;
 
@@ -28,6 +32,13 @@ public class EnemyMissile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+
+        if(_lockFlag == false)
+        {
+            _lockFlag = true;
+            _player = GameObject.Find("Player");
+        }
 
         if (_flag == true)
         {

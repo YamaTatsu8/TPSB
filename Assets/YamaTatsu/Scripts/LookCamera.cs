@@ -37,25 +37,40 @@ public class LookCamera : MonoBehaviour {
     //切り替え
     private bool _flag = true;
 
+    //カメラフラグ
+    private bool _cameraFlag = false;
+
     // Use this for initialization
     void Start () {
 
         controller = GameController.Instance;
 
-        target = GameObject.FindGameObjectWithTag("Target");
+        //target = GameObject.FindGameObjectWithTag("Target");
 
-        _right = GameObject.Find("CameraRight");
+        //_right = GameObject.Find("CameraRight");
 
-        _left = GameObject.Find("CameraLeft");
+        //_left = GameObject.Find("CameraLeft");
 
-        _tps = _right;
+        //_tps = _right;
         
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        
+        if(_cameraFlag == false)
+        {
+            _cameraFlag = true;
+
+            target = GameObject.FindGameObjectWithTag("Target");
+
+            _right = GameObject.Find("CameraRight");
+
+            _left = GameObject.Find("CameraLeft");
+
+            _tps = _right;
+
+        }
 
         Vector3 pos;
 
