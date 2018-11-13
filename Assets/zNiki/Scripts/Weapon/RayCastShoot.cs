@@ -26,6 +26,8 @@ public class RayCastShoot : MonoBehaviour
     // 射程(DrawLineの距離)
     private float _range = 30.0f;
 
+    private Vector3 _targetPos = Vector3.zero;
+
     // Use this for initialization
     void Start ()
     {
@@ -41,6 +43,8 @@ public class RayCastShoot : MonoBehaviour
     public bool Shot(float fireRate)
     {
         _fireRate = fireRate;
+
+        _targetPos = transform.root.GetComponent<Attack>().getPosition();
 
         if (Time.time > _nextTime)
         {
@@ -59,16 +63,21 @@ public class RayCastShoot : MonoBehaviour
 
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, _range))
+            if (_targetPos != Vector3.zero)
             {
-                // レイのヒットした地点に飛ばす
-                bulletClone.GetComponent<Rigidbody>().velocity = (hit.point - bulletClone.transform.position).normalized * _bulletSpeed;
+                bulletClone.GetComponent<Rigidbody>().velocity = (_targetPos - bulletClone.transform.position).normalized * _bulletSpeed;
             }
-            else
-            {
-                // 射程距離分進んだ地点に飛ばす
-                bulletClone.GetComponent<Rigidbody>().velocity = (ray.GetPoint(_range) - bulletClone.transform.position).normalized * _bulletSpeed;
-            }
+
+            //if (Physics.Raycast(ray, out hit, _range))
+            //{
+            //    // レイのヒットした地点に飛ばす
+            //    bulletClone.GetComponent<Rigidbody>().velocity = (hit.point - bulletClone.transform.position).normalized * _bulletSpeed;
+            //}
+            //else
+            //{
+            //    // 射程距離分進んだ地点に飛ばす
+            //    bulletClone.GetComponent<Rigidbody>().velocity = (ray.GetPoint(_range) - bulletClone.transform.position).normalized * _bulletSpeed;
+            //}
 
             bulletClone.GetComponent<BulletController>().DeleteBullet(bulletClone);
 
