@@ -134,7 +134,7 @@ public class Attack : MonoBehaviour {
     //
     public Vector3 getPosition()
     {
-        return _target.transform.position;
+        return _target.transform.position + new Vector3(0,1,0);
     }
 
 }

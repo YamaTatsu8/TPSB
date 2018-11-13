@@ -33,19 +33,21 @@ public class EP : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        gage = null;
+        //gage = null;
 
-	}
+        gage = transform.Find("ep").GetComponent<Image>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
 
-        if(_epFlag == false)
-        {
-            _epFlag = true;
-            gage = transform.Find("ep").GetComponent<Image>();
-        }
+        //if(_epFlag == false)
+        //{
+        //    _epFlag = true;
+        //    gage = transform.Find("ep").GetComponent<Image>();
+        //}
 
         //　0になったらfalseにし使えなくする
         if(_EP < 0)
