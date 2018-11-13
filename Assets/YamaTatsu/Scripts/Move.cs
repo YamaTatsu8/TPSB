@@ -156,7 +156,7 @@ public class Move : MonoBehaviour {
         {
             _boostFlag = true;
             _animator.SetBool("Run", true);
-            gage.GetComponent<EP>().UseEp(5);
+            gage.GetComponent<EP>().UseEp(9);
         }
         else
         {

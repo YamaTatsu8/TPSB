@@ -68,14 +68,19 @@ public class EnemyMissile : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Player")
         {
             Instantiate(_effect, this.transform.position, this.transform.rotation);
+
+            collision.gameObject.GetComponent<Status>().hitDamage(10);
+
             Destroy(this.gameObject);
         }
         else
         {
+            Instantiate(_effect, this.transform.position, this.transform.rotation);
 
+            Destroy(this.gameObject);
         }
     }
 

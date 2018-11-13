@@ -100,7 +100,6 @@ public class NPC : MonoBehaviour {
         _wallFlag = _collider.GetComponent<WallCollider>().WallHit();
 
         //プレイヤーの方向に向かって移動
-        Debug.Log(_player);
         Vector3 diff = _player.transform.position - transform.position;
 
         //

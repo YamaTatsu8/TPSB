@@ -8,6 +8,9 @@ public class Status : MonoBehaviour {
     [SerializeField]
     private float _HP = 100;
 
+    [SerializeField]
+    private Canvas _hpGage;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -34,6 +37,7 @@ public class Status : MonoBehaviour {
     {
         Debug.Log("ダメージ");
         _HP -= damage;
+        _hpGage.GetComponent<HP>().UseHp((float)damage);
     }
 
   
