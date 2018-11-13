@@ -22,11 +22,15 @@ public class BulletController : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Target" || collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             Destroy(this.gameObject);
 
             collision.gameObject.GetComponent<Status>().hitDamage(_bulletDamage);
+        }
+        if (collision.gameObject.tag == "Target" || collision.gameObject.tag == "Ground")
+        {
+            Destroy(this.gameObject);
         }
     }
 }
