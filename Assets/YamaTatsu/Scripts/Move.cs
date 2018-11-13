@@ -100,11 +100,17 @@ public class Move : MonoBehaviour {
 
         moveDirection = new Vector3(moveX, 0, moveZ);
 
+        Debug.Log("totta");
+
         if (_boostFlag == false)
         {
 
+            Debug.Log("false");
+
             if (moveDirection.magnitude > 0.1f)
             {
+                Debug.Log("傾き");
+
                 // カメラの方向から、X-Z平面の単位ベクトルを取得
                 Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
 
@@ -114,6 +120,8 @@ public class Move : MonoBehaviour {
                 // 移動方向にスピードを掛ける。ジャンプや落下がある場合は、別途Y軸方向の速度ベクトルを足す。
                 rb.velocity = moveForward * _speed + new Vector3(0, rb.velocity.y, 0);
                 _animator.SetFloat("Speed", moveDirection.magnitude);
+
+                Debug.Log("移動");
 
                 //カメラの方向に体を向ける
                 // = Quaternion.LookRotation(moveForward);
