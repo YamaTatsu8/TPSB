@@ -115,6 +115,7 @@ public class Attack : MonoBehaviour {
         }
 
         Player_pos = transform.position;
+
     }
 
     private void OnCollisionStay(Collision collision)
