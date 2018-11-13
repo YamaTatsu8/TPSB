@@ -82,18 +82,20 @@ public class NPC : MonoBehaviour {
 
         _interval = Random.Range(5.0f, 10.0f);
 
-	}
+
+        _player = GameObject.Find("Player");
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if(_playerFlag == false)
-        {
-            _playerFlag = true;
-            //敵を探す
-            _player = GameObject.Find("Player");
+        //if(_playerFlag == false)
+        //{
+        //    _playerFlag = true;
+        //    //敵を探す
+        //    _player = GameObject.Find("Player");
 
-        }
+        //}
 
         _wallFlag = _collider.GetComponent<WallCollider>().WallHit();
 

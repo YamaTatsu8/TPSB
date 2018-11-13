@@ -69,7 +69,7 @@ public class Move : MonoBehaviour {
 
         controller.ControllerUpdate();
 
-        if (Input.GetAxis("L-StickHorizontal") > 0 || Input.GetAxis("L-StickVertical") > 0)
+        if (Input.GetAxis("L-StickHorizontal") != 0 || Input.GetAxis("L-StickVertical") != 0)
         {
             _walkFoot.SetActive(true);
         }

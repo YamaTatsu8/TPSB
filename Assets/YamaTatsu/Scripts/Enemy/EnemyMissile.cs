@@ -24,7 +24,7 @@ public class EnemyMissile : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        //_player = GameObject.Find("Player");
+        _player = GameObject.Find("Player");
 
         _timer = 0.0f;
 
@@ -34,11 +34,11 @@ public class EnemyMissile : MonoBehaviour {
 	void Update () {
 
 
-        if(_lockFlag == false)
-        {
-            _lockFlag = true;
-            _player = GameObject.Find("Player");
-        }
+        //if(_lockFlag == false)
+        //{
+        //    _lockFlag = true;
+        //    _player = GameObject.Find("Player");
+        //}
 
         if (_flag == true)
         {
