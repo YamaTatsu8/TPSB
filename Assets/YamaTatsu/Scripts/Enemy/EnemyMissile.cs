@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyMissile : MonoBehaviour {
 
     //プレイヤー
+    [SerializeField]
     private GameObject _player;
 
     //エフェクト
@@ -17,6 +18,9 @@ public class EnemyMissile : MonoBehaviour {
     //発射フラグ
     private bool _flag = true;
 
+    //ロックフラグ
+    private bool _lockFlag = false;
+
     // Use this for initialization
     void Start () {
 
@@ -28,6 +32,13 @@ public class EnemyMissile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+
+        //if(_lockFlag == false)
+        //{
+        //    _lockFlag = true;
+        //    _player = GameObject.Find("Player");
+        //}
 
         if (_flag == true)
         {
@@ -57,14 +68,19 @@ public class EnemyMissile : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Player")
         {
             Instantiate(_effect, this.transform.position, this.transform.rotation);
+
+            collision.gameObject.GetComponent<Status>().hitDamage(10);
+
             Destroy(this.gameObject);
         }
         else
         {
+            Instantiate(_effect, this.transform.position, this.transform.rotation);
 
+            Destroy(this.gameObject);
         }
     }
 

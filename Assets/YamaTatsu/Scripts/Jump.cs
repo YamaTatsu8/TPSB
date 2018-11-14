@@ -75,7 +75,7 @@ public class Jump : MonoBehaviour
         if (controller.ButtonDown(Button.A) && gage.GetComponent<EP>().getBoostFlag() == true)
         {
     
-            rb.velocity = new Vector3(0, 20, 0);
+            rb.velocity = new Vector3(0, 10, 0);
 
             _groundFlag = false;
 
@@ -85,10 +85,23 @@ public class Jump : MonoBehaviour
             gage.GetComponent<EP>().UseEp(5);
             //gage.GetComponent<EP>().get();
 
+
+
+        }
+        else if(Input.GetButton("A"))
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 10, rb.velocity.z);
+            _groundFlag = false;
+
+            //飛ぶモーションに変更
+            _animator.SetBool("Jump", true);
+
+            gage.GetComponent<EP>().UseEp(50);
         }
         else
         {
             _animator.SetBool("Jump", false);
+            gage.GetComponent<EP>().RecoveryEP(3);
         }
         
     }

@@ -69,7 +69,7 @@ public class Move : MonoBehaviour {
 
         controller.ControllerUpdate();
 
-        if (Input.GetAxis("L-StickHorizontal") > 0 || Input.GetAxis("L-StickVertical") > 0)
+        if (Input.GetAxis("L-StickHorizontal") != 0 || Input.GetAxis("L-StickVertical") != 0)
         {
             _walkFoot.SetActive(true);
         }
@@ -119,7 +119,7 @@ public class Move : MonoBehaviour {
                 // = Quaternion.LookRotation(moveForward);
 
                 _model.transform.LookAt(transform.position + moveForward);
-                transform.LookAt(transform.position + moveForward);
+                //transform.LookAt(transform.position + moveForward);
 
                 {
                     //Vector3 diff = transform.position - Player_pos;
@@ -156,7 +156,7 @@ public class Move : MonoBehaviour {
         {
             _boostFlag = true;
             _animator.SetBool("Run", true);
-            gage.GetComponent<EP>().UseEp(5);
+            gage.GetComponent<EP>().UseEp(9);
         }
         else
         {

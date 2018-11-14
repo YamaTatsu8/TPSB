@@ -13,17 +13,11 @@ public class Attack : MonoBehaviour {
     //武器の切り替え
     private bool _changeWeapon = true;
 
-    [SerializeField]
-    private GameObject _Bullet1;
-    [SerializeField]
-    private GameObject _Bullet2;
-
     //武器の名前
-    [SerializeField]
     private string _weaponName1;
-    [SerializeField]
+
     private string _weaponName2;
-    [SerializeField]
+
     private string _subWeaponName;
 
     //武器のオブジェクト
@@ -55,11 +49,19 @@ public class Attack : MonoBehaviour {
     //敵
     private GameObject _target;
 
+    //
+    private bool _weaponFlag = true;
+
+    //
+    [SerializeField]
+    private GameObject[] _weapon;
+  
+
+
     // Use this for initialization
     void Start () {
 
         controller = GameController.Instance;
-        //this.gameObject.GetComponent<Shot>()._bulletPrefab = _Bullet1;
 
         //PlayerSystemから情報をもらってくる
         PlayerSystem playerSystem = FindObjectOfType<PlayerSystem>();
@@ -70,19 +72,42 @@ public class Attack : MonoBehaviour {
 
         _subWeaponName = playerSystem.getSub();
 
+        for(int i = 0; i < _weapon.Length; i++)
+        {
+            if(_weapon[i].name == _weaponName1)
+            {
+                _weapon1 = _weapon[i];
+            }
+
+            if(_weapon[i].name == _weaponName2)
+            {
+                _weapon2 = _weapon[i];
+            }
+        }
+
+
         _flag = false;
 
         //Resorcesから武器を探して装備する
-        _weapon1 = (GameObject)Instantiate(Resources.Load("Prefabs/" + _weaponName1));
+        //_weapon1 = (GameObject)Instantiate(Resources.Load("Prefabs/" + _weaponName1));
+
+        //_weapon2 = (GameObject)Instantiate(Resources.Load("Prefabs/" + _weaponName2));
+
+        _weapon1.SetActive(true);
+
+        _weapon2.SetActive(false);
 
         //右手の子供にする
-        _weapon1.transform.parent = _rightHand.transform;
-        _weapon1.transform.position = _rightHand.transform.position;
+        //_weapon1.transform.parent = _rightHand.transform;
+        //_weapon1.transform.position = _rightHand.transform.position;
+
+        //_weapon2.transform.parent = _rightHand.transform;
+        //_weapon2.transform.position = _rightHand.transform.position;
 
         //アニメーターのコンポーネント
         _animator = GetComponent<Animator>();
 
-        _target = GameObject.Find("Enemy");
+        _target = GameObject.FindGameObjectWithTag("Enemy");
     }
 	
 	// Update is called once per frame
@@ -92,12 +117,36 @@ public class Attack : MonoBehaviour {
 
         //Debug.Log(_changeWeapon);
 
+        if(controller.ButtonDown(Button.X))
+        {
+            _weaponFlag = !_weaponFlag;
+            if(_weaponFlag == true)
+            {
+                _weapon2.SetActive(false);
+                _weapon1.SetActive(true);
+            }
+            else if(_weaponFlag == false)
+            {
+                _weapon1.SetActive(false);
+                _weapon2.SetActive(true);
+            }
+        }
+
+        Debug.Log(_weaponName2);
+
+
         if (controller.TriggerDown(Trigger.LEFT))
         {
             Vector3 diff = transform.position - Player_pos;
 
-            _weapon1.GetComponent<WeaponManager>().Attack();
-
+            if (_weaponFlag == true)
+            {
+                _weapon1.GetComponent<WeaponManager>().Attack();
+            }
+            else if(_weaponFlag == false)
+            {
+                _weapon2.GetComponent<WeaponManager>().Attack();
+            }
             //transform.rotation = Quaternion.LookRotation(new Vector3(diff.x, 0, diff.z));
 
             if (_flag == false)
@@ -134,7 +183,7 @@ public class Attack : MonoBehaviour {
     //
     public Vector3 getPosition()
     {
-        return _target.transform.position;
+        return _target.transform.position + new Vector3(0,1,0);
     }
 
 }

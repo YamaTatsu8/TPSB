@@ -8,6 +8,9 @@ public class Status : MonoBehaviour {
     [SerializeField]
     private float _HP = 100;
 
+    [SerializeField]
+    private Canvas _hpGage;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -21,7 +24,6 @@ public class Status : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
-
 	}
 
     public bool getDestroy()
@@ -36,5 +38,9 @@ public class Status : MonoBehaviour {
         _HP -= damage;
     }
 
+    public float getHP()
+    {
+        return (float)_HP;
+    }
   
 }
