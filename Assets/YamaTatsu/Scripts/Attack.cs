@@ -107,7 +107,7 @@ public class Attack : MonoBehaviour {
         //アニメーターのコンポーネント
         _animator = GetComponent<Animator>();
 
-        _target = GameObject.Find("Enemy");
+        _target = GameObject.FindGameObjectWithTag("Enemy");
     }
 	
 	// Update is called once per frame
