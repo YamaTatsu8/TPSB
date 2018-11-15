@@ -211,16 +211,10 @@ public class Equipment : MonoBehaviour {
 
         _cusor2.localPosition = rePos;
 
-        //Pop部分
-        GameObject cusor2 = (GameObject)Instantiate(Resources.Load("Images/Cusor2"));
-
-        cusor2.transform.SetParent(_pop.transform, false);
-
-        _cusor3 = cusor2.GetComponent<RectTransform>();
+     
+        _cusor2.transform.rotation = Quaternion.Euler(180.0f, 0.0f, 0.0f); ;
 
         rePos = _yes.localPosition;
-
-        _cusor3.localPosition = rePos;
 
         _model = GameObject.Find("PlayerModel");
 
@@ -372,10 +366,12 @@ public class Equipment : MonoBehaviour {
             switch (_nextState)
             {
                 case (int)NEXT_STATE.YES:
-                    _cusor3.localPosition = _yes.localPosition;
+                    _yes.GetComponent<Image>().color = new Color(0, 0, 0);
+                    _no.GetComponent<Image>().color = new Color(255, 255, 255);
                     break;
                 case (int)NEXT_STATE.NO:
-                    _cusor3.localPosition = _no.localPosition;
+                    _yes.GetComponent<Image>().color = new Color(255, 255, 255);
+                    _no.GetComponent<Image>().color = new Color(0, 0, 0);
                     break;
             }
 
@@ -483,7 +479,7 @@ public class Equipment : MonoBehaviour {
     {
         if(_pop.localScale.y < 0.5f)
         {
-            _pop.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+            _pop.localScale += new Vector3(0.3f, 0.1f, 0.1f);
         }
     }
 
@@ -542,7 +538,6 @@ public class Equipment : MonoBehaviour {
         }
 
         return _state;
-
     }
 
 }

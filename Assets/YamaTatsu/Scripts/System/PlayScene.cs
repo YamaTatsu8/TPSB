@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaySceneManager : MonoBehaviour {
+public class PlayScene : MonoBehaviour {
 
     //Player
     private GameObject _player;
