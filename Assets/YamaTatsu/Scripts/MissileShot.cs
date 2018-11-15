@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MissileShot : MonoBehaviour {
 
@@ -26,6 +27,10 @@ public class MissileShot : MonoBehaviour {
 
     //
     private bool _flag = true;
+
+    //
+    [SerializeField]
+    private Slider _slider;
 
     // Use this for initialization
     void Start () {
@@ -75,8 +80,21 @@ public class MissileShot : MonoBehaviour {
                 _magazin = 0;
                 _time = 0;
             }
+
+            _slider.value = _time / 5;
+
         }
 
+    }
+
+    public int getCount()
+    {
+        return 6 - _magazin;
+    }
+
+    public float getTime()
+    {
+        return _time;
     }
 
 }
