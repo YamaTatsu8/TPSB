@@ -1034,6 +1034,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbb39ea393335c843ab086cbf31a2eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpSlider: {fileID: 1070842218}
+  _MAX_HP: 100
+  _obj: {fileID: 1778383926}
 --- !u!1001 &1208929280
 Prefab:
   m_ObjectHideFlags: 0
@@ -1228,7 +1231,6 @@ GameObject:
   - component: {fileID: 1778383930}
   - component: {fileID: 1778383931}
   - component: {fileID: 1778383932}
-  - component: {fileID: 1778383933}
   m_Layer: 16
   m_Name: Enemy
   m_TagString: Enemy
@@ -1305,7 +1307,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _HP: 100
-  _hpGage: {fileID: 0}
 --- !u!114 &1778383932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1321,17 +1322,6 @@ MonoBehaviour:
   rb: {fileID: 1778383929}
   _collider: {fileID: 1021523642}
   _speed: 5
---- !u!114 &1778383933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1778383926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbb39ea393335c843ab086cbf31a2eb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1988125614
 Prefab:
   m_ObjectHideFlags: 0
