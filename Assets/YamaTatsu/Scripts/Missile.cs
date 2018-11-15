@@ -37,7 +37,7 @@ public class Missile : MonoBehaviour
         {
             if (_timer > 0.4)
             {
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation((_player.transform.position + new Vector3(0,-2,0)) - transform.position), Time.deltaTime * 30);
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation((_player.transform.position + new Vector3(0,-2,0)) - transform.position), Time.deltaTime * 100);
 
                 Vector3 front = transform.TransformDirection(Vector3.forward);
 
