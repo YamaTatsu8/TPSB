@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneObserver : MonoBehaviour
-{
+{ 
     //　シーン
     enum SCENE_STATE
     {
@@ -14,10 +14,12 @@ public class SceneObserver : MonoBehaviour
     }
     private int _nowScene = (int)SCENE_STATE.TitleScene;    //　現在のシーン
 
-    private TitleSceneManager _title;
-    private PlaySceneManager _play;
+    private TitleSceneManager _title;                       //　タイトルシーンのスクリプト
+    private PlaySceneManager _play;                         //　プレイシーンのスクリプト
 
-    private GameObject _fadeObj;            //　フェードに使用するパネル
+    private GameObject _fadeObj;                            //　フェードに使用するパネル
+
+    private static volatile SceneObserver _sceneObservar;   //　複数生成されないようのオブジェクト
 
 	// Use this for initialization
 	void Start ()
@@ -25,13 +27,20 @@ public class SceneObserver : MonoBehaviour
         Initialize();
 	}
 
+    //　初期化処理
     public void Initialize()
     {
         _title = new TitleSceneManager();
         _title.Initialize();
         _play = new PlaySceneManager();
         _play.Initialize();
-        DontDestroyOnLoad(gameObject);
+
+        if (_sceneObservar == null)
+        {
+            _sceneObservar = FindObjectOfType<SceneObserver>() as SceneObserver;
+
+            DontDestroyOnLoad(_sceneObservar);
+        }
     }
 	
 	// Update is called once per frame
@@ -45,6 +54,7 @@ public class SceneObserver : MonoBehaviour
     {
         switch (_nowScene)
         {
+            //　タイトルシーンの更新処理
             case (int)SCENE_STATE.TitleScene:
                 _title.SceneUpdate();
                 if (_title.EndedScene())
@@ -55,6 +65,7 @@ public class SceneObserver : MonoBehaviour
                 }
                 break;
 
+            //　プレイシーンの更新処理
             case (int)SCENE_STATE.PlayScene:
                 _play.SceneUpdate();
                 if(_play.EndedScene())
