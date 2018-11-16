@@ -61,9 +61,9 @@ public class SceneObserver : MonoBehaviour
                 _title.SceneUpdate();
                 if (_title.EndedScene())
                 {
-                    _nowScene = (int)SCENE_STATE.PlayScene;
+                    _nowScene = (int)SCENE_STATE.CustomizeScene;
                     _play.Initialize();
-                    ChangeScene(SCENE_STATE.PlayScene.ToString());
+                    ChangeScene("CustomizeWindow");
                 }
                 break;
 
@@ -78,10 +78,26 @@ public class SceneObserver : MonoBehaviour
                 }
                 break;
 
+            //　カスタマイズシーンの更新処理
             case (int)SCENE_STATE.CustomizeScene:
+                GameObject cusObj = GameObject.Find("BackGround");
+
+                if(cusObj.GetComponent<Equipment>().GetNextFlag())
+                {
+                    _nowScene = (int)SCENE_STATE.GamePlayScene;
+                    ChangeScene("Test");
+                }
                 break;
 
             case (int)SCENE_STATE.GamePlayScene:
+                GameObject gameManaObj = GameObject.Find("GameManager");
+
+                if (gameManaObj.GetComponent<PlayScene>().getFlag())
+                {
+                    _nowScene = (int)SCENE_STATE.TitleScene;
+                    _title.Initialize();
+                    ChangeScene(SCENE_STATE.TitleScene.ToString());
+                }
                 break;
 
 
