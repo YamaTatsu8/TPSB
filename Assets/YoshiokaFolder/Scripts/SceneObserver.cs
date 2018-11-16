@@ -19,7 +19,7 @@ public class SceneObserver : MonoBehaviour
 
     private GameObject _fadeObj;                            //　フェードに使用するパネル
 
-    private static volatile SceneObserver _sceneObservar;   //　複数生成されないようのオブジェクト
+    private static SceneObserver _sceneObservar;            //　複数生成されないようのオブジェクト
 
 	// Use this for initialization
 	void Start ()
