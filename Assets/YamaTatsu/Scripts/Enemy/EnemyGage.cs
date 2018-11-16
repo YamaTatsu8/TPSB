@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyHP : MonoBehaviour {
+public class EnemyGage : MonoBehaviour {
 
     //　HP表示用スライダー
     [SerializeField]
@@ -19,7 +19,8 @@ public class EnemyHP : MonoBehaviour {
     void Start()
     {
         //　自身のルートに取り付けている敵のステータス取得
-        //　HP用Sliderを子要素から取
+        //　HP用Sliderを子要素から取得
+        hpSlider = GetComponent<Slider>();
         //　スライダーの値0～1の間になるように比率を計算
         hpSlider.value = _MAX_HP / _MAX_HP;
     }

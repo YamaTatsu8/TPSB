@@ -8,9 +8,6 @@ public class Status : MonoBehaviour {
     [SerializeField]
     private float _HP = 100;
 
-    [SerializeField]
-    private Canvas _hpGage;
-
 	// Use this for initialization
 	void Start () {
 		
