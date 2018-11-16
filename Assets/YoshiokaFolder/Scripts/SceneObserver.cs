@@ -10,6 +10,8 @@ public class SceneObserver : MonoBehaviour
     {
         TitleScene,
         PlayScene,
+        CustomizeScene,
+        GamePlayScene,
         ResultScene
     }
     private int _nowScene = (int)SCENE_STATE.TitleScene;    //　現在のシーン
@@ -75,6 +77,13 @@ public class SceneObserver : MonoBehaviour
                     ChangeScene(SCENE_STATE.TitleScene.ToString());
                 }
                 break;
+
+            case (int)SCENE_STATE.CustomizeScene:
+                break;
+
+            case (int)SCENE_STATE.GamePlayScene:
+                break;
+
 
             case (int)SCENE_STATE.ResultScene:
                 break;
