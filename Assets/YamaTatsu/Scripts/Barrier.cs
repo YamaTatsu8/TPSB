@@ -36,8 +36,6 @@ public class Barrier : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        Debug.Log(_guard);
-
         controller = GameController.Instance;
 
         _animator = GetComponent<Animator>();

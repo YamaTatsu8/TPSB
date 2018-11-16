@@ -100,8 +100,6 @@ public class Move : MonoBehaviour {
 
         moveDirection = new Vector3(moveX, 0, moveZ);
 
-        Debug.Log("totta");
-
         if (_boostFlag == false)
         {
 
