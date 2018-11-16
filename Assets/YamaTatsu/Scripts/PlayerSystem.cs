@@ -17,10 +17,21 @@ public class PlayerSystem : MonoBehaviour {
     [SerializeField]
     private string _subWeapon;
 
+    private static PlayerSystem _playerSystem;
+
     //
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        
+    }
+
+    private void Start()
+    {
+        if(_playerSystem == null)
+        {
+            _playerSystem = FindObjectOfType<PlayerSystem>() as PlayerSystem;
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     // Update is called once per frame
