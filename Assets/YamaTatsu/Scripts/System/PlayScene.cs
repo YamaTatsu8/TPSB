@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayScene : MonoBehaviour {
 
+    //フェード
+    GameObject _fadeOut;
+
     //Player
     private GameObject _player;
 
@@ -16,6 +19,12 @@ public class PlayScene : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        Fade fade = new Fade();
+
+        _fadeOut = fade.CreateFade();
+
+        _fadeOut.GetComponentInChildren<Fade>().FadeIn();
+
         //プレイヤーを探す
         _player = GameObject.Find("Player");
 
@@ -26,15 +35,23 @@ public class PlayScene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-        if(_player.GetComponent<Status>().getHP() <= 0 || _enemy.GetComponent<Status>().getHP() <= 0)
+
+        if (_flag == false)
         {
-            Debug.Log("リザルト画面へ移動");
-            //終了フラグを立てる
-            _flag = true;
+            if (_player.GetComponent<Status>().getHP() <= 0 || _enemy.GetComponent<Status>().getHP() <= 0)
+            {
+                StartCoroutine(NextScene());
+            }
         }
 
 	}
+
+    private IEnumerator NextScene()
+    {
+        yield return new WaitForSeconds(2.0f);
+        _flag = true;
+
+    }
 
     public bool getFlag()
     {

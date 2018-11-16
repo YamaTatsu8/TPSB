@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class Equipment : MonoBehaviour {
 
+    //フェード
+    GameObject _fadeOut;
+
     //コントローラのスクリプト
     private GameController _controller;
 
@@ -123,6 +126,9 @@ public class Equipment : MonoBehaviour {
 
     private int _nextState = 0;
 
+    //fade終わったかのフラグ
+    private bool _fadeFlag = false;
+
     private enum NEXT_STATE
     {
         YES,
@@ -140,6 +146,12 @@ public class Equipment : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        Fade fade = new Fade();
+
+        _fadeOut = fade.CreateFade();
+
+        _fadeOut.GetComponentInChildren<Fade>().FadeIn();
 
         //初期化
         _controller = GameController.Instance;
@@ -174,6 +186,8 @@ public class Equipment : MonoBehaviour {
 
         //サブ武器のリスト作成
         //WeaponAdd("SubWeaponList", _subWeaponList);
+
+        _playerSystem = GameObject.Find("PlayerSystem");
 
         Vector3 rePos;
 
@@ -385,8 +399,14 @@ public class Equipment : MonoBehaviour {
                 switch (_nextState)
                 {
                     case (int)NEXT_STATE.YES:
-                        //次のシーンに移動          
-                        _sceneNextFlag = true;
+                        //次のシーンに移動    
+                        Fade fade = new Fade();
+
+                        _fadeOut = fade.CreateFade();
+
+                        _fadeOut.GetComponentInChildren<Fade>().FadeOut();
+                        
+                        _fadeFlag = true;
                         break;
                     case (int)NEXT_STATE.NO:
                         _popFlag = false;
@@ -425,6 +445,11 @@ public class Equipment : MonoBehaviour {
             _mainState = 0;
             ZoomBack();
             _mainFlag = false;
+        }
+
+        if(_fadeOut.GetComponentInChildren<Fade>().isCheckedFadeOut() && _fadeFlag == true)
+        {
+            _sceneNextFlag = true;
         }
 
     }
