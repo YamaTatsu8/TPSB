@@ -544,4 +544,10 @@ public class Equipment : MonoBehaviour {
         return _state;
     }
 
+    //次のシーンへ移動するフラグ
+    public bool GetNextFlag()
+    {
+        return _sceneNextFlag;
+    }
+
 }
