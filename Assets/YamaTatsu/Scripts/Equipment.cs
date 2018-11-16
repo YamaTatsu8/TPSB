@@ -87,6 +87,9 @@ public class Equipment : MonoBehaviour {
     [SerializeField]
     private GameObject _model;
 
+    //シーン移動のフラグ
+    private bool _sceneNextFlag = false;
+
     //どこを選んでいるかのState
     private enum EQUIPMENT_STATE
     {
@@ -383,6 +386,7 @@ public class Equipment : MonoBehaviour {
                     case (int)NEXT_STATE.YES:
                         //次のシーンに移動          
                         SceneManager.LoadScene("Test");
+                        _sceneNextFlag = true;
                         break;
                     case (int)NEXT_STATE.NO:
                         _popFlag = false;

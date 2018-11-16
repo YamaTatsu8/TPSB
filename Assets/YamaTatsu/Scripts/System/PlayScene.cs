@@ -10,6 +10,9 @@ public class PlayScene : MonoBehaviour {
     //敵
     private GameObject _enemy;
 
+    //終了フラグ
+    private bool _flag = false;
+
 	// Use this for initialization
 	void Start () {
 
@@ -27,8 +30,15 @@ public class PlayScene : MonoBehaviour {
         if(_player.GetComponent<Status>().getHP() <= 0 || _enemy.GetComponent<Status>().getHP() <= 0)
         {
             Debug.Log("リザルト画面へ移動");
-            //シーン遷移を書く
+            //終了フラグを立てる
+            _flag = true;
         }
 
 	}
+
+    public bool getFlag()
+    {
+        return _flag;
+    }
+
 }
