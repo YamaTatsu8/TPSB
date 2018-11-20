@@ -42,20 +42,13 @@ public class EP : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
-        //if(_epFlag == false)
-        //{
-        //    _epFlag = true;
-        //    gage = transform.Find("ep").GetComponent<Image>();
-        //}
-
         //　0になったらfalseにし使えなくする
         if(_EP < 0)
         {
             Debug.Log("EPが0になりました");
             _boostFlag = false;
         }
-        else
+        else if(_EP > 500 && _boostFlag == false)
         {
             _boostFlag = true;
         }
@@ -88,6 +81,11 @@ public class EP : MonoBehaviour {
     public bool getBoostFlag()
     {
         return _boostFlag;
+    }
+
+    public float getEP()
+    {
+        return _EP;
     }
 
 }

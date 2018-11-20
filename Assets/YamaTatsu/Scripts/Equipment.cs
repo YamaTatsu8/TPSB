@@ -14,24 +14,21 @@ public class Equipment : MonoBehaviour {
     private GameController _controller;
 
     //Bar
-    [SerializeField]
     private RectTransform _bar;
 
     //カーソル
-    [SerializeField]
     private RectTransform _cursor;
 
-    [SerializeField]
     private RectTransform _mainWeapon1;
-    [SerializeField]
+    
     private RectTransform _mainWeapon2;
-    [SerializeField]
+    
     private RectTransform _subWeapon;
-    [SerializeField]
+    
     private RectTransform _start;
 
     //ポップ
-    [SerializeField]
+    
     private RectTransform _pop;
 
     //stateの値
@@ -90,6 +87,18 @@ public class Equipment : MonoBehaviour {
     [SerializeField]
     private GameObject _model;
 
+    //オーディオソース
+    private AudioSource _audioSource;
+
+    //SE
+    //決定音
+    public AudioClip _decision;
+    //セレクト音
+    public AudioClip _select;
+    //キャンセル音
+    public AudioClip _cansel;
+
+
     //シーン移動のフラグ
     private bool _sceneNextFlag = false;
 
@@ -129,6 +138,7 @@ public class Equipment : MonoBehaviour {
     //fade終わったかのフラグ
     private bool _fadeFlag = false;
 
+
     private enum NEXT_STATE
     {
         YES,
@@ -156,6 +166,9 @@ public class Equipment : MonoBehaviour {
         //初期化
         _controller = GameController.Instance;
         _sceneNextFlag = false;
+
+        //audioコンポーネント
+        _audioSource = gameObject.GetComponent<AudioSource>();
 
         //コンポーネント
         _cursor = GameObject.Find("Cursor").GetComponent<RectTransform>();
@@ -236,6 +249,8 @@ public class Equipment : MonoBehaviour {
 
         _model = GameObject.Find("PlayerModel");
 
+
+
     }
 	
 	// Update is called once per frame
@@ -284,6 +299,7 @@ public class Equipment : MonoBehaviour {
                 if (_controller.ButtonDown(Button.A) && _barFlag == false)
                 {
                     ChooseMenu((EQUIPMENT_STATE)_state);
+                    _audioSource.PlayOneShot(_decision);
                 }
 
             }
@@ -336,7 +352,7 @@ public class Equipment : MonoBehaviour {
                 if (_controller.ButtonDown(Button.A))
                 {
                     _barFlag = false;
-
+                    _audioSource.PlayOneShot(_decision);
                     switch (_weaponState)
                     {
                         case (int)WEAPON_MAIN.MAIN1:
@@ -360,6 +376,7 @@ public class Equipment : MonoBehaviour {
 
                 if (_controller.ButtonDown(Button.B))
                 {
+                    _audioSource.PlayOneShot(_cansel);
                     _barFlag = false;
                 }
 
@@ -384,18 +401,18 @@ public class Equipment : MonoBehaviour {
             switch (_nextState)
             {
                 case (int)NEXT_STATE.YES:
-                    _yes.GetComponent<Image>().color = new Color(0, 0, 0);
-                    _no.GetComponent<Image>().color = new Color(255, 255, 255);
-                    break;
-                case (int)NEXT_STATE.NO:
                     _yes.GetComponent<Image>().color = new Color(255, 255, 255);
                     _no.GetComponent<Image>().color = new Color(0, 0, 0);
+                    break;
+                case (int)NEXT_STATE.NO:
+                    _yes.GetComponent<Image>().color = new Color(0, 0, 0);
+                    _no.GetComponent<Image>().color = new Color(255, 255, 255);
                     break;
             }
 
             if (_controller.ButtonDown(Button.A))
             {
-
+                _audioSource.PlayOneShot(_decision);
                 switch (_nextState)
                 {
                     case (int)NEXT_STATE.YES:
@@ -418,6 +435,7 @@ public class Equipment : MonoBehaviour {
 
             if(_controller.ButtonDown(Button.B))
             {
+                _audioSource.PlayOneShot(_cansel);
                 _popFlag = false;
                 _nextFlag = false;
             }
@@ -508,7 +526,7 @@ public class Equipment : MonoBehaviour {
     {
         if(_pop.localScale.y < 0.5f)
         {
-            _pop.localScale += new Vector3(0.3f, 0.1f, 0.1f);
+            _pop.localScale += new Vector3(0.4f, 0.1f, 0.1f);
         }
     }
 
@@ -551,18 +569,22 @@ public class Equipment : MonoBehaviour {
 
         if(_controller.CheckDirectionOnce(Direction.Left, StickType.LEFTSTICK))
         {
+            _audioSource.PlayOneShot(_select);
             _state -= 1;
         }
         else if(_controller.CheckDirectionOnce(Direction.Right, StickType.LEFTSTICK))
         {
+            _audioSource.PlayOneShot(_select);
             _state += 1;
         }
         else if (_controller.CheckDirectionOnce(Direction.Front, StickType.LEFTSTICK))
         {
+            _audioSource.PlayOneShot(_select);
             _state -= 1;
         }
         else if (_controller.CheckDirectionOnce(Direction.Back, StickType.LEFTSTICK))
         {
+            _audioSource.PlayOneShot(_select);
             _state += 1;
         }
 
