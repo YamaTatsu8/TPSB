@@ -21,6 +21,13 @@ public class EnemyMissile : MonoBehaviour {
     //ロックフラグ
     private bool _lockFlag = false;
 
+    //オーディオソース
+    private AudioSource _audioSource;
+
+    //SE
+    //発射音
+    public AudioClip _shoot;
+
     // Use this for initialization
     void Start () {
 
@@ -28,7 +35,13 @@ public class EnemyMissile : MonoBehaviour {
 
         _timer = 0.0f;
 
-	}
+        //コンポーネント
+        _audioSource = gameObject.GetComponent<AudioSource>();
+
+        //
+        _audioSource.PlayOneShot(_shoot);
+
+    }
 	
 	// Update is called once per frame
 	void Update () {

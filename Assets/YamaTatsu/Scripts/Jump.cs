@@ -85,10 +85,8 @@ public class Jump : MonoBehaviour
             gage.GetComponent<EP>().UseEp(5);
             //gage.GetComponent<EP>().get();
 
-
-
         }
-        else if(Input.GetButton("A"))
+        else if(Input.GetButton("A") && gage.GetComponent<EP>().getBoostFlag() == true)
         {
             rb.velocity = new Vector3(rb.velocity.x, 10, rb.velocity.z);
             _groundFlag = false;

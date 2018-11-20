@@ -62,7 +62,7 @@ public class LookCamera : MonoBehaviour {
         {
             _cameraFlag = true;
 
-            target = GameObject.FindGameObjectWithTag("Target");
+            target = GameObject.FindGameObjectWithTag("Enemy");
 
             _right = GameObject.Find("CameraRight");
 

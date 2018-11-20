@@ -19,13 +19,26 @@ public class Missile : MonoBehaviour
     //発射フラグ
     private bool _flag = true;
 
+    //オーディオソース
+    private AudioSource _audioSource;
+
+    //SE
+    //発射音
+    public AudioClip _shoot;
+
+
     // Use this for initialization
     void Start()
     {
-
         _player = GameObject.Find("Enemy");
 
         _timer = 0;
+
+        //コンポーネント
+        _audioSource = gameObject.GetComponent<AudioSource>();
+
+        //
+        _audioSource.PlayOneShot(_shoot);
 
     }
 
@@ -56,7 +69,6 @@ public class Missile : MonoBehaviour
                 Instantiate(_effect,this.transform.position,this.transform.rotation);
                 Destroy(this.gameObject);
             }
-
 
         }
     }
