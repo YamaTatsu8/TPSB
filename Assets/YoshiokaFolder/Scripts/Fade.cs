@@ -17,6 +17,8 @@ public class Fade : MonoBehaviour
     private bool _isFadeIn = false;
     private bool _isFadeOut = false;
 
+    private GameObject _emptyObj;
+
     // Use this for initialization
     void Start()
     {
@@ -103,7 +105,10 @@ public class Fade : MonoBehaviour
 
     public GameObject CreateFade()
     {
-        GameObject obj = (GameObject)Instantiate(Resources.Load("Prefabs/FadeCanvas"));
-        return obj;
+        if (_emptyObj == null)
+        {
+            _emptyObj = (GameObject)Instantiate(Resources.Load("Prefabs/FadeCanvas"));
+        }
+        return _emptyObj;
     }
 }
