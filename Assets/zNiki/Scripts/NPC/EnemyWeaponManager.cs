@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponManager : MonoBehaviour
+public class EnemyWeaponManager : MonoBehaviour
 {
     // セレクタ
     private enum Selector
@@ -49,7 +49,7 @@ public class WeaponManager : MonoBehaviour
     // 弾のプレハブ
     [SerializeField]
     private GameObject _bulletPrefab;
-    
+
     private IEnumerator _routine;
 
     public int Capacity
@@ -82,7 +82,7 @@ public class WeaponManager : MonoBehaviour
         get { return _bulletPrefab; }
         set { _bulletPrefab = value; }
     }
-    
+
     private void Awake()
     {
         _fireRate = 1.0f / _roundsPerSecond;
@@ -93,7 +93,7 @@ public class WeaponManager : MonoBehaviour
 
         _con = GameController.Instance;
     }
-    
+
     private void Update()
     {
         _con.ControllerUpdate();
@@ -159,13 +159,13 @@ public class WeaponManager : MonoBehaviour
     {
         if (_remainingBullets < _capacity && _routine == null)
         {
-            this.transform.GetChild(1).GetComponent<DisplayData>().IsReloading = true;
+            //this.transform.GetChild(1).GetComponent<DisplayData>().IsReloading = true;
 
             _isBurst = true;
 
             _routine = this.DelayMethodForSpecifiedTime(_reloadTime, () =>
             {
-                Debug.Log("Reload");
+                //Debug.Log("Reload");
                 _remainingBullets = _capacity;
 
                 _routine = null;
@@ -176,7 +176,7 @@ public class WeaponManager : MonoBehaviour
 
     private void Shot(float fireRate)
     {
-        if (this.GetComponent<RayCastShoot>().Shot(fireRate))
+        if (this.GetComponent<EnemyBulletShot>().Shot(fireRate))
         {
             _remainingBullets--;
         }
@@ -206,7 +206,7 @@ public class WeaponManager : MonoBehaviour
                                 });
                             }
                         });
-                    }                    
+                    }
 
                 });
                 _routine = null;
