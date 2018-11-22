@@ -27,8 +27,7 @@ public class Equipment : MonoBehaviour {
     
     private RectTransform _start;
 
-    //ポップ
-    
+    //ポップ  
     private RectTransform _pop;
 
     //stateの値
@@ -141,13 +140,11 @@ public class Equipment : MonoBehaviour {
     //fade終わったかのフラグ
     private bool _fadeFlag = false;
 
-
     private enum NEXT_STATE
     {
         YES,
         NO
     }
-
 
     // Use this for initialization
     void Start () {
@@ -236,8 +233,7 @@ public class Equipment : MonoBehaviour {
         rePos = _weaponImage[0].localPosition;
 
         _cusor2.localPosition = rePos;
-
-     
+    
         _cusor2.transform.rotation = Quaternion.Euler(180.0f, 0.0f, 0.0f); ;
 
         rePos = _yes.localPosition;
@@ -284,7 +280,6 @@ public class Equipment : MonoBehaviour {
                     case (int)EQUIPMENT_STATE.NEXT:
                         _cursor.position = _start.position;
                         break;
-
                 }
 
                 if (_controller.ButtonDown(Button.A) && _barFlag == false)
@@ -309,7 +304,6 @@ public class Equipment : MonoBehaviour {
                     _mainState = (int)WEAPON_STATE.WEAPON1;
                 }
                 
-
                 if (_weaponState == 0)
                 {
                     switch (_mainState)
@@ -350,7 +344,6 @@ public class Equipment : MonoBehaviour {
                 {
 
                 }
-
 
                 if (_controller.ButtonDown(Button.A))
                 {
@@ -432,24 +425,25 @@ public class Equipment : MonoBehaviour {
 
             if (_controller.ButtonDown(Button.A))
             {
-                _audioSource.PlayOneShot(_decision);
-                switch (_nextState)
-                {
-                    case (int)NEXT_STATE.YES:
-                        //次のシーンに移動    
-                        Fade fade = new Fade();
+              
+                    _audioSource.PlayOneShot(_decision);
+                    switch (_nextState)
+                    {
+                        case (int)NEXT_STATE.YES:
+                            //次のシーンに移動    
+                            Fade fade = new Fade();
 
-                        _fadeOut = fade.CreateFade();
+                            _fadeOut = fade.CreateFade();
 
-                        _fadeOut.GetComponentInChildren<Fade>().FadeOut();
-                        
-                        _fadeFlag = true;
-                        break;
-                    case (int)NEXT_STATE.NO:
-                        _popFlag = false;
-                        _nextFlag = false;
-                        break;
-                }
+                            _fadeOut.GetComponentInChildren<Fade>().FadeOut();
+
+                            _fadeFlag = true;
+                            break;
+                        case (int)NEXT_STATE.NO:
+                            _popFlag = false;
+                            _nextFlag = false;
+                            break;
+                    }
 
             }
 
@@ -516,7 +510,14 @@ public class Equipment : MonoBehaviour {
             //    break;
             case EQUIPMENT_STATE.NEXT:
                 //Popの表示
-                _popFlag = true;
+                if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != "Main1" || _playerSystem.GetComponent<PlayerSystem>().getMain2() != "Main2")
+                {
+                    _popFlag = true;
+                }
+                else
+                {
+                    _audioSource.PlayOneShot(_cansel);
+                }
                 break;
                
         }
