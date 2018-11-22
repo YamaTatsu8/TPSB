@@ -77,4 +77,11 @@ public class PlayerSystem : MonoBehaviour {
         _subWeapon = "Missile";
     }
 
+    public void Init()
+    {
+        _mainWeapon1 = "Main1";
+
+        _mainWeapon2 = "Main2";
+    }
+
 }

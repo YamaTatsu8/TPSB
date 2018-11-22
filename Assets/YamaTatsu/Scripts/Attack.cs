@@ -108,6 +108,8 @@ public class Attack : MonoBehaviour {
         _animator = GetComponent<Animator>();
 
         _target = GameObject.FindGameObjectWithTag("Enemy");
+
+        playerSystem.Init();
     }
 	
 	// Update is called once per frame
