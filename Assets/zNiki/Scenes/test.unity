@@ -1623,6 +1623,11 @@ Prefab:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114411244053806160, guid: 9edd10be0fc5bba428a0bf4c36b93ed9,
+        type: 2}
+      propertyPath: _mainCamera
+      value: 
+      objectReference: {fileID: 379077339}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9edd10be0fc5bba428a0bf4c36b93ed9, type: 2}
   m_IsPrefabAsset: 0
@@ -1838,7 +1843,7 @@ GameObject:
   - component: {fileID: 1076553061}
   - component: {fileID: 1076553060}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Enemy
   m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
