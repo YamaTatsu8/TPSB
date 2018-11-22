@@ -75,14 +75,16 @@ public class Missile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Enemy")
         {
             Instantiate(_effect, this.transform.position, this.transform.rotation);
+            collision.gameObject.GetComponent<Status>().hitDamage(10);
             Destroy(this.gameObject);
         }
         else
         {
-            
+            Instantiate(_effect, this.transform.position, this.transform.rotation);
+            Destroy(this.gameObject);
         }
     }
 

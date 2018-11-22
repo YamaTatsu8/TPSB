@@ -48,7 +48,7 @@ public class PlayScene : MonoBehaviour {
 
     private IEnumerator NextScene()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.0f);
         _flag = true;
 
     }

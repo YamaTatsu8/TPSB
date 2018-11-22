@@ -104,10 +104,7 @@ public class LookCamera : MonoBehaviour {
 
     private void LockOnTargetObjcet(GameObject target)
     {
-
-         //target.transform.position + new Vector3(0, 0.5f, 0);
-
-        transform.LookAt(target.transform, Vector3.up);
+        transform.LookAt(target.transform.position + new Vector3(0, 1.0f, 0), Vector3.up);
     }
 
     

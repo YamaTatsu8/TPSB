@@ -56,7 +56,6 @@ public class Attack : MonoBehaviour {
     //
     [SerializeField]
     private GameObject[] _weapon;
-  
 
     // Use this for initialization
     void Start () {
@@ -131,8 +130,8 @@ public class Attack : MonoBehaviour {
                 _weapon1.SetActive(false);
                 _weapon2.SetActive(true);
             }
+            
         }
-
  
         if (controller.TriggerDown(Trigger.LEFT))
         {
