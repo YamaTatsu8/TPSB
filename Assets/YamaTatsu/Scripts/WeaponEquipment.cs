@@ -38,25 +38,25 @@ public class WeaponEquipment : MonoBehaviour {
     //武器1にセットする
     public void setWeapon1(string name)
     {
-        _weaponName1 = name;
+        //_weaponName1 = name;
 
-        _weapon1 = (GameObject)Instantiate(Resources.Load("Prefabs/Model/" + _weaponName1));
+        //_weapon1 = (GameObject)Instantiate(Resources.Load("Prefabs/Model/" + _weaponName1));
 
-        //子供にする
-        _weapon1.transform.parent = _rightHand.transform;
-        _weapon1.transform.position = _rightHand.transform.position;
+        ////子供にする
+        //_weapon1.transform.parent = _rightHand.transform;
+        //_weapon1.transform.position = _rightHand.transform.position;
     }
 
     //武器2にセットする
     public void setWeapon2(string name)
     {
-        _weaponName2 = name;
+        //_weaponName2 = name;
 
-        _weapon2 = (GameObject)Instantiate(Resources.Load("Prefabs/Model/" + _weaponName2));
+        //_weapon2 = (GameObject)Instantiate(Resources.Load("Prefabs/Model/" + _weaponName2));
 
-        //子供にする
-        _weapon2.transform.parent = _rightHand.transform;
-        _weapon2.transform.position = _rightHand.transform.position;
+        ////子供にする
+        //_weapon2.transform.parent = _rightHand.transform;
+        //_weapon2.transform.position = _rightHand.transform.position;
     }
 
 }
