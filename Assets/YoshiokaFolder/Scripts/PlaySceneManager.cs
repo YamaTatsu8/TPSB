@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlaySceneManager : MonoBehaviour
 {
     private GameController _controller;     //　ゲームコントローラー
-    private GameObject _fadeObj;
+    private GameObject _fadeObj;            //　フェード
 
     private bool _isStartFade = false;      //　フェードが開始されているかチェックするフラグ
-    private bool _isEndedScene = false;
+    private bool _isEndedScene = false;     
 
     // Use this for initialization
     void Start ()

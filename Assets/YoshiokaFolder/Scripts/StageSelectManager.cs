@@ -2,31 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TitleSceneManager : MonoBehaviour
+public class StageSelectManager : MonoBehaviour
 {
     private GameController _controller;     //　ゲームコントローラー
-    private GameObject _fadeObj;            //　fadeobj
+    private GameObject _fadeObj;            //　フェード
+    private GameObject _stageParent;
 
-    private bool _isStartFade;              //　フェードが開始されているかチェックするフラグ
+    private bool _isStartFade = false;      //　True:フェード開始、False:フェード終了中
 
     // Use this for initialization
     void Start ()
     {
-        Initialize();
-    }
-
+        Initialize();	
+	}
+	
+    //　初期化処理
     public void Initialize()
     {
         _controller = GameController.Instance;
         _isStartFade = false;
     }
 
-    // Update is called once per frame
-    void Update ()
+	// Update is called once per frame
+	void Update ()
     {
-        // シーン更新
-        SceneUpdate();
-    }
+        //　シーン更新
+        SceneUpdate();	
+	}
 
     //　シーン更新処理
     public bool SceneUpdate()
@@ -56,13 +58,11 @@ public class TitleSceneManager : MonoBehaviour
 
         if (_controller.ButtonDown(Button.A) && !_isStartFade)
         {
-            if (_fadeObj == null)
-            {
-                Fade fade = new Fade();
-                _fadeObj = fade.CreateFade();
-            }
+            Fade fade = new Fade();
+            _fadeObj = fade.CreateFade();
             _fadeObj.GetComponentInChildren<Fade>().FadeOut();
             _isStartFade = true;
         }
+        
     }
 }
