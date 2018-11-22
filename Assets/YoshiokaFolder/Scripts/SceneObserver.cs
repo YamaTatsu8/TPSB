@@ -71,9 +71,11 @@ public class SceneObserver : MonoBehaviour
 
                 if(cusObj.GetComponent<Equipment>().GetNextFlag())
                 {
-                    _nowScene = (int)SCENE_STATE.StageSelectScene;
-                    _stageSelect.Initialize();
-                    ChangeScene(SCENE_STATE.StageSelectScene.ToString());
+                    //_nowScene = (int)SCENE_STATE.StageSelectScene;
+                    //_stageSelect.Initialize();
+                    //ChangeScene(SCENE_STATE.StageSelectScene.ToString());
+                    _nowScene = (int)SCENE_STATE.GamePlayScene;
+                    ChangeScene("Test");
                 }
                 break;
 
