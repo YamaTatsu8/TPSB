@@ -40,8 +40,6 @@ public class WeaponEquipment : MonoBehaviour {
     {
         _weaponName1 = name;
 
-        Debug.Log(_weaponName1);
-
         _weapon1 = (GameObject)Instantiate(Resources.Load("Prefabs/Model/" + _weaponName1));
 
         //子供にする

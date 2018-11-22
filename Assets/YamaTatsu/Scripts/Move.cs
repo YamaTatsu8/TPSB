@@ -119,8 +119,6 @@ public class Move : MonoBehaviour {
                 rb.velocity = moveForward * _speed + new Vector3(0, rb.velocity.y, 0);
                 _animator.SetFloat("Speed", moveDirection.magnitude);
 
-                Debug.Log("移動");
-
                 //カメラの方向に体を向ける
                 // = Quaternion.LookRotation(moveForward);
 

@@ -115,7 +115,9 @@ public class Equipment : MonoBehaviour {
     private enum WEAPON_STATE
     {
         WEAPON1,
-        WEAPON2
+        WEAPON2,
+        WEAPON3,
+        WEAPON4
     }
 
     //装備のところ
@@ -145,14 +147,6 @@ public class Equipment : MonoBehaviour {
         NO
     }
 
-    IEnumerator GeneratePulseNoise(RectTransform rec)
-    {
-        for (int i = 0; i <= 180; i += 30)
-        {
-            rec.GetComponent<Image>().material.SetFloat("_Amount", 0.2f * Mathf.Sin(i * Mathf.Deg2Rad));
-            yield return null;
-        }
-    }
 
     // Use this for initialization
     void Start () {
@@ -249,8 +243,6 @@ public class Equipment : MonoBehaviour {
 
         _model = GameObject.Find("PlayerModel");
 
-
-
     }
 	
 	// Update is called once per frame
@@ -279,11 +271,9 @@ public class Equipment : MonoBehaviour {
                 switch (_state)
                 {
                     case (int)EQUIPMENT_STATE.MAIN_WEAPON1:
-                        StartCoroutine(GeneratePulseNoise(_mainWeapon1));
                         _cursor.position = _mainWeapon1.position;
                         break;
                     case (int)EQUIPMENT_STATE.MAIN_WEAPON2:
-                        StartCoroutine(GeneratePulseNoise(_mainWeapon2));
                         _cursor.position = _mainWeapon2.position;
                         break;
                     //case (int)EQUIPMENT_STATE.SUB_WEAPON:
@@ -310,10 +300,10 @@ public class Equipment : MonoBehaviour {
                
                 if (_mainState < (int)WEAPON_STATE.WEAPON1)
                 {
-                    _mainState = (int)WEAPON_STATE.WEAPON2;
+                    _mainState = (int)WEAPON_STATE.WEAPON4;
                 }
 
-                if (_mainState > (int)WEAPON_STATE.WEAPON2)
+                if (_mainState > (int)WEAPON_STATE.WEAPON4)
                 {
                     _mainState = (int)WEAPON_STATE.WEAPON1;
                 }
@@ -329,6 +319,12 @@ public class Equipment : MonoBehaviour {
                         case (int)WEAPON_STATE.WEAPON2:
                             _cusor2.localPosition = _weaponImage[_mainState].localPosition;
                             break;
+                        case (int)WEAPON_STATE.WEAPON3:
+                            _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                            break;
+                        case (int)WEAPON_STATE.WEAPON4:
+                            _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                            break;
                     }
                 }
                 else if (_weaponState == 1)
@@ -339,6 +335,12 @@ public class Equipment : MonoBehaviour {
                             _cusor2.localPosition = _weaponImage[_mainState].localPosition;
                             break;
                         case (int)WEAPON_STATE.WEAPON2:
+                            _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                            break;
+                        case (int)WEAPON_STATE.WEAPON3:
+                            _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                            break;
+                        case (int)WEAPON_STATE.WEAPON4:
                             _cusor2.localPosition = _weaponImage[_mainState].localPosition;
                             break;
                     }
@@ -357,15 +359,31 @@ public class Equipment : MonoBehaviour {
                     {
                         case (int)WEAPON_MAIN.MAIN1:
                             //選んだ武器を装備
-                            _playerSystem.GetComponent<PlayerSystem>().setMain1(_weaponList[_mainState][0].ToString());
-                            _mainWeapon1.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
-                            _model.GetComponent<WeaponEquipment>().setWeapon1(_weaponList[_mainState][0].ToString());
+                            if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != _playerSystem.GetComponent<PlayerSystem>().getMain2() && _playerSystem.GetComponent<PlayerSystem>().getMain2() != _weaponList[_mainState][0].ToString())
+                            {
+                                Debug.Log("押した");
+                                _playerSystem.GetComponent<PlayerSystem>().setMain1(_weaponList[_mainState][0].ToString());
+                                _mainWeapon1.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
+                                _model.GetComponent<WeaponEquipment>().setWeapon1(_weaponList[_mainState][0].ToString());
+                            }
+                            else
+                            {
+                                //キャンセル音
+                            }
                             break;
                         case (int)WEAPON_MAIN.MAIN2:
                             //選んだ武器を装備
-                            _playerSystem.GetComponent<PlayerSystem>().setMain2(_weaponList[_mainState][0].ToString());
-                            _mainWeapon2.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
-                            _model.GetComponent<WeaponEquipment>().setWeapon2(_weaponList[_mainState][0].ToString());
+                            if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != _playerSystem.GetComponent<PlayerSystem>().getMain2() && _playerSystem.GetComponent<PlayerSystem>().getMain1() != _weaponList[_mainState][0].ToString())
+                            {
+                                Debug.Log("押した");
+                                _playerSystem.GetComponent<PlayerSystem>().setMain2(_weaponList[_mainState][0].ToString());
+                                _mainWeapon2.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
+                                _model.GetComponent<WeaponEquipment>().setWeapon2(_weaponList[_mainState][0].ToString());
+                            }
+                            else
+                            {
+                                //キャンセル音
+                            }
                             break;
                         //case (int)WEAPON_MAIN.SUB:
                         //    //サブ武器の装備
@@ -596,7 +614,5 @@ public class Equipment : MonoBehaviour {
     {
         return _sceneNextFlag;
     }
-
-
 
 }

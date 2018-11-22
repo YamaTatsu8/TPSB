@@ -7,11 +7,11 @@ public class PlayerSystem : MonoBehaviour {
 
     //メイン武器1
     [SerializeField]
-    private string _mainWeapon1;
+    private string _mainWeapon1 = "Main1";
     
     //メイン武器2
     [SerializeField]
-    private string _mainWeapon2;
+    private string _mainWeapon2 = "Main2";
 
     //サブ武器
     [SerializeField]
@@ -27,12 +27,17 @@ public class PlayerSystem : MonoBehaviour {
 
     private void Start()
     {
-        if(_playerSystem == null)
+        if (_playerSystem == null)
         {
             _playerSystem = FindObjectOfType<PlayerSystem>() as PlayerSystem;
             DontDestroyOnLoad(gameObject);
         }
+
+        _mainWeapon1 = "Main1";
+
+        _mainWeapon2 = "Main2";
     }
+
 
     // Update is called once per frame
     void Update () {
