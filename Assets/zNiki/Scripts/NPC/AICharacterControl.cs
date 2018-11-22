@@ -14,6 +14,9 @@ public class AICharacterControl : MonoBehaviour
     private float _range = 5.0f;
 
     [SerializeField]
+    private Animator _animator = null;
+
+    [SerializeField]
     private GameObject _weapon = null;
 
     [SerializeField]
@@ -27,6 +30,8 @@ public class AICharacterControl : MonoBehaviour
     void Start()
     {
         _target = GameObject.Find("Player").transform;
+
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -41,6 +46,12 @@ public class AICharacterControl : MonoBehaviour
             if (_agent.remainingDistance > _agent.stoppingDistance)
             {
                 this.gameObject.GetComponent<Rigidbody>().velocity = _agent.desiredVelocity;
+
+                _animator.SetBool("Walk", true);
+            }
+            else
+            {
+                _animator.SetBool("Walk", false);
             }
         }
 
@@ -57,11 +68,6 @@ public class AICharacterControl : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, _range))
         {
-            //if (hit.collider.tag == "Player")
-            //{
-            //    // 攻撃する
-            //    Debug.Log("HIT Player");
-            //}
             if (hit.collider.tag == "Ground" && _agent.enabled == true)
             {
                 _agent.enabled = false;
@@ -74,8 +80,17 @@ public class AICharacterControl : MonoBehaviour
                 this.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 this.GetComponent<Rigidbody>().AddForce(jumpForce * 500);
 
+                _animator.SetBool("Jump", true);
+
+                this.Delay(targetHeight * 1.5f, () =>
+                {
+                    _animator.SetBool("Jump", false);
+                    _animator.SetBool("Fall", true);
+                });
+
                 this.Delay(targetHeight * 3.0f, () =>
                 {
+                    _animator.SetBool("Fall", false);
                     _agent.enabled = true;
                 });
             }
@@ -87,7 +102,12 @@ public class AICharacterControl : MonoBehaviour
         if (other.GetComponent<Collider>().tag == "Player")
         {
             _weapon.GetComponent<EnemyWeaponManager>().Attack();
-            Debug.Log("HIT Player");
+
+            _animator.SetBool("Attack", true);
+        }
+        else
+        {
+            _animator.SetBool("Attack", false);
         }
     }
 

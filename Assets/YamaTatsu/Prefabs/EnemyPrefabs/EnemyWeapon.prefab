@@ -20,6 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4191517316270448}
   - component: {fileID: 95962116086163414}
+  - component: {fileID: 114561340392631538}
+  - component: {fileID: 114439598823943350}
   m_Layer: 0
   m_Name: EnemyWeapon
   m_TagString: Untagged
@@ -598,3 +600,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114439598823943350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1033381226837728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf8d6595498fe624789e90123140eb1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114561340392631538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1033381226837728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1c90e32f8e70504995ad46d868320d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _capacity: 50
+  _roundsPerSecond: 30
+  _reloadTime: 2
+  _mode: 1
+  _bulletPrefab: {fileID: 1177161402986960, guid: c48d4a84b1502604695a57a1b325104d,
+    type: 2}
