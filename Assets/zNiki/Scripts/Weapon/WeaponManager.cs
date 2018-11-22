@@ -165,7 +165,6 @@ public class WeaponManager : MonoBehaviour
 
             _routine = this.DelayMethodForSpecifiedTime(_reloadTime, () =>
             {
-                Debug.Log("Reload");
                 _remainingBullets = _capacity;
 
                 _routine = null;

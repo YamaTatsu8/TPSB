@@ -14,8 +14,9 @@ public class Attack : MonoBehaviour {
     private bool _changeWeapon = true;
 
     //武器の名前
+    [SerializeField]
     private string _weaponName1;
-
+    [SerializeField]
     private string _weaponName2;
 
     private string _subWeaponName;
@@ -57,7 +58,6 @@ public class Attack : MonoBehaviour {
     private GameObject[] _weapon;
   
 
-
     // Use this for initialization
     void Start () {
 
@@ -74,6 +74,7 @@ public class Attack : MonoBehaviour {
 
         for(int i = 0; i < _weapon.Length; i++)
         {
+            Debug.Log(_weapon.Length);
             if(_weapon[i].name == _weaponName1)
             {
                 _weapon1 = _weapon[i];
@@ -132,9 +133,7 @@ public class Attack : MonoBehaviour {
             }
         }
 
-        Debug.Log(_weaponName2);
-
-
+ 
         if (controller.TriggerDown(Trigger.LEFT))
         {
             Vector3 diff = transform.position - Player_pos;
