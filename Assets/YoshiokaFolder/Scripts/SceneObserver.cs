@@ -9,17 +9,16 @@ public class SceneObserver : MonoBehaviour
     enum SCENE_STATE
     {
         TitleScene,
-        PlayScene,
         CustomizeScene,
+        StageSelectScene,
         GamePlayScene,
         ResultScene
     }
     private int _nowScene = (int)SCENE_STATE.TitleScene;    //　現在のシーン
 
     private TitleSceneManager _title;                       //　タイトルシーンのスクリプト
-    private PlaySceneManager _play;                         //　プレイシーンのスクリプト
-
-    private GameObject _fadeObj;                            //　フェードに使用するパネル
+    private StageSelectManager _stageSelect;                //　ステージセレクトシーンのスクリプト
+    private ResultSceneManager _result;                     //　リザルトシーンのスクリプト
 
     private static SceneObserver _sceneObservar;            //　複数生成されないようのオブジェクト
 
@@ -34,9 +33,10 @@ public class SceneObserver : MonoBehaviour
     {
         _title = new TitleSceneManager();
         _title.Initialize();
-        _play = new PlaySceneManager();
-        _play.Initialize();
+        _stageSelect = new StageSelectManager();
+        _result = new ResultSceneManager();
 
+        //　シーンオブサーバーが１つしか存在しないようにする
         if (_sceneObservar == null)
         {
             _sceneObservar = FindObjectOfType<SceneObserver>() as SceneObserver;
@@ -58,23 +58,10 @@ public class SceneObserver : MonoBehaviour
         {
             //　タイトルシーンの更新処理
             case (int)SCENE_STATE.TitleScene:
-                _title.SceneUpdate();
-                if (_title.EndedScene())
+                if (!_title.SceneUpdate())
                 {
                     _nowScene = (int)SCENE_STATE.CustomizeScene;
-                    _play.Initialize();
                     ChangeScene("CustomizeWindow");
-                }
-                break;
-
-            //　プレイシーンの更新処理
-            case (int)SCENE_STATE.PlayScene:
-                _play.SceneUpdate();
-                if(_play.EndedScene())
-                {
-                    _nowScene = (int)SCENE_STATE.TitleScene;
-                    _title.Initialize();
-                    ChangeScene(SCENE_STATE.TitleScene.ToString());
                 }
                 break;
 
@@ -84,24 +71,41 @@ public class SceneObserver : MonoBehaviour
 
                 if(cusObj.GetComponent<Equipment>().GetNextFlag())
                 {
+                    _nowScene = (int)SCENE_STATE.StageSelectScene;
+                    _stageSelect.Initialize();
+                    ChangeScene(SCENE_STATE.StageSelectScene.ToString());
+                }
+                break;
+
+            //　ステージセレクトシーンの更新処理
+            case (int)SCENE_STATE.StageSelectScene:
+                if(!_stageSelect.SceneUpdate())
+                {
                     _nowScene = (int)SCENE_STATE.GamePlayScene;
                     ChangeScene("Test");
                 }
                 break;
 
+            //　ゲームプレイシーン
             case (int)SCENE_STATE.GamePlayScene:
                 GameObject gameManaObj = GameObject.Find("GameManager");
 
                 if (gameManaObj.GetComponent<PlayScene>().getFlag())
                 {
+                    _nowScene = (int)SCENE_STATE.ResultScene;
+                    _result.Initialize();
+                    ChangeScene(SCENE_STATE.ResultScene.ToString());
+                }
+                break;
+
+            //　リザルトシーン
+            case (int)SCENE_STATE.ResultScene:
+                if (!_result.SceneUpdate())
+                {
                     _nowScene = (int)SCENE_STATE.TitleScene;
                     _title.Initialize();
                     ChangeScene(SCENE_STATE.TitleScene.ToString());
                 }
-                break;
-
-
-            case (int)SCENE_STATE.ResultScene:
                 break;
         }
     }
