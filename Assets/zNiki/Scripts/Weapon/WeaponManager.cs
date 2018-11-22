@@ -49,7 +49,12 @@ public class WeaponManager : MonoBehaviour
     // 弾のプレハブ
     [SerializeField]
     private GameObject _bulletPrefab;
-    
+
+    //オーディオ
+    private AudioSource _audioSource;
+    //SE
+    public AudioClip _se;
+
     private IEnumerator _routine;
 
     public int Capacity
@@ -92,6 +97,8 @@ public class WeaponManager : MonoBehaviour
         _remainingBullets = _capacity;
 
         _con = GameController.Instance;
+
+        _audioSource = gameObject.GetComponent<AudioSource>();
     }
     
     private void Update()
@@ -175,6 +182,7 @@ public class WeaponManager : MonoBehaviour
 
     private void Shot(float fireRate)
     {
+        _audioSource.PlayOneShot(_se);
         if (this.GetComponent<RayCastShoot>().Shot(fireRate))
         {
             _remainingBullets--;

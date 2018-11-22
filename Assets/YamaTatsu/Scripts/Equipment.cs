@@ -97,7 +97,8 @@ public class Equipment : MonoBehaviour {
     public AudioClip _select;
     //キャンセル音
     public AudioClip _cansel;
-
+    //ぶっぶー音
+    public AudioClip _bub;
 
     //シーン移動のフラグ
     private bool _sceneNextFlag = false;
@@ -354,14 +355,13 @@ public class Equipment : MonoBehaviour {
                 if (_controller.ButtonDown(Button.A))
                 {
                     _barFlag = false;
-                    _audioSource.PlayOneShot(_decision);
                     switch (_weaponState)
                     {
                         case (int)WEAPON_MAIN.MAIN1:
                             //選んだ武器を装備
                             if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != _playerSystem.GetComponent<PlayerSystem>().getMain2() && _playerSystem.GetComponent<PlayerSystem>().getMain2() != _weaponList[_mainState][0].ToString())
                             {
-                                Debug.Log("押した");
+                                _audioSource.PlayOneShot(_decision);
                                 _playerSystem.GetComponent<PlayerSystem>().setMain1(_weaponList[_mainState][0].ToString());
                                 _mainWeapon1.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
                                 _model.GetComponent<WeaponEquipment>().setWeapon1(_weaponList[_mainState][0].ToString());
@@ -369,13 +369,14 @@ public class Equipment : MonoBehaviour {
                             else
                             {
                                 //キャンセル音
+                                _audioSource.PlayOneShot(_bub);
                             }
                             break;
                         case (int)WEAPON_MAIN.MAIN2:
                             //選んだ武器を装備
                             if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != _playerSystem.GetComponent<PlayerSystem>().getMain2() && _playerSystem.GetComponent<PlayerSystem>().getMain1() != _weaponList[_mainState][0].ToString())
                             {
-                                Debug.Log("押した");
+                                _audioSource.PlayOneShot(_decision);
                                 _playerSystem.GetComponent<PlayerSystem>().setMain2(_weaponList[_mainState][0].ToString());
                                 _mainWeapon2.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
                                 _model.GetComponent<WeaponEquipment>().setWeapon2(_weaponList[_mainState][0].ToString());
@@ -383,6 +384,7 @@ public class Equipment : MonoBehaviour {
                             else
                             {
                                 //キャンセル音
+                                _audioSource.PlayOneShot(_bub);
                             }
                             break;
                         //case (int)WEAPON_MAIN.SUB:
