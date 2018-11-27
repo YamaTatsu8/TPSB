@@ -101,7 +101,8 @@ public class Jump : MonoBehaviour
             _animator.SetBool("Jump", false);
             gage.GetComponent<EP>().RecoveryEP(3);
         }
-        
+
+ 
     }
 
     //ブーストする関数
