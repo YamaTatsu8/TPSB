@@ -31,7 +31,6 @@ public class Status : MonoBehaviour {
     //ダメージを与える処理
     public void hitDamage(int damage)
     {
-        Debug.Log("ダメージ");
         _HP -= damage;
     }
 

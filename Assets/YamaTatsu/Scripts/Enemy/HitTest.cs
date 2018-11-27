@@ -20,7 +20,7 @@ public class HitTest : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Bullet")
         {
-            Debug.Log("hit");
+
         }
     }
 

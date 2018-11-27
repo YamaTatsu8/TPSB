@@ -92,11 +92,29 @@ public class WeaponManager : MonoBehaviour
         _remainingBullets = _capacity;
 
         _con = GameController.Instance;
+
     }
-    
+
+    private void Start()
+    {
+        _isBurst = true;
+        _isShot = true;
+
+        if (_routine != null)
+        {
+            StopCoroutine(_routine);
+        }
+
+        Debug.Log("Routine:" + _routine);
+        Debug.Log("isBurst:" + _isBurst);
+    }
+
     private void Update()
     {
         _con.ControllerUpdate();
+
+        Debug.Log(_isShot);
+        Debug.Log(_isBurst);
 
         if (!_isShot)
         {
@@ -187,7 +205,7 @@ public class WeaponManager : MonoBehaviour
         if (_isBurst)
         {
             _isBurst = false;
-            _routine = this.DelayMethodOnce(0, () =>
+            _routine = this.DelayMethod(0, () =>
             {
                 Shot(_fireRate);
                 this.Delay(1.0f / _roundsPerSecond, () =>

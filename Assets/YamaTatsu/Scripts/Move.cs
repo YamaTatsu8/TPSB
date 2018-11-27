@@ -103,8 +103,6 @@ public class Move : MonoBehaviour {
         if (_boostFlag == false)
         {
 
-            Debug.Log("false");
-
             if (moveDirection.magnitude > 0.1f)
             {
                 Debug.Log("傾き");

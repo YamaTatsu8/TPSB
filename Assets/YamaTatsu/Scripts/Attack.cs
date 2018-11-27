@@ -73,7 +73,6 @@ public class Attack : MonoBehaviour {
 
         for(int i = 0; i < _weapon.Length; i++)
         {
-            Debug.Log(_weapon.Length);
             if(_weapon[i].name == _weaponName1)
             {
                 _weapon1 = _weapon[i];
