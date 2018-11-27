@@ -71,11 +71,11 @@ public class Move : MonoBehaviour {
 
         if (Input.GetAxis("L-StickHorizontal") != 0 || Input.GetAxis("L-StickVertical") != 0)
         {
-            _walkFoot.SetActive(true);
+            //_walkFoot.SetActive(true);
         }
         else
         {
-            _walkFoot.SetActive(false);
+            //_walkFoot.SetActive(false);
         }
 
         //移動
