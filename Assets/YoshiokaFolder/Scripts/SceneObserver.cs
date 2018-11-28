@@ -28,7 +28,9 @@ public class SceneObserver : MonoBehaviour
         Initialize();
 	}
 
-    //　初期化処理
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
     public void Initialize()
     {
         _title = new TitleSceneManager();
@@ -52,6 +54,9 @@ public class SceneObserver : MonoBehaviour
         SceneUpdate();
 	}
 
+    /// <summary>
+    /// 現在のシーンによって更新を行う
+    /// </summary>
     private void SceneUpdate()
     {
         switch (_nowScene)
@@ -71,11 +76,11 @@ public class SceneObserver : MonoBehaviour
 
                 if(cusObj.GetComponent<Equipment>().GetNextFlag())
                 {
-                    //_nowScene = (int)SCENE_STATE.StageSelectScene;
-                    //_stageSelect.Initialize();
-                    //ChangeScene(SCENE_STATE.StageSelectScene.ToString());
-                    _nowScene = (int)SCENE_STATE.GamePlayScene;
-                    ChangeScene("Test");
+                    _nowScene = (int)SCENE_STATE.StageSelectScene;
+                    _stageSelect.Initialize();
+                    ChangeScene(SCENE_STATE.StageSelectScene.ToString());
+                    //_nowScene = (int)SCENE_STATE.GamePlayScene;
+                    //ChangeScene("Test");
                 }
                 break;
 
@@ -112,10 +117,40 @@ public class SceneObserver : MonoBehaviour
         }
     }
    
-
-    //　指定されたシーンに遷移する
+    /// <summary>
+    /// 次のシーンへ遷移する
+    /// </summary>
+    /// <param name="sceneName">遷移したいScene名</param>
     public void ChangeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    //---------------------------------------------------------------------------------
+    //　各シーンの情報を共有するGetter
+    //---------------------------------------------------------------------------------
+    /// <summary>
+    /// タイトルシーンのデータ(publicのみ)を取得する権限を付与
+    /// </summary>
+    /// <returns>タイトルシーンの権限</returns>
+    public TitleSceneManager GetTitleSceneData()
+    {
+        return _title;
+    }
+    /// <summary>
+    /// ステージセレクトシーン(publicのみ)のデータを取得する権限を付与
+    /// </summary>
+    /// <returns>ステージセレクトシーンの権限</returns>
+    public StageSelectManager GetStageSelectSceneData()
+    {
+        return _stageSelect;
+    }
+    /// <summary>
+    /// リザルトシーンのデータ(publicのみ)を取得する権限を付与
+    /// </summary>
+    /// <returns>リザルトシーンの権限</returns>
+    public ResultSceneManager GetResultSceneData()
+    {
+        return _result;
     }
 }

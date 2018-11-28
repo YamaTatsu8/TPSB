@@ -15,6 +15,9 @@ public class TitleSceneManager : MonoBehaviour
         Initialize();
     }
 
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
     public void Initialize()
     {
         _controller = GameController.Instance;
@@ -28,7 +31,10 @@ public class TitleSceneManager : MonoBehaviour
         SceneUpdate();
     }
 
-    //　シーン更新処理
+    /// <summary>
+    /// シーンの更新処理
+    /// </summary>
+    /// <returns>true:シーンが終了,シーンが終了していない</returns>
     public bool SceneUpdate()
     {
         ControllerUpdate();
@@ -49,13 +55,17 @@ public class TitleSceneManager : MonoBehaviour
         return true;
     }
 
-    //　コントローラー更新処理
+    /// <summary>
+    /// 入力関係更新処理
+    /// </summary>
     private void ControllerUpdate()
     {
         _controller.ControllerUpdate();
 
+        //　Aボタンが押されたら
         if (_controller.ButtonDown(Button.A) && !_isStartFade)
         {
+            //　フェードアウトを開始する
             if (_fadeObj == null)
             {
                 Fade fade = new Fade();
