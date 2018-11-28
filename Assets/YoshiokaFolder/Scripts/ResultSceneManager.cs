@@ -6,7 +6,7 @@ public class ResultSceneManager : MonoBehaviour
 {
     // SkyboxMaterial
     [SerializeField]
-    Material _stage1Skybox;
+    Material _stage1Skybox;                 
     [SerializeField]
     Material _stage2Skybox;
 
@@ -22,7 +22,9 @@ public class ResultSceneManager : MonoBehaviour
         Initialize();
 	}
 
-    //　初期化処理
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
     public void Initialize()
     {//　とりあえずステージ１のskyBox
         RenderSettings.skybox = _stage1Skybox;
@@ -39,7 +41,10 @@ public class ResultSceneManager : MonoBehaviour
         SceneUpdate();
     }
 
-    //　シーン更新処理
+    /// <summary>
+    /// 更新処理
+    /// </summary>
+    /// <returns>true:シーンが終了,false:シーンが終了していない</returns>
     public bool SceneUpdate()
     {
         ControllerUpdate();
@@ -69,7 +74,9 @@ public class ResultSceneManager : MonoBehaviour
         return true;
     }
 
-    //　コントローラー更新処理
+    /// <summary>
+    /// 入力関係更新処理
+    /// </summary>
     private void ControllerUpdate()
     {
         _controller.ControllerUpdate();
@@ -84,7 +91,9 @@ public class ResultSceneManager : MonoBehaviour
         }
     }
 
-    //　アニメーション更新処理
+    /// <summary>
+    /// 勝利演出更新処理
+    /// </summary>
     private void AnimationUpdate()
     {
         GameObject camera = GameObject.Find("Camera");
