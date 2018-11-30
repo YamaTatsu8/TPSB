@@ -5,13 +5,11 @@ using UnityEngine;
 public class ResultSceneManager : MonoBehaviour
 {
     // SkyboxMaterial
-    [SerializeField]
-    Material _stage1Skybox;                 
-    [SerializeField]
-    Material _stage2Skybox;
+    Material _stageSkybox;
 
     private GameController _controller;     //　ゲームコントローラー
     private GameObject _fadeObj;            //　フェード
+    private GameObject _stage;              //　ステージ
 
     private bool _isStartFade = false;      //　True:フェード開始、False:フェード終了中
     private bool _isEndedAnimation = false; //  True:アニメーション終了、False:アニメーション中
@@ -27,11 +25,28 @@ public class ResultSceneManager : MonoBehaviour
     /// </summary>
     public void Initialize()
     {//　とりあえずステージ１のskyBox
-        RenderSettings.skybox = _stage1Skybox;
-
         _controller = GameController.Instance;
         _isStartFade = false;
         _isEndedAnimation = false;
+    }
+
+    /// <summary>
+    /// ヒエラルキー関係の初期化
+    /// </summary>
+    private void localInitialize()
+    {//　フェードイン開始
+        Fade fade = new Fade();
+        _fadeObj = fade.CreateFade();
+        _fadeObj.GetComponentInChildren<Fade>().FadeIn();
+
+        //　戦っていたステージを読み込む
+        GameObject obj = GameObject.Find("SceneManagerObject");
+        StageSelectManager ssm = obj.GetComponent<SceneObserver>().GetStageSelectSceneData();
+        _stage = (GameObject)Instantiate(Resources.Load("Prefabs/Stages/" + ssm.GetSelectStageName()));
+
+        //　戦っていたskyboxを読み込む
+        _stageSkybox = (Material)Instantiate(Resources.Load("Material/" + ssm.GetSelectStageName() + "BackGround"));
+        RenderSettings.skybox = _stageSkybox;
     }
 
     // Update is called once per frame
@@ -50,12 +65,10 @@ public class ResultSceneManager : MonoBehaviour
         ControllerUpdate();
         AnimationUpdate();
 
-        //　ステージが遷移されていたら
+        //　シーンが遷移されていたら
         if (_fadeObj == null)
         {
-            Fade fade = new Fade();
-            _fadeObj = fade.CreateFade();
-            _fadeObj.GetComponentInChildren<Fade>().FadeIn();
+            localInitialize();
         }
         //　フェードが終了したらアニメーションを開始する
         if (_fadeObj.GetComponentInChildren<Fade>().isCheckedFadeIn() && !_isEndedAnimation)

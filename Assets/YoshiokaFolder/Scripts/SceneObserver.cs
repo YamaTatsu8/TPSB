@@ -11,7 +11,7 @@ public class SceneObserver : MonoBehaviour
         TitleScene,
         CustomizeScene,
         StageSelectScene,
-        GamePlayScene,
+        PlayScene,
         ResultScene
     }
     private int _nowScene = (int)SCENE_STATE.TitleScene;    //　現在のシーン
@@ -82,19 +82,19 @@ public class SceneObserver : MonoBehaviour
                     //_nowScene = (int)SCENE_STATE.GamePlayScene;
                     //ChangeScene("Test");
                 }
-                break;
+                break;                
 
             //　ステージセレクトシーンの更新処理
             case (int)SCENE_STATE.StageSelectScene:
                 if(!_stageSelect.SceneUpdate())
                 {
-                    _nowScene = (int)SCENE_STATE.GamePlayScene;
-                    ChangeScene("Test");
+                    _nowScene = (int)SCENE_STATE.PlayScene;
+                    ChangeScene(SCENE_STATE.PlayScene.ToString());
                 }
                 break;
 
             //　ゲームプレイシーン
-            case (int)SCENE_STATE.GamePlayScene:
+            case (int)SCENE_STATE.PlayScene:
                 GameObject gameManaObj = GameObject.Find("GameManager");
 
                 if (gameManaObj.GetComponent<PlayScene>().getFlag())

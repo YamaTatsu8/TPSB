@@ -55,6 +55,7 @@ public class StageSelectManager : MonoBehaviour
 
         GameObject obj = GameObject.Find(_cursorName + _stageNumber.ToString());
         _cursor.transform.position = obj.transform.position;
+        obj.GetComponent<Animator>().SetBool("isStart", true);
     }
 
 	// Update is called once per frame
@@ -72,7 +73,7 @@ public class StageSelectManager : MonoBehaviour
     {
         ControllerUpdate();
 
-        //　ステージが遷移されていたら
+        //　シーンが遷移されていたら
         if (_fadeObj == null)
         {
             localInitialize();
@@ -110,10 +111,14 @@ public class StageSelectManager : MonoBehaviour
             //　カーソルが一番上を選択していたら一番下にする
             if (_stageNumber == MIN_STAGE)
             {
+                GameObject beforeObj = GameObject.Find(_cursorName + _stageNumber.ToString());
+                beforeObj.GetComponent<Animator>().SetBool("isStart", false);
                 _stageNumber = MAX_STAGE;
             }
             else
             {//　カーソルを一つ上にずらす
+                GameObject beforeObj = GameObject.Find(_cursorName + _stageNumber.ToString());
+                beforeObj.GetComponent<Animator>().SetBool("isStart", false);
                 _stageNumber--;
             }
             //　描画するステージを変更する
@@ -122,6 +127,7 @@ public class StageSelectManager : MonoBehaviour
             //　カーソルを上にずらす
             GameObject obj = GameObject.Find(_cursorName + _stageNumber.ToString());
             _cursor.transform.position = obj.transform.position;
+            obj.GetComponent<Animator>().SetBool("isStart", true);
         }
         //　下十字キー及び下左スティック
         if ((_controller.CheckDirectionOnce(Direction.Back, StickType.LEFTSTICK)) ||
@@ -130,10 +136,14 @@ public class StageSelectManager : MonoBehaviour
             //　カーソルが一番下を選択していたら一番上にする
             if (_stageNumber == MAX_STAGE)
             {
+                GameObject beforeObj = GameObject.Find(_cursorName + _stageNumber.ToString());
+                beforeObj.GetComponent<Animator>().SetBool("isStart", false);
                 _stageNumber = MIN_STAGE;
             }
             else
             {//　カーソルを下にずらす
+                GameObject beforeObj = GameObject.Find(_cursorName + _stageNumber.ToString());
+                beforeObj.GetComponent<Animator>().SetBool("isStart", false);
                 _stageNumber++;
             }
             //　描画するステージを変更する
@@ -142,6 +152,7 @@ public class StageSelectManager : MonoBehaviour
             //　カーソルを下にずらす
             GameObject obj = GameObject.Find(_cursorName + _stageNumber.ToString());
             _cursor.transform.position = obj.transform.position;
+            obj.GetComponent<Animator>().SetBool("isStart", true);
         }
     }
 
