@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class PlayerSystem : MonoBehaviour {
 
+    //キャラ名
+    [SerializeField]
+    private string _char = "unity";
+
     //メイン武器1
     [SerializeField]
     private string _mainWeapon1 = "Main1";
@@ -33,6 +37,8 @@ public class PlayerSystem : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
         }
 
+        _char = "unity";
+
         _mainWeapon1 = "Main1";
 
         _mainWeapon2 = "Main2";
@@ -45,6 +51,12 @@ public class PlayerSystem : MonoBehaviour {
 	}
 
     //セッター
+    public string getChar()
+    {
+        return _char;
+    }
+
+
     public string getMain1()
     {
         return _mainWeapon1;
@@ -61,6 +73,11 @@ public class PlayerSystem : MonoBehaviour {
     }
 
     //ゲッター
+    public void setChar(string name)
+    {
+        _char = name;
+    }
+
     public void setMain1(string weapon)
     {
         _mainWeapon1 = weapon;
@@ -82,6 +99,8 @@ public class PlayerSystem : MonoBehaviour {
         _mainWeapon1 = "Main1";
 
         _mainWeapon2 = "Main2";
+
+        _char = "unity";
     }
 
 }
