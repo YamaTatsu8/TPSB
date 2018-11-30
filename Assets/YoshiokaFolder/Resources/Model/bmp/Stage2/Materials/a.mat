@@ -42,6 +42,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 8b90c2b496dbbac4782a6f61f8f7ce53, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MatCap:
+        m_Texture: {fileID: 2800000, guid: a24bbcd82b22c6e46a6723e270e807fb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
