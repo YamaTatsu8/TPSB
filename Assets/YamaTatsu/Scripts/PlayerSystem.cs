@@ -7,7 +7,7 @@ public class PlayerSystem : MonoBehaviour {
 
     //キャラ名
     [SerializeField]
-    private string _char = "unity";
+    private string _char = "UnityChan";
 
     //メイン武器1
     [SerializeField]
@@ -16,6 +16,9 @@ public class PlayerSystem : MonoBehaviour {
     //メイン武器2
     [SerializeField]
     private string _mainWeapon2 = "Main2";
+
+    //
+    private GameObject _player;
 
     //サブ武器
     [SerializeField]
@@ -50,7 +53,7 @@ public class PlayerSystem : MonoBehaviour {
 		
 	}
 
-    //セッター
+    //ゲッター
     public string getChar()
     {
         return _char;
@@ -72,7 +75,7 @@ public class PlayerSystem : MonoBehaviour {
         return _subWeapon;
     }
 
-    //ゲッター
+    //セッター
     public void setChar(string name)
     {
         _char = name;
@@ -100,7 +103,9 @@ public class PlayerSystem : MonoBehaviour {
 
         _mainWeapon2 = "Main2";
 
-        _char = "unity";
+        _char = "UnityChan";
     }
+
+
 
 }

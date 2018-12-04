@@ -50,25 +50,10 @@ public class Move : MonoBehaviour {
     [SerializeField]
     private GameObject _obj;
 
-    [SerializeField]
-    private GameObject[] _charModel; 
-
-    [SerializeField]
-    private string _name = "unity";
-    
     // Use this for initialization
     void Start () {
 
-        for (int i = 0; i < _charModel.Length; i++)
-        {
-            if (_charModel[i].name == _name)
-            {
-                _obj = _charModel[i];
-            }
-        }
-
-        _obj.SetActive(true);
-
+        
         controller = GameController.Instance;
 
         //

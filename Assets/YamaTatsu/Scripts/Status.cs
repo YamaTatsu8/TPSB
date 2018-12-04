@@ -13,16 +13,8 @@ public class Status : MonoBehaviour {
 
     [SerializeField]
     private GameObject _obj;
-
-    [SerializeField]
-    private string _name = "unity";
-
     // Use this for initialization
     void Start () {
-
-        _obj = GameObject.Find(_name);
-
-        _obj.SetActive(true);
 
         _animator = _obj.GetComponent<Animator>();
 

@@ -31,7 +31,7 @@ public class EnemyMissile : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        _player = GameObject.Find("Player");
+        _player = GameObject.FindGameObjectWithTag("Player");
 
         _timer = 0.0f;
 

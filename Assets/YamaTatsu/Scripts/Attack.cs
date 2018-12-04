@@ -61,18 +61,10 @@ public class Attack : MonoBehaviour {
     [SerializeField]
     private GameObject _obj;
 
-    [SerializeField]
-    private string _name = "unity";
-
-
     // Use this for initialization
     void Start () {
 
         controller = GameController.Instance;
-
-        _obj = GameObject.Find(_name);
-
-        _obj.SetActive(true);
 
         _animator = _obj.GetComponent<Animator>();
 
@@ -98,24 +90,11 @@ public class Attack : MonoBehaviour {
             }
         }
 
-
         _flag = false;
-
-        //Resorcesから武器を探して装備する
-        //_weapon1 = (GameObject)Instantiate(Resources.Load("Prefabs/" + _weaponName1));
-
-        //_weapon2 = (GameObject)Instantiate(Resources.Load("Prefabs/" + _weaponName2));
 
         _weapon1.SetActive(true);
 
         _weapon2.SetActive(false);
-
-        //右手の子供にする
-        //_weapon1.transform.parent = _rightHand.transform;
-        //_weapon1.transform.position = _rightHand.transform.position;
-
-        //_weapon2.transform.parent = _rightHand.transform;
-        //_weapon2.transform.position = _rightHand.transform.position;
 
         _target = GameObject.FindGameObjectWithTag("Enemy");
 

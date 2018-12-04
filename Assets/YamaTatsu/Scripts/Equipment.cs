@@ -16,6 +16,9 @@ public class Equipment : MonoBehaviour {
     //Bar
     private RectTransform _bar;
 
+    //モデルバー
+    private RectTransform _modelBar;
+
     //カーソル
     private RectTransform _cursor;
 
@@ -60,14 +63,17 @@ public class Equipment : MonoBehaviour {
     //武器リスト
     private List<string[]> _weaponList = new List<string[]>();
 
-    //サブ武器リスト
-    private List<string[]> _subWeaponList = new List<string[]>();
+    //モデルリスト
+    private List<string[]> _modelList = new List<string[]>();
 
     //武器の画像リスト
     private RectTransform[] _weaponImage = new RectTransform[5];
 
     //サブ武器の画像リスト
     private RectTransform[] _subWeaponImage = new RectTransform[5];
+
+    //武器の画像リスト
+    private RectTransform[] _modelImage2 = new RectTransform[5];
 
     //
     [SerializeField]
@@ -110,7 +116,6 @@ public class Equipment : MonoBehaviour {
         MODEL,
         MAIN_WEAPON1,
         MAIN_WEAPON2,
-        //SUB_WEAPON,
         NEXT
     }
 
@@ -178,9 +183,10 @@ public class Equipment : MonoBehaviour {
         _modelImage = GameObject.Find("Model").GetComponent<RectTransform>();
         _mainWeapon1 = GameObject.Find("MainWeapon1").GetComponent<RectTransform>();
         _mainWeapon2 = GameObject.Find("MainWeapon2").GetComponent<RectTransform>();
-        //_subWeapon = GameObject.Find("SubWeapon").GetComponent<RectTransform>();
      
         _bar = GameObject.Find("Bar").GetComponent<RectTransform>();
+
+        _modelBar = GameObject.Find("ModelBar").GetComponent<RectTransform>();
 
         _pop = GameObject.Find("Pop").GetComponent<RectTransform>();
 
@@ -200,6 +206,9 @@ public class Equipment : MonoBehaviour {
         //メイン武器のリスト作成
         WeaponAdd("WeaponList", _weaponList);
 
+        //モデルのリスト
+        //WeaponAdd("ModelList", _modelList);
+
         _playerSystem = GameObject.Find("PlayerSystem");
 
         Vector3 rePos;
@@ -216,6 +225,8 @@ public class Equipment : MonoBehaviour {
 
             _weaponImage[i].localPosition = new Vector3(50, 20 * (i + 1), 0);
         }
+
+
 
 
         GameObject cusor = (GameObject)Instantiate(Resources.Load("Images/Cusor2"));
@@ -366,9 +377,6 @@ public class Equipment : MonoBehaviour {
                                 _audioSource.PlayOneShot(_bub);
                             }
                             break;
-                        //case (int)WEAPON_MAIN.SUB:
-                        //    //サブ武器の装備
-                        //    break;
                     }
 
                 }
@@ -495,9 +503,7 @@ public class Equipment : MonoBehaviour {
                 _weaponState = 1;
                 _barFlag = true;
                 break;
-
         }
-
     }
 
     //バーの拡大

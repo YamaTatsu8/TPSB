@@ -28,10 +28,6 @@ public class RayCastShoot : MonoBehaviour
 
     private Vector3 _targetPos = Vector3.zero;
 
-    //　モデルのオブジェクト
-    [SerializeField]
-    private GameObject _model;
-
 
     // Use this for initialization
     void Start ()
@@ -49,7 +45,7 @@ public class RayCastShoot : MonoBehaviour
     {
         _fireRate = fireRate;
 
-        _targetPos = _model.GetComponent<Attack>().getPosition();
+        _targetPos = transform.root.GetComponent<Attack>().getPosition();
 
         if (Time.time > _nextTime)
         {

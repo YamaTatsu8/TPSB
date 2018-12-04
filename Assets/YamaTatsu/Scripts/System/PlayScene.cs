@@ -16,6 +16,10 @@ public class PlayScene : MonoBehaviour {
     //終了フラグ
     private bool _flag = false;
 
+    //
+    private bool _fightFlag = false;
+
+
 	// Use this for initialization
 	void Start () {
 
@@ -38,24 +42,36 @@ public class PlayScene : MonoBehaviour {
 
         if (_flag == false)
         {
-            if (_player.GetComponent<Status>().getHP() <= 0 || _enemy.GetComponent<Status>().getHP() <= 0)
+            if (_player.GetComponent<Status>().getHP() <= 0)
             {
-                StartCoroutine(NextScene());
+                StartCoroutine(LoseScene());
+            }
+            else if(_enemy.GetComponent<Status>().getHP() <= 0)
+            {
+                StartCoroutine(WinScene());
             }
         }
 
 	}
 
-    private IEnumerator NextScene()
+    private IEnumerator LoseScene()
     {
         yield return new WaitForSeconds(1.0f);
+        _fightFlag = false;
         _flag = true;
 
     }
 
+    private IEnumerator WinScene()
+    {
+        yield return new WaitForSeconds(1.0f);
+        _fightFlag = true;
+        _flag = true;
+    }
+
     public bool getFlag()
     {
-        return _flag;
+        return _fightFlag;
     }
 
 }
