@@ -40,22 +40,41 @@ public class Move : MonoBehaviour {
     private Camera _mainCamera;
 
     //アニメーター
+    [SerializeField]
     private Animator _animator;
 
     //model
     [SerializeField]
     private GameObject _model;
 
+    [SerializeField]
+    private GameObject _obj;
+
+    [SerializeField]
+    private GameObject[] _charModel; 
+
+    [SerializeField]
+    private string _name = "unity";
     
     // Use this for initialization
     void Start () {
+
+        for (int i = 0; i < _charModel.Length; i++)
+        {
+            if (_charModel[i].name == _name)
+            {
+                _obj = _charModel[i];
+            }
+        }
+
+        _obj.SetActive(true);
 
         controller = GameController.Instance;
 
         //
         rb = GetComponent<Rigidbody>();
 
-        _animator = GetComponent<Animator>();
+        _animator = _obj.GetComponent<Animator>();
 
         gage = canvas;
 

@@ -19,6 +19,8 @@ public class Equipment : MonoBehaviour {
     //カーソル
     private RectTransform _cursor;
 
+    private RectTransform _modelImage;
+
     private RectTransform _mainWeapon1;
     
     private RectTransform _mainWeapon2;
@@ -105,6 +107,7 @@ public class Equipment : MonoBehaviour {
     //どこを選んでいるかのState
     private enum EQUIPMENT_STATE
     {
+        MODEL,
         MAIN_WEAPON1,
         MAIN_WEAPON2,
         //SUB_WEAPON,
@@ -127,6 +130,14 @@ public class Equipment : MonoBehaviour {
         MAIN2,
         SUB
     }
+
+    //モデル
+    private enum MODEL
+    {
+        UNITY,
+        ION
+    }
+
 
     [SerializeField]
     private int _weaponState = 0;
@@ -164,11 +175,11 @@ public class Equipment : MonoBehaviour {
 
         //コンポーネント
         _cursor = GameObject.Find("Cursor").GetComponent<RectTransform>();
+        _modelImage = GameObject.Find("Model").GetComponent<RectTransform>();
         _mainWeapon1 = GameObject.Find("MainWeapon1").GetComponent<RectTransform>();
         _mainWeapon2 = GameObject.Find("MainWeapon2").GetComponent<RectTransform>();
         //_subWeapon = GameObject.Find("SubWeapon").GetComponent<RectTransform>();
-        _start = GameObject.Find("Start").GetComponent<RectTransform>();
-
+     
         _bar = GameObject.Find("Bar").GetComponent<RectTransform>();
 
         _pop = GameObject.Find("Pop").GetComponent<RectTransform>();
@@ -184,13 +195,10 @@ public class Equipment : MonoBehaviour {
         _bar.localScale = new Vector3(1.5f, 0, 1);
 
         //
-        _cursor.position = _mainWeapon1.position;
+        _cursor.position = _modelImage.position;
 
         //メイン武器のリスト作成
         WeaponAdd("WeaponList", _weaponList);
-
-        //サブ武器のリスト作成
-        //WeaponAdd("SubWeaponList", _subWeaponList);
 
         _playerSystem = GameObject.Find("PlayerSystem");
 
@@ -209,20 +217,6 @@ public class Equipment : MonoBehaviour {
             _weaponImage[i].localPosition = new Vector3(50, 20 * (i + 1), 0);
         }
 
-
-        //サブ武器の部分
-        //for(int i = 0; i < _weaponNum; i++)
-        //{
-        //    //Resources/Imagesから一致するものを探してくる
-        //    GameObject img = (GameObject)Instantiate(Resources.Load("Images/" + _subWeaponList[i][0].ToString()));
-        //    img.transform.SetParent(canvas.transform, false);
-        //    img.GetComponent<WeaponName>().setName(_subWeaponList[i][0].ToString());
-        //    _subWeaponImage[i] = img.GetComponent<RectTransform>();
-
-        //    rePos = canvas.GetComponent<RectTransform>().position;
-
-        //    _subWeaponImage[i].localPosition = new Vector3(50, 20 * (i + 1), 0);
-        //}
 
         GameObject cusor = (GameObject)Instantiate(Resources.Load("Images/Cusor2"));
 
@@ -254,31 +248,27 @@ public class Equipment : MonoBehaviour {
             {
                 _state = ChooseState(_state);
 
-                if (_state < (int)EQUIPMENT_STATE.MAIN_WEAPON1)
+                if (_state < (int)EQUIPMENT_STATE.MODEL)
                 {
-                    _state = (int)EQUIPMENT_STATE.NEXT;
+                    _state = (int)EQUIPMENT_STATE.MAIN_WEAPON2;
                 }
 
-                if (_state > (int)EQUIPMENT_STATE.NEXT)
+                if (_state > (int)EQUIPMENT_STATE.MAIN_WEAPON2)
                 {
-                    _state = (int)EQUIPMENT_STATE.MAIN_WEAPON1;
+                    _state = (int)EQUIPMENT_STATE.MODEL;
                 }                
 
                 //メインからNextまでの選択
                 switch (_state)
                 {
+                    case (int)EQUIPMENT_STATE.MODEL:
+                        _cursor.position = _modelImage.position;
+                        break;
                     case (int)EQUIPMENT_STATE.MAIN_WEAPON1:
                         _cursor.position = _mainWeapon1.position;
                         break;
                     case (int)EQUIPMENT_STATE.MAIN_WEAPON2:
                         _cursor.position = _mainWeapon2.position;
-                        break;
-                    //case (int)EQUIPMENT_STATE.SUB_WEAPON:
-                    //    StartCoroutine(GeneratePulseNoise(_subWeapon));
-                    //    _cursor.position = _subWeapon.position;
-                    //    break;
-                    case (int)EQUIPMENT_STATE.NEXT:
-                        _cursor.position = _start.position;
                         break;
                 }
 
@@ -340,11 +330,7 @@ public class Equipment : MonoBehaviour {
                             break;
                     }
                 }
-                else if (_weaponState == 2)
-                {
-
-                }
-
+        
                 if (_controller.ButtonDown(Button.A))
                 {
                     _barFlag = false;
@@ -398,7 +384,6 @@ public class Equipment : MonoBehaviour {
         else
         {
             //コントローラ操作
-
             _nextState = ChooseState(_nextState);
 
             if (_nextState < (int)NEXT_STATE.YES)
@@ -484,6 +469,14 @@ public class Equipment : MonoBehaviour {
             _sceneNextFlag = true;
         }
 
+        if (_controller.ButtonDown(Button.START))
+        {
+            if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != "Main1" || _playerSystem.GetComponent<PlayerSystem>().getMain2() != "Main2")
+            {
+                _popFlag = true;
+            }
+        }
+
     }
 
     //選択しているボタンが押された時
@@ -503,27 +496,9 @@ public class Equipment : MonoBehaviour {
                 _barFlag = true;
                 break;
 
-            //case EQUIPMENT_STATE.SUB_WEAPON:
-            //    _bar.position = _subWeapon.position + new Vector3(151, 21, 0);
-            //    _weaponState = 2;
-            //    _barFlag = true;
-            //    break;
-            case EQUIPMENT_STATE.NEXT:
-                //Popの表示
-                if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != "Main1" || _playerSystem.GetComponent<PlayerSystem>().getMain2() != "Main2")
-                {
-                    _popFlag = true;
-                }
-                else
-                {
-                    _audioSource.PlayOneShot(_cansel);
-                }
-                break;
-               
         }
 
     }
-
 
     //バーの拡大
     private void BarZoom()

@@ -26,6 +26,12 @@ public class Barrier : MonoBehaviour {
     //アニメーター
     private Animator _animator;
 
+    [SerializeField]
+    private GameObject _obj;
+
+    [SerializeField]
+    private string _name = "unity";
+
     //Guardのオブジェクト
     [SerializeField]
     private GameObject _guard;
@@ -38,7 +44,11 @@ public class Barrier : MonoBehaviour {
 
         controller = GameController.Instance;
 
-        _animator = GetComponent<Animator>();
+        _obj = GameObject.Find(_name);
+
+        _obj.SetActive(true);
+
+        _animator = _obj.GetComponent<Animator>();
 
         _guard = GameObject.Find("Guard");
 

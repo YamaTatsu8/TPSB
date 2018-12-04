@@ -8,10 +8,25 @@ public class Status : MonoBehaviour {
     [SerializeField]
     private float _HP = 100;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    //アニメーター
+    private Animator _animator;
+
+    [SerializeField]
+    private GameObject _obj;
+
+    [SerializeField]
+    private string _name = "unity";
+
+    // Use this for initialization
+    void Start () {
+
+        _obj = GameObject.Find(_name);
+
+        _obj.SetActive(true);
+
+        _animator = _obj.GetComponent<Animator>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -21,7 +36,9 @@ public class Status : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
-	}
+
+        //_animator.SetBool("Damage", false);
+    }
 
     public bool getDestroy()
     {
@@ -32,6 +49,7 @@ public class Status : MonoBehaviour {
     public void hitDamage(int damage)
     {
         _HP -= damage;
+        //_animator.SetBool("Damage", true);
     }
 
     public float getHP()

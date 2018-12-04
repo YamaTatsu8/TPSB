@@ -31,8 +31,11 @@ public class Jump : MonoBehaviour
     //アニメーター
     private Animator _animator;
 
+    [SerializeField]
+    private GameObject _obj;
 
-
+    [SerializeField]
+    private string _name = "unity";
 
     // Use this for initialization
     void Start()
@@ -47,8 +50,12 @@ public class Jump : MonoBehaviour
 
         //_gage = gage.GetComponent<EP>();
 
+        _obj = GameObject.Find(_name);
+
+        _obj.SetActive(true);
+
         //アニメーターのコンポーネント
-        _animator = GetComponent<Animator>();
+        _animator = _obj.GetComponent<Animator>();
 
     }
 

@@ -48,6 +48,7 @@ public class Attack : MonoBehaviour {
     private GameObject _model;
 
     //敵
+    [SerializeField]
     private GameObject _target;
 
     //
@@ -57,10 +58,23 @@ public class Attack : MonoBehaviour {
     [SerializeField]
     private GameObject[] _weapon;
 
+    [SerializeField]
+    private GameObject _obj;
+
+    [SerializeField]
+    private string _name = "unity";
+
+
     // Use this for initialization
     void Start () {
 
         controller = GameController.Instance;
+
+        _obj = GameObject.Find(_name);
+
+        _obj.SetActive(true);
+
+        _animator = _obj.GetComponent<Animator>();
 
         //PlayerSystemから情報をもらってくる
         PlayerSystem playerSystem = FindObjectOfType<PlayerSystem>();
@@ -102,9 +116,6 @@ public class Attack : MonoBehaviour {
 
         //_weapon2.transform.parent = _rightHand.transform;
         //_weapon2.transform.position = _rightHand.transform.position;
-
-        //アニメーターのコンポーネント
-        _animator = GetComponent<Animator>();
 
         _target = GameObject.FindGameObjectWithTag("Enemy");
 
@@ -162,6 +173,8 @@ public class Attack : MonoBehaviour {
             _animator.SetBool("Attack", false);
         }
 
+        Debug.Log(_target);
+
         Player_pos = transform.position;
 
     }
@@ -177,11 +190,13 @@ public class Attack : MonoBehaviour {
         {
 
         }
+
     }
 
     //
     public Vector3 getPosition()
     {
+        Debug.Log("通った");
         return _target.transform.position + new Vector3(0,1,0);
     }
 
