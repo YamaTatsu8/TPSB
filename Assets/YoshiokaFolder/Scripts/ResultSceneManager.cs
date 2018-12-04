@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class ResultSceneManager : MonoBehaviour
 {
-    // SkyboxMaterial
-    Material _stageSkybox;
+    Material _stageSkybox;                  //　スカイボックス保存用
 
     private GameController _controller;     //　ゲームコントローラー
     private GameObject _fadeObj;            //　フェード
@@ -43,10 +42,39 @@ public class ResultSceneManager : MonoBehaviour
         GameObject obj = GameObject.Find("SceneManagerObject");
         StageSelectManager ssm = obj.GetComponent<SceneObserver>().GetStageSelectSceneData();
         _stage = (GameObject)Instantiate(Resources.Load("Prefabs/Stages/" + ssm.GetSelectStageName()));
+        StageHeightAdjustment(ssm.GetSelectStageName());
 
         //　戦っていたskyboxを読み込む
         _stageSkybox = (Material)Instantiate(Resources.Load("Material/" + ssm.GetSelectStageName() + "BackGround"));
         RenderSettings.skybox = _stageSkybox;
+        //　ステージのライティングを初期化
+        RenderSettings.ambientSkyColor = Color.gray;
+    }
+
+    /// <summary>
+    /// ステージ毎に高さを調整する
+    /// </summary>
+    private void StageHeightAdjustment(string Stagename)
+    {
+        Vector3 pos;
+        switch (Stagename)
+        {
+            case "Stage1":
+                pos = new Vector3(0, 0, 0);
+                _stage.transform.localPosition = pos;
+                break;
+            case "Stage2":
+                pos = new Vector3(0,4,0);
+                _stage.transform.localPosition = pos;
+                
+                break;
+            case "Stage3":
+                break;
+            case "Stage4":
+                break;
+            case "Stage5":
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -63,7 +91,8 @@ public class ResultSceneManager : MonoBehaviour
     public bool SceneUpdate()
     {
         ControllerUpdate();
-        AnimationUpdate();
+        WinAnimationUpdate();
+        //LoseAnimationUpdate();
 
         //　シーンが遷移されていたら
         if (_fadeObj == null)
@@ -75,7 +104,7 @@ public class ResultSceneManager : MonoBehaviour
         {
             _isStartFade = false;
             GameObject camera = GameObject.Find("Camera");
-            camera.GetComponent<Animator>().SetBool("startAnimation", true);
+            camera.GetComponent<Animator>().SetBool("startWinAnimation", true);
         }
 
         //　フェードが終了していたらシーンを変更する
@@ -92,10 +121,16 @@ public class ResultSceneManager : MonoBehaviour
     /// </summary>
     private void ControllerUpdate()
     {
+        //　シーン遷移が開始されてた場合以下の処理を行わない
+        if (_isStartFade)
+        {
+            return;
+        }
+
         _controller.ControllerUpdate();
 
         //　Aボタンが押されたらフェード開始（連打無効）
-        if (_controller.ButtonDown(Button.A) && !_isStartFade && _isEndedAnimation)
+        if (_controller.ButtonDown(Button.A) && _isEndedAnimation)
         {
             Fade fade = new Fade();
             _fadeObj = fade.CreateFade();
@@ -107,27 +142,55 @@ public class ResultSceneManager : MonoBehaviour
     /// <summary>
     /// 勝利演出更新処理
     /// </summary>
-    private void AnimationUpdate()
+    private void WinAnimationUpdate()
     {
         GameObject camera = GameObject.Find("Camera");
         AnimatorStateInfo cameraStateInfo = camera.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
-        if (cameraStateInfo.IsName("EndCamera"))
+        if (cameraStateInfo.IsName("EndWinCamera"))
         {
             _isEndedAnimation = true;
         }
         if (_isEndedAnimation)
         {
-            GameObject winFrame = GameObject.Find("WinFrame");
-            winFrame.GetComponent<Animator>().SetBool("startAnimation", true);
+            GameObject frame = GameObject.Find("WinFrame");
+            frame.GetComponent<Animator>().SetBool("startAnimation", true);
 
             GameObject unityChan = GameObject.Find("unitychan");
-            unityChan.GetComponent<Animator>().SetBool("startAnimation", true);
+            unityChan.GetComponent<Animator>().SetBool("startWinAnimation", true);
 
-            AnimatorStateInfo winFrameStateInfo = winFrame.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
+            AnimatorStateInfo winFrameStateInfo = frame.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
             if (winFrameStateInfo.IsName("EndWinFrame"))
             {
-                GameObject winLogo = GameObject.Find("WinLogo");
-                winLogo.GetComponent<Animator>().SetBool("startAnimation", true);
+                GameObject logo = GameObject.Find("WinLogo");
+                logo.GetComponent<Animator>().SetBool("startWinAnimation", true);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 敗北演出更新処理
+    /// </summary>
+    private void LoseAnimationUpdate()
+    {
+        GameObject camera = GameObject.Find("Camera");
+        AnimatorStateInfo cameraStateInfo = camera.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
+        if (cameraStateInfo.IsName("EndLoseCamera"))
+        {
+            _isEndedAnimation = true;
+        }
+        if (_isEndedAnimation)
+        {
+            GameObject frame = GameObject.Find("LoseFrame");
+            frame.GetComponent<Animator>().SetBool("startAnimation", true);
+
+            GameObject unityChan = GameObject.Find("unitychan");
+            unityChan.GetComponent<Animator>().SetBool("startLoseAnimation", true);
+
+            AnimatorStateInfo winFrameStateInfo = frame.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
+            if (winFrameStateInfo.IsName("EndWinFrame"))
+            {
+                GameObject logo = GameObject.Find("LoseLogo");
+                logo.GetComponent<Animator>().SetBool("startLoseAnimation", true);
             }
         }
     }
