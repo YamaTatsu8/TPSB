@@ -71,6 +71,11 @@ public class PlayScene : MonoBehaviour {
 
     public bool getFlag()
     {
+        return _flag;
+    }
+
+    public bool getFightFlag()
+    {
         return _fightFlag;
     }
 
