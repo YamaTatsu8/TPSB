@@ -10,6 +10,7 @@ public class ResultSceneManager : MonoBehaviour
     private GameObject _fadeObj;            //　フェード
     private GameObject _stage;              //　ステージ
 
+    private bool _win = true;               //　True:勝ち、False:負け
     private bool _isStartFade = false;      //　True:フェード開始、False:フェード終了中
     private bool _isEndedAnimation = false; //  True:アニメーション終了、False:アニメーション中
 
@@ -91,8 +92,8 @@ public class ResultSceneManager : MonoBehaviour
     public bool SceneUpdate()
     {
         ControllerUpdate();
-        WinAnimationUpdate();
-        //LoseAnimationUpdate();
+        if (_win) { WinAnimationUpdate(); }
+        else { LoseAnimationUpdate(); }
 
         //　シーンが遷移されていたら
         if (_fadeObj == null)
@@ -104,7 +105,8 @@ public class ResultSceneManager : MonoBehaviour
         {
             _isStartFade = false;
             GameObject camera = GameObject.Find("Camera");
-            camera.GetComponent<Animator>().SetBool("startWinAnimation", true);
+            if (_win) { camera.GetComponent<Animator>().SetBool("startWinAnimation", true); }
+            else { camera.GetComponent<Animator>().SetBool("startLoseAnimation", true); }
         }
 
         //　フェードが終了していたらシーンを変更する
@@ -193,5 +195,14 @@ public class ResultSceneManager : MonoBehaviour
                 logo.GetComponent<Animator>().SetBool("startLoseAnimation", true);
             }
         }
+    }
+
+    /// <summary>
+    /// 勝敗セット
+    /// </summary>
+    /// <param name="win">true:勝ち false:負け</param>
+    public void SetBattleResult(bool win)
+    {
+        _win = win;
     }
 }

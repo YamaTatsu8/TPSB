@@ -30,7 +30,7 @@ public class PlayScene : MonoBehaviour {
         _fadeOut.GetComponentInChildren<Fade>().FadeIn();
 
         //プレイヤーを探す
-        _player = GameObject.Find("Player");
+        _player = GameObject.FindGameObjectWithTag("Player");
 
         //敵を探す
         _enemy = GameObject.Find("Enemy");

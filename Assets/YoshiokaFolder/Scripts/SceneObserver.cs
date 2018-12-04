@@ -96,11 +96,11 @@ public class SceneObserver : MonoBehaviour
             //　ゲームプレイシーン
             case (int)SCENE_STATE.PlayScene:
                 GameObject gameManaObj = GameObject.Find("GameManager");
-
                 if (gameManaObj.GetComponent<PlayScene>().getFlag())
                 {
                     _nowScene = (int)SCENE_STATE.ResultScene;
                     _result.Initialize();
+                    _result.SetBattleResult(gameManaObj.GetComponent<PlayScene>().getFightFlag());
                     ChangeScene(SCENE_STATE.ResultScene.ToString());
                 }
                 break;
