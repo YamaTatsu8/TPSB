@@ -109,8 +109,7 @@ public class Move : MonoBehaviour {
 
             if (moveDirection.magnitude > 0.1f)
             {
-                Debug.Log("傾き");
-
+               
                 // カメラの方向から、X-Z平面の単位ベクトルを取得
                 Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
 

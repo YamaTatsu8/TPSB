@@ -34,6 +34,9 @@ public class PlayScene : MonoBehaviour {
 
         //敵を探す
         _enemy = GameObject.Find("Enemy");
+
+        //レンダリング設定
+        RenderSettings.ambientSkyColor = Color.gray;
 		
 	}
 	
@@ -51,7 +54,6 @@ public class PlayScene : MonoBehaviour {
                 StartCoroutine(WinScene());
             }
         }
-
 	}
 
     private IEnumerator LoseScene()

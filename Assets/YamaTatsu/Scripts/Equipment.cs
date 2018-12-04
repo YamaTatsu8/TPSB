@@ -226,9 +226,6 @@ public class Equipment : MonoBehaviour {
             _weaponImage[i].localPosition = new Vector3(50, 20 * (i + 1), 0);
         }
 
-
-
-
         GameObject cusor = (GameObject)Instantiate(Resources.Load("Images/Cusor2"));
 
         cusor.transform.SetParent(canvas.transform, false);
@@ -416,7 +413,7 @@ public class Equipment : MonoBehaviour {
                     break;
             }
 
-            if (_controller.ButtonDown(Button.A))
+            if (_controller.ButtonDown(Button.A) && _fadeFlag == false)
             {
               
                     _audioSource.PlayOneShot(_decision);
