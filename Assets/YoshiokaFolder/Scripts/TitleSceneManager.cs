@@ -60,10 +60,16 @@ public class TitleSceneManager : MonoBehaviour
     /// </summary>
     private void ControllerUpdate()
     {
+        //　シーン遷移が開始されてた場合以下の処理を行わない
+        if (_isStartFade)
+        {
+            return;
+        }
+
         _controller.ControllerUpdate();
 
         //　Aボタンが押されたら
-        if (_controller.ButtonDown(Button.A) && !_isStartFade)
+        if (_controller.ButtonDown(Button.A))
         {
             //　フェードアウトを開始する
             if (_fadeObj == null)

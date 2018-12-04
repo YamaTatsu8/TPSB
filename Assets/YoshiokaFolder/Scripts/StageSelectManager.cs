@@ -92,10 +92,17 @@ public class StageSelectManager : MonoBehaviour
     /// </summary>
     private void ControllerUpdate()
     {
+        //　シーン遷移が開始されてた場合以下の処理を行わない
+        if (_isStartFade)
+        {
+            return;
+        }
+
+        //　コントローラー更新
         _controller.ControllerUpdate();
 
         //　Aボタンが押されたらフェードアウトを開始する
-        if (_controller.ButtonDown(Button.A) && !_isStartFade)
+        if (_controller.ButtonDown(Button.A))
         {
             //　フェード開始
             Fade fade = new Fade();
