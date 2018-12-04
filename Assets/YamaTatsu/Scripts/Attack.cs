@@ -152,8 +152,6 @@ public class Attack : MonoBehaviour {
             _animator.SetBool("Attack", false);
         }
 
-        Debug.Log(_target);
-
         Player_pos = transform.position;
 
     }
@@ -175,7 +173,6 @@ public class Attack : MonoBehaviour {
     //
     public Vector3 getPosition()
     {
-        Debug.Log("通った");
         return _target.transform.position + new Vector3(0,1,0);
     }
 

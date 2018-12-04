@@ -19,8 +19,6 @@ public class StageSpawn : MonoBehaviour {
         //オブサーバーをゲットコンポーネント
         StageSelectManager test = obj.GetComponent<SceneObserver>().GetStageSelectSceneData();
 
-        Debug.Log(test.GetSelectStageName());
-
         _stage = (GameObject)Instantiate(Resources.Load("Prefabs/Stages/" + test.GetSelectStageName()));
 
         _skybox = (Material)Resources.Load("Material/" + test.GetSelectStageName() + "BackGround");
