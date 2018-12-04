@@ -4514,6 +4514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4960937449305178}
   - component: {fileID: 95452928359082110}
+  - component: {fileID: 114589960889726244}
   m_Layer: 9
   m_Name: unity
   m_TagString: Untagged
@@ -5100,7 +5101,6 @@ GameObject:
   - component: {fileID: 114411244053806160}
   - component: {fileID: 114943911888217934}
   - component: {fileID: 114840984713134272}
-  - component: {fileID: 114895297055394400}
   - component: {fileID: 114864979041365814}
   - component: {fileID: 82574113456401036}
   m_Layer: 9
@@ -16553,6 +16553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240faba787efbf14c950e56f0125df41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _model: {fileID: 1534382729094922}
 --- !u!114 &114005051530754176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16916,6 +16917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240faba787efbf14c950e56f0125df41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _model: {fileID: 1534382729094922}
 --- !u!114 &114148452366849568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -17919,6 +17921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240faba787efbf14c950e56f0125df41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _model: {fileID: 0}
 --- !u!114 &114442348808019960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18433,6 +18436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240faba787efbf14c950e56f0125df41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _model: {fileID: 0}
 --- !u!114 &114571369141518968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18562,6 +18566,32 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114589960889726244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1534382729094922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c1af0981a4e3034eb50299060f9fa38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponName1: SMG
+  _weaponName2: Laser
+  _weapon1: {fileID: 0}
+  _weapon2: {fileID: 0}
+  _subWeapon: {fileID: 0}
+  _rightHand: {fileID: 1474767569121708}
+  _model: {fileID: 1534382729094922}
+  _target: {fileID: 0}
+  _weapon:
+  - {fileID: 1838172390460572}
+  - {fileID: 1170026297786790}
+  - {fileID: 1298690658965634}
+  - {fileID: 1270145141051542}
+  _obj: {fileID: 0}
+  _name: unity
 --- !u!114 &114594719639625096
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18830,6 +18860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240faba787efbf14c950e56f0125df41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _model: {fileID: 1534382729094922}
 --- !u!114 &114655635991119422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -18900,6 +18931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240faba787efbf14c950e56f0125df41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _model: {fileID: 1534382729094922}
 --- !u!114 &114679440584160544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19295,6 +19327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240faba787efbf14c950e56f0125df41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _model: {fileID: 0}
 --- !u!114 &114769875523895622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19526,6 +19559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240faba787efbf14c950e56f0125df41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _model: {fileID: 0}
 --- !u!114 &114840984713134272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19587,6 +19621,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _HP: 100
+  _obj: {fileID: 0}
+  _name: unity
 --- !u!114 &114865946328002430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -19718,31 +19754,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114895297055394400
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1610579028674108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c1af0981a4e3034eb50299060f9fa38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _weaponName1: 
-  _weaponName2: 
-  _weapon1: {fileID: 0}
-  _weapon2: {fileID: 0}
-  _subWeapon: {fileID: 0}
-  _rightHand: {fileID: 1864352785260120}
-  _model: {fileID: 1710752572188300}
-  _weapon:
-  - {fileID: 1838172390460572}
-  - {fileID: 1170026297786790}
-  - {fileID: 1298690658965634}
-  - {fileID: 1270145141051542}
-  _obj: {fileID: 0}
-  _name: unity
 --- !u!114 &114895457781794962
 MonoBehaviour:
   m_ObjectHideFlags: 1
