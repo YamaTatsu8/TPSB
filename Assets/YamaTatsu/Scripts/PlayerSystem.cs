@@ -7,7 +7,7 @@ public class PlayerSystem : MonoBehaviour {
 
     //キャラ名
     [SerializeField]
-    private string _char = "UnityChan";
+    private string _char = "Unity-Chan";
 
     //メイン武器1
     [SerializeField]
@@ -40,11 +40,13 @@ public class PlayerSystem : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
         }
 
-        _char = "unity";
+        _char = "Unity-Chan";
 
         _mainWeapon1 = "Main1";
 
         _mainWeapon2 = "Main2";
+
+        Debug.Log(_char);
     }
 
 
@@ -54,44 +56,44 @@ public class PlayerSystem : MonoBehaviour {
 	}
 
     //ゲッター
-    public string getChar()
+    public string GetChar()
     {
         return _char;
     }
 
 
-    public string getMain1()
+    public string GetMain1()
     {
         return _mainWeapon1;
     }
 
-    public string getMain2()
+    public string GetMain2()
     {
         return _mainWeapon2;
     }
 
-    public string getSub()
+    public string GetSub()
     {
         return _subWeapon;
     }
 
     //セッター
-    public void setChar(string name)
+    public void SetChar(string name)
     {
         _char = name;
     }
 
-    public void setMain1(string weapon)
+    public void SetMain1(string weapon)
     {
         _mainWeapon1 = weapon;
     }
 
-    public void setMain2(string weapon)
+    public void SetMain2(string weapon)
     {
         _mainWeapon2 = weapon;
     }
 
-    public void setSub(string weapon)
+    public void SetSub(string weapon)
     {
         //
         _subWeapon = "Missile";
@@ -103,7 +105,7 @@ public class PlayerSystem : MonoBehaviour {
 
         _mainWeapon2 = "Main2";
 
-        _char = "UnityChan";
+        _char = "Unity-Chan";
     }
 
 

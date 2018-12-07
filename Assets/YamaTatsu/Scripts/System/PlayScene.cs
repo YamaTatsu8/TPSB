@@ -11,6 +11,7 @@ public class PlayScene : MonoBehaviour {
     private GameObject _player;
 
     //敵
+    [SerializeField]
     private GameObject _enemy;
 
     //終了フラグ
@@ -18,6 +19,9 @@ public class PlayScene : MonoBehaviour {
 
     //
     private bool _fightFlag = false;
+
+
+    private bool _playerFlag = false;
 
 
 	// Use this for initialization
@@ -43,13 +47,21 @@ public class PlayScene : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if(_playerFlag == false)
+        {
+            _player = GameObject.FindGameObjectWithTag("Player");
+       
+            _playerFlag = true;
+        }
+
         if (_flag == false)
         {
             if (_player.GetComponent<Status>().getHP() <= 0)
             {
                 StartCoroutine(LoseScene());
             }
-            else if(_enemy.GetComponent<Status>().getHP() <= 0)
+
+            if(_enemy.GetComponent<Status>().getHP() <= 0)
             {
                 StartCoroutine(WinScene());
             }

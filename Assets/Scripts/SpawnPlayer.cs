@@ -10,8 +10,17 @@ public class SpawnPlayer : MonoBehaviour {
     [SerializeField]
     private Vector3 _pos;
 
+    //PlayerSystem
+    private PlayerSystem _playerSystem;
+
 	// Use this for initialization
 	void Start () {
+
+        _playerSystem = FindObjectOfType<PlayerSystem>();
+
+        _player = (GameObject)Resources.Load("Prefabs/PlayerModel/" + _playerSystem.getChar());
+
+        Debug.Log(_player);
 
         Instantiate(_player, _pos,this.transform.rotation);
 
