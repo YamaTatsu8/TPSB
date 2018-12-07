@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class Equipment : MonoBehaviour {
 
+    //モデルオブジェクト
+    [SerializeField]
+    private GameObject _modelObj;
+
     //フェード
     GameObject _fadeOut;
 
@@ -43,12 +47,18 @@ public class Equipment : MonoBehaviour {
     [SerializeField]
     private int _mainState = 0;
 
+    //モデルのステート
+    private int _modelState = 0;
+
     [SerializeField]
     private Vector3 _pos = new Vector3(-200, 0, 0);
 
     //
     [SerializeField]
     private GameObject canvas;
+
+    [SerializeField]
+    private GameObject _modelBarCan;
 
     //PlayerSystem
     [SerializeField]
@@ -82,6 +92,8 @@ public class Equipment : MonoBehaviour {
     //
     private RectTransform _cusor3;
 
+    private RectTransform _cusor4;
+
     //
     private RectTransform _yes;
 
@@ -89,6 +101,9 @@ public class Equipment : MonoBehaviour {
 
     //武器数
     private int _weaponNum = 0;
+
+    //モデル数
+    private int _modelNum = 0;
 
     //モデルに装備
     [SerializeField]
@@ -137,24 +152,28 @@ public class Equipment : MonoBehaviour {
     }
 
     //モデル
-    private enum MODEL
+    private enum MODEL_STATE
     {
         UNITY,
         ION
     }
 
-
+    //
     [SerializeField]
     private int _weaponState = 0;
 
+    //次へのフラグ
     private bool _nextFlag = false;
-
+    //ポップアップするフラグ
     private bool _popFlag = false;
 
     private int _nextState = 0;
 
     //fade終わったかのフラグ
     private bool _fadeFlag = false;
+
+    //モデルのバーに対してのフラグ
+    private bool _modelFlag = false;
 
     private enum NEXT_STATE
     {
@@ -163,7 +182,8 @@ public class Equipment : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
 
         Fade fade = new Fade();
 
@@ -200,6 +220,9 @@ public class Equipment : MonoBehaviour {
         //最初バーのスケールは0にする
         _bar.localScale = new Vector3(1.5f, 0, 1);
 
+        //モデルバーのスケール
+        _modelBar.localScale = new Vector3(1.5f, 0, 1);
+
         //
         _cursor.position = _modelImage.position;
 
@@ -207,10 +230,11 @@ public class Equipment : MonoBehaviour {
         WeaponAdd("WeaponList", _weaponList);
 
         //モデルのリスト
-        //WeaponAdd("ModelList", _modelList);
+        ModelAdd("ModelList", _modelList);
 
         _playerSystem = GameObject.Find("PlayerSystem");
 
+       
         Vector3 rePos;
 
         for (int i = 0; i < _weaponNum; i++)
@@ -236,9 +260,38 @@ public class Equipment : MonoBehaviour {
 
         _cusor2.localPosition = rePos;
     
-        _cusor2.transform.rotation = Quaternion.Euler(180.0f, 0.0f, 0.0f); ;
+        _cusor2.transform.rotation = Quaternion.Euler(180.0f, 0.0f, 0.0f);
 
         rePos = _yes.localPosition;
+
+        Vector3 rePos2;
+
+        for (int i = 0; i < _modelNum; i++)
+        {
+            //Resources/Imagesから一致するものを探してくる
+            GameObject img = (GameObject)Instantiate(Resources.Load("Images/" + _modelList[i][0].ToString()));
+            img.transform.SetParent(_modelBarCan.transform, false);
+            img.GetComponent<WeaponName>().setName(_modelList[i][0].ToString());
+            _modelImage2[i] = img.GetComponent<RectTransform>();
+
+            rePos2 = _modelBarCan.GetComponent<RectTransform>().position;
+
+            _modelImage2[i].localPosition = new Vector3(50, 20 * (i + 1), 0);
+        }
+
+        GameObject cusor1 = (GameObject)Instantiate(Resources.Load("Images/Cusor3"));
+
+        cusor1.transform.SetParent(_modelBarCan.transform, false);
+
+        _cusor4 = cusor1.GetComponent<RectTransform>();
+
+        rePos2 = _modelImage2[0].localPosition;
+
+        _cusor4.localPosition = rePos2;
+
+        _cusor4.transform.rotation = Quaternion.Euler(180.0f, 0.0f, 0.0f);
+
+        rePos2 = _yes.localPosition;
 
         _model = GameObject.Find("PlayerModel");
 
@@ -264,9 +317,9 @@ public class Equipment : MonoBehaviour {
                 if (_state > (int)EQUIPMENT_STATE.MAIN_WEAPON2)
                 {
                     _state = (int)EQUIPMENT_STATE.MODEL;
-                }                
+                }
 
-                //メインからNextまでの選択
+                //ModelからMainWeaponまでの選択
                 switch (_state)
                 {
                     case (int)EQUIPMENT_STATE.MODEL:
@@ -280,18 +333,19 @@ public class Equipment : MonoBehaviour {
                         break;
                 }
 
-                if (_controller.ButtonDown(Button.A) && _barFlag == false)
+                if (_controller.ButtonDown(Button.A) && _barFlag == false && _modelFlag == false)
                 {
                     ChooseMenu((EQUIPMENT_STATE)_state);
                     _audioSource.PlayOneShot(_decision);
                 }
 
             }
-            else
-            { 
+            else if (_mainFlag == true && _barFlag == true)
+            {
+
                 //コントローラ操作
                 _mainState = ChooseState(_mainState);
-               
+
                 if (_mainState < (int)WEAPON_STATE.WEAPON1)
                 {
                     _mainState = (int)WEAPON_STATE.WEAPON4;
@@ -301,7 +355,7 @@ public class Equipment : MonoBehaviour {
                 {
                     _mainState = (int)WEAPON_STATE.WEAPON1;
                 }
-                
+
                 if (_weaponState == 0)
                 {
                     switch (_mainState)
@@ -321,7 +375,7 @@ public class Equipment : MonoBehaviour {
                     }
                 }
                 else if (_weaponState == 1)
-                {   
+                {
                     switch (_mainState)
                     {
                         case (int)WEAPON_STATE.WEAPON1:
@@ -338,7 +392,7 @@ public class Equipment : MonoBehaviour {
                             break;
                     }
                 }
-        
+
                 if (_controller.ButtonDown(Button.A))
                 {
                     _barFlag = false;
@@ -346,10 +400,10 @@ public class Equipment : MonoBehaviour {
                     {
                         case (int)WEAPON_MAIN.MAIN1:
                             //選んだ武器を装備
-                            if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != _playerSystem.GetComponent<PlayerSystem>().getMain2() && _playerSystem.GetComponent<PlayerSystem>().getMain2() != _weaponList[_mainState][0].ToString())
+                            if (_playerSystem.GetComponent<PlayerSystem>().GetMain1() != _playerSystem.GetComponent<PlayerSystem>().GetMain2() && _playerSystem.GetComponent<PlayerSystem>().GetMain2() != _weaponList[_mainState][0].ToString())
                             {
                                 _audioSource.PlayOneShot(_decision);
-                                _playerSystem.GetComponent<PlayerSystem>().setMain1(_weaponList[_mainState][0].ToString());
+                                _playerSystem.GetComponent<PlayerSystem>().SetMain1(_weaponList[_mainState][0].ToString());
                                 _mainWeapon1.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
                                 _model.GetComponent<WeaponEquipment>().setWeapon1(_weaponList[_mainState][0].ToString());
                             }
@@ -361,10 +415,10 @@ public class Equipment : MonoBehaviour {
                             break;
                         case (int)WEAPON_MAIN.MAIN2:
                             //選んだ武器を装備
-                            if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != _playerSystem.GetComponent<PlayerSystem>().getMain2() && _playerSystem.GetComponent<PlayerSystem>().getMain1() != _weaponList[_mainState][0].ToString())
+                            if (_playerSystem.GetComponent<PlayerSystem>().GetMain1() != _playerSystem.GetComponent<PlayerSystem>().GetMain2() && _playerSystem.GetComponent<PlayerSystem>().GetMain1() != _weaponList[_mainState][0].ToString())
                             {
                                 _audioSource.PlayOneShot(_decision);
-                                _playerSystem.GetComponent<PlayerSystem>().setMain2(_weaponList[_mainState][0].ToString());
+                                _playerSystem.GetComponent<PlayerSystem>().SetMain2(_weaponList[_mainState][0].ToString());
                                 _mainWeapon2.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
                                 _model.GetComponent<WeaponEquipment>().setWeapon2(_weaponList[_mainState][0].ToString());
                             }
@@ -382,6 +436,62 @@ public class Equipment : MonoBehaviour {
                 {
                     _audioSource.PlayOneShot(_cansel);
                     _barFlag = false;
+                }
+
+            }
+            else if (_mainFlag == true && _modelFlag == true)
+            {
+                //コントローラ操作
+                _modelState = ChooseState(_modelState);
+
+                if (_modelState < (int)MODEL_STATE.UNITY)
+                {
+                    _modelState = (int)MODEL_STATE.ION;
+                }
+
+                if (_modelState > (int)MODEL_STATE.ION)
+                {
+                    _modelState = (int)MODEL_STATE.UNITY;
+                }
+
+                switch (_modelState)
+                {
+                    case (int)MODEL_STATE.UNITY:
+                        _cusor4.localPosition = _modelImage2[_modelState].localPosition;
+                        break;
+                    case (int)MODEL_STATE.ION:
+                        _cusor4.localPosition = _modelImage2[_modelState].localPosition;
+                        break;
+                }
+
+                if (_controller.ButtonDown(Button.A))
+                {
+                    _modelFlag = false;
+                    switch (_modelState)
+                    {
+                        case (int)MODEL_STATE.UNITY:
+                            //モデルをセット
+                            _audioSource.PlayOneShot(_decision);
+                            _playerSystem.GetComponent<PlayerSystem>().SetChar(_modelList[_modelState][0].ToString());
+                            _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
+                            _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
+                            break;
+                        case (int)MODEL_STATE.ION:
+                            //選んだ武器を装備
+                            _audioSource.PlayOneShot(_decision);
+                            _playerSystem.GetComponent<PlayerSystem>().SetChar(_modelList[_modelState][0].ToString());
+                            _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
+                            _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
+                            break;
+                    }
+                }
+
+                //Bボタンを押されたらキャンセル
+                if (_controller.ButtonDown(Button.B))
+                {
+                    _audioSource.PlayOneShot(_cansel);
+                    _modelFlag = false;
+
                 }
 
             }
@@ -414,8 +524,7 @@ public class Equipment : MonoBehaviour {
             }
 
             if (_controller.ButtonDown(Button.A) && _fadeFlag == false)
-            {
-              
+            {           
                     _audioSource.PlayOneShot(_decision);
                     switch (_nextState)
                     {
@@ -434,7 +543,6 @@ public class Equipment : MonoBehaviour {
                             _nextFlag = false;
                             break;
                     }
-
             }
 
             if(_controller.ButtonDown(Button.B))
@@ -456,16 +564,32 @@ public class Equipment : MonoBehaviour {
         {
             PopBack();
         }
+
         //バーのフラグ
         if(_barFlag == true)
         {
-            BarZoom();
+            BarZoom(_bar);
             _mainFlag = true;
+            Debug.Log(_mainFlag);
         }
         else
         {
             _mainState = 0;
-            ZoomBack();
+            ZoomBack(_bar);
+            _mainFlag = false;
+        }
+
+        //モデルのバーフラグ
+        if(_modelFlag == true)
+        {
+            BarZoom(_modelBar);
+            _mainFlag = true;
+        }
+        else if(_modelFlag == false && _barFlag == false)
+        {
+            Debug.Log("通る");
+            _mainState = 0;
+            ZoomBack(_modelBar);
             _mainFlag = false;
         }
 
@@ -476,7 +600,7 @@ public class Equipment : MonoBehaviour {
 
         if (_controller.ButtonDown(Button.START))
         {
-            if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != "Main1" || _playerSystem.GetComponent<PlayerSystem>().getMain2() != "Main2")
+            if (_playerSystem.GetComponent<PlayerSystem>().GetMain1() != "Main1" || _playerSystem.GetComponent<PlayerSystem>().GetMain2() != "Main2")
             {
                 _popFlag = true;
             }
@@ -489,12 +613,15 @@ public class Equipment : MonoBehaviour {
     {
         switch (d)
         {
+            case EQUIPMENT_STATE.MODEL:
+                _modelBar.position = _modelImage.position + new Vector3(151, 21, 0);
+                _modelFlag = true;
+                break;
             case EQUIPMENT_STATE.MAIN_WEAPON1:
                 _bar.position = _mainWeapon1.position + new Vector3(151,21,0);
                 _weaponState = 0;
                 _barFlag = true;
                 break;
-
             case EQUIPMENT_STATE.MAIN_WEAPON2:
                 _bar.position = _mainWeapon2.position + new Vector3(151, 21, 0);
                 _weaponState = 1;
@@ -504,19 +631,19 @@ public class Equipment : MonoBehaviour {
     }
 
     //バーの拡大
-    private void BarZoom()
+    private void BarZoom(RectTransform rect)
     {
-        if (_bar.localScale.y > -2.5)
+        if (rect.localScale.y > -2.5)
         {
-            _bar.localScale += new Vector3(0, -0.3f, 0);
+            rect.localScale += new Vector3(0, -0.3f, 0);
         }
     }
 
-    private void ZoomBack()
+    private void ZoomBack(RectTransform rect)
     {
-        if (_bar.localScale.y < 0)
+        if (rect.localScale.y < 0)
         {
-            _bar.localScale = new Vector3(1.5f, 0, 1);
+            rect.localScale = new Vector3(1.5f, 0, 1);
         }
     }
 
@@ -557,6 +684,32 @@ public class Equipment : MonoBehaviour {
             list.Add(weaponName);
 
             _weaponNum++;
+        }
+
+    }
+
+    private void ModelAdd(string name, List<string[]> list)
+    {
+        string filename = name;
+
+        var csvFile = Resources.Load("CSV/" + filename) as TextAsset;
+
+        //csvの内容をStringReaderに変換
+        var reader = new StringReader(csvFile.text);
+
+        //csvの内容を最後まで取得
+        while (reader.Peek() > -1)
+        {
+            //1行読む
+            var lineData = reader.ReadLine();
+
+            //カンマ区切りのデータを文字列の配列に変換
+            var weaponName = lineData.Split(',');
+
+            //リストに追加
+            list.Add(weaponName);
+
+            _modelNum++;
         }
 
     }
