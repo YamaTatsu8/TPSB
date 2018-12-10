@@ -45,7 +45,6 @@ public class EP : MonoBehaviour {
         //　0になったらfalseにし使えなくする
         if(_EP < 0)
         {
-            Debug.Log("EPが0になりました");
             _boostFlag = false;
         }
         else if(_EP > 500 && _boostFlag == false)

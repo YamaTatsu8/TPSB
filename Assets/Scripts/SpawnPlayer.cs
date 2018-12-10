@@ -20,10 +20,7 @@ public class SpawnPlayer : MonoBehaviour {
 
         _player = (GameObject)Resources.Load("Prefabs/PlayerModel/" + _playerSystem.getChar());
 
-        Debug.Log(_player);
-
         Instantiate(_player, _pos,this.transform.rotation);
-
 	}
 	
 	// Update is called once per frame

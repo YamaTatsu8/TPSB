@@ -46,7 +46,6 @@ public class PlayerSystem : MonoBehaviour {
 
         _mainWeapon2 = "Main2";
 
-        Debug.Log(_char);
     }
 
 
@@ -56,44 +55,44 @@ public class PlayerSystem : MonoBehaviour {
 	}
 
     //ゲッター
-    public string GetChar()
+    public string getChar()
     {
         return _char;
     }
 
 
-    public string GetMain1()
+    public string getMain1()
     {
         return _mainWeapon1;
     }
 
-    public string GetMain2()
+    public string getMain2()
     {
         return _mainWeapon2;
     }
 
-    public string GetSub()
+    public string getSub()
     {
         return _subWeapon;
     }
 
     //セッター
-    public void SetChar(string name)
+    public void setChar(string name)
     {
         _char = name;
     }
 
-    public void SetMain1(string weapon)
+    public void setMain1(string weapon)
     {
         _mainWeapon1 = weapon;
     }
 
-    public void SetMain2(string weapon)
+    public void setMain2(string weapon)
     {
         _mainWeapon2 = weapon;
     }
 
-    public void SetSub(string weapon)
+    public void setSub(string weapon)
     {
         //
         _subWeapon = "Missile";
