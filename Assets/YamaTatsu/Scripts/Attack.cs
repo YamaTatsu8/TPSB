@@ -71,11 +71,11 @@ public class Attack : MonoBehaviour {
         //PlayerSystemから情報をもらってくる
         PlayerSystem playerSystem = FindObjectOfType<PlayerSystem>();
 
-        _weaponName1 = playerSystem.GetMain1();
+        _weaponName1 = playerSystem.getMain1();
 
-        _weaponName2 = playerSystem.GetMain2();
+        _weaponName2 = playerSystem.getMain2();
 
-        _subWeaponName = playerSystem.GetSub();
+        _subWeaponName = playerSystem.getSub();
 
         for(int i = 0; i < _weapon.Length; i++)
         {

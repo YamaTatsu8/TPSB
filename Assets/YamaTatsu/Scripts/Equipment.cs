@@ -400,10 +400,10 @@ public class Equipment : MonoBehaviour {
                     {
                         case (int)WEAPON_MAIN.MAIN1:
                             //選んだ武器を装備
-                            if (_playerSystem.GetComponent<PlayerSystem>().GetMain1() != _playerSystem.GetComponent<PlayerSystem>().GetMain2() && _playerSystem.GetComponent<PlayerSystem>().GetMain2() != _weaponList[_mainState][0].ToString())
+                            if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != _playerSystem.GetComponent<PlayerSystem>().getMain2() && _playerSystem.GetComponent<PlayerSystem>().getMain2() != _weaponList[_mainState][0].ToString())
                             {
                                 _audioSource.PlayOneShot(_decision);
-                                _playerSystem.GetComponent<PlayerSystem>().SetMain1(_weaponList[_mainState][0].ToString());
+                                _playerSystem.GetComponent<PlayerSystem>().setMain1(_weaponList[_mainState][0].ToString());
                                 _mainWeapon1.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
                                 _model.GetComponent<WeaponEquipment>().setWeapon1(_weaponList[_mainState][0].ToString());
                             }
@@ -415,10 +415,10 @@ public class Equipment : MonoBehaviour {
                             break;
                         case (int)WEAPON_MAIN.MAIN2:
                             //選んだ武器を装備
-                            if (_playerSystem.GetComponent<PlayerSystem>().GetMain1() != _playerSystem.GetComponent<PlayerSystem>().GetMain2() && _playerSystem.GetComponent<PlayerSystem>().GetMain1() != _weaponList[_mainState][0].ToString())
+                            if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != _playerSystem.GetComponent<PlayerSystem>().getMain2() && _playerSystem.GetComponent<PlayerSystem>().getMain1() != _weaponList[_mainState][0].ToString())
                             {
                                 _audioSource.PlayOneShot(_decision);
-                                _playerSystem.GetComponent<PlayerSystem>().SetMain2(_weaponList[_mainState][0].ToString());
+                                _playerSystem.GetComponent<PlayerSystem>().setMain2(_weaponList[_mainState][0].ToString());
                                 _mainWeapon2.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
                                 _model.GetComponent<WeaponEquipment>().setWeapon2(_weaponList[_mainState][0].ToString());
                             }
@@ -472,14 +472,14 @@ public class Equipment : MonoBehaviour {
                         case (int)MODEL_STATE.UNITY:
                             //モデルをセット
                             _audioSource.PlayOneShot(_decision);
-                            _playerSystem.GetComponent<PlayerSystem>().SetChar(_modelList[_modelState][0].ToString());
+                            _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
                             _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
                             _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
                             break;
                         case (int)MODEL_STATE.ION:
                             //選んだ武器を装備
                             _audioSource.PlayOneShot(_decision);
-                            _playerSystem.GetComponent<PlayerSystem>().SetChar(_modelList[_modelState][0].ToString());
+                            _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
                             _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
                             _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
                             break;
@@ -570,7 +570,6 @@ public class Equipment : MonoBehaviour {
         {
             BarZoom(_bar);
             _mainFlag = true;
-            Debug.Log(_mainFlag);
         }
         else
         {
@@ -587,7 +586,6 @@ public class Equipment : MonoBehaviour {
         }
         else if(_modelFlag == false && _barFlag == false)
         {
-            Debug.Log("通る");
             _mainState = 0;
             ZoomBack(_modelBar);
             _mainFlag = false;
@@ -600,7 +598,7 @@ public class Equipment : MonoBehaviour {
 
         if (_controller.ButtonDown(Button.START))
         {
-            if (_playerSystem.GetComponent<PlayerSystem>().GetMain1() != "Main1" || _playerSystem.GetComponent<PlayerSystem>().GetMain2() != "Main2")
+            if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != "Main1" || _playerSystem.GetComponent<PlayerSystem>().getMain2() != "Main2")
             {
                 _popFlag = true;
             }
