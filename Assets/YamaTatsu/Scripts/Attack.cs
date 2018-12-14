@@ -21,6 +21,8 @@ public class Attack : MonoBehaviour {
 
     private string _subWeaponName;
 
+    private GameObject _cameraObj;
+
     //武器のオブジェクト
     [SerializeField]
     private GameObject _weapon1;
@@ -61,6 +63,9 @@ public class Attack : MonoBehaviour {
     [SerializeField]
     private GameObject _obj;
 
+    //ロックオン解除フラグ
+    private bool _targetFlag;
+
     // Use this for initialization
     void Start () {
 
@@ -98,6 +103,8 @@ public class Attack : MonoBehaviour {
 
         _target = GameObject.FindGameObjectWithTag("Enemy");
 
+        _cameraObj = GameObject.Find("CameraObj");
+
         playerSystem.Init();
     }
 	
@@ -106,9 +113,15 @@ public class Attack : MonoBehaviour {
 
         controller.ControllerUpdate();
 
+        //R1押されたらロックオンの切り替え
+        if (controller.ButtonDown(Button.R1))
+        {
+            _targetFlag = !_targetFlag;
+        }
+
         //Debug.Log(_changeWeapon);
 
-        if(controller.ButtonDown(Button.X))
+        if (controller.ButtonDown(Button.X))
         {
             _weaponFlag = !_weaponFlag;
             if(_weaponFlag == true)
@@ -126,7 +139,6 @@ public class Attack : MonoBehaviour {
  
         if (controller.TriggerDown(Trigger.LEFT))
         {
-            Vector3 diff = transform.position - Player_pos;
 
             if (_weaponFlag == true)
             {
@@ -136,11 +148,17 @@ public class Attack : MonoBehaviour {
             {
                 _weapon2.GetComponent<WeaponManager>().Attack();
             }
-            //transform.rotation = Quaternion.LookRotation(new Vector3(diff.x, 0, diff.z));
-
+            
             if (_flag == false)
             {
-                _model.transform.LookAt(_target.transform);
+                if (_targetFlag == false)
+                {
+                    _model.transform.LookAt(_target.transform);
+                }
+                else if(_targetFlag == true)
+                {
+                    _model.transform.LookAt(_cameraObj.transform);
+                }
                 //_flag = true;
             }
             //攻撃モーション
@@ -173,7 +191,17 @@ public class Attack : MonoBehaviour {
     //
     public Vector3 getPosition()
     {
-        return _target.transform.position + new Vector3(0,1,0);
+        Vector3 pos = Vector3.zero;
+
+        if (_targetFlag == false)
+        {
+            pos = _target.transform.position + new Vector3(0, 1, 0);
+        }
+        else if (_targetFlag == true)
+        {
+            pos = _cameraObj.transform.position + new Vector3(0, 1, 0);
+        }
+        return pos;
     }
 
 }

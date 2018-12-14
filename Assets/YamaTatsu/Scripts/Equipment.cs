@@ -155,7 +155,8 @@ public class Equipment : MonoBehaviour {
     private enum MODEL_STATE
     {
         UNITY,
-        ION
+        ION,
+        Queendiva
     }
 
     //
@@ -305,6 +306,12 @@ public class Equipment : MonoBehaviour {
         //どこを選択しているかのState
         if (_nextFlag == false)
         {
+            //Bボタンが押されたらタイトルシーンに戻る
+            if(_controller.ButtonDown(Button.B))
+            {
+                //タイトルシーンに遷移
+            }
+
             if (_mainFlag == false)
             {
                 _state = ChooseState(_state);
@@ -444,22 +451,26 @@ public class Equipment : MonoBehaviour {
                 //コントローラ操作
                 _modelState = ChooseState(_modelState);
 
+                //カーソルが一番上までいったら一番下にする
                 if (_modelState < (int)MODEL_STATE.UNITY)
                 {
-                    _modelState = (int)MODEL_STATE.ION;
+                    _modelState = (int)MODEL_STATE.Queendiva;
                 }
-
-                if (_modelState > (int)MODEL_STATE.ION)
+                else if (_modelState > (int)MODEL_STATE.Queendiva)
                 {
                     _modelState = (int)MODEL_STATE.UNITY;
                 }
 
+                //ステートに合わせてキャラ選択を変える
                 switch (_modelState)
                 {
                     case (int)MODEL_STATE.UNITY:
                         _cusor4.localPosition = _modelImage2[_modelState].localPosition;
                         break;
                     case (int)MODEL_STATE.ION:
+                        _cusor4.localPosition = _modelImage2[_modelState].localPosition;
+                        break;
+                    case (int)MODEL_STATE.Queendiva:
                         _cusor4.localPosition = _modelImage2[_modelState].localPosition;
                         break;
                 }
@@ -477,6 +488,13 @@ public class Equipment : MonoBehaviour {
                             _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
                             break;
                         case (int)MODEL_STATE.ION:
+                            //選んだ武器を装備
+                            _audioSource.PlayOneShot(_decision);
+                            _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
+                            _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
+                            _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
+                            break;
+                        case (int)MODEL_STATE.Queendiva:
                             //選んだ武器を装備
                             _audioSource.PlayOneShot(_decision);
                             _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
@@ -616,12 +634,12 @@ public class Equipment : MonoBehaviour {
                 _modelFlag = true;
                 break;
             case EQUIPMENT_STATE.MAIN_WEAPON1:
-                _bar.position = _mainWeapon1.position + new Vector3(151,21,0);
+                _bar.position = _modelImage.position + new Vector3(151,21,0);
                 _weaponState = 0;
                 _barFlag = true;
                 break;
             case EQUIPMENT_STATE.MAIN_WEAPON2:
-                _bar.position = _mainWeapon2.position + new Vector3(151, 21, 0);
+                _bar.position = _modelImage.position + new Vector3(151, 21, 0);
                 _weaponState = 1;
                 _barFlag = true;
                 break;

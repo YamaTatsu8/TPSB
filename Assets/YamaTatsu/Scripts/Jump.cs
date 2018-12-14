@@ -86,13 +86,13 @@ public class Jump : MonoBehaviour
             _groundFlag = false;
 
             //飛ぶモーションに変更
-            _animator.SetBool("Jump", true);
+            //_animator.SetBool("Jump", true);
 
             gage.GetComponent<EP>().UseEp(50);
         }
         else
         {
-            _animator.SetBool("Jump", false);
+            //_animator.SetBool("Jump", false);
             gage.GetComponent<EP>().RecoveryEP(3);
         }
 

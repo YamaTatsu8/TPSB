@@ -21,6 +21,9 @@ public class LookCamera : MonoBehaviour {
     [SerializeField]
     private GameObject target;
 
+    //ロックオン解除時のオブジェ
+    private GameObject _cameraObj;
+
     //コントローラのスクリプト
     GameController controller;
 
@@ -39,6 +42,15 @@ public class LookCamera : MonoBehaviour {
 
     //カメラフラグ
     private bool _cameraFlag = false;
+
+    //ロックオン解除フラグ
+    private bool _targetFlag;
+
+
+
+    //オフセット
+    [SerializeField]
+    private Vector3 _offsetVec = new Vector3(0, 2, 0);
 
     // Use this for initialization
     void Start () {
@@ -64,6 +76,8 @@ public class LookCamera : MonoBehaviour {
 
             target = GameObject.FindGameObjectWithTag("Enemy");
 
+            _cameraObj = GameObject.Find("CameraObj");
+
             _right = GameObject.Find("CameraRight");
 
             _left = GameObject.Find("CameraLeft");
@@ -72,26 +86,56 @@ public class LookCamera : MonoBehaviour {
 
         }
 
-        Vector3 pos;
-
-        //
-        pos = (_tps.transform.position - target.transform.position);
-
-        //playerのポジションに入れる
-        transform.position = _tps.transform.position + pos.normalized * 3 + _offset;
-
-        _target = target;
-
-        if(_target)
+        //R1押されたらロックオンの切り替え
+        if(controller.ButtonDown(Button.R1))
         {
-            LockOnTargetObjcet(_target);
+            _targetFlag = !_targetFlag;
         }
 
-        float angle_x = 180f <= transform.eulerAngles.x ? transform.eulerAngles.x - 360 : transform.eulerAngles.x;
-        transform.eulerAngles = new Vector3(
-            Mathf.Clamp(angle_x, ANGLE_LIMIT_DOWN, ANGLE_LIMIT_UP),
-            transform.eulerAngles.y,
-            transform.eulerAngles.z);
+        Debug.Log(_targetFlag);
+
+        if (_targetFlag == false)
+        {
+            Vector3 pos;
+
+            pos = (_tps.transform.position - target.transform.position);
+
+            //playerのポジションに入れる
+            transform.position = _tps.transform.position + pos.normalized * 3 + _offset;
+
+            _target = target;
+
+            if (_target)
+            {
+                LockOnTargetObjcet(_target);
+            }
+            float angle_x = 180f <= transform.eulerAngles.x ? transform.eulerAngles.x - 360 : transform.eulerAngles.x;
+            transform.eulerAngles = new Vector3(
+                Mathf.Clamp(angle_x, ANGLE_LIMIT_DOWN, ANGLE_LIMIT_UP),
+                transform.eulerAngles.y,
+                transform.eulerAngles.z);
+        }
+        else if(_targetFlag == true)
+        {
+            Vector3 pos;
+
+            pos = (_tps.transform.position - _cameraObj.transform.position);
+
+            //playerのポジションに入れる
+            transform.position = _tps.transform.position + pos.normalized * 3 + _offset;
+
+            if (_cameraObj)
+            {
+                LockOnTargetObjcet(_cameraObj);
+            }
+            float angle_x = 180f <= transform.eulerAngles.x ? transform.eulerAngles.x - 360 : transform.eulerAngles.x;
+            transform.eulerAngles = new Vector3(
+                Mathf.Clamp(angle_x, ANGLE_LIMIT_DOWN, ANGLE_LIMIT_UP),
+                transform.eulerAngles.y,
+                transform.eulerAngles.z);
+        }
+
+       
 
         if (controller.ButtonDown(Button.R3))
         {
