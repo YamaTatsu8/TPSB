@@ -70,6 +70,8 @@ public class ResultSceneManager : MonoBehaviour
                 
                 break;
             case "Stage3":
+                pos = new Vector3(0, 4, 0);
+                _stage.transform.localPosition = pos;
                 break;
             case "Stage4":
                 break;
