@@ -23,9 +23,6 @@ public class Equipment : MonoBehaviour {
     //モデルバー
     private RectTransform _modelBar;
 
-    //カーソル
-    private RectTransform _cursor;
-
     private RectTransform _modelImage;
 
     private RectTransform _mainWeapon1;
@@ -40,7 +37,6 @@ public class Equipment : MonoBehaviour {
     private RectTransform _pop;
 
     //stateの値
-    [SerializeField]
     private int _state = 0;
 
     //
@@ -177,6 +173,13 @@ public class Equipment : MonoBehaviour {
     //モデルのバーに対してのフラグ
     private bool _modelFlag = false;
 
+    //バーのスプライト
+    [SerializeField]
+    private Sprite _sprite;
+
+    [SerializeField]
+    private Sprite _sprite2;
+
     private enum NEXT_STATE
     {
         YES,
@@ -201,7 +204,6 @@ public class Equipment : MonoBehaviour {
         _audioSource = gameObject.GetComponent<AudioSource>();
 
         //コンポーネント
-        _cursor = GameObject.Find("Cursor").GetComponent<RectTransform>();
         _modelImage = GameObject.Find("Model").GetComponent<RectTransform>();
         _mainWeapon1 = GameObject.Find("MainWeapon1").GetComponent<RectTransform>();
         _mainWeapon2 = GameObject.Find("MainWeapon2").GetComponent<RectTransform>();
@@ -224,9 +226,6 @@ public class Equipment : MonoBehaviour {
 
         //モデルバーのスケール
         _modelBar.localScale = new Vector3(1.5f, 0, 1);
-
-        //
-        _cursor.position = _modelImage.position;
 
         //メイン武器のリスト作成
         WeaponAdd("WeaponList", _weaponList);
@@ -331,13 +330,28 @@ public class Equipment : MonoBehaviour {
                 switch (_state)
                 {
                     case (int)EQUIPMENT_STATE.MODEL:
-                        _cursor.position = _modelImage.position;
+                        _mainWeapon2.GetComponent<Image>().sprite = _sprite;
+                        _mainWeapon2.localScale = new Vector3(1.2f, 1.2f, 1);
+                        _mainWeapon1.GetComponent<Image>().sprite = _sprite;
+                        _mainWeapon1.localScale = new Vector3(1.2f, 1.2f, 1);
+                        _modelImage.GetComponent<Image>().sprite = _sprite2;
+                        _modelImage.localScale = new Vector3(1.5f, 1.5f, 1);
                         break;
                     case (int)EQUIPMENT_STATE.MAIN_WEAPON1:
-                        _cursor.position = _mainWeapon1.position;
+                        _modelImage.GetComponent<Image>().sprite = _sprite;
+                        _modelImage.localScale = new Vector3(1.2f, 1.2f, 1);
+                        _mainWeapon2.localScale = new Vector3(1.2f, 1.2f, 1);
+                        _mainWeapon2.GetComponent<Image>().sprite = _sprite;
+                        _mainWeapon1.GetComponent<Image>().sprite = _sprite2;
+                        _mainWeapon1.localScale = new Vector3(1.5f, 1.5f, 1);
                         break;
                     case (int)EQUIPMENT_STATE.MAIN_WEAPON2:
-                        _cursor.position = _mainWeapon2.position;
+                        _modelImage.GetComponent<Image>().sprite = _sprite;
+                        _modelImage.localScale = new Vector3(1.2f, 1.2f, 1);
+                        _mainWeapon1.GetComponent<Image>().sprite = _sprite;
+                        _mainWeapon1.localScale = new Vector3(1.2f, 1.2f, 1);
+                        _mainWeapon2.GetComponent<Image>().sprite = _sprite2;
+                        _mainWeapon2.localScale = new Vector3(1.5f, 1.5f, 1);
                         break;
                 }
 
@@ -676,9 +690,9 @@ public class Equipment : MonoBehaviour {
     //Popの拡縮
     private void PopZoom()
     {
-        if(_pop.localScale.y < 0.5f)
+        if(_pop.localScale.y < 0.3f)
         {
-            _pop.localScale += new Vector3(0.4f, 0.1f, 0.1f);
+            _pop.localScale += new Vector3(0.3f, 0.05f, 0.1f);
         }
     }
 
