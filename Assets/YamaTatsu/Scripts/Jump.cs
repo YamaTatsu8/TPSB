@@ -42,8 +42,6 @@ public class Jump : MonoBehaviour
 
         gage = canvas;
 
-        //_gage = gage.GetComponent<EP>();
-
     }
 
     // Update is called once per frame
@@ -53,8 +51,6 @@ public class Jump : MonoBehaviour
         controller.ControllerUpdate();
 
         Fly();
-
-        //Boost();
 
     }
 
@@ -112,11 +108,6 @@ public class Jump : MonoBehaviour
             rb.velocity += (Vector3.forward * 0.1f) / rb.mass;
 
         }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-       
     }
 
 }

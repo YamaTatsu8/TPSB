@@ -29,7 +29,7 @@ public class Status : MonoBehaviour {
             Destroy(this.gameObject);
         }
 
-        //_animator.SetBool("Damage", false);
+        _animator.SetTrigger("Idle");
     }
 
     public bool getDestroy()
@@ -41,7 +41,7 @@ public class Status : MonoBehaviour {
     public void hitDamage(int damage)
     {
         _HP -= damage;
-        //_animator.SetBool("Damage", true);
+        _animator.SetTrigger("Damage");
     }
 
     public float getHP()

@@ -156,7 +156,8 @@ public class Equipment : MonoBehaviour {
     {
         UNITY,
         ION,
-        Queendiva
+        Queendiva,
+        Misyara
     }
 
     //
@@ -454,9 +455,9 @@ public class Equipment : MonoBehaviour {
                 //カーソルが一番上までいったら一番下にする
                 if (_modelState < (int)MODEL_STATE.UNITY)
                 {
-                    _modelState = (int)MODEL_STATE.Queendiva;
+                    _modelState = (int)MODEL_STATE.Misyara;
                 }
-                else if (_modelState > (int)MODEL_STATE.Queendiva)
+                else if (_modelState > (int)MODEL_STATE.Misyara)
                 {
                     _modelState = (int)MODEL_STATE.UNITY;
                 }
@@ -471,6 +472,9 @@ public class Equipment : MonoBehaviour {
                         _cusor4.localPosition = _modelImage2[_modelState].localPosition;
                         break;
                     case (int)MODEL_STATE.Queendiva:
+                        _cusor4.localPosition = _modelImage2[_modelState].localPosition;
+                        break;
+                    case (int)MODEL_STATE.Misyara:
                         _cusor4.localPosition = _modelImage2[_modelState].localPosition;
                         break;
                 }
@@ -496,6 +500,12 @@ public class Equipment : MonoBehaviour {
                             break;
                         case (int)MODEL_STATE.Queendiva:
                             //選んだ武器を装備
+                            _audioSource.PlayOneShot(_decision);
+                            _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
+                            _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
+                            _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
+                            break;
+                        case (int)MODEL_STATE.Misyara:
                             _audioSource.PlayOneShot(_decision);
                             _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
                             _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
