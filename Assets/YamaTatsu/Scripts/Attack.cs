@@ -105,6 +105,9 @@ public class Attack : MonoBehaviour {
 
         _cameraObj = GameObject.Find("CameraObj");
 
+        //サブ武器の取得
+        _subWeapon = GameObject.Find("SubWeapon");
+
         playerSystem.Init();
     }
 	
