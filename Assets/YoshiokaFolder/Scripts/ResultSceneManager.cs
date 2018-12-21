@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ResultSceneManager : MonoBehaviour
 {
-    Material _stageSkybox;                  //　スカイボックス保存用
-
+    private Material _stageSkybox;          //　スカイボックス保存用
     private GameController _controller;     //　ゲームコントローラー
     private GameObject _fadeObj;            //　フェード
     private GameObject _stage;              //　ステージ
+    private GameObject _character;          //　キャラクター
+    private string _characterName;           //　キャラクター名
 
     private bool _win = true;               //　True:勝ち、False:負け
     private bool _isStartFade = false;      //　True:フェード開始、False:フェード終了中
@@ -24,7 +25,7 @@ public class ResultSceneManager : MonoBehaviour
     /// 初期化処理
     /// </summary>
     public void Initialize()
-    {//　とりあえずステージ１のskyBox
+    {
         _controller = GameController.Instance;
         _isStartFade = false;
         _isEndedAnimation = false;
@@ -45,11 +46,21 @@ public class ResultSceneManager : MonoBehaviour
         _stage = (GameObject)Instantiate(Resources.Load("Prefabs/Stages/" + ssm.GetSelectStageName()));
         StageHeightAdjustment(ssm.GetSelectStageName());
 
+        //　戦っていたキャラクターを読み込む
+        GameObject ps = GameObject.Find("PlayerSystem");
+        _characterName = ps.GetComponent<PlayerSystem>().getChar();
+        Debug.Log(_characterName);
+        _characterName = "Ion";
+        _character = (GameObject)Instantiate(Resources.Load("Prefabs/ResultCharacter/" + _characterName));
+        _character.transform.position = new Vector3(20f, 3.9f, -20f);
+        _character.transform.Rotate(new Vector3(0, -30, 0));
+        _character.name = _characterName;
+
         //　戦っていたskyboxを読み込む
         _stageSkybox = (Material)Instantiate(Resources.Load("Material/" + ssm.GetSelectStageName() + "BackGround"));
         RenderSettings.skybox = _stageSkybox;
         //　ステージのライティングを初期化
-        RenderSettings.ambientSkyColor = Color.gray;
+        RenderSettings.ambientSkyColor = Color.white;
     }
 
     /// <summary>
@@ -158,9 +169,9 @@ public class ResultSceneManager : MonoBehaviour
         {
             GameObject frame = GameObject.Find("WinFrame");
             frame.GetComponent<Animator>().SetBool("startAnimation", true);
-
-            GameObject unityChan = GameObject.Find("unitychan");
-            unityChan.GetComponent<Animator>().SetBool("startWinAnimation", true);
+            
+            GameObject charactar = GameObject.Find(_characterName);
+            charactar.GetComponent<Animator>().SetBool("startWinAnimation", true);
 
             AnimatorStateInfo winFrameStateInfo = frame.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
             if (winFrameStateInfo.IsName("EndWinFrame"))
@@ -187,8 +198,8 @@ public class ResultSceneManager : MonoBehaviour
             GameObject frame = GameObject.Find("LoseFrame");
             frame.GetComponent<Animator>().SetBool("startAnimation", true);
 
-            GameObject unityChan = GameObject.Find("unitychan");
-            unityChan.GetComponent<Animator>().SetBool("startLoseAnimation", true);
+            GameObject charactar = GameObject.Find(_characterName);
+            charactar.GetComponent<Animator>().SetBool("startLoseAnimation", true);
 
             AnimatorStateInfo winFrameStateInfo = frame.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
             if (winFrameStateInfo.IsName("EndWinFrame"))
@@ -197,6 +208,42 @@ public class ResultSceneManager : MonoBehaviour
                 logo.GetComponent<Animator>().SetBool("startLoseAnimation", true);
             }
         }
+    }
+
+    /// <summary>
+    /// ユニティーちゃんの勝利アニメーション
+    /// </summary>
+    private void UnityChanWinAnimation()
+    {
+
+    }
+    /// <summary>
+    /// ユニティーちゃんの敗北アニメーション
+    /// </summary>
+    private void UnityChanLoseAnimation()
+    {
+
+    }
+
+    /// <summary>
+    /// イオンの勝利アニメーション
+    /// </summary>
+    private void IonWinAnimation()
+    {
+
+    }
+    /// <summary>
+    /// イオンの敗北アニメーション
+    /// </summary>
+    private void IonLoseAnimation()
+    {
+
+    }
+
+
+    private void QueendivaWinAnimation()
+    {
+
     }
 
     /// <summary>
