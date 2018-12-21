@@ -92,8 +92,7 @@ public class LookCamera : MonoBehaviour {
             _targetFlag = !_targetFlag;
         }
 
-        Debug.Log(_targetFlag);
-
+        //falseの場合、敵をロックする
         if (_targetFlag == false)
         {
             Vector3 pos;
@@ -117,7 +116,10 @@ public class LookCamera : MonoBehaviour {
         }
         else if(_targetFlag == true)
         {
+            //trueの場合、フリールックカメラに切り替える
             Vector3 pos;
+
+            
 
             pos = (_tps.transform.position - _cameraObj.transform.position);
 
@@ -135,8 +137,6 @@ public class LookCamera : MonoBehaviour {
                 transform.eulerAngles.z);
         }
 
-       
-
         if (controller.ButtonDown(Button.R3))
         {
             _flag = !_flag;
@@ -150,6 +150,13 @@ public class LookCamera : MonoBehaviour {
     {
         transform.LookAt(target.transform.position + new Vector3(0, 1.0f, 0), Vector3.up);
     }
+
+    //カメラフラグの取得
+    public bool GetFlag()
+    {
+        return _targetFlag;
+    }
+
 
     
 }

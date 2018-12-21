@@ -126,7 +126,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1052961795354164
 GameObject:
   m_ObjectHideFlags: 1
@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 65865146164927252}
   - component: {fileID: 114819141149473424}
   m_Layer: 11
-  m_Name: MissilePod
+  m_Name: SubWeapon
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1186,7 +1186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1398334042105698
 GameObject:
   m_ObjectHideFlags: 1
@@ -1741,7 +1741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1589419894719412
 GameObject:
   m_ObjectHideFlags: 1
@@ -2032,7 +2032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1697722822705400
 GameObject:
   m_ObjectHideFlags: 1
