@@ -34,6 +34,10 @@ public class WeaponManager : MonoBehaviour
     [SerializeField]
     private Selector _mode = Selector.AUTO;
 
+    // 撃つ弾の種類
+    [SerializeField]
+    private BulletType _type = BulletType.Normal;
+
     // 弾を撃てるか
     private bool _isShot = true;
 
@@ -43,14 +47,21 @@ public class WeaponManager : MonoBehaviour
     // 銃口
     private Transform _muzzle;
 
-    // コントローラー
-    private GameController _con;
-
     // 弾のプレハブ
     [SerializeField]
     private GameObject _bulletPrefab;
+
+    // SEの名前
+    [SerializeField]
+    private string _seName = "";
     
     private IEnumerator _routine;
+
+    // コントローラー
+    private GameController _con;
+
+    // オーディオマネージャー
+    private AudioManager _audioManager;
 
     public int Capacity
     {
@@ -77,6 +88,11 @@ public class WeaponManager : MonoBehaviour
         get { return _muzzle; }
     }
 
+    public BulletType Type
+    {
+        get { return _type; }
+    }
+
     public GameObject BulletPrefab
     {
         get { return _bulletPrefab; }
@@ -93,6 +109,7 @@ public class WeaponManager : MonoBehaviour
 
         _con = GameController.Instance;
 
+        _audioManager = AudioManager.Instance;
     }
 
     private void Start()
@@ -104,17 +121,11 @@ public class WeaponManager : MonoBehaviour
         {
             StopCoroutine(_routine);
         }
-
-        Debug.Log("Routine:" + _routine);
-        Debug.Log("isBurst:" + _isBurst);
     }
 
     private void Update()
     {
         _con.ControllerUpdate();
-
-        Debug.Log(_isShot);
-        Debug.Log(_isBurst);
 
         if (!_isShot)
         {
@@ -183,7 +194,6 @@ public class WeaponManager : MonoBehaviour
 
             _routine = this.DelayMethodForSpecifiedTime(_reloadTime, () =>
             {
-                Debug.Log("Reload");
                 _remainingBullets = _capacity;
 
                 _routine = null;
@@ -196,6 +206,11 @@ public class WeaponManager : MonoBehaviour
     {
         if (this.GetComponent<RayCastShoot>().Shot(fireRate))
         {
+            if (_seName != "")
+            {
+                _audioManager.PlaySE(_seName);
+            }
+
             _remainingBullets--;
         }
     }

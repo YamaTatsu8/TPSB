@@ -7,3 +7,10 @@ public enum Direction
     Left,
     Right
 }
+
+public enum BulletType
+{
+    Normal,
+    Missile,
+    Laser,
+}

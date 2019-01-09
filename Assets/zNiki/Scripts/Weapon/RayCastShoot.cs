@@ -23,11 +23,14 @@ public class RayCastShoot : MonoBehaviour
     // 弾速
     private float _bulletSpeed = 50.0f;
 
-    // 射程(DrawLineの距離)
+    // 射程
     private float _range = 30.0f;
 
+    // 対象の位置
     private Vector3 _targetPos = Vector3.zero;
 
+    // 弾の種類
+    private BulletType _type;
 
     // Use this for initialization
     void Start ()
@@ -39,6 +42,8 @@ public class RayCastShoot : MonoBehaviour
         _muzzle = this.GetComponent<WeaponManager>().Muzzle;
 
         _bulletPrefab = this.GetComponent<WeaponManager>().BulletPrefab;
+
+        _type = this.GetComponent<WeaponManager>().Type;
     }
 
     public bool Shot(float fireRate)
@@ -59,15 +64,28 @@ public class RayCastShoot : MonoBehaviour
 
             // 弾丸の生成
             GameObject bulletClone = Instantiate<GameObject>(_bulletPrefab);
-            // bulletCloneの位置を調整
+
+            // 弾丸の位置を調整
             bulletClone.transform.position = _muzzle.position;
 
-            RaycastHit hit;
-
-            if (_targetPos != Vector3.zero)
+            switch (_type)
             {
-                bulletClone.GetComponent<Rigidbody>().velocity = (_targetPos - bulletClone.transform.position).normalized * _bulletSpeed;
+                case BulletType.Normal:
+                    if (_targetPos != Vector3.zero)
+                    {
+                        bulletClone.GetComponent<Rigidbody>().velocity = (_targetPos - bulletClone.transform.position).normalized * _bulletSpeed;
+                    }
+                    break;
+                case BulletType.Missile:
+                    StartCoroutine(Missile(bulletClone, this.GetComponent<RayCastShoot>(), _muzzle.position));
+                    break;
+                case BulletType.Laser:
+                    break;
+                default:
+                    break;
             }
+            
+            //RaycastHit hit;
 
             //if (Physics.Raycast(ray, out hit, _range))
             //{
@@ -85,5 +103,41 @@ public class RayCastShoot : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public static IEnumerator Missile(GameObject bulletClone, RayCastShoot r, Vector3 muzzlePos)
+    {
+        float timer = 0.0f;
+
+        Vector3 targetPos = Vector3.zero; 
+
+        while (timer < 4.0)
+        {
+            targetPos = r.transform.root.GetComponent<Attack>().getPosition();
+
+            double dir = Math.Sqrt(Math.Abs(muzzlePos.x - targetPos.x) * 2 + Math.Abs(muzzlePos.z - targetPos.z) * 2);
+
+            targetPos = targetPos + new Vector3(0, (float)dir / 4.5f, 0);
+
+            if (timer > 0.4)
+            {
+                bulletClone.transform.rotation = Quaternion.Lerp(
+                    bulletClone.transform.rotation,
+                    Quaternion.LookRotation((targetPos + new Vector3(0, -2, 0)) - bulletClone.transform.position),
+                    Time.deltaTime * 100);
+
+                Vector3 front = bulletClone.transform.TransformDirection(Vector3.forward);
+
+                bulletClone.GetComponent<Rigidbody>().AddForce(front * 150.0f, ForceMode.Force);
+            }
+            else if (0.2 > timer)
+            {
+                bulletClone.GetComponent<Rigidbody>().AddForce(bulletClone.transform.up * 5000 * Time.deltaTime, ForceMode.Force);
+            }
+
+            timer += Time.deltaTime;
+
+            yield return null;
+        }
     }
 }

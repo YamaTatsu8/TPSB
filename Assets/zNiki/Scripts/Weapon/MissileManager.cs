@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletController: MonoBehaviour
+public class MissileManager : MonoBehaviour
 {
     // 弾のダメージ
     [SerializeField]
@@ -12,37 +12,24 @@ public class BulletController: MonoBehaviour
     [SerializeField]
     private float _destroyTime = 3.0f;
 
-    // SEの名前
-    [SerializeField]
-    private string _seName = "";
-
-    // オーディオマネージャー
-    private AudioManager _audioManager;
-
     public void DeleteBullet(GameObject bulletClone)
     {
         this.Delay(_destroyTime, () =>
         {
-            if (_seName != "")
-            {
-                _audioManager.PlaySE(_seName);
-            }
-
             Destroy(bulletClone);
         });
     }
-    
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Target")
         {
             collision.gameObject.GetComponent<Status>().hitDamage(_bulletDamage);
 
-            if (_seName != "")
-            {
-                _audioManager.PlaySE(_seName);
-            }
-
+            Destroy(this.gameObject);
+        }
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Wall")
+        {
             Destroy(this.gameObject);
         }
     }
