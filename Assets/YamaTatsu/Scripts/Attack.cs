@@ -164,13 +164,16 @@ public class Attack : MonoBehaviour {
                 }
                 //_flag = true;
             }
-            //攻撃モーション
-            _animator.SetBool("Attack", true);
         }
         else
         {
             //攻撃モーション
             _animator.SetBool("Attack", false);
+        }
+
+        if (controller.TriggerDown(Trigger.RIGHT))
+        {
+            _subWeapon.GetComponent<WeaponManager>().Attack();
         }
 
         Player_pos = transform.position;

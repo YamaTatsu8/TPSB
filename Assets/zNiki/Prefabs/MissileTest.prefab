@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33223415429109986}
   - component: {fileID: 23650687423525826}
   - component: {fileID: 135595803623795190}
-  - component: {fileID: 114789983455784218}
   - component: {fileID: 114157936912438460}
   - component: {fileID: 54395140234538236}
   - component: {fileID: 96896111590209314}
@@ -314,19 +313,6 @@ MonoBehaviour:
   _bulletDamage: 10
   _destroyTime: 3
   _seName: 
---- !u!114 &114789983455784218
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1512723301003088}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6dd69ec02fffc84cb734c8bb1d0990a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _effect: {fileID: 0}
-  _shoot: {fileID: 8300000, guid: 60942073a9bc7524cbc8b9b2a00594d8, type: 3}
 --- !u!135 &135595803623795190
 SphereCollider:
   m_ObjectHideFlags: 1
