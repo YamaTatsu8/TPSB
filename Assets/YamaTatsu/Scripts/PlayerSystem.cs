@@ -57,6 +57,7 @@ public class PlayerSystem : MonoBehaviour {
     //ゲッター
     public string getChar()
     {
+        Debug.Log(_char);
         return _char;
     }
 
