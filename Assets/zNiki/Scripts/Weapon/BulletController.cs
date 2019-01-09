@@ -37,13 +37,13 @@ public class BulletController: MonoBehaviour
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Target")
         {
             collision.gameObject.GetComponent<Status>().hitDamage(_bulletDamage);
-
-            if (_seName != "")
-            {
-                _audioManager.PlaySE(_seName);
-            }
-
-            Destroy(this.gameObject);
         }
+
+        if (_seName != "")
+        {
+            _audioManager.PlaySE(_seName);
+        }
+
+        Destroy(this.gameObject);
     }
 }
