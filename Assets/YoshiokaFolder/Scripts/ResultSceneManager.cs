@@ -49,18 +49,22 @@ public class ResultSceneManager : MonoBehaviour
         //　戦っていたキャラクターを読み込む
         GameObject ps = GameObject.Find("PlayerSystem");
         _characterName = ps.GetComponent<PlayerSystem>().getChar();
-        Debug.Log(_characterName);
-        _characterName = "Ion";
         _character = (GameObject)Instantiate(Resources.Load("Prefabs/ResultCharacter/" + _characterName));
-        _character.transform.position = new Vector3(20f, 3.9f, -20f);
+        _character.transform.position = new Vector3(20f, 4.1f, -20f);
+        if ((_characterName == "Noah") && (_win))
+        {
+            _character.transform.position = new Vector3(19.5f, 4.1f, -18f);
+            _character.transform.Rotate(new Vector3(0, 30, 0));
+        }
         _character.transform.Rotate(new Vector3(0, -30, 0));
         _character.name = _characterName;
+        ps.GetComponent<PlayerSystem>().Init();
 
         //　戦っていたskyboxを読み込む
         _stageSkybox = (Material)Instantiate(Resources.Load("Material/" + ssm.GetSelectStageName() + "BackGround"));
         RenderSettings.skybox = _stageSkybox;
         //　ステージのライティングを初期化
-        RenderSettings.ambientSkyColor = Color.white;
+        RenderSettings.ambientSkyColor = Color.gray;
     }
 
     /// <summary>
@@ -208,42 +212,6 @@ public class ResultSceneManager : MonoBehaviour
                 logo.GetComponent<Animator>().SetBool("startLoseAnimation", true);
             }
         }
-    }
-
-    /// <summary>
-    /// ユニティーちゃんの勝利アニメーション
-    /// </summary>
-    private void UnityChanWinAnimation()
-    {
-
-    }
-    /// <summary>
-    /// ユニティーちゃんの敗北アニメーション
-    /// </summary>
-    private void UnityChanLoseAnimation()
-    {
-
-    }
-
-    /// <summary>
-    /// イオンの勝利アニメーション
-    /// </summary>
-    private void IonWinAnimation()
-    {
-
-    }
-    /// <summary>
-    /// イオンの敗北アニメーション
-    /// </summary>
-    private void IonLoseAnimation()
-    {
-
-    }
-
-
-    private void QueendivaWinAnimation()
-    {
-
     }
 
     /// <summary>
