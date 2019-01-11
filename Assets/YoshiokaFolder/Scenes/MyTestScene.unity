@@ -113,63 +113,68 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &194142422
+--- !u!1001 &232840476
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
+    - target: {fileID: 4383548750219490, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
+    - target: {fileID: 4383548750219490, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
+    - target: {fileID: 4383548750219490, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
+    - target: {fileID: 4383548750219490, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
+    - target: {fileID: 4383548750219490, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
+    - target: {fileID: 4383548750219490, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
+    - target: {fileID: 4383548750219490, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
+    - target: {fileID: 4383548750219490, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1710882779402680, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
+    - target: {fileID: 1397505473302044, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
+  m_SourcePrefab: {fileID: 100100000, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
   m_IsPrefabAsset: 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!1001 &287114007
 =======
 --- !u!1001 &232840476
 >>>>>>> ResultSceneのIonとUnity-ChanとQueendivaの勝利敗北演出追加
+=======
+--- !u!1001 &287114007
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< HEAD
 <<<<<<< HEAD
     - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
       propertyPath: m_LocalPosition.x
@@ -190,21 +195,25 @@ Prefab:
     - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
 =======
     - target: {fileID: 4383548750219490, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
+=======
+    - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4383548750219490, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
+    - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4383548750219490, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
+    - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4383548750219490, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
+    - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 4383548750219490, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
 >>>>>>> ResultSceneのIonとUnity-ChanとQueendivaの勝利敗北演出追加
       propertyPath: m_LocalRotation.y
@@ -244,16 +253,40 @@ Prefab:
   m_SourcePrefab: {fileID: 100100000, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
 =======
     - target: {fileID: 4383548750219490, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1397505473302044, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
-      propertyPath: m_IsActive
+=======
+    - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
+      propertyPath: m_LocalRotation.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 136304821862993910, guid: 7e85f20bc2b71d745b301a7bd3e129b0,
+        type: 2}
+      propertyPath: m_Center.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110943632542534, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
+<<<<<<< HEAD
   m_SourcePrefab: {fileID: 100100000, guid: 5702fbc2571e28c45a8e39067ed5d6b9, type: 2}
 >>>>>>> ResultSceneのIonとUnity-ChanとQueendivaの勝利敗北演出追加
+=======
+  m_SourcePrefab: {fileID: 100100000, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
   m_IsPrefabAsset: 0
 --- !u!1001 &422241514
 Prefab:
@@ -262,6 +295,7 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< HEAD
 <<<<<<< HEAD
     - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
       propertyPath: m_LocalPosition.x
@@ -298,43 +332,51 @@ Prefab:
     - target: {fileID: 1710882779402680, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
 =======
     - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
+=======
+    - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
+    - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
+    - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
+    - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
+    - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
       propertyPath: m_LocalRotation.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
+    - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
+    - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
       propertyPath: m_LocalRotation.w
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4766957515970930, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
+    - target: {fileID: 4991756983036766, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 1110943632542534, guid: 7e85f20bc2b71d745b301a7bd3e129b0, type: 2}
 >>>>>>> ResultSceneのIonとUnity-ChanとQueendivaの勝利敗北演出追加
+=======
+    - target: {fileID: 1710882779402680, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+<<<<<<< HEAD
 <<<<<<< HEAD
   m_SourcePrefab: {fileID: 100100000, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
   m_IsPrefabAsset: 0
@@ -344,12 +386,18 @@ Prefab:
   m_IsPrefabAsset: 0
 --- !u!1001 &523905564
 >>>>>>> ResultSceneのIonとUnity-ChanとQueendivaの勝利敗北演出追加
+=======
+  m_SourcePrefab: {fileID: 100100000, guid: f201af87eb1efb64d969609e1f81da67, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!1001 &441134792
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< HEAD
 <<<<<<< HEAD
     - target: {fileID: 4060057380559886, guid: a8db93144e068b141959f92cfd650ef5, type: 2}
       propertyPath: m_LocalPosition.x
@@ -391,40 +439,51 @@ Prefab:
   m_SourcePrefab: {fileID: 100100000, guid: a8db93144e068b141959f92cfd650ef5, type: 2}
 =======
     - target: {fileID: 4771953004772856, guid: c4920b6e53a48b141b7fb1db2d97de5c, type: 2}
+=======
+    - target: {fileID: 4060057380559886, guid: a8db93144e068b141959f92cfd650ef5, type: 2}
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4771953004772856, guid: c4920b6e53a48b141b7fb1db2d97de5c, type: 2}
+    - target: {fileID: 4060057380559886, guid: a8db93144e068b141959f92cfd650ef5, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4771953004772856, guid: c4920b6e53a48b141b7fb1db2d97de5c, type: 2}
+    - target: {fileID: 4060057380559886, guid: a8db93144e068b141959f92cfd650ef5, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4771953004772856, guid: c4920b6e53a48b141b7fb1db2d97de5c, type: 2}
+    - target: {fileID: 4060057380559886, guid: a8db93144e068b141959f92cfd650ef5, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4771953004772856, guid: c4920b6e53a48b141b7fb1db2d97de5c, type: 2}
+    - target: {fileID: 4060057380559886, guid: a8db93144e068b141959f92cfd650ef5, type: 2}
       propertyPath: m_LocalRotation.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4771953004772856, guid: c4920b6e53a48b141b7fb1db2d97de5c, type: 2}
+    - target: {fileID: 4060057380559886, guid: a8db93144e068b141959f92cfd650ef5, type: 2}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4771953004772856, guid: c4920b6e53a48b141b7fb1db2d97de5c, type: 2}
+    - target: {fileID: 4060057380559886, guid: a8db93144e068b141959f92cfd650ef5, type: 2}
       propertyPath: m_LocalRotation.w
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4771953004772856, guid: c4920b6e53a48b141b7fb1db2d97de5c, type: 2}
+    - target: {fileID: 4060057380559886, guid: a8db93144e068b141959f92cfd650ef5, type: 2}
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1359162711680834, guid: a8db93144e068b141959f92cfd650ef5, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
+<<<<<<< HEAD
   m_SourcePrefab: {fileID: 100100000, guid: c4920b6e53a48b141b7fb1db2d97de5c, type: 2}
 >>>>>>> ResultSceneのIonとUnity-ChanとQueendivaの勝利敗北演出追加
+=======
+  m_SourcePrefab: {fileID: 100100000, guid: a8db93144e068b141959f92cfd650ef5, type: 2}
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
   m_IsPrefabAsset: 0
 --- !u!1001 &812712518
 Prefab:
@@ -464,10 +523,14 @@ Prefab:
     - target: {fileID: 4744609354828444, guid: 91a5f5e963c9e854d911045c59ed6a9d, type: 2}
       propertyPath: m_RootOrder
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 5
 =======
       value: 6
 >>>>>>> ResultSceneのIonとUnity-ChanとQueendivaの勝利敗北演出追加
+=======
+      value: 5
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
       objectReference: {fileID: 0}
     - target: {fileID: 1983752724479834, guid: 91a5f5e963c9e854d911045c59ed6a9d, type: 2}
       propertyPath: m_IsActive
@@ -551,7 +614,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &852052151
 Prefab:
@@ -728,7 +791,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4234019343132826, guid: db754873be1365d4f97b2a2160d023ed, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1790942987578320, guid: db754873be1365d4f97b2a2160d023ed, type: 2}
       propertyPath: m_IsActive
@@ -805,5 +868,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}

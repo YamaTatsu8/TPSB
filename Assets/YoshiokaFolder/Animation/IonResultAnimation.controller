@@ -14,20 +14,28 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Controller: {fileID: 9100000}
 =======
     m_Controller: {fileID: 0}
 >>>>>>> ResultSceneのIonとUnity-ChanとQueendivaの勝利敗北演出追加
+=======
+    m_Controller: {fileID: 9100000}
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
   - m_Name: startLoseAnimation
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Controller: {fileID: 9100000}
 =======
     m_Controller: {fileID: 0}
 >>>>>>> ResultSceneのIonとUnity-ChanとQueendivaの勝利敗北演出追加
+=======
+    m_Controller: {fileID: 9100000}
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -103,6 +111,7 @@ AnimatorStateTransition:
   m_IsExit: 0
   serializedVersion: 3
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_TransitionDuration: 0.25000003
   m_TransitionOffset: 0
   m_ExitTime: 0.0631427
@@ -111,6 +120,11 @@ AnimatorStateTransition:
   m_TransitionOffset: 0
   m_ExitTime: 0.875
 >>>>>>> ResultSceneのIonとUnity-ChanとQueendivaの勝利敗北演出追加
+=======
+  m_TransitionDuration: 0.25000003
+  m_TransitionOffset: 0
+  m_ExitTime: 0.0631427
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
