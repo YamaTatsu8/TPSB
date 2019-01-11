@@ -107,8 +107,6 @@ public class Attack : MonoBehaviour {
 
         //サブ武器の取得
         _subWeapon = GameObject.Find("SubWeapon");
-
-        playerSystem.Init();
     }
 	
 	// Update is called once per frame
