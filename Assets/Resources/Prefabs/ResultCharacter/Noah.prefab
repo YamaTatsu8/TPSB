@@ -4715,8 +4715,10 @@ MonoBehaviour:
   _roundsPerSecond: 100
   _reloadTime: 2
   _mode: 1
+  _type: 0
   _bulletPrefab: {fileID: 1243580894668578, guid: 8e6f70bc3d53d4440974079dd2b144fa,
     type: 2}
+  _seName: 
 --- !u!114 &114132242072751740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4823,8 +4825,10 @@ MonoBehaviour:
   _roundsPerSecond: 1
   _reloadTime: 1
   _mode: 1
+  _type: 0
   _bulletPrefab: {fileID: 1728188175131922, guid: beced145914b18847bf9316bedccb44c,
     type: 2}
+  _seName: 
 --- !u!114 &114179376118388324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4999,8 +5003,10 @@ MonoBehaviour:
   _roundsPerSecond: 1
   _reloadTime: 1
   _mode: 0
+  _type: 0
   _bulletPrefab: {fileID: 1769052643642674, guid: 0d8c7527940629f428e521fcb8ec795e,
     type: 2}
+  _seName: 
 --- !u!114 &114312275497852304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5352,8 +5358,10 @@ MonoBehaviour:
   _roundsPerSecond: 2
   _reloadTime: 2
   _mode: 2
+  _type: 0
   _bulletPrefab: {fileID: 1690340862790088, guid: 64c8824fd18996449b01cb1bd2c5abf9,
     type: 2}
+  _seName: 
 --- !u!114 &114650757946993802
 MonoBehaviour:
   m_ObjectHideFlags: 1

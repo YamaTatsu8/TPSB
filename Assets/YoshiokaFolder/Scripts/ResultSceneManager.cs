@@ -49,11 +49,6 @@ public class ResultSceneManager : MonoBehaviour
         //　戦っていたキャラクターを読み込む
         GameObject ps = GameObject.Find("PlayerSystem");
         _characterName = ps.GetComponent<PlayerSystem>().getChar();
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 6c153fb38cfc9cbc02b0fbd03d5f34ac43ecc88f
         _character = (GameObject)Instantiate(Resources.Load("Prefabs/ResultCharacter/" + _characterName));
         _character.transform.position = new Vector3(20f, 4.1f, -20f);
         if ((_characterName == "Noah") && (_win))
@@ -64,28 +59,6 @@ public class ResultSceneManager : MonoBehaviour
         _character.transform.Rotate(new Vector3(0, -30, 0));
         _character.name = _characterName;
         ps.GetComponent<PlayerSystem>().Init();
-<<<<<<< HEAD
-=======
-        Debug.Log(_characterName);
-        _characterName = "Ion";
-=======
->>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
-        _character = (GameObject)Instantiate(Resources.Load("Prefabs/ResultCharacter/" + _characterName));
-        _character.transform.position = new Vector3(20f, 4.1f, -20f);
-        if ((_characterName == "Noah") && (_win))
-        {
-            _character.transform.position = new Vector3(19.5f, 4.1f, -18f);
-            _character.transform.Rotate(new Vector3(0, 30, 0));
-        }
-        _character.transform.Rotate(new Vector3(0, -30, 0));
-        _character.name = _characterName;
-<<<<<<< HEAD
->>>>>>> ResultSceneのIonとUnity-ChanとQueendivaの勝利敗北演出追加
-=======
-        ps.GetComponent<PlayerSystem>().Init();
->>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
-=======
->>>>>>> 6c153fb38cfc9cbc02b0fbd03d5f34ac43ecc88f
 
         //　戦っていたskyboxを読み込む
         _stageSkybox = (Material)Instantiate(Resources.Load("Material/" + ssm.GetSelectStageName() + "BackGround"));
