@@ -439,6 +439,28 @@
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair.shader" />
     <None Include="Assets\UnityChan\Models\UnityChanShader\Shader\Unitychan_chara_hair_ds.shader" />
     <None Include="Assets\UnityChan\license.txt" />
+    <None Include="Assets\YamaTatsu\Model\chara_01\Shader\AddMultiply.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_01\Shader\AdditiveWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_01\Shader\AlphaBlendedWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_01\Shader\SDR_CHR.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_01\Shader\SDR_CHR_Alpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_01\Shader\SDR_CHR_Alpha_1bit.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_01\Shader\SDR_CHR_WPN.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_01\Shader\Shield_No_Flicker.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_01\Shader\Texture.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_01\Shader\TextureAlpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_01\Shader\TransparentRim.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_02\Shader\AddMultiply.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_02\Shader\AdditiveWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_02\Shader\AlphaBlendedWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_02\Shader\SDR_CHR.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_02\Shader\SDR_CHR_Alpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_02\Shader\SDR_CHR_Alpha_1bit.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_02\Shader\SDR_CHR_WPN.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_02\Shader\Shield_No_Flicker.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_02\Shader\Texture.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_02\Shader\TextureAlpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_02\Shader\TransparentRim.shader" />
     <None Include="Assets\YamaTatsu\Model\chara_03\Shader\AddMultiply.shader" />
     <None Include="Assets\YamaTatsu\Model\chara_03\Shader\AdditiveWithGrow.shader" />
     <None Include="Assets\YamaTatsu\Model\chara_03\Shader\AlphaBlendedWithGrow.shader" />
@@ -450,6 +472,50 @@
     <None Include="Assets\YamaTatsu\Model\chara_03\Shader\Texture.shader" />
     <None Include="Assets\YamaTatsu\Model\chara_03\Shader\TextureAlpha.shader" />
     <None Include="Assets\YamaTatsu\Model\chara_03\Shader\TransparentRim.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_04\Shader\AddMultiply.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_04\Shader\AdditiveWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_04\Shader\AlphaBlendedWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_04\Shader\SDR_CHR.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_04\Shader\SDR_CHR_Alpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_04\Shader\SDR_CHR_Alpha_1bit.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_04\Shader\SDR_CHR_WPN.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_04\Shader\Shield_No_Flicker.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_04\Shader\Texture.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_04\Shader\TextureAlpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_04\Shader\TransparentRim.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_05\Shader\AddMultiply.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_05\Shader\AdditiveWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_05\Shader\AlphaBlendedWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_05\Shader\SDR_CHR.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_05\Shader\SDR_CHR_Alpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_05\Shader\SDR_CHR_Alpha_1bit.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_05\Shader\SDR_CHR_WPN.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_05\Shader\Shield_No_Flicker.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_05\Shader\Texture.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_05\Shader\TextureAlpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_05\Shader\TransparentRim.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_06\Shader\AddMultiply.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_06\Shader\AdditiveWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_06\Shader\AlphaBlendedWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_06\Shader\SDR_CHR.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_06\Shader\SDR_CHR_Alpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_06\Shader\SDR_CHR_Alpha_1bit.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_06\Shader\SDR_CHR_WPN.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_06\Shader\Shield_No_Flicker.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_06\Shader\Texture.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_06\Shader\TextureAlpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_06\Shader\TransparentRim.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_08\Shader\AddMultiply.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_08\Shader\AdditiveWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_08\Shader\AlphaBlendedWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_08\Shader\SDR_CHR.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_08\Shader\SDR_CHR_Alpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_08\Shader\SDR_CHR_Alpha_1bit.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_08\Shader\SDR_CHR_WPN.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_08\Shader\Shield_No_Flicker.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_08\Shader\Texture.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_08\Shader\TextureAlpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_08\Shader\TransparentRim.shader" />
     <None Include="Assets\YamaTatsu\Model\chara_09\Shader\AddMultiply.shader" />
     <None Include="Assets\YamaTatsu\Model\chara_09\Shader\AdditiveWithGrow.shader" />
     <None Include="Assets\YamaTatsu\Model\chara_09\Shader\AlphaBlendedWithGrow.shader" />
@@ -461,6 +527,17 @@
     <None Include="Assets\YamaTatsu\Model\chara_09\Shader\Texture.shader" />
     <None Include="Assets\YamaTatsu\Model\chara_09\Shader\TextureAlpha.shader" />
     <None Include="Assets\YamaTatsu\Model\chara_09\Shader\TransparentRim.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_10\Shader\AddMultiply.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_10\Shader\AdditiveWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_10\Shader\AlphaBlendedWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_10\Shader\SDR_CHR.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_10\Shader\SDR_CHR_Alpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_10\Shader\SDR_CHR_Alpha_1bit.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_10\Shader\SDR_CHR_WPN.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_10\Shader\Shield_No_Flicker.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_10\Shader\Texture.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_10\Shader\TextureAlpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_10\Shader\TransparentRim.shader" />
     <None Include="Assets\YamaTatsu\Model\chara_11\Shader\AddMultiply.shader" />
     <None Include="Assets\YamaTatsu\Model\chara_11\Shader\AdditiveWithGrow.shader" />
     <None Include="Assets\YamaTatsu\Model\chara_11\Shader\AlphaBlendedWithGrow.shader" />
@@ -472,6 +549,80 @@
     <None Include="Assets\YamaTatsu\Model\chara_11\Shader\Texture.shader" />
     <None Include="Assets\YamaTatsu\Model\chara_11\Shader\TextureAlpha.shader" />
     <None Include="Assets\YamaTatsu\Model\chara_11\Shader\TransparentRim.shader" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
+=======
+>>>>>>> 6c153fb38cfc9cbc02b0fbd03d5f34ac43ecc88f
+    <None Include="Assets\YamaTatsu\Model\chara_12\Shader\AddMultiply.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_12\Shader\AdditiveWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_12\Shader\AlphaBlendedWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_12\Shader\SDR_CHR.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_12\Shader\SDR_CHR_Alpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_12\Shader\SDR_CHR_Alpha_1bit.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_12\Shader\SDR_CHR_WPN.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_12\Shader\Shield_No_Flicker.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_12\Shader\Texture.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_12\Shader\TextureAlpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_12\Shader\TransparentRim.shader" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ResultSceneのIonとUnity-ChanとQueendivaの勝利敗北演出追加
+=======
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
+=======
+>>>>>>> 6c153fb38cfc9cbc02b0fbd03d5f34ac43ecc88f
+    <None Include="Assets\YamaTatsu\Model\chara_13\Shader\AddMultiply.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_13\Shader\AdditiveWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_13\Shader\AlphaBlendedWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_13\Shader\SDR_CHR.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_13\Shader\SDR_CHR_Alpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_13\Shader\SDR_CHR_Alpha_1bit.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_13\Shader\SDR_CHR_WPN.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_13\Shader\Shield_No_Flicker.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_13\Shader\Texture.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_13\Shader\TextureAlpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_13\Shader\TransparentRim.shader" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
+=======
+>>>>>>> 6c153fb38cfc9cbc02b0fbd03d5f34ac43ecc88f
+    <None Include="Assets\YamaTatsu\Model\chara_14\Shader\AddMultiply.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_14\Shader\AdditiveWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_14\Shader\AlphaBlendedWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_14\Shader\SDR_CHR.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_14\Shader\SDR_CHR_Alpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_14\Shader\SDR_CHR_Alpha_1bit.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_14\Shader\SDR_CHR_WPN.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_14\Shader\Shield_No_Flicker.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_14\Shader\Texture.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_14\Shader\TextureAlpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_14\Shader\TransparentRim.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_15\Shader\AddMultiply.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_15\Shader\AdditiveWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_15\Shader\AlphaBlendedWithGrow.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_15\Shader\SDR_CHR.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_15\Shader\SDR_CHR_Alpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_15\Shader\SDR_CHR_Alpha_1bit.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_15\Shader\SDR_CHR_WPN.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_15\Shader\Shield_No_Flicker.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_15\Shader\Texture.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_15\Shader\TextureAlpha.shader" />
+    <None Include="Assets\YamaTatsu\Model\chara_15\Shader\TransparentRim.shader" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ResultSceneのIonとUnity-ChanとQueendivaの勝利敗北演出追加
+=======
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
+=======
+>>>>>>> 6c153fb38cfc9cbc02b0fbd03d5f34ac43ecc88f
     <None Include="Assets\YamaTatsu\Motion\Tda式初音ミク・アペンド_Ver1.10.xml" />
     <None Include="Assets\YamaTatsu\Shaders\SemiTransparent.shader" />
     <None Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\Help Readme SOS.txt" />

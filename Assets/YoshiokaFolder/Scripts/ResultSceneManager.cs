@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ResultSceneManager : MonoBehaviour
 {
-    Material _stageSkybox;                  //　スカイボックス保存用
-
+    private Material _stageSkybox;          //　スカイボックス保存用
     private GameController _controller;     //　ゲームコントローラー
     private GameObject _fadeObj;            //　フェード
     private GameObject _stage;              //　ステージ
+    private GameObject _character;          //　キャラクター
+    private string _characterName;           //　キャラクター名
 
     private bool _win = true;               //　True:勝ち、False:負け
     private bool _isStartFade = false;      //　True:フェード開始、False:フェード終了中
@@ -24,7 +25,7 @@ public class ResultSceneManager : MonoBehaviour
     /// 初期化処理
     /// </summary>
     public void Initialize()
-    {//　とりあえずステージ１のskyBox
+    {
         _controller = GameController.Instance;
         _isStartFade = false;
         _isEndedAnimation = false;
@@ -44,6 +45,47 @@ public class ResultSceneManager : MonoBehaviour
         StageSelectManager ssm = obj.GetComponent<SceneObserver>().GetStageSelectSceneData();
         _stage = (GameObject)Instantiate(Resources.Load("Prefabs/Stages/" + ssm.GetSelectStageName()));
         StageHeightAdjustment(ssm.GetSelectStageName());
+
+        //　戦っていたキャラクターを読み込む
+        GameObject ps = GameObject.Find("PlayerSystem");
+        _characterName = ps.GetComponent<PlayerSystem>().getChar();
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 6c153fb38cfc9cbc02b0fbd03d5f34ac43ecc88f
+        _character = (GameObject)Instantiate(Resources.Load("Prefabs/ResultCharacter/" + _characterName));
+        _character.transform.position = new Vector3(20f, 4.1f, -20f);
+        if ((_characterName == "Noah") && (_win))
+        {
+            _character.transform.position = new Vector3(19.5f, 4.1f, -18f);
+            _character.transform.Rotate(new Vector3(0, 30, 0));
+        }
+        _character.transform.Rotate(new Vector3(0, -30, 0));
+        _character.name = _characterName;
+        ps.GetComponent<PlayerSystem>().Init();
+<<<<<<< HEAD
+=======
+        Debug.Log(_characterName);
+        _characterName = "Ion";
+=======
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
+        _character = (GameObject)Instantiate(Resources.Load("Prefabs/ResultCharacter/" + _characterName));
+        _character.transform.position = new Vector3(20f, 4.1f, -20f);
+        if ((_characterName == "Noah") && (_win))
+        {
+            _character.transform.position = new Vector3(19.5f, 4.1f, -18f);
+            _character.transform.Rotate(new Vector3(0, 30, 0));
+        }
+        _character.transform.Rotate(new Vector3(0, -30, 0));
+        _character.name = _characterName;
+<<<<<<< HEAD
+>>>>>>> ResultSceneのIonとUnity-ChanとQueendivaの勝利敗北演出追加
+=======
+        ps.GetComponent<PlayerSystem>().Init();
+>>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
+=======
+>>>>>>> 6c153fb38cfc9cbc02b0fbd03d5f34ac43ecc88f
 
         //　戦っていたskyboxを読み込む
         _stageSkybox = (Material)Instantiate(Resources.Load("Material/" + ssm.GetSelectStageName() + "BackGround"));
@@ -158,9 +200,9 @@ public class ResultSceneManager : MonoBehaviour
         {
             GameObject frame = GameObject.Find("WinFrame");
             frame.GetComponent<Animator>().SetBool("startAnimation", true);
-
-            GameObject unityChan = GameObject.Find("unitychan");
-            unityChan.GetComponent<Animator>().SetBool("startWinAnimation", true);
+            
+            GameObject charactar = GameObject.Find(_characterName);
+            charactar.GetComponent<Animator>().SetBool("startWinAnimation", true);
 
             AnimatorStateInfo winFrameStateInfo = frame.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
             if (winFrameStateInfo.IsName("EndWinFrame"))
@@ -187,8 +229,8 @@ public class ResultSceneManager : MonoBehaviour
             GameObject frame = GameObject.Find("LoseFrame");
             frame.GetComponent<Animator>().SetBool("startAnimation", true);
 
-            GameObject unityChan = GameObject.Find("unitychan");
-            unityChan.GetComponent<Animator>().SetBool("startLoseAnimation", true);
+            GameObject charactar = GameObject.Find(_characterName);
+            charactar.GetComponent<Animator>().SetBool("startLoseAnimation", true);
 
             AnimatorStateInfo winFrameStateInfo = frame.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
             if (winFrameStateInfo.IsName("EndWinFrame"))
