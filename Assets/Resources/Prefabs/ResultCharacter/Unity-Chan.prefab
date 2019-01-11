@@ -5065,9 +5065,15 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
+<<<<<<< HEAD
   m_Height: 1.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.7, z: 0}
+=======
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+>>>>>>> ResultSceneのIonとUnity-ChanとQueendivaの勝利敗北演出追加
 --- !u!137 &137033207793817704
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
