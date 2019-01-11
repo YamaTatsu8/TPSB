@@ -15,6 +15,7 @@ AnimatorController:
     m_DefaultBool: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Controller: {fileID: 9100000}
 =======
     m_Controller: {fileID: 0}
@@ -22,6 +23,9 @@ AnimatorController:
 =======
     m_Controller: {fileID: 9100000}
 >>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
+=======
+    m_Controller: {fileID: 9100000}
+>>>>>>> 6c153fb38cfc9cbc02b0fbd03d5f34ac43ecc88f
   - m_Name: startLoseAnimation
     m_Type: 4
     m_DefaultFloat: 0
@@ -29,6 +33,7 @@ AnimatorController:
     m_DefaultBool: 0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     m_Controller: {fileID: 9100000}
 =======
     m_Controller: {fileID: 0}
@@ -36,6 +41,9 @@ AnimatorController:
 =======
     m_Controller: {fileID: 9100000}
 >>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
+=======
+    m_Controller: {fileID: 9100000}
+>>>>>>> 6c153fb38cfc9cbc02b0fbd03d5f34ac43ecc88f
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -112,6 +120,7 @@ AnimatorStateTransition:
   serializedVersion: 3
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_TransitionDuration: 0.25000003
   m_TransitionOffset: 0
   m_ExitTime: 0.0631427
@@ -125,6 +134,11 @@ AnimatorStateTransition:
   m_TransitionOffset: 0
   m_ExitTime: 0.0631427
 >>>>>>> Result画面の全キャラの勝利演出及び敗北演出完成
+=======
+  m_TransitionDuration: 0.25000003
+  m_TransitionOffset: 0
+  m_ExitTime: 0.0631427
+>>>>>>> 6c153fb38cfc9cbc02b0fbd03d5f34ac43ecc88f
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
