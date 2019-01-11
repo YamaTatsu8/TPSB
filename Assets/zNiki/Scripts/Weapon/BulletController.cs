@@ -34,16 +34,27 @@ public class BulletController: MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
+        
         if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Target")
         {
             collision.gameObject.GetComponent<Status>().hitDamage(_bulletDamage);
+
+            if (_seName != "")
+            {
+                _audioManager.PlaySE(_seName);
+            }
+
+            Destroy(this.gameObject);
         }
 
-        if (_seName != "")
+        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Ground")
         {
-            _audioManager.PlaySE(_seName);
-        }
+            if (_seName != "")
+            {
+                _audioManager.PlaySE(_seName);
+            }
 
-        Destroy(this.gameObject);
+            Destroy(this.gameObject);
+        }
     }
 }
