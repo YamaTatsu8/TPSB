@@ -34,10 +34,7 @@ public class BulletController: MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Target")
-        {
-            collision.gameObject.GetComponent<Status>().hitDamage(_bulletDamage);
-        }
+       
 
         if (_seName != "")
         {
@@ -45,5 +42,10 @@ public class BulletController: MonoBehaviour
         }
 
         Destroy(this.gameObject);
+
+        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Target")
+        {
+            collision.gameObject.GetComponent<Status>().hitDamage(_bulletDamage);
+        }
     }
 }

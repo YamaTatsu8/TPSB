@@ -142,7 +142,7 @@ public class Attack : MonoBehaviour {
  
         if (controller.TriggerDown(Trigger.LEFT))
         {
-
+            _animator.SetBool("Attack",true);
             if (_weaponFlag == true)
             {
                 _weapon1.GetComponent<WeaponManager>().Attack();
