@@ -26,6 +26,10 @@ public class WeaponManager : MonoBehaviour
     // 発射間隔
     private float _fireRate;
 
+    // 弾速
+    [SerializeField]
+    private float _bulletSpeed = 50.0f;
+
     // リロードにかかる時間（秒）
     [SerializeField]
     private float _reloadTime = 2.0f;
@@ -76,6 +80,11 @@ public class WeaponManager : MonoBehaviour
     public float ReloadTime
     {
         get { return _reloadTime; }
+    }
+
+    public float BulletSpeed
+    {
+        get { return _bulletSpeed; }
     }
 
     public int RoundsPerSecond
