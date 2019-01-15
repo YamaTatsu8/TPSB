@@ -13,6 +13,7 @@ public class Status : MonoBehaviour {
 
     [SerializeField]
     private GameObject _obj;
+
     // Use this for initialization
     void Start () {
 
