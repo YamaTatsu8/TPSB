@@ -21,7 +21,7 @@ public class RayCastShoot : MonoBehaviour
     private GameObject _bulletPrefab;
 
     // 弾速
-    private float _bulletSpeed = 50.0f;
+    private float _bulletSpeed;
 
     // 射程
     private float _range = 30.0f;
@@ -35,6 +35,8 @@ public class RayCastShoot : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        _bulletSpeed = this.GetComponent<WeaponManager>().BulletSpeed;
+
         _fireRate = 1.0f / this.GetComponent<WeaponManager>().RoundsPerSecond;
         
         _fpsCam = Camera.FindObjectOfType<Camera>();
