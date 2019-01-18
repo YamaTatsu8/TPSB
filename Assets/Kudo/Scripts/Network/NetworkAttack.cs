@@ -114,14 +114,16 @@ public class NetworkAttack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        // -Photon上で自身ではなかったらreturn
+        if (!_photonView.isMine)
+        {
+            return;
+        }
 
         controller.ControllerUpdate();
 
         //Debug.Log(_changeWeapon);
 
-        // -誰がボタンを押したかをチェックする(自身が触ったらtrue
-        if (_photonView.isMine)
-        {
             if (controller.ButtonDown(Button.X))
             {
                 _weaponFlag = !_weaponFlag;
@@ -168,7 +170,6 @@ public class NetworkAttack : MonoBehaviour {
                 _animator.SetBool("Attack", false);
             }
 
-        }
 
         Player_pos = transform.position;
 

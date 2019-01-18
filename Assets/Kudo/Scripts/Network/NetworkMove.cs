@@ -71,12 +71,14 @@ public class NetworkMove : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        // -Photon上で自身ではなかったらreturn
+        if (!_photonView.isMine)
+        {
+            return;
+        }
 
         controller.ControllerUpdate();
 
-        // -誰がボタンを押したかをチェック
-        if(_photonView.isMine)
-        {
             if (Input.GetAxis("L-StickHorizontal") != 0 || Input.GetAxis("L-StickVertical") != 0)
             {
                 _walkFoot.SetActive(true);
@@ -100,7 +102,6 @@ public class NetworkMove : MonoBehaviour {
 
             Boost();
 
-        }
 
     }
 

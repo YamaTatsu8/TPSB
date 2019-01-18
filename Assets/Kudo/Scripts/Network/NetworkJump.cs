@@ -58,13 +58,15 @@ public class NetworkJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // -Photon上で自身ではなかったらreturn
+        if (!_photonView.isMine)
+        {
+            return;
+        }
 
         controller.ControllerUpdate();
 
-        if(_photonView.isMine)
-        {
-            Fly();
-        }
+        Fly();
 
         //Boost();
 

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Network : Photon.MonoBehaviour {
+public class NetworkTest: Photon.MonoBehaviour {
 
+    private const string ROOM_NAME = "RoomA";
     GameObject go;
 
     public int ID
@@ -21,10 +22,7 @@ public class Network : Photon.MonoBehaviour {
 
     void Start () {
         // PhotonServerへの接続
-        //PhotonNetwork.ConnectUsingSettings("1.0");
-        //PhotonNetwork.sendRate = 120;
-        //PhotonNetwork.sendRateOnSerialize = 120;
-
+        ConectNetwork();
     }
 
     private void OnGUI()
@@ -41,16 +39,15 @@ public class Network : Photon.MonoBehaviour {
     {
         Debug.Log("Lobbyに入りました");
 
-        JoinRoom();
-        // ルームが一つもなかったらルームを作成、そうでなかったらルームに入る（指定のルーム）
-        //if(PhotonNetwork.GetRoomList().Length == 0)
-        //{
-        //    CreateRoom();
-        //}
-        //else
-        //{
-        //    PhotonNetwork.JoinRoom(ROOM_NAME);
-        //}
+        //ルームが一つもなかったらルームを作成、そうでなかったらルームに入る（指定のルーム）
+        if (PhotonNetwork.GetRoomList().Length == 0)
+        {
+            CreateRoom();
+        }
+        else
+        {
+            PhotonNetwork.JoinRoom(ROOM_NAME);
+        }
     }
 
     /// <summary>
@@ -60,11 +57,7 @@ public class Network : Photon.MonoBehaviour {
     {
         Debug.Log("Roomには入りました");
 
-        RoomChackerManager joinFlag = GameObject.FindObjectOfType<RoomChackerManager>();
-        if(joinFlag != null)
-        {
-            joinFlag.JoinFlag = true;
-        }
+        PlayerInstantiate();
     }
 
     /// <summary>
@@ -83,17 +76,9 @@ public class Network : Photon.MonoBehaviour {
     public void CreateRoom()
     {
         RoomOptions roomOptions = new RoomOptions();
-        InputField inputName = GameObject.Find("RoomNameInput").GetComponent<InputField>();
-        string text = inputName.text;
-        if (text == "")
-        {
-            text = "Room" + PhotonNetwork.GetRoomList().Length;
-        }
-        roomOptions.IsVisible = true;
-        roomOptions.IsOpen = true;
         roomOptions.MaxPlayers = 2; // ルームに入れる人数を2人に指定
         // 指定した名前、オプションのルームを作成
-        PhotonNetwork.JoinOrCreateRoom(text, roomOptions, null);
+        PhotonNetwork.JoinOrCreateRoom(ROOM_NAME,roomOptions, null);
 
     }
 

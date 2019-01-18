@@ -45,12 +45,14 @@ public class NetworkMissileShot : Photon.MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        // -Photon上で自身ではなかったらreturn
+        if (!_photonView.isMine)
+        {
+            return;
+        }
 
         controller.ControllerUpdate();
 
-        // -誰がボタンを押したか確認
-        if(_photonView.isMine)
-        {
             if (controller.TriggerDown(Trigger.RIGHT) && _flag == true)
             {
                 _flag = false;
@@ -86,7 +88,6 @@ public class NetworkMissileShot : Photon.MonoBehaviour {
                 }
             }
 
-        }
 
     }
 

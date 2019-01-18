@@ -55,15 +55,16 @@ public class NetworkBarrier : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        // -Photon上で自身ではなかったらreturn
+        if (!_photonView.isMine)
+        {
+            return;
+        }
 
         GameObject target = GameObject.FindGameObjectWithTag("Player");
 
         controller.ControllerUpdate();
 
-        // -誰がボタンを押したかをチェック
-        if(_photonView.isMine)
-        {
             //左ショルダーボタンが押された時
             if (Input.GetButton("L1"))
             {
@@ -81,7 +82,6 @@ public class NetworkBarrier : MonoBehaviour {
                 _barrier = false;
             }
 
-        }
 
         // 0になったらバリアを消す       
         if (_HP <= 0)

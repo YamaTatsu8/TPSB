@@ -17,6 +17,9 @@ public class PlayerChecker : Photon.MonoBehaviour {
     GameObject[] _obj;
     PhotonPlayer[] _photonPlayer = new PhotonPlayer[2];
 
+    // 変更が出来たらtrue
+    private bool _isChange = false;
+
     public int ID
     {
         get
@@ -31,9 +34,21 @@ public class PlayerChecker : Photon.MonoBehaviour {
 
         _network = GameObject.FindObjectOfType<Network>();
 
+        this.name = "Player" + _id;
 	}
 	
 	void Update () {
+        // -Photon上で自身ではなかったらreturn
+        if (!_photonView.isMine)
+        {
+            return;
+        }
+
+        if(_isChange)
+        {
+            return;
+        }
+
         _obj = GameObject.FindGameObjectsWithTag("Player");
 
         for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
@@ -49,10 +64,8 @@ public class PlayerChecker : Photon.MonoBehaviour {
         {
             if (_obj[i].GetComponent<PlayerChecker>().ID != _id)
             {
-                if (_photonView.isMine)
-                {
                     _obj[i].tag = "Enemy";
-                }
+                _isChange = true;
             }
         }
     }
