@@ -430,7 +430,6 @@ public class Equipment : MonoBehaviour {
                                 _audioSource.PlayOneShot(_decision);
                                 _playerSystem.GetComponent<PlayerSystem>().setMain1(_weaponList[_mainState][0].ToString());
                                 _mainWeapon1.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
-                                _model.GetComponent<WeaponEquipment>().setWeapon1(_weaponList[_mainState][0].ToString());
                             }
                             else
                             {
@@ -445,7 +444,6 @@ public class Equipment : MonoBehaviour {
                                 _audioSource.PlayOneShot(_decision);
                                 _playerSystem.GetComponent<PlayerSystem>().setMain2(_weaponList[_mainState][0].ToString());
                                 _mainWeapon2.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
-                                _model.GetComponent<WeaponEquipment>().setWeapon2(_weaponList[_mainState][0].ToString());
                             }
                             else
                             {
@@ -510,39 +508,39 @@ public class Equipment : MonoBehaviour {
                     {
                         case (int)MODEL_STATE.UNITY:
                             _audioSource.PlayOneShot(_decision);
+                            _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
                             _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
                             _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
-                            _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
                             break;
                         case (int)MODEL_STATE.ION:
                             _audioSource.PlayOneShot(_decision);
+                            _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
                             _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
                             _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
-                            _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
                             break;
                         case (int)MODEL_STATE.Queendiva:
                             _audioSource.PlayOneShot(_decision);
+                            _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
                             _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
                             _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
-                            _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
                             break;
                         case (int)MODEL_STATE.Misyara:
                             _audioSource.PlayOneShot(_decision);
+                            _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
                             _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
                             _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
-                            _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
                             break;
                         case (int)MODEL_STATE.Noah:
                             _audioSource.PlayOneShot(_decision);
+                            _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
                             _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
                             _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
-                            _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
                             break;
                         case (int)MODEL_STATE.Anathema:
                             _audioSource.PlayOneShot(_decision);
+                            _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
                             _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
                             _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
-                            _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
                             break;
                     }
                 }
