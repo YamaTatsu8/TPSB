@@ -24,6 +24,8 @@ public class PlayerSystem : MonoBehaviour {
     [SerializeField]
     private string _subWeapon;
 
+    private GameObject _model;
+
     private static PlayerSystem _playerSystem;
 
     //
@@ -46,18 +48,19 @@ public class PlayerSystem : MonoBehaviour {
 
         _mainWeapon2 = "Main2";
 
+        _model = GameObject.Find(_char);
+
     }
 
 
     // Update is called once per frame
     void Update () {
-		
+
 	}
 
     //ゲッター
     public string getChar()
     {
-        Debug.Log(_char);
         return _char;
     }
 
@@ -81,16 +84,20 @@ public class PlayerSystem : MonoBehaviour {
     public void setChar(string name)
     {
         _char = name;
+        _model = GameObject.Find(name);
+        _model.GetComponent<CustomWeapon>().SetIdle();
     }
 
     public void setMain1(string weapon)
     {
         _mainWeapon1 = weapon;
+        _model.GetComponent<CustomWeapon>().SetPose(weapon);
     }
 
     public void setMain2(string weapon)
     {
         _mainWeapon2 = weapon;
+        _model.GetComponent<CustomWeapon>().SetPose(weapon);
     }
 
     public void setSub(string weapon)
