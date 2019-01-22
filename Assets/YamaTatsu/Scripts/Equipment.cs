@@ -45,10 +45,7 @@ public class Equipment : MonoBehaviour {
 
     //モデルのステート
     private int _modelState = 0;
-
-    [SerializeField]
-    private Vector3 _pos = new Vector3(-200, 0, 0);
-
+                                                    
     //
     [SerializeField]
     private GameObject canvas;
@@ -74,9 +71,6 @@ public class Equipment : MonoBehaviour {
 
     //武器の画像リスト
     private RectTransform[] _weaponImage = new RectTransform[5];
-
-    //サブ武器の画像リスト
-    private RectTransform[] _subWeaponImage = new RectTransform[5];
 
     //武器の画像リスト
     private RectTransform[] _modelImage2 = new RectTransform[6];
@@ -236,7 +230,6 @@ public class Equipment : MonoBehaviour {
 
         _playerSystem = GameObject.Find("PlayerSystem");
 
-       
         Vector3 rePos;
 
         for (int i = 0; i < _weaponNum; i++)
