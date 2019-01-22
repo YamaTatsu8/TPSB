@@ -46,25 +46,10 @@ public class LookCamera : MonoBehaviour {
     //ロックオン解除フラグ
     private bool _targetFlag;
 
-
-
-    //オフセット
-    [SerializeField]
-    private Vector3 _offsetVec = new Vector3(0, 2, 0);
-
     // Use this for initialization
     void Start () {
 
         controller = GameController.Instance;
-
-        //target = GameObject.FindGameObjectWithTag("Target");
-
-        //_right = GameObject.Find("CameraRight");
-
-        //_left = GameObject.Find("CameraLeft");
-
-        //_tps = _right;
-        
     }
 	
 	// Update is called once per frame

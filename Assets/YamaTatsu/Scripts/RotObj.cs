@@ -4,26 +4,8 @@ using UnityEngine;
 
 public class RotObj : MonoBehaviour {
 
-    //コントローラ
-    GameController _controller;
-
-    //カメラ
-    GameObject _camera;
-
-    //
-    private float _rotZ;
-
-    private float _rotY;
-
-	// Use this for initialization
+   // Use this for initialization
 	void Start () {
-
-        _controller = GameController.Instance;
-
-        _camera = GameObject.Find("Main Camera");
-
-        _rotZ = 0;
-        _rotY = 0;
 
 	}
 	

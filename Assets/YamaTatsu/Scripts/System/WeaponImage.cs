@@ -7,9 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class WeaponImage : MonoBehaviour {
 
-    //画像イメージ
-    private RectTransform[] _weaponImage;
-
     private Image _weapon1Image;
 
     private Image _weapon2Image;

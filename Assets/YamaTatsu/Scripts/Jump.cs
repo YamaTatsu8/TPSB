@@ -24,8 +24,6 @@ public class Jump : MonoBehaviour
     //地面に当たっているかの判定
     private bool _groundFlag = true;
 
-    private float _speed = 0.5f;
-
     public Canvas canvas;
 
     //アニメーター
