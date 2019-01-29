@@ -271,7 +271,7 @@ public class Equipment : MonoBehaviour {
 
             rePos2 = _modelBarCan.GetComponent<RectTransform>().position;
 
-            _modelImage2[i].localPosition = new Vector3(50, 20 * (i + 1), 0);
+            _modelImage2[i].localPosition = new Vector3(50, 15 * (i + 1), 0);
         }
 
         GameObject cusor1 = (GameObject)Instantiate(Resources.Load("Images/Cusor3"));
