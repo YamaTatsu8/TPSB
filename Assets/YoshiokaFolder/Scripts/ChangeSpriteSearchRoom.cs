@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChangeSpriteSearchRoom : MonoBehaviour
+public class ChangeSprite : MonoBehaviour
 {
     //　定数
     private const int MAX_BAR = 2;        //　最大BAR数

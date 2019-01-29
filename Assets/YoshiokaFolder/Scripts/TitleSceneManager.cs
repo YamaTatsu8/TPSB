@@ -74,8 +74,12 @@ public class TitleSceneManager : MonoBehaviour
 
         _controller.ControllerUpdate();
 
-        //　Aボタンが押されたら
-        if (_controller.ButtonDown(Button.A))
+        //　ボタンが押されたら
+        if ((_controller.ButtonDown(Button.A))
+            || (_controller.ButtonDown(Button.B))
+            || (_controller.ButtonDown(Button.X))
+            || (_controller.ButtonDown(Button.Y))
+            || (_controller.ButtonDown(Button.START)))
         {
             //　フェードアウトを開始する
             if (_fadeObj == null)
