@@ -49,7 +49,7 @@ public class PlayerSystem : MonoBehaviour {
         _mainWeapon2 = "Main2";
 
         _model = GameObject.Find(_char);
-
+        _model.GetComponent<CustomWeapon>().SetIdle();
     }
 
 

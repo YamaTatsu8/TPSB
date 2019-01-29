@@ -9672,8 +9672,10 @@ MonoBehaviour:
   _roundsPerSecond: 1
   _reloadTime: 1
   _mode: 1
+  _type: 0
   _bulletPrefab: {fileID: 1728188175131922, guid: beced145914b18847bf9316bedccb44c,
     type: 2}
+  _seName: 
 --- !u!114 &114014557353754024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9899,8 +9901,10 @@ MonoBehaviour:
   _roundsPerSecond: 100
   _reloadTime: 2
   _mode: 1
+  _type: 0
   _bulletPrefab: {fileID: 1243580894668578, guid: 8e6f70bc3d53d4440974079dd2b144fa,
     type: 2}
+  _seName: 
 --- !u!114 &114117143550229162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9964,8 +9968,10 @@ MonoBehaviour:
   _roundsPerSecond: 1
   _reloadTime: 1
   _mode: 1
+  _type: 0
   _bulletPrefab: {fileID: 1728188175131922, guid: beced145914b18847bf9316bedccb44c,
     type: 2}
+  _seName: 
 --- !u!114 &114119071200033516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10074,8 +10080,10 @@ MonoBehaviour:
   _roundsPerSecond: 1
   _reloadTime: 1
   _mode: 0
+  _type: 0
   _bulletPrefab: {fileID: 1769052643642674, guid: 0d8c7527940629f428e521fcb8ec795e,
     type: 2}
+  _seName: 
 --- !u!114 &114158463208054094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10374,8 +10382,10 @@ MonoBehaviour:
   _roundsPerSecond: 1
   _reloadTime: 1
   _mode: 0
+  _type: 0
   _bulletPrefab: {fileID: 1769052643642674, guid: 0d8c7527940629f428e521fcb8ec795e,
     type: 2}
+  _seName: 
 --- !u!114 &114300796799113602
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10541,7 +10551,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1eb50325fe0f3f8429c32e819d22f460, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 14df9b3a99c706344bc14524f004219f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11150,8 +11160,10 @@ MonoBehaviour:
   _roundsPerSecond: 100
   _reloadTime: 2
   _mode: 1
+  _type: 0
   _bulletPrefab: {fileID: 1243580894668578, guid: 8e6f70bc3d53d4440974079dd2b144fa,
     type: 2}
+  _seName: 
 --- !u!114 &114501126493922128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11530,8 +11542,10 @@ MonoBehaviour:
   _roundsPerSecond: 2
   _reloadTime: 2
   _mode: 2
+  _type: 0
   _bulletPrefab: {fileID: 1690340862790088, guid: 64c8824fd18996449b01cb1bd2c5abf9,
     type: 2}
+  _seName: 
 --- !u!114 &114599042040517494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12254,13 +12268,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1645750044122044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11c970424c2dd2c40b1b2d04d4d49938, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e658bfc1e524494b9e54a1c92d8c1e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jointController: {fileID: 1307103731632300}
-  frameRate: 30
-  EyeOffset: []
-  MouthOffset: []
+  animations: []
+  delayWeight: 0
+  isKeepFace: 0
 --- !u!114 &114786997905578200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12626,8 +12639,10 @@ MonoBehaviour:
   _roundsPerSecond: 2
   _reloadTime: 2
   _mode: 2
+  _type: 0
   _bulletPrefab: {fileID: 1690340862790088, guid: 64c8824fd18996449b01cb1bd2c5abf9,
     type: 2}
+  _seName: 
 --- !u!114 &114882503788051460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -23938,14 +23953,14 @@ RectTransform:
   m_GameObject: {fileID: 1707634716173886}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9, y: 1, z: 1}
+  m_LocalScale: {x: 0.68, y: 0.64, z: 1}
   m_Children: []
   m_Father: {fileID: 224842879879169494}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -307, y: -115}
+  m_AnchoredPosition: {x: -308.3, y: -118.2}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224149044351183456
