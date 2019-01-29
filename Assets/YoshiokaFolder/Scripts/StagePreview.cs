@@ -61,4 +61,25 @@ public class StagePreview : MonoBehaviour
         _stage = obj;
         _stageName = obj.name;
     }
+
+    //---------------------------------------------------------------------------------
+    //　Setter
+    //---------------------------------------------------------------------------------
+    /// <summary>
+    /// 座標セット
+    /// </summary>
+    /// <param name="pos">座標</param>
+    public void SetPosition(Vector3 pos)
+    {
+        _stage.transform.localPosition = pos;
+    }
+
+    /// <summary>
+    /// スケールセット
+    /// </summary>
+    /// <param name="scale">スケール</param>
+    public void SetScale(Vector3 scale)
+    {
+        _stage.transform.localScale = scale;
+    }
 }

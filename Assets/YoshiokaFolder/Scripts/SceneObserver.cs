@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SceneObserver : MonoBehaviour
@@ -21,6 +22,7 @@ public class SceneObserver : MonoBehaviour
     private ResultSceneManager _result;                     //　リザルトシーンのスクリプト
 
     private static SceneObserver _sceneObservar;            //　複数生成されないようのオブジェクト
+
 
 	// Use this for initialization
 	void Start ()
@@ -66,7 +68,6 @@ public class SceneObserver : MonoBehaviour
                 if (!_title.SceneUpdate())
                 {
                     _nowScene = (int)SCENE_STATE.CustomizeScene;
-                    ChangeScene("CustomizeWindow");
                 }
                 break;
 
@@ -74,7 +75,13 @@ public class SceneObserver : MonoBehaviour
             case (int)SCENE_STATE.CustomizeScene:
                 GameObject cusObj = GameObject.Find("BackGround");
 
-                if(cusObj.GetComponent<Equipment>().GetNextFlag())
+                if (cusObj == null) { return; }
+                else
+                {
+                    GameObject load = GameObject.Find("LoadCanvas");
+                    load.GetComponent<Loading>().FinalReset();
+                }
+                if (cusObj.GetComponent<Equipment>().GetNextFlag())
                 {
                     _nowScene = (int)SCENE_STATE.StageSelectScene;
                     _stageSelect.Initialize();
