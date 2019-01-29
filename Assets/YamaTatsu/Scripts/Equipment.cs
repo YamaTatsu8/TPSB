@@ -261,8 +261,6 @@ public class Equipment : MonoBehaviour {
 
         Vector3 rePos2;
 
-        Debug.Log(_modelNum);
-
         for (int i = 0; i < _modelNum; i++)
         {
             //Resources/Imagesから一致するものを探してくる
