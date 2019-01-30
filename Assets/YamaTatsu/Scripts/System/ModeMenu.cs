@@ -175,7 +175,7 @@ public class ModeMenu : MonoBehaviour {
                     _fadeOut = fade2.CreateFade();
                     _fadeOut.GetComponentInChildren<Fade>().FadeOut();
                     _fadeFlag = true;
-                    _modeNum = (int)MODE.CREATE;
+                    _modeNum = (int)MODE.JOIN;
                     break;
                 case (int)MODE_SELECT.TRAININGROOM:
                     //次のシーンに移動    
@@ -183,24 +183,27 @@ public class ModeMenu : MonoBehaviour {
                     _fadeOut = fade3.CreateFade();
                     _fadeOut.GetComponentInChildren<Fade>().FadeOut();
                     _fadeFlag = true;
-                    _modeNum = (int)MODE.CREATE;
+                    _modeNum = (int)MODE.TRAINIG;
                     break;
             }
         }
 
-        //
+        //fadeが終わったら次のシーンへ移動する
         if (_fadeOut.GetComponentInChildren<Fade>().isCheckedFadeOut() && _fadeFlag == true)
         {
             switch (_modeNum)
             {
                 case (int)MODE.CREATE:
                     _sceneName = "RoomSetting";
+                    _nextFlag = true;
                     break;
                 case (int)MODE.JOIN:
                     _sceneName = "RoomCheck";
+                    _nextFlag = true;
                     break;
                 case (int)MODE.TRAINIG:
                     _sceneName = "TrainingRoom";
+                    _nextFlag = true;
                     break;
             }
 
