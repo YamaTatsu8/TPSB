@@ -8,9 +8,18 @@ public class ModeMenu : MonoBehaviour {
     //コントローラ
     private GameController _controller;
 
+    //フェード
+    private GameObject _fadeOut;
+
     //Canvas
     [SerializeField]
     private Canvas _canvas;
+
+    //fadeが終わったかのフラグ
+    private bool _fadeFlag = false;
+
+    //シーンが終わった時のフラグ
+    private bool _nextFlag;
 
     //Image
     [SerializeField]
@@ -24,6 +33,10 @@ public class ModeMenu : MonoBehaviour {
     [SerializeField]
     private RectTransform _trainingRoom;
 
+    //シーン名前
+    private string _sceneName = "";
+    
+
     //モード一覧
     private enum MODE_SELECT
     {
@@ -32,7 +45,18 @@ public class ModeMenu : MonoBehaviour {
         TRAININGROOM
     }
 
-    //モードステート
+    //モード選択
+    private enum MODE
+    {
+        CREATE,
+        JOIN,
+        TRAINIG
+    }
+
+    //どこを選択しているか
+    private int _modeNum = 0;
+
+    //
     private int _state = 0;
 
     //Sprite
@@ -47,8 +71,14 @@ public class ModeMenu : MonoBehaviour {
 
         _controller = GameController.Instance;
 
+        Fade fade = new Fade();
+
+        _fadeOut = fade.CreateFade();
+
+        _fadeOut.GetComponentInChildren<Fade>().FadeIn();
+
         //全て非表示にする
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             _info[i].enabled = false;
         }
@@ -58,7 +88,9 @@ public class ModeMenu : MonoBehaviour {
         _roomJoin = GameObject.Find("RoomJoin").GetComponent<RectTransform>();
         _trainingRoom = GameObject.Find("TrainingRoom").GetComponent<RectTransform>();
 
-	}
+        _nextFlag = false;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -126,18 +158,52 @@ public class ModeMenu : MonoBehaviour {
         //決定
         if(_controller.ButtonDown(Button.A))
         {
+            
             switch (_state)
             {
                 case (int)MODE_SELECT.CREATEROOM:
-                 
+                    //次のシーンに移動    
+                    Fade fade = new Fade();
+                    _fadeOut = fade.CreateFade();
+                    _fadeOut.GetComponentInChildren<Fade>().FadeOut();
+                    _fadeFlag = true;
+                    _modeNum = (int)MODE.CREATE;
                     break;
                 case (int)MODE_SELECT.ROOMJOIN:
-           
+                    //次のシーンに移動    
+                    Fade fade2 = new Fade();
+                    _fadeOut = fade2.CreateFade();
+                    _fadeOut.GetComponentInChildren<Fade>().FadeOut();
+                    _fadeFlag = true;
+                    _modeNum = (int)MODE.CREATE;
                     break;
                 case (int)MODE_SELECT.TRAININGROOM:
-                   
+                    //次のシーンに移動    
+                    Fade fade3 = new Fade();
+                    _fadeOut = fade3.CreateFade();
+                    _fadeOut.GetComponentInChildren<Fade>().FadeOut();
+                    _fadeFlag = true;
+                    _modeNum = (int)MODE.CREATE;
                     break;
             }
+        }
+
+        //
+        if (_fadeOut.GetComponentInChildren<Fade>().isCheckedFadeOut() && _fadeFlag == true)
+        {
+            switch (_modeNum)
+            {
+                case (int)MODE.CREATE:
+                    _sceneName = "RoomSetting";
+                    break;
+                case (int)MODE.JOIN:
+                    _sceneName = "RoomCheck";
+                    break;
+                case (int)MODE.TRAINIG:
+                    _sceneName = "TrainingRoom";
+                    break;
+            }
+
         }
 
     }
@@ -165,6 +231,16 @@ public class ModeMenu : MonoBehaviour {
         }
 
         return state;
+    }
+
+    public bool GetNextFlag()
+    {
+        return _nextFlag;
+    }
+
+    public string SelectedSceneName()
+    {
+        return _sceneName;
     }
 
 }
