@@ -121,6 +121,9 @@ public class SceneObserver : MonoBehaviour
                     ChangeScene(SCENE_STATE.TitleScene.ToString());
                 }
                 break;
+
+            default:
+                break;
         }
     }
    
