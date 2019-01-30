@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2018.2.0f2</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -353,24 +351,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\YoshiokaFolder\Scripts\BulletManager.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\ChangeSprite.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\ChangeSpriteSearchRoom.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\ChangeSpriteStageSelect.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\Fade.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\Loading.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\Player.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\PlaySceneManager.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\ResultSceneManager.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\SceneObserver.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\ShowHide.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\ShowHideText.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\StageManager.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\StagePreview.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\StageSelectManager.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\Test.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\TitleGradation.cs" />
-    <Compile Include="Assets\YoshiokaFolder\Scripts\TitleSceneManager.cs" />
     <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\FastAction.cs" />
     <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\MaterialReferenceManager.cs" />
     <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\PackageResourceImporterWindow.cs" />
@@ -615,24 +595,6 @@
     <None Include="Assets\YamaTatsu\Model\chara_15\Shader\TransparentRim.shader" />
     <None Include="Assets\YamaTatsu\Motion\Tda式初音ミク・アペンド_Ver1.10.xml" />
     <None Include="Assets\YamaTatsu\Shaders\SemiTransparent.shader" />
-    <None Include="Assets\YoshiokaFolder\Scripts\BulletManager.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\ChangeSprite.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\ChangeSpriteSearchRoom.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\ChangeSpriteStageSelect.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\Fade.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\Loading.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\Player.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\PlaySceneManager.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\ResultSceneManager.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\SceneObserver.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\ShowHide.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\ShowHideText.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\StageManager.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\StagePreview.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\StageSelectManager.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\Test.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\TitleGradation.cs.meta" />
-    <None Include="Assets\YoshiokaFolder\Scripts\TitleSceneManager.cs.meta" />
     <None Include="Assets\YoshiokaFolder\Shaders\PulseNoise.shader" />
     <None Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\Help Readme SOS.txt" />
     <None Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\_FAQ - Informations\Help Readme SOS.txt" />
@@ -647,7 +609,6 @@
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Templates\PackageSearchFilterTabs.uxml" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Templates\PackagesLoading.uxml" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>

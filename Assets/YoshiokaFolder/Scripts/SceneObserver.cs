@@ -10,6 +10,10 @@ public class SceneObserver : MonoBehaviour
     enum SCENE_STATE
     {
         TitleScene,
+        ModeMenuScene,
+        RoomSetting,
+        RoomCheck,
+        TrainingRoom,
         CustomizeScene,
         StageSelectScene,
         PlayScene,
@@ -67,8 +71,47 @@ public class SceneObserver : MonoBehaviour
             case (int)SCENE_STATE.TitleScene:
                 if (!_title.SceneUpdate())
                 {
-                    _nowScene = (int)SCENE_STATE.CustomizeScene;
+                    _nowScene = (int)SCENE_STATE.ModeMenuScene;
                 }
+                break;
+
+            //　モードメニューシーンの更新処理
+            case (int)SCENE_STATE.ModeMenuScene:
+                GameObject modeMenu = GameObject.Find("ModeMenu");
+                if (modeMenu == null) { return; }
+                else
+                {
+                    GameObject load = GameObject.Find("LoadCanvas");
+                    load.GetComponent<Loading>().FinalReset();
+                }
+                if (modeMenu.GetComponent<ModeMenu>().GetNextFlag())
+                {
+                    string selectName = modeMenu.GetComponent<ModeMenu>().SelectedSceneName();
+
+                    if (selectName == SCENE_STATE.RoomSetting.ToString())
+                    {
+                        _nowScene = (int)SCENE_STATE.RoomSetting;
+                        ChangeScene(selectName);
+                    }
+                    if (selectName == SCENE_STATE.RoomCheck.ToString())
+                    {
+                        _nowScene = (int)SCENE_STATE.RoomCheck;
+                        ChangeScene(selectName);
+                    }
+                    if (selectName == SCENE_STATE.TrainingRoom.ToString())
+                    {
+                        _nowScene = (int)SCENE_STATE.CustomizeScene;
+                        ChangeScene(SCENE_STATE.CustomizeScene.ToString());
+                    }
+                }
+                break;
+
+            //　ルームセッティングの更新処理
+            case (int)SCENE_STATE.RoomSetting:
+                break;
+            
+            //　ルームチェックの更新処理
+            case (int)SCENE_STATE.RoomCheck:
                 break;
 
             //　カスタマイズシーンの更新処理

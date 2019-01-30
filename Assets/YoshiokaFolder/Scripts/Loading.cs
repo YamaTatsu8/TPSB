@@ -63,7 +63,8 @@ public class Loading : MonoBehaviour
     IEnumerator LoadData()
     {
         // シーンの読み込みをする
-        _async = SceneManager.LoadSceneAsync("CustomizeWindow");
+        //_async = SceneManager.LoadSceneAsync("CustomizeWindow");
+        _async = SceneManager.LoadSceneAsync("ModeMenuScene");
 
         //　読み込みが終わるまで進捗状況をスライダーの値に反映させる
         while (!_async.isDone)
