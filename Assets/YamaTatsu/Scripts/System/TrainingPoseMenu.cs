@@ -33,6 +33,8 @@ public class TrainingPoseMenu : MonoBehaviour {
 
     private bool _fadeFlag;
 
+    private GameObject _pauseManager;
+
     //フェード
     private GameObject _fadeOut;
 
@@ -94,6 +96,8 @@ public class TrainingPoseMenu : MonoBehaviour {
 
         _exitMenu = GameObject.Find("EXIT").GetComponent<RectTransform>();
 
+        _pauseManager = GameObject.Find("PauseManager");
+
 	}
 	
 	// Update is called once per frame
@@ -119,6 +123,15 @@ public class TrainingPoseMenu : MonoBehaviour {
             {
                 //メニュー操作
                 _menuState = ChooseStateRL(_menuState);
+
+                if(_menuState > 2)
+                {
+                    _menuState = 0;
+                }
+                else if(_menuState < 0)
+                {
+                    _menuState = 2;
+                }
 
                 switch (_menuState)
                 {
