@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     // セレクタ
-    private enum Selector
+    public enum Selector
     {
         SEMI,
         AUTO,
@@ -13,34 +13,34 @@ public class WeaponManager : MonoBehaviour
     }
 
     // 装弾数
-    [SerializeField]
-    private int _capacity = 30;
+    public int _capacity = 30;
+
+    // 秒間発射数
+    public int _roundsPerSecond = 100;
+
+    // 弾速
+    public float _bulletSpeed = 50.0f;
+
+    // リロードにかかる時間（秒）
+    public float _reloadTime = 2.0f;
+
+    // 射撃モード
+    public Selector _mode = Selector.SEMI;
+
+    // 撃つ弾の種類
+    public BulletType _type = BulletType.Normal;
+
+    // 弾のプレハブ
+    public GameObject _bulletPrefab;
+
+    // SEの名前
+    public string _seName = "";
 
     // 残弾数
     private int _remainingBullets = 0;
 
-    // 秒間発射数
-    [SerializeField]
-    private int _roundsPerSecond = 100;
-
     // 発射間隔
     private float _fireRate;
-
-    // 弾速
-    [SerializeField]
-    private float _bulletSpeed = 50.0f;
-
-    // リロードにかかる時間（秒）
-    [SerializeField]
-    private float _reloadTime = 2.0f;
-
-    // 射撃モード
-    [SerializeField]
-    private Selector _mode = Selector.AUTO;
-
-    // 撃つ弾の種類
-    [SerializeField]
-    private BulletType _type = BulletType.Normal;
 
     // 弾を撃てるか
     private bool _isShot = true;
@@ -51,14 +51,6 @@ public class WeaponManager : MonoBehaviour
     // 銃口
     private Transform _muzzle;
 
-    // 弾のプレハブ
-    [SerializeField]
-    private GameObject _bulletPrefab;
-
-    // SEの名前
-    [SerializeField]
-    private string _seName = "";
-    
     private IEnumerator _routine;
 
     // コントローラー
@@ -67,47 +59,21 @@ public class WeaponManager : MonoBehaviour
     // オーディオマネージャー
     private AudioManager _audioManager;
 
-    public int Capacity
-    {
-        get { return _capacity; }
-    }
-
     public int RemainingBullets
     {
         get { return _remainingBullets; }
     }
 
-    public float ReloadTime
+    public float FireRate
     {
-        get { return _reloadTime; }
-    }
-
-    public float BulletSpeed
-    {
-        get { return _bulletSpeed; }
-    }
-
-    public int RoundsPerSecond
-    {
-        get { return _roundsPerSecond; }
+        get { return _fireRate; }
     }
 
     public Transform Muzzle
     {
         get { return _muzzle; }
     }
-
-    public BulletType Type
-    {
-        get { return _type; }
-    }
-
-    public GameObject BulletPrefab
-    {
-        get { return _bulletPrefab; }
-        set { _bulletPrefab = value; }
-    }
-    
+   
     private void Awake()
     {
         _fireRate = 1.0f / _roundsPerSecond;
