@@ -37,11 +37,6 @@ public class CustomWeapon : MonoBehaviour {
        
 	}
 
-    public void SetWeapon(string name)
-    {
-        
-    }
-
     //待機状態のアニメーションをセット
     public void SetIdle()
     {
@@ -51,7 +46,8 @@ public class CustomWeapon : MonoBehaviour {
     //ポーズのアニメーションに設定
     public void SetPose(string name)
     {
-        Debug.Log(name);
+        Debug.Log("Pose");
+
         _animator.SetBool("Pose", true);
         for (int i = 0; i < 4; i++)
         {
