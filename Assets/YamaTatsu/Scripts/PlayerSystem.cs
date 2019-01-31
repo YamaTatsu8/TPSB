@@ -49,7 +49,6 @@ public class PlayerSystem : MonoBehaviour {
         _mainWeapon2 = "Main2";
 
         _model = GameObject.Find(_char);
-        _model.GetComponent<CustomWeapon>().SetIdle();
     }
 
 
@@ -85,7 +84,6 @@ public class PlayerSystem : MonoBehaviour {
     {
         _char = name;
         _model = GameObject.Find(name);
-        _model.GetComponent<CustomWeapon>().SetIdle();
     }
 
     public void setMain1(string weapon)

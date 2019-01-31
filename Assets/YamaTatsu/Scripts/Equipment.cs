@@ -500,38 +500,44 @@ public class Equipment : MonoBehaviour {
                         case (int)MODEL_STATE.UNITY:
                             _audioSource.PlayOneShot(_decision);
                             _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
-                            _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
                             _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
+                            _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
+                            Debug.Log(_playerSystem.GetComponent<PlayerSystem>().getChar());
                             break;
                         case (int)MODEL_STATE.ION:
                             _audioSource.PlayOneShot(_decision);
                             _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
-                            _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
                             _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
+                            _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
+                            Debug.Log(_playerSystem.GetComponent<PlayerSystem>().getChar());
                             break;
                         case (int)MODEL_STATE.Queendiva:
                             _audioSource.PlayOneShot(_decision);
                             _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
-                            _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
                             _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
+                            _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
+                            Debug.Log(_playerSystem.GetComponent<PlayerSystem>().getChar());
                             break;
                         case (int)MODEL_STATE.Misyara:
                             _audioSource.PlayOneShot(_decision);
                             _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
-                            _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
                             _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
+                            _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
+                            Debug.Log(_playerSystem.GetComponent<PlayerSystem>().getChar());
                             break;
                         case (int)MODEL_STATE.Noah:
                             _audioSource.PlayOneShot(_decision);
                             _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
-                            _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
                             _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
+                            _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
+                            Debug.Log(_playerSystem.GetComponent<PlayerSystem>().getChar());
                             break;
                         case (int)MODEL_STATE.Anathema:
                             _audioSource.PlayOneShot(_decision);
                             _model.GetComponent<ModelSelect>().SetModel(_modelList[_modelState][0].ToString());
-                            _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
                             _modelImage.GetComponent<WeaponName>().setName(_modelList[_modelState][0].ToString());
+                            _playerSystem.GetComponent<PlayerSystem>().setChar(_modelList[_modelState][0].ToString());
+                            Debug.Log(_playerSystem.GetComponent<PlayerSystem>().getChar());
                             break;
                     }
                 }
