@@ -14,7 +14,7 @@ public class CustomWeapon : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        _animator = GetComponent<Animator>();
+        _animator = this.gameObject.GetComponent<Animator>();
 
         _weapon[0] = GameObject.Find("SMG");
 
@@ -28,6 +28,7 @@ public class CustomWeapon : MonoBehaviour {
         {
             _weapon[i].SetActive(false);
         }
+
     }
 	
 	// Update is called once per frame
@@ -37,17 +38,10 @@ public class CustomWeapon : MonoBehaviour {
        
 	}
 
-    //待機状態のアニメーションをセット
-    public void SetIdle()
-    {
-        _animator.SetBool("Pose", false);
-    }
-
     //ポーズのアニメーションに設定
     public void SetPose(string name)
     {
-        Debug.Log("Pose");
-
+       
         _animator.SetBool("Pose", true);
         for (int i = 0; i < 4; i++)
         {
