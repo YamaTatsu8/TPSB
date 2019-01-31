@@ -114,6 +114,11 @@ public class SceneObserver : MonoBehaviour
             case (int)SCENE_STATE.RoomCheck:
                 break;
 
+            //　トレーニングルームの更新処理
+            case (int)SCENE_STATE.TrainingRoom:
+                break;
+
+
             //　カスタマイズシーンの更新処理
             case (int)SCENE_STATE.CustomizeScene:
                 GameObject cusObj = GameObject.Find("BackGround");
@@ -126,9 +131,11 @@ public class SceneObserver : MonoBehaviour
                 }
                 if (cusObj.GetComponent<Equipment>().GetNextFlag())
                 {
-                    _nowScene = (int)SCENE_STATE.StageSelectScene;
-                    _stageSelect.Initialize();
-                    ChangeScene(SCENE_STATE.StageSelectScene.ToString());
+                    _nowScene = (int)SCENE_STATE.TrainingRoom;
+                    ChangeScene(SCENE_STATE.TrainingRoom.ToString());
+                    //_nowScene = (int)SCENE_STATE.StageSelectScene;
+                    //_stageSelect.Initialize();
+                    //ChangeScene(SCENE_STATE.StageSelectScene.ToString());
                     //_nowScene = (int)SCENE_STATE.GamePlayScene;
                     //ChangeScene("Test");
                 }
