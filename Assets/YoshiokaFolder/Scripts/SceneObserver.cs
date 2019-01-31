@@ -101,7 +101,7 @@ public class SceneObserver : MonoBehaviour
                     if (selectName == SCENE_STATE.TrainingRoom.ToString())
                     {
                         _nowScene = (int)SCENE_STATE.CustomizeScene;
-                        ChangeScene(SCENE_STATE.CustomizeScene.ToString());
+                        ChangeScene("CustomizeWindow");
                     }
                 }
                 break;
