@@ -68,7 +68,7 @@ public class TrainingPoseMenu : MonoBehaviour {
 
         _npcFlag = false;
 
-        _nextFlag = false;
+        _nextFlag = true;
 
         _fadeFlag = false;
 

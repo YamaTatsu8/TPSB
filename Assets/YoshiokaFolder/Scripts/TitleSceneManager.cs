@@ -47,15 +47,9 @@ public class TitleSceneManager : MonoBehaviour
             _fadeObj.GetComponentInChildren<Fade>().FadeIn();
         }
         //　フェードが終了していたらシーンを変更する
-        GameObject loadObj = GameObject.Find("LoadCanvas");
         if (_fadeObj.GetComponentInChildren<Fade>().isCheckedFadeOut() && _isStartFade)
         {
             _isStartFade = false;
-
-            loadObj.GetComponent<Loading>().NextScene();
-        }
-        if (loadObj.GetComponent<Loading>().IsFinished())
-        {
             return false;
         }
         return true;

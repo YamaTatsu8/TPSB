@@ -24,6 +24,9 @@ public class Loading : MonoBehaviour
 
     private static Loading _loading;
 
+    private string _sceneName;
+    private GameObject _emptyObj;
+
     //　Image
     //[SerializeField]
     //private Image _loadImage;
@@ -46,11 +49,12 @@ public class Loading : MonoBehaviour
     /// <summary>
     /// 次のシーンに移行する
     /// </summary>
-    public void NextScene()
+    public void NextScene(string sceneName)
     {
         //　ロード画面UIをアクティブにする
         _UISlider.SetActive(true);
         _UIText.SetActive(true);
+        _sceneName = sceneName;
 
         //　コルーチンを開始
         StartCoroutine("LoadData");
@@ -64,7 +68,7 @@ public class Loading : MonoBehaviour
     {
         // シーンの読み込みをする
         //_async = SceneManager.LoadSceneAsync("CustomizeWindow");
-        _async = SceneManager.LoadSceneAsync("ModeMenuScene");
+        _async = SceneManager.LoadSceneAsync(_sceneName);
 
         //　読み込みが終わるまで進捗状況をスライダーの値に反映させる
         while (!_async.isDone)
@@ -99,5 +103,18 @@ public class Loading : MonoBehaviour
     public bool IsFinished()
     {
         return _isFinished;
+    }
+
+    /// <summary>
+    /// ローディングするオブジェクトを生成する
+    /// </summary>
+    /// <returns>GameObject:生成したローディングオブジェクト</returns>
+    public GameObject CreateLoading()
+    {
+        if (_emptyObj == null)
+        {
+            _emptyObj = (GameObject)Instantiate(Resources.Load("Prefabs/LoadCanvas"));
+        }
+        return _emptyObj;
     }
 }

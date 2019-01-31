@@ -71,6 +71,8 @@ public class SceneObserver : MonoBehaviour
             case (int)SCENE_STATE.TitleScene:
                 if (!_title.SceneUpdate())
                 {
+                    GameObject loadObj = GameObject.Find("LoadCanvas");
+                    loadObj.GetComponent<Loading>().NextScene(SCENE_STATE.ModeMenuScene.ToString());
                     _nowScene = (int)SCENE_STATE.ModeMenuScene;
                 }
                 break;
@@ -116,8 +118,14 @@ public class SceneObserver : MonoBehaviour
 
             //　トレーニングルームの更新処理
             case (int)SCENE_STATE.TrainingRoom:
-                break;
+                GameObject roomManager = GameObject.Find("RoomManager");
+                if (roomManager.GetComponent<TrainingPoseMenu>().GetNextFlag())
+                {
+                    _nowScene = (int)SCENE_STATE.ModeMenuScene;
+                    ChangeScene(SCENE_STATE.ModeMenuScene.ToString());
+                }
 
+                break;
 
             //　カスタマイズシーンの更新処理
             case (int)SCENE_STATE.CustomizeScene:
@@ -185,6 +193,8 @@ public class SceneObserver : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+
 
     //---------------------------------------------------------------------------------
     //　各シーンの情報を共有するGetter
