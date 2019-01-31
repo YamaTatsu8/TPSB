@@ -12,6 +12,13 @@ public class TrainingPoseMenu : MonoBehaviour {
     //Popバー
     private RectTransform _pop;
 
+    //メニュー一覧
+    private RectTransform _contineBar;
+
+    private RectTransform _npcBar;
+
+    private RectTransform _exitMenu;
+
     //Popフラグ
     private bool _popFlag;
 
@@ -68,7 +75,7 @@ public class TrainingPoseMenu : MonoBehaviour {
 
         _npcFlag = false;
 
-        _nextFlag = true;
+        _nextFlag = false;
 
         _fadeFlag = false;
 
@@ -79,7 +86,13 @@ public class TrainingPoseMenu : MonoBehaviour {
         _fadeOut.GetComponentInChildren<Fade>().FadeIn();
 
         //Find
-        _pop = GameObject.Find("_pop").GetComponent<RectTransform>();
+        _pop = GameObject.Find("Pop").GetComponent<RectTransform>();
+
+        _contineBar = GameObject.Find("Continue").GetComponent<RectTransform>();
+
+        _npcBar = GameObject.Find("NPC").GetComponent<RectTransform>();
+
+        _exitMenu = GameObject.Find("EXIT").GetComponent<RectTransform>();
 
 	}
 	
@@ -105,15 +118,24 @@ public class TrainingPoseMenu : MonoBehaviour {
             if (_npcFlag == false)
             {
                 //メニュー操作
-                _menuState = ChooseStateUpDown(_menuState);
+                _menuState = ChooseStateRL(_menuState);
 
                 switch (_menuState)
                 {
                     case (int)POSE_MENU.CONTINUE:
+                        _contineBar.GetComponent<Image>().color = new Color(255, 255, 255);
+                        _npcBar.GetComponent<Image>().color = new Color(0, 0, 0);
+                        _exitMenu.GetComponent<Image>().color = new Color(0, 0, 0);
                         break;
                     case (int)POSE_MENU.NPC:
+                        _contineBar.GetComponent<Image>().color = new Color(0, 0, 0);
+                        _npcBar.GetComponent<Image>().color = new Color(255, 255, 255);
+                        _exitMenu.GetComponent<Image>().color = new Color(0, 0, 0);
                         break;
                     case (int)POSE_MENU.EXIT:
+                        _contineBar.GetComponent<Image>().color = new Color(0, 0, 0);
+                        _npcBar.GetComponent<Image>().color = new Color(0, 0, 0);
+                        _exitMenu.GetComponent<Image>().color = new Color(255, 255, 255);
                         break;
                 }
 

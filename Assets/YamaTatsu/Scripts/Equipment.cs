@@ -230,6 +230,8 @@ public class Equipment : MonoBehaviour {
 
         _playerSystem = GameObject.Find("PlayerSystem");
 
+        _playerSystem.GetComponent<PlayerSystem>().setChar("Unity-Chan");
+
         Vector3 rePos;
 
         for (int i = 0; i < _weaponNum; i++)
@@ -658,6 +660,16 @@ public class Equipment : MonoBehaviour {
             {
                 _popFlag = true;
             }
+        }
+
+        //デバッグ終了キー
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+            #elif UNITY_STANDALONE
+            Application.Quit();
+            #endif
         }
 
     }

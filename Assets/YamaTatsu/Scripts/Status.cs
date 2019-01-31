@@ -30,6 +30,11 @@ public class Status : MonoBehaviour {
             Destroy(this.gameObject);
         }
 
+        if(_HP >= 100)
+        {
+            _HP = 100;
+        }
+
         _animator.SetTrigger("Idle");
     }
 
@@ -43,6 +48,11 @@ public class Status : MonoBehaviour {
     {
         _HP -= damage;
         _animator.SetTrigger("Damage");
+    }
+
+    public void RecoveryHP(int heal)
+    {
+        _HP += heal;
     }
 
     public float getHP()
