@@ -72,6 +72,8 @@ public class TrainingPoseMenu : MonoBehaviour {
     //コントローラー
     private GameController _controller;
 
+    private GameObject _pause;
+
 	// Use this for initialization
 	void Start () {
 
@@ -124,7 +126,6 @@ public class TrainingPoseMenu : MonoBehaviour {
         {
             _popFlag = true;
             _menuFlag = true;
-            _pauseManager.GetComponent<Pausable>().pausing = true;
         }
 
         if(_popFlag)
@@ -181,7 +182,7 @@ public class TrainingPoseMenu : MonoBehaviour {
                             //メニュー画面を閉じる
                             _menuFlag = false;
                             _popFlag = false;
-                            _pauseManager.GetComponent<Pausable>().pausing = false;
+                            _pauseManager.GetComponent<Pausable>().SetPause(true);
                             _menuState = 0;
                             break;
                         case (int)POSE_MENU.NPC:
@@ -190,6 +191,7 @@ public class TrainingPoseMenu : MonoBehaviour {
                             break;
                         case (int)POSE_MENU.EXIT:
                             //タイトルに戻る
+                            _pauseManager.GetComponent<Pausable>().SetPause(true);
                             Fade fade = new Fade();
                             _fadeOut = fade.CreateFade();
                             _fadeOut.GetComponentInChildren<Fade>().FadeOut();

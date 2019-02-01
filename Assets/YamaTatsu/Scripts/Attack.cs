@@ -122,8 +122,6 @@ public class Attack : MonoBehaviour {
             _targetFlag = !_targetFlag;
         }
 
-        //Debug.Log(_changeWeapon);
-
         if (controller.ButtonDown(Button.X))
         {
             _weaponFlag = !_weaponFlag;

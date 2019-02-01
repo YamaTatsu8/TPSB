@@ -689,7 +689,7 @@ public class Equipment : MonoBehaviour {
         //startが押された時ポップを表示させる
         if (_controller.ButtonDown(Button.START))
         {
-            if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != "Main1" || _playerSystem.GetComponent<PlayerSystem>().getMain2() != "Main2")
+            if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != "Main1" && _playerSystem.GetComponent<PlayerSystem>().getMain2() != "Main2")
             {
                 _popFlag = true;
                 _selectFlag = false;
