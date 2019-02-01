@@ -4928,7 +4928,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1952447355000396}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6570001, y: 22.105, z: -36.237}
+  m_LocalPosition: {x: 0, y: 1.09, z: -0.34}
   m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.19999999}
   m_Children:
   - {fileID: 4990055640845874}
@@ -7311,6 +7311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 10
   _roundsPerSecond: 1
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 0
   _type: 0
@@ -7772,10 +7773,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 100
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 0
   _type: 1
-  _bulletPrefab: {fileID: 1512723301003088, guid: 75486be8ed5482a4f9e8984beeecadbc,
+  _bulletPrefab: {fileID: 1512723301003088, guid: 5709d0a9140477742b441d4ef9031c01,
     type: 2}
   _seName: 
 --- !u!114 &114544508521387252
@@ -8523,6 +8525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 100
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 1
   _type: 0
@@ -8872,6 +8875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 24
   _roundsPerSecond: 2
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 2
   _type: 0
@@ -8924,6 +8928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 1
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 1
   _type: 0
