@@ -13,4 +13,6 @@ public enum BulletType
     Normal,
     Missile,
     Laser,
+    Heal,
+    Bit,
 }

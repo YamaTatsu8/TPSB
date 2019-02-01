@@ -159,14 +159,14 @@ public class GameController : Util.SingletonMonoBehaviour<GameController>
     /// <returns>true:押されている false:押されていない</returns>
     public bool TriggerDown(Trigger t)
     {
-        _prevTrigger = t;
-
         string trigger = t.ToString();
 
         try
         {
             if (Input.GetAxis(trigger) >= 0.75f)
             {
+                _prevTrigger = t;
+
                 return true;
             }
         }
