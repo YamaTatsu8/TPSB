@@ -198,7 +198,8 @@ public class TrainingPoseMenu : MonoBehaviour {
             }
             else
             {
-                //_idleBar.GetComponent<>
+                _idleBar.localScale = new Vector3(1, 1, 1);
+                _attackBar.localScale = new Vector3(1, 1, 1);
 
                 //NPCのモード設定
                 _npcState = ChooseStateRL(_npcState);
