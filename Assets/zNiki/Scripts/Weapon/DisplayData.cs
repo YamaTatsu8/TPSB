@@ -38,9 +38,9 @@ public class DisplayData : MonoBehaviour
     {
         _parentWeaponManager = GetComponentInParent<WeaponManager>();
 
-        _reloadTime = _parentWeaponManager.ReloadTime;
+        _reloadTime = _parentWeaponManager._reloadTime;
 
-        _capacityText.text = _parentWeaponManager.Capacity.ToString();
+        _capacityText.text = _parentWeaponManager._capacity.ToString();
 
         _remainingBulletsText.text = _parentWeaponManager.RemainingBullets.ToString();
     }

@@ -703,6 +703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 100
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 1
   _type: 0
@@ -3116,7 +3117,6 @@ GameObject:
   m_Component:
   - component: {fileID: 379077340}
   - component: {fileID: 379077339}
-  - component: {fileID: 379077338}
   - component: {fileID: 379077343}
   - component: {fileID: 379077341}
   m_Layer: 0
@@ -3126,13 +3126,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &379077338
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 379077337}
-  m_Enabled: 1
 --- !u!20 &379077339
 Camera:
   m_ObjectHideFlags: 0
@@ -3200,7 +3193,6 @@ MonoBehaviour:
   _player: {fileID: 1276449743}
   target: {fileID: 1076553059}
   _tps: {fileID: 0}
-  _offsetVec: {x: 0, y: 2, z: 0}
 --- !u!45 &379077343
 Skybox:
   m_ObjectHideFlags: 0
@@ -6294,6 +6286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 100
   _roundsPerSecond: 50
+  _bulletSpeed: 50
   _reloadTime: 3
   _mode: 1
   _type: 0
@@ -6688,6 +6681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 10
   _roundsPerSecond: 5
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 0
   _type: 0
@@ -8039,12 +8033,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c54de8638213d458626b5745934951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _capacity: 30
-  _roundsPerSecond: 200
+  _capacity: 100
+  _roundsPerSecond: 1000
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 1
   _type: 0
-  _bulletPrefab: {fileID: 1728188175131922, guid: beced145914b18847bf9316bedccb44c,
+  _bulletPrefab: {fileID: 1047765635152560, guid: 11d8a17bf5cbb504badc2aeb917fabd9,
     type: 2}
   _seName: 
 --- !u!95 &846485948
@@ -10097,6 +10092,7 @@ GameObject:
   - component: {fileID: 1076553062}
   - component: {fileID: 1076553061}
   - component: {fileID: 1076553060}
+  - component: {fileID: 1076553064}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -10171,6 +10167,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1076553064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1076553059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d4f41086ac73a548b040e91d34e5e2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _HP: 1e+10
+  _obj: {fileID: 0}
 --- !u!1 &1084527597
 GameObject:
   m_ObjectHideFlags: 0
@@ -18380,6 +18389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 24
   _roundsPerSecond: 100
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 2
   _type: 0
@@ -18728,7 +18738,7 @@ GameObject:
   - component: {fileID: 1501305093}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18794,7 +18804,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1501305092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: -0.54}
+  m_LocalPosition: {x: 0, y: -0.25, z: 0}
   m_LocalScale: {x: 50, y: 0.25, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
@@ -19025,6 +19035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 100
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 1
   _type: 0
@@ -19196,6 +19207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 10
   _roundsPerSecond: 1
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 0
   _type: 0
@@ -19476,6 +19488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 6
   _roundsPerSecond: 1000
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 0
   _type: 1
@@ -27835,6 +27848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 10
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 2
   _type: 0

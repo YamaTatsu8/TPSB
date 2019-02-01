@@ -21,7 +21,7 @@ public class RayCastShoot : MonoBehaviour
     private GameObject _bulletPrefab;
 
     // 弾速
-    private float _bulletSpeed = 50.0f;
+    private float _bulletSpeed;
 
     // 射程
     private float _range = 30.0f;
@@ -35,15 +35,17 @@ public class RayCastShoot : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        _fireRate = 1.0f / this.GetComponent<WeaponManager>().RoundsPerSecond;
-        
+        _bulletSpeed = this.GetComponent<WeaponManager>()._bulletSpeed;
+
+        _fireRate = 1.0f / this.GetComponent<WeaponManager>()._roundsPerSecond;
+
         _fpsCam = Camera.FindObjectOfType<Camera>();
 
         _muzzle = this.GetComponent<WeaponManager>().Muzzle;
 
-        _bulletPrefab = this.GetComponent<WeaponManager>().BulletPrefab;
+        _bulletPrefab = this.GetComponent<WeaponManager>()._bulletPrefab;
 
-        _type = this.GetComponent<WeaponManager>().Type;
+        _type = this.GetComponent<WeaponManager>()._type;
     }
 
     public bool Shot(float fireRate)
@@ -80,6 +82,16 @@ public class RayCastShoot : MonoBehaviour
                     StartCoroutine(Missile(bulletClone, this.GetComponent<RayCastShoot>(), _muzzle.position));
                     break;
                 case BulletType.Laser:
+                    break;
+                case BulletType.Heal:
+                    // 弾をキャラの子に
+                    bulletClone.transform.parent = this.transform.parent;
+                    // 弾の位置を再調整
+                    bulletClone.transform.position = this.transform.parent.position;
+                    // 回復
+                    bulletClone.GetComponent<BulletController>().IsAttack = false;
+                    break;
+                case BulletType.Bit:
                     break;
                 default:
                     break;
