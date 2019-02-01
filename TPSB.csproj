@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2018.2.0f2</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -351,6 +353,81 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\YamaTatsu\Scripts\AimFollow.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\AimRotate.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Attack.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Bar.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Barrier.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\CameraOffset.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\CameraRotate.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\CharModel.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Destory.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Enemy\EnemyAttack.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Enemy\EnemyGage.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Enemy\EnemyHP.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Enemy\EnemyMissile.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Enemy\EnemyShoot.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Enemy\HitTest.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Enemy\NPC.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Enemy\WallCollider.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\EP.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Equipment.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\FpsCounter.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\GetPos.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\GradientTest.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\HP.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Jump.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\LookCamera.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\LookOnTarget.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Missile.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\MissileShot.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\MissileUI.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\ModelSelect.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Move.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\NameText.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Noise\Noise.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\PlayerCamera.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\PlayerInfo.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\PlayerRotate.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\PlayerSystem.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\RotObj.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Shot.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\SoundsShoot.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\Status.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\SubWeaponCanvas.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\System\CameraFace.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\System\CustomModel.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\System\CustomWeapon.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\System\ModeMenu.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\System\Pausable.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\System\PlayScene.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\System\RotY.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\System\RotZ.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\System\StageSpawn.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\System\TrainingPoseMenu.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\System\WeaponImage.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\System\WeaponView.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\WeaponEquipment.cs" />
+    <Compile Include="Assets\YamaTatsu\Scripts\WeaponName.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\BulletManager.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\ChangeSprite.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\ChangeSpriteSearchRoom.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\ChangeSpriteStageSelect.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\Fade.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\Loading.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\Player.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\PlaySceneManager.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\ResultSceneManager.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\SceneObserver.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\ShowHide.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\ShowHideText.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\StageManager.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\StagePreview.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\StageSelectManager.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\Test.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\TitleGradation.cs" />
+    <Compile Include="Assets\YoshiokaFolder\Scripts\TitleSceneManager.cs" />
     <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\FastAction.cs" />
     <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\MaterialReferenceManager.cs" />
     <Compile Include="Packages\com.unity.textmeshpro\Scripts\Runtime\PackageResourceImporterWindow.cs" />
@@ -594,7 +671,85 @@
     <None Include="Assets\YamaTatsu\Model\chara_15\Shader\TextureAlpha.shader" />
     <None Include="Assets\YamaTatsu\Model\chara_15\Shader\TransparentRim.shader" />
     <None Include="Assets\YamaTatsu\Motion\Tda式初音ミク・アペンド_Ver1.10.xml" />
+    <None Include="Assets\YamaTatsu\Scripts\AimFollow.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\AimRotate.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Attack.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Bar.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Barrier.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\CameraFollow.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\CameraOffset.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\CameraRotate.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\CharModel.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Destory.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Enemy.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Enemy\EnemyAttack.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Enemy\EnemyGage.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Enemy\EnemyHP.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Enemy\EnemyMissile.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Enemy\EnemyShoot.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Enemy\HitTest.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Enemy\NPC.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Enemy\WallCollider.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\EP.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Equipment.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\FpsCounter.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\GetPos.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\GradientTest.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\HP.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Jump.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\LookCamera.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\LookOnTarget.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Missile.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\MissileShot.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\MissileUI.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\ModelSelect.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Move.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\NameText.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Noise.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Noise\Noise.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\PlayerCamera.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\PlayerInfo.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\PlayerRotate.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\PlayerSystem.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\RotObj.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Shot.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\SoundsShoot.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\Status.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\SubWeaponCanvas.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\System.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\System\CameraFace.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\System\CustomModel.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\System\CustomWeapon.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\System\ModeMenu.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\System\Pausable.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\System\PlayScene.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\System\RotY.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\System\RotZ.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\System\StageSpawn.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\System\TrainingPoseMenu.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\System\WeaponImage.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\System\WeaponView.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\WeaponEquipment.cs.meta" />
+    <None Include="Assets\YamaTatsu\Scripts\WeaponName.cs.meta" />
     <None Include="Assets\YamaTatsu\Shaders\SemiTransparent.shader" />
+    <None Include="Assets\YoshiokaFolder\Scripts\BulletManager.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\ChangeSprite.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\ChangeSpriteSearchRoom.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\ChangeSpriteStageSelect.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\Fade.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\Loading.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\Player.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\PlaySceneManager.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\ResultSceneManager.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\SceneObserver.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\ShowHide.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\ShowHideText.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\StageManager.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\StagePreview.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\StageSelectManager.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\Test.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\TitleGradation.cs.meta" />
+    <None Include="Assets\YoshiokaFolder\Scripts\TitleSceneManager.cs.meta" />
     <None Include="Assets\YoshiokaFolder\Shaders\PulseNoise.shader" />
     <None Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\Example_02\Help Readme SOS.txt" />
     <None Include="Assets\_Creepy_Cat\3D Games Effects Pack Free\_FAQ - Informations\Help Readme SOS.txt" />
@@ -609,6 +764,7 @@
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Templates\PackageSearchFilterTabs.uxml" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Templates\PackagesLoading.uxml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
 </Project>
