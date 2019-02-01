@@ -10,6 +10,7 @@ public class TrainingPoseMenu : MonoBehaviour {
     private Canvas _canvas;
 
     //Popバー
+    [SerializeField]
     private RectTransform _pop;
 
     //メニュー一覧
@@ -62,6 +63,12 @@ public class TrainingPoseMenu : MonoBehaviour {
     //NPC
     private GameObject _npc;
 
+    //Idle
+    private RectTransform _idleBar;
+
+    //Attack
+    private RectTransform _attackBar;
+
     //コントローラー
     private GameController _controller;
 
@@ -98,6 +105,10 @@ public class TrainingPoseMenu : MonoBehaviour {
 
         _pauseManager = GameObject.Find("PauseManager");
 
+        _idleBar = GameObject.Find("IdleBar").GetComponent<RectTransform>();
+
+        _attackBar = GameObject.Find("AttackBar").GetComponent<RectTransform>();
+
 	}
 	
 	// Update is called once per frame
@@ -110,11 +121,17 @@ public class TrainingPoseMenu : MonoBehaviour {
         {
             _popFlag = true;
             _menuFlag = true;
+            _pauseManager.GetComponent<Pausable>().pausing = true;
         }
 
         if(_popFlag)
         {
             //popを表示
+            PopUp();
+        }
+        else if(_popFlag == false)
+        {
+            PopDown();
         }
 
         if(_menuFlag)
@@ -161,6 +178,8 @@ public class TrainingPoseMenu : MonoBehaviour {
                             //メニュー画面を閉じる
                             _menuFlag = false;
                             _popFlag = false;
+                            _pauseManager.GetComponent<Pausable>().pausing = false;
+                            _menuState = 0;
                             break;
                         case (int)POSE_MENU.NPC:
                             _npcFlag = true;
@@ -179,6 +198,8 @@ public class TrainingPoseMenu : MonoBehaviour {
             }
             else
             {
+                //_idleBar.GetComponent<>
+
                 //NPCのモード設定
                 _npcState = ChooseStateRL(_npcState);
 
@@ -193,6 +214,7 @@ public class TrainingPoseMenu : MonoBehaviour {
             }
             
         }
+
 
         //fadeが終わったら次のシーンへ移動する
         if (_fadeOut.GetComponentInChildren<Fade>().isCheckedFadeOut() && _fadeFlag == true)
@@ -253,6 +275,16 @@ public class TrainingPoseMenu : MonoBehaviour {
     public  bool GetNextFlag()
     {
         return _nextFlag;
+    }
+
+    private void PopUp()
+    {
+        _pop.localScale = new Vector3(1, 1, 1);
+    }
+
+    private void PopDown()
+    {
+        _pop.localScale = new Vector3(0, 0, 0);
     }
 
 }
