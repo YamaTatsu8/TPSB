@@ -204,12 +204,44 @@ public class TrainingPoseMenu : MonoBehaviour {
                 //NPCのモード設定
                 _npcState = ChooseStateRL(_npcState);
 
+                if (_npcState > 1)
+                {
+                    _npcState = 0;
+                }
+                else if (_npcState < 0)
+                {
+                    _menuState = 1;
+                }
+
                 switch (_npcState)
                 {
                     case (int)NPC_OPTION.IDLE:
+                        _idleBar.GetComponent<Image>().color = new Color(255, 255, 255);
+                        _attackBar.GetComponent<Image>().color = new Color(0, 0, 0);
                         break;
                     case (int)NPC_OPTION.ATTACK:
+                        _idleBar.GetComponent<Image>().color = new Color(0, 0, 0);
+                        _attackBar.GetComponent<Image>().color = new Color(255, 255, 255);
                         break;
+                }
+
+                if (_controller.ButtonDown(Button.A))
+                {
+                    _idleBar.localScale = new Vector3(0, 0, 0);
+                    _attackBar.localScale = new Vector3(0, 0, 0);
+
+                    switch (_npcState)
+                    {
+                        case (int)NPC_OPTION.IDLE:
+                            //npcにセットする
+                            _npcState = 0;
+                            _npcFlag = false;
+                            break;
+                        case (int)NPC_OPTION.ATTACK:
+                            _npcState = 0;
+                            _npcFlag = false;
+                            break;
+                    }
                 }
 
             }
