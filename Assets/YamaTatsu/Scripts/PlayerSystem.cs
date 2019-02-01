@@ -101,7 +101,7 @@ public class PlayerSystem : MonoBehaviour {
     public void setSub(string weapon)
     {
         //
-        _subWeapon = "Missile";
+        _subWeapon = "SubWeapon";
     }
 
     public void Init()
