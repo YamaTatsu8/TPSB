@@ -9902,6 +9902,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 1
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 1
   _type: 0
@@ -10191,10 +10192,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 100
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 1
   _type: 0
-  _bulletPrefab: {fileID: 1243580894668578, guid: 8e6f70bc3d53d4440974079dd2b144fa,
+  _bulletPrefab: {fileID: 1047765635152560, guid: 11d8a17bf5cbb504badc2aeb917fabd9,
     type: 2}
   _seName: 
 --- !u!114 &114117942787939160
@@ -10210,10 +10212,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 1
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 1
   _type: 0
-  _bulletPrefab: {fileID: 1728188175131922, guid: beced145914b18847bf9316bedccb44c,
+  _bulletPrefab: {fileID: 1728188175131922, guid: b6ab4fe588332264f8e4931c24163b8d,
     type: 2}
   _seName: 
 --- !u!114 &114119071200033516
@@ -10337,6 +10340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 10
   _roundsPerSecond: 1
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 0
   _type: 0
@@ -10646,6 +10650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 10
   _roundsPerSecond: 1
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 0
   _type: 0
@@ -11627,6 +11632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 100
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 1
   _type: 0
@@ -12092,6 +12098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 24
   _roundsPerSecond: 2
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 2
   _type: 0
@@ -13205,6 +13212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 24
   _roundsPerSecond: 2
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 2
   _type: 0
@@ -13608,10 +13616,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 100
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 0
   _type: 1
-  _bulletPrefab: {fileID: 1512723301003088, guid: 75486be8ed5482a4f9e8984beeecadbc,
+  _bulletPrefab: {fileID: 1747848215082422, guid: 1bbfa4c849cfd664a9726175ca3229ef,
     type: 2}
   _seName: 
 --- !u!114 &114957341289507712

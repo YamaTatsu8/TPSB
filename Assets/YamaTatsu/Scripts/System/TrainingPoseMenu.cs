@@ -34,6 +34,8 @@ public class TrainingPoseMenu : MonoBehaviour {
 
     private bool _fadeFlag;
 
+    private bool _startFlag;
+
     private GameObject _pauseManager;
 
     //フェード
@@ -96,6 +98,8 @@ public class TrainingPoseMenu : MonoBehaviour {
 
         _fadeOut.GetComponentInChildren<Fade>().FadeIn();
 
+        _startFlag = false;
+
         //Find
         _pop = GameObject.Find("Pop").GetComponent<RectTransform>();
 
@@ -114,19 +118,34 @@ public class TrainingPoseMenu : MonoBehaviour {
         _idleBar.localScale = new Vector3(0, 0, 0);
         _attackBar.localScale = new Vector3(0, 0, 0);
 
+        _startFlag = false;
+
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
 
         _controller.ControllerUpdate();
 
         //startボタンが押された時ポップを出す
-        if(_controller.ButtonDown(Button.START))
+        if (_controller.ButtonDown(Button.START))
         {
-            _popFlag = true;
-            _menuFlag = true;
+            if (_startFlag == false)
+            {
+                _popFlag = true;
+                _menuFlag = true;
+                _startFlag = true;
+                Debug.Log("通った");
+            }
+            else
+            {
+                _popFlag = false;
+                _menuFlag = false;
+                _startFlag = false;
+                Debug.Log("通る");
+            }
         }
+    
 
         if(_popFlag)
         {
@@ -182,7 +201,7 @@ public class TrainingPoseMenu : MonoBehaviour {
                             //メニュー画面を閉じる
                             _menuFlag = false;
                             _popFlag = false;
-                            _pauseManager.GetComponent<Pausable>().SetPause(true);
+                            _startFlag = false;
                             _menuState = 0;
                             break;
                         case (int)POSE_MENU.NPC:
@@ -191,7 +210,6 @@ public class TrainingPoseMenu : MonoBehaviour {
                             break;
                         case (int)POSE_MENU.EXIT:
                             //タイトルに戻る
-                            _pauseManager.GetComponent<Pausable>().SetPause(true);
                             Fade fade = new Fade();
                             _fadeOut = fade.CreateFade();
                             _fadeOut.GetComponentInChildren<Fade>().FadeOut();

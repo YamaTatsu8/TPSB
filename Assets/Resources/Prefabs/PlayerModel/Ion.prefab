@@ -1156,6 +1156,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4074797540979724}
+  - component: {fileID: 114332207779552168}
+  - component: {fileID: 114846517202455404}
   m_Layer: 0
   m_Name: Rifle
   m_TagString: Untagged
@@ -7322,10 +7324,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 100
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 0
   _type: 1
-  _bulletPrefab: {fileID: 1512723301003088, guid: 75486be8ed5482a4f9e8984beeecadbc,
+  _bulletPrefab: {fileID: 1747848215082422, guid: 1bbfa4c849cfd664a9726175ca3229ef,
     type: 2}
   _seName: 
 --- !u!114 &114075013832910682
@@ -7674,6 +7677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 10
   _roundsPerSecond: 1
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 0
   _type: 0
@@ -7935,6 +7939,26 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114332207779552168
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1298483578178338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c54de8638213d458626b5745934951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _capacity: 24
+  _roundsPerSecond: 100
+  _bulletSpeed: 50
+  _reloadTime: 2
+  _mode: 0
+  _type: 0
+  _bulletPrefab: {fileID: 1690340862790088, guid: 64c8824fd18996449b01cb1bd2c5abf9,
+    type: 2}
+  _seName: 
 --- !u!114 &114340839177701638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8162,10 +8186,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 200
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 1
   _type: 0
-  _bulletPrefab: {fileID: 1728188175131922, guid: beced145914b18847bf9316bedccb44c,
+  _bulletPrefab: {fileID: 1728188175131922, guid: b6ab4fe588332264f8e4931c24163b8d,
     type: 2}
   _seName: 
 --- !u!114 &114483641613129588
@@ -8301,10 +8326,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 100
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 1
   _type: 0
-  _bulletPrefab: {fileID: 1243580894668578, guid: 8e6f70bc3d53d4440974079dd2b144fa,
+  _bulletPrefab: {fileID: 1047765635152560, guid: 11d8a17bf5cbb504badc2aeb917fabd9,
     type: 2}
   _seName: 
 --- !u!114 &114586814933788082
@@ -8871,6 +8897,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114846517202455404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1298483578178338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 240faba787efbf14c950e56f0125df41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114912136923341720
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -46,11 +46,6 @@ public class Pausable : MonoBehaviour
             }
         }
 
-        if(_flag == true)
-        {
-            Time.timeScale = 1f;
-        }
-
     }
 
     public void SetPause(bool flag)
