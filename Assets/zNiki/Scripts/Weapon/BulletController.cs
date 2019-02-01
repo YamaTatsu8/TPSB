@@ -16,8 +16,19 @@ public class BulletController: MonoBehaviour
     [SerializeField]
     private string _seName = "";
 
+    // 攻撃とヒールの区別用
+    private bool _isAttack = true;
+
+    // 多重ヒール防止用
+    private bool _isHealed = false;
+
     // オーディオマネージャー
     private AudioManager _audioManager;
+
+    public bool IsAttack
+    {
+        set { _isAttack = value; }
+    }
 
     public void DeleteBullet(GameObject bulletClone)
     {
@@ -33,28 +44,39 @@ public class BulletController: MonoBehaviour
     }
     
     private void OnCollisionEnter(Collision collision)
-    {
-        
-        if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Target")
+    {        
+        if (_isAttack)
         {
-            collision.gameObject.GetComponent<Status>().hitDamage(_bulletDamage);
-
-            if (_seName != "")
+            if (collision.gameObject.tag == "Enemy" || collision.gameObject.tag == "Target")
             {
-                _audioManager.PlaySE(_seName);
+                collision.gameObject.GetComponent<Status>().hitDamage(_bulletDamage);
+
+                if (_seName != "")
+                {
+                    _audioManager.PlaySE(_seName);
+                }
+
+                Destroy(this.gameObject);
             }
 
-            Destroy(this.gameObject);
+            if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Ground")
+            {
+                if (_seName != "")
+                {
+                    _audioManager.PlaySE(_seName);
+                }
+
+                Destroy(this.gameObject);
+            }
         }
-
-        if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Ground")
+        else
         {
-            if (_seName != "")
+            if (collision.gameObject.tag == "Player" && !_isHealed)
             {
-                _audioManager.PlaySE(_seName);
-            }
+                collision.gameObject.GetComponent<Status>().RecoveryHP(_bulletDamage);
 
-            Destroy(this.gameObject);
+                _isHealed = true;
+            }
         }
     }
 }

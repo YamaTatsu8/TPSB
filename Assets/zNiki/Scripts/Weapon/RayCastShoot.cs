@@ -84,8 +84,12 @@ public class RayCastShoot : MonoBehaviour
                 case BulletType.Laser:
                     break;
                 case BulletType.Heal:
+                    // 弾をキャラの子に
                     bulletClone.transform.parent = this.transform.parent;
+                    // 弾の位置を再調整
                     bulletClone.transform.position = this.transform.parent.position;
+                    // 回復
+                    bulletClone.GetComponent<BulletController>().IsAttack = false;
                     break;
                 case BulletType.Bit:
                     break;
