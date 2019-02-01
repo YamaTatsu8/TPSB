@@ -14,7 +14,7 @@ public class SceneObserver : MonoBehaviour
         RoomSetting,
         RoomCheck,
         TrainingRoom,
-        CustomizeScene,
+        CustomizeWindow,
         StageSelectScene,
         PlayScene,
         ResultScene
@@ -71,7 +71,8 @@ public class SceneObserver : MonoBehaviour
             case (int)SCENE_STATE.TitleScene:
                 if (!_title.SceneUpdate())
                 {
-                    GameObject loadObj = GameObject.Find("LoadCanvas");
+                    Loading load = new Loading();
+                    GameObject loadObj = load.CreateLoading();
                     loadObj.GetComponent<Loading>().NextScene(SCENE_STATE.ModeMenuScene.ToString());
                     _nowScene = (int)SCENE_STATE.ModeMenuScene;
                 }
@@ -84,11 +85,17 @@ public class SceneObserver : MonoBehaviour
                 else
                 {
                     GameObject load = GameObject.Find("LoadCanvas");
-                    load.GetComponent<Loading>().FinalReset();
+                    if (load != null)
+                    {
+                        load.GetComponent<Loading>().FinalReset();
+                    }
                 }
                 if (modeMenu.GetComponent<ModeMenu>().GetNextFlag())
                 {
                     string selectName = modeMenu.GetComponent<ModeMenu>().SelectedSceneName();
+
+                    Loading load = new Loading();
+                    GameObject loadObj = load.CreateLoading();
 
                     if (selectName == SCENE_STATE.RoomSetting.ToString())
                     {
@@ -102,8 +109,9 @@ public class SceneObserver : MonoBehaviour
                     }
                     if (selectName == SCENE_STATE.TrainingRoom.ToString())
                     {
-                        _nowScene = (int)SCENE_STATE.CustomizeScene;
-                        ChangeScene("CustomizeWindow");
+                        _nowScene = (int)SCENE_STATE.CustomizeWindow;
+                        loadObj.GetComponent<Loading>().NextScene(SCENE_STATE.CustomizeWindow.ToString());
+                        //ChangeScene("CustomizeWindow");
                     }
                 }
                 break;
@@ -119,33 +127,56 @@ public class SceneObserver : MonoBehaviour
             //　トレーニングルームの更新処理
             case (int)SCENE_STATE.TrainingRoom:
                 GameObject roomManager = GameObject.Find("RoomManager");
+                
+                if (roomManager == null) { return; }
+                else
+                {
+                    GameObject load = GameObject.Find("LoadCanvas");
+                    if (load != null)
+                    {
+                        load.GetComponent<Loading>().FinalReset();
+                    }
+                }
+
                 if (roomManager.GetComponent<TrainingPoseMenu>().GetNextFlag())
                 {
                     _nowScene = (int)SCENE_STATE.ModeMenuScene;
-                    ChangeScene(SCENE_STATE.ModeMenuScene.ToString());
+                    Loading load = new Loading();
+                    GameObject loadObj = load.CreateLoading();
+                    loadObj.GetComponent<Loading>().NextScene(SCENE_STATE.ModeMenuScene.ToString());
                 }
 
                 break;
 
             //　カスタマイズシーンの更新処理
-            case (int)SCENE_STATE.CustomizeScene:
+            case (int)SCENE_STATE.CustomizeWindow:
                 GameObject cusObj = GameObject.Find("BackGround");
 
                 if (cusObj == null) { return; }
                 else
                 {
                     GameObject load = GameObject.Find("LoadCanvas");
-                    load.GetComponent<Loading>().FinalReset();
+                    if (load != null)
+                    {
+                        load.GetComponent<Loading>().FinalReset();
+                    }
                 }
                 if (cusObj.GetComponent<Equipment>().GetNextFlag())
                 {
                     _nowScene = (int)SCENE_STATE.TrainingRoom;
-                    ChangeScene(SCENE_STATE.TrainingRoom.ToString());
+                    Loading load = new Loading();
+                    GameObject loadObj = load.CreateLoading();
+                    loadObj.GetComponent<Loading>().NextScene(SCENE_STATE.TrainingRoom.ToString());
                     //_nowScene = (int)SCENE_STATE.StageSelectScene;
                     //_stageSelect.Initialize();
                     //ChangeScene(SCENE_STATE.StageSelectScene.ToString());
                     //_nowScene = (int)SCENE_STATE.GamePlayScene;
                     //ChangeScene("Test");
+                }
+                if (cusObj.GetComponent<Equipment>().GetBackFlag())
+                {
+                    _nowScene = (int)SCENE_STATE.ModeMenuScene;
+                    ChangeScene(SCENE_STATE.ModeMenuScene.ToString());
                 }
                 break;                
 
