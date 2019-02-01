@@ -33,6 +33,10 @@ public class Equipment : MonoBehaviour {
     
     private RectTransform _start;
 
+    private RectTransform _backMenu;
+
+    private RectTransform _ready;
+
     //ポップ  
     private RectTransform _pop;
 
@@ -160,6 +164,9 @@ public class Equipment : MonoBehaviour {
     //ポップアップするフラグ
     private bool _popFlag = false;
 
+    //
+    private bool _selectFlag;
+
     private int _nextState = 0;
 
     //fade終わったかのフラグ
@@ -215,6 +222,10 @@ public class Equipment : MonoBehaviour {
         _yes = GameObject.Find("Yes").GetComponent<RectTransform>();
 
         _no = GameObject.Find("No").GetComponent<RectTransform>();
+
+        _backMenu = GameObject.Find("BackMenu").GetComponent<RectTransform>();
+
+        _ready = GameObject.Find("Ready").GetComponent<RectTransform>();
 
         //popのスケールは最初は0にする
         _pop.localScale = new Vector3(0, 0, 0);
@@ -297,6 +308,8 @@ public class Equipment : MonoBehaviour {
 
         _backFlag = false;
 
+        _selectFlag = false;
+
     }
 	
 	// Update is called once per frame
@@ -307,15 +320,10 @@ public class Equipment : MonoBehaviour {
         //どこを選択しているかのState
         if (_nextFlag == false)
         {
-            //Bボタンが押されたらタイトルシーンに戻る
-            if(_controller.ButtonDown(Button.B))
-            {
-                //タイトルシーンに遷移
-            }
-
+           
             if (_mainFlag == false)
-            {
-                _state = ChooseState(_state);
+                {
+                    _state = ChooseState(_state);
 
                 if (_state < (int)EQUIPMENT_STATE.MODEL)
                 {
@@ -325,6 +333,14 @@ public class Equipment : MonoBehaviour {
                 if (_state > (int)EQUIPMENT_STATE.MAIN_WEAPON2)
                 {
                     _state = (int)EQUIPMENT_STATE.MODEL;
+                }
+
+                //Bボタンが押されたらタイトルシーンに戻る
+                if (_controller.ButtonDown(Button.B))
+                {
+                    //タイトルシーンに遷移
+                    _popFlag = true;
+                    _selectFlag = true;
                 }
 
                 //ModelからMainWeaponまでの選択
@@ -564,6 +580,17 @@ public class Equipment : MonoBehaviour {
             //コントローラ操作
             _nextState = ChooseState(_nextState);
 
+            if(_selectFlag == false)
+            {
+                _ready.GetComponent<Image>().enabled = true;
+                _backMenu.GetComponent<Image>().enabled = false;
+            }
+            else if(_selectFlag == true)
+            {
+                _ready.GetComponent<Image>().enabled = false;
+                _backMenu.GetComponent<Image>().enabled = true;
+            }
+
             if (_nextState < (int)NEXT_STATE.YES)
             {
                 _nextState = (int)NEXT_STATE.NO;
@@ -586,6 +613,7 @@ public class Equipment : MonoBehaviour {
                     break;
             }
 
+            //fadeを表示させる
             if (_controller.ButtonDown(Button.A) && _fadeFlag == false)
             {           
                     _audioSource.PlayOneShot(_decision);
@@ -604,7 +632,9 @@ public class Equipment : MonoBehaviour {
                         case (int)NEXT_STATE.NO:
                             _popFlag = false;
                             _nextFlag = false;
-                            break;
+                            _ready.GetComponent<Image>().enabled = false;
+                            _backMenu.GetComponent<Image>().enabled = false;
+                        break;
                     }
             }
 
@@ -613,12 +643,14 @@ public class Equipment : MonoBehaviour {
                 _audioSource.PlayOneShot(_cansel);
                 _popFlag = false;
                 _nextFlag = false;
+                _ready.GetComponent<Image>().enabled = false;
+                _backMenu.GetComponent<Image>().enabled = false;
             }
 
         }
 
         //確認場面
-        if(_popFlag == true)
+        if (_popFlag == true)
         {
             PopZoom();
             _nextFlag = true;
@@ -654,23 +686,29 @@ public class Equipment : MonoBehaviour {
             _mainFlag = false;
         }
 
-        if(_fadeOut.GetComponentInChildren<Fade>().isCheckedFadeOut() && _fadeFlag == true)
-        {
-            _sceneNextFlag = true;
-        }
-
+        //startが押された時ポップを表示させる
         if (_controller.ButtonDown(Button.START))
         {
             if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != "Main1" || _playerSystem.GetComponent<PlayerSystem>().getMain2() != "Main2")
             {
                 _popFlag = true;
+                _selectFlag = false;
             }
         }
 
-        if(_controller.ButtonDown(Button.B))
+        if (_fadeOut.GetComponentInChildren<Fade>().isCheckedFadeOut() && _fadeFlag == true)
         {
-            _backFlag = true;
+            if (_selectFlag == false)
+            {
+                _sceneNextFlag = true;
+            }
+            else if(_selectFlag == true)
+            {
+                _backFlag = true;
+            }
         }
+
+
 
         //デバッグ終了キー
         if (Input.GetKey(KeyCode.Escape))
