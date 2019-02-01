@@ -109,10 +109,13 @@ public class TrainingPoseMenu : MonoBehaviour {
 
         _attackBar = GameObject.Find("AttackBar").GetComponent<RectTransform>();
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        _idleBar.localScale = new Vector3(0, 0, 0);
+        _attackBar.localScale = new Vector3(0, 0, 0);
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         _controller.ControllerUpdate();
 
