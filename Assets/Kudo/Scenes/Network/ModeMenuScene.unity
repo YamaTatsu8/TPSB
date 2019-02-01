@@ -5588,7 +5588,7 @@ MonoBehaviour:
   delay: 0
   style: 1
   playOnAwake: 1
-  m_progress: 0.6533268
+  m_progress: 0.7599311
   usePosition: 0
   useRotation: 0
   useScale: 1
@@ -9085,7 +9085,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 660556305}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -12115,7 +12115,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 252, y: 113}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1905803341
@@ -12135,7 +12135,7 @@ MonoBehaviour:
   delay: 0
   style: 1
   playOnAwake: 1
-  m_progress: 0.6533268
+  m_progress: 0.7599311
   usePosition: 0
   useRotation: 0
   useScale: 1
@@ -13565,7 +13565,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00010681152, y: -0}
+  m_AnchoredPosition: {x: 0.00010681152, y: 0}
   m_SizeDelta: {x: 252, y: 113}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2103545497
@@ -13585,7 +13585,7 @@ MonoBehaviour:
   delay: 0
   style: 1
   playOnAwake: 1
-  m_progress: 0.6533268
+  m_progress: 0.7599311
   usePosition: 0
   useRotation: 0
   useScale: 1

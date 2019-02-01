@@ -94,6 +94,7 @@ public class Loading : MonoBehaviour
         _isFinished = false;
         _UISlider.SetActive(false);
         _UIText.SetActive(false);
+        Destroy(this.gameObject);
     }
 
     /// <summary>
@@ -114,6 +115,7 @@ public class Loading : MonoBehaviour
         if (_emptyObj == null)
         {
             _emptyObj = (GameObject)Instantiate(Resources.Load("Prefabs/LoadCanvas"));
+            _emptyObj.name = "LoadCanvas";
         }
         return _emptyObj;
     }
