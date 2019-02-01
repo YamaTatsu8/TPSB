@@ -175,6 +175,9 @@ public class Equipment : MonoBehaviour {
     [SerializeField]
     private Sprite _sprite2;
 
+    //前のシーンへ戻るフラグ
+    private bool _backFlag;
+
     private enum NEXT_STATE
     {
         YES,
@@ -291,6 +294,8 @@ public class Equipment : MonoBehaviour {
         rePos2 = _yes.localPosition;
 
         _model = GameObject.Find("PlayerModel");
+
+        _backFlag = false;
 
     }
 	
@@ -662,6 +667,11 @@ public class Equipment : MonoBehaviour {
             }
         }
 
+        if(_controller.ButtonDown(Button.B))
+        {
+            _backFlag = true;
+        }
+
         //デバッグ終了キー
         if (Input.GetKey(KeyCode.Escape))
         {
@@ -813,6 +823,11 @@ public class Equipment : MonoBehaviour {
     public bool GetNextFlag()
     {
         return _sceneNextFlag;
+    }
+
+    public bool GetBackFlag()
+    {
+        return _backFlag;
     }
 
 }
