@@ -2330,7 +2330,7 @@ GameObject:
   - component: {fileID: 65929421342381190}
   - component: {fileID: 114420030950069580}
   - component: {fileID: 114141658609080288}
-  - component: {fileID: 95261009767067732}
+  - component: {fileID: 95400496812663266}
   m_Layer: 9
   m_Name: TrainingEnemy
   m_TagString: Player
@@ -5864,7 +5864,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!95 &95261009767067732
+--- !u!95 &95400496812663266
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -5872,8 +5872,8 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1757820051682588}
   m_Enabled: 1
-  m_Avatar: {fileID: 90857661494323312, guid: c83edae49bbf9474a91bb1533e50a5b3, type: 2}
-  m_Controller: {fileID: 9100000, guid: f8393192ad7f6d149b9b23044ba911a5, type: 2}
+  m_Avatar: {fileID: 9000000, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
+  m_Controller: {fileID: 9100000, guid: dd130e47f94ff334bb5e12cb657de61a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6023,7 +6023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4f41086ac73a548b040e91d34e5e2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HP: 10000
+  _HP: 100000
   _obj: {fileID: 1757820051682588}
 --- !u!114 &114540058458320392
 MonoBehaviour:
