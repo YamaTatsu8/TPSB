@@ -284,6 +284,7 @@ public class TrainingPoseMenu : MonoBehaviour {
                     break;
                 case (int)POSE_MENU.EXIT:
                     //タイトルに戻る
+                    _pauseManager.GetComponent<Pausable>().SetPause();
                     _nextFlag = true;
                     break;
             }
