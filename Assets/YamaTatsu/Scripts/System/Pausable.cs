@@ -48,9 +48,10 @@ public class Pausable : MonoBehaviour
 
     }
 
-    public void SetPause(bool flag)
+    public void SetPause()
     {
-        _flag = flag;
+        Destroy(pauseUIInstance);
+        Time.timeScale = 1f;
     }
 
 }

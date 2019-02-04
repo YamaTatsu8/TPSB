@@ -12,7 +12,12 @@ public class Jump : MonoBehaviour
 
     //ジャンプ量
     private Vector3 _jump = new Vector3(0, 0, 0);
- 
+
+    //エネルギーの消費量
+    private float _ep = 5;
+
+    private float _recoveryEP = 1;
+
     Rigidbody rb;
 
     private float moveX = 0;
@@ -68,9 +73,9 @@ public class Jump : MonoBehaviour
             _groundFlag = false;
 
             //飛ぶモーションに変更
-            _animator.SetBool("Jump", true);
+            //_animator.SetBool("Jump", true);
 
-            gage.GetComponent<EP>().UseEp(5);
+            gage.GetComponent<EP>().UseEp(_ep);
             //gage.GetComponent<EP>().get();
 
         }
@@ -87,7 +92,7 @@ public class Jump : MonoBehaviour
         else
         {
             //_animator.SetBool("Jump", false);
-            gage.GetComponent<EP>().RecoveryEP(3);
+            gage.GetComponent<EP>().RecoveryEP(_recoveryEP);
         }
 
  
