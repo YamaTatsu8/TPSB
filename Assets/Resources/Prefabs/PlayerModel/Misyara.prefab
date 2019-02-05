@@ -1754,7 +1754,7 @@ GameObject:
   - component: {fileID: 114956977439309898}
   - component: {fileID: 114482276262909388}
   m_Layer: 11
-  m_Name: SubWeapon
+  m_Name: LaserPod
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9906,8 +9906,7 @@ MonoBehaviour:
   _reloadTime: 1
   _mode: 1
   _type: 0
-  _bulletPrefab: {fileID: 1728188175131922, guid: beced145914b18847bf9316bedccb44c,
-    type: 2}
+  _bulletPrefab: {fileID: 0}
   _seName: 
 --- !u!114 &114015494690254684
 MonoBehaviour:
@@ -11636,8 +11635,7 @@ MonoBehaviour:
   _reloadTime: 2
   _mode: 1
   _type: 0
-  _bulletPrefab: {fileID: 1243580894668578, guid: 8e6f70bc3d53d4440974079dd2b144fa,
-    type: 2}
+  _bulletPrefab: {fileID: 0}
   _seName: 
 --- !u!114 &114512698065024304
 MonoBehaviour:
@@ -13614,13 +13612,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c54de8638213d458626b5745934951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _capacity: 30
+  _capacity: 100
   _roundsPerSecond: 100
   _bulletSpeed: 50
   _reloadTime: 2
-  _mode: 0
-  _type: 1
-  _bulletPrefab: {fileID: 1747848215082422, guid: 1bbfa4c849cfd664a9726175ca3229ef,
+  _mode: 1
+  _type: 2
+  _bulletPrefab: {fileID: 1927141940541670, guid: cb2de32c857a5c748a458065e8fc9dcf,
     type: 2}
   _seName: 
 --- !u!114 &114957341289507712

@@ -90,7 +90,7 @@ public class PlayerSystem : MonoBehaviour {
         }
         else if (_char == "Misyara")
         {
-            _subWeapon = "MissilePod";
+            _subWeapon = "LaserPod";
         }
         else if (_char == "Noah")
         {
