@@ -69,6 +69,8 @@ public class ChangeSprite : MonoBehaviour
         //　コントローラー更新
         _controller.ControllerUpdate();
 
+        if (_isStartFade) { return; }
+
         //　上十字キー及び上左スティック
         if ((_controller.CheckDirectionOnce(Direction.Front, StickType.LEFTSTICK)) ||
             (_controller.CheckDirectionOnce(Direction.Front, StickType.CLOSS)))

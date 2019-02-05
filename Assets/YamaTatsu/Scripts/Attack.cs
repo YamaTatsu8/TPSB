@@ -101,7 +101,7 @@ public class Attack : MonoBehaviour {
 
         _weapon2.SetActive(false);
 
-        _target = serchTag(gameObject,"Player");
+        _target = serchTag(gameObject,"Enemy");
 
         _cameraObj = GameObject.Find("CameraObj");
 
