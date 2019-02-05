@@ -63,9 +63,9 @@ public class LookCamera : MonoBehaviour {
 
             _player = serchTagObj(gameObject, "Player");
 
-            _target = serchTag(gameObject, "Player");
+            _target = serchTag(gameObject, "Player",_player);
 
-            target = serchTag(gameObject, "Player");
+            target = serchTag(gameObject, "Player",_player);
 
             Debug.Log(_target);
 
@@ -95,7 +95,7 @@ public class LookCamera : MonoBehaviour {
             //playerのポジションに入れる
             transform.position = _tps.transform.position + pos.normalized * 3 + _offset;
 
-            _target = target;
+            //_target = target;
 
             if (_target)
             {
@@ -111,8 +111,6 @@ public class LookCamera : MonoBehaviour {
         {
             //trueの場合、フリールックカメラに切り替える
             Vector3 pos;
-
-            
 
             pos = (_tps.transform.position - _cameraObj.transform.position);
 
@@ -150,7 +148,7 @@ public class LookCamera : MonoBehaviour {
         return _targetFlag;
     }
 
-    GameObject serchTag(GameObject nowObj, string tagName)
+    GameObject serchTag(GameObject nowObj, string tagName, GameObject player)
     {
         float tmpDis = 0;           //距離用一時変数
         float nearDis = 0;          //最も近いオブジェクトの距離
@@ -165,7 +163,7 @@ public class LookCamera : MonoBehaviour {
 
             //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
             //一時変数に距離を格納
-            if ( nearDis < tmpDis)
+            if ( nearDis < tmpDis && obs != player)
             {
                 nearDis = tmpDis;
                 //nearObjName = obs.name;
@@ -195,7 +193,7 @@ public class LookCamera : MonoBehaviour {
 
             //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
             //一時変数に距離を格納
-            if (nearDis == 0 || nearDis > tmpDis)
+            if (nearDis == 0 || nearDis > tmpDis )
             {
                 nearDis = tmpDis;
                 //nearObjName = obs.name;
@@ -207,4 +205,11 @@ public class LookCamera : MonoBehaviour {
         //return GameObject.Find(nearObjName);
         return targetObj;
     }
+
+    // LocalPlayerをセットする
+    public void SetPlayer(GameObject player)
+    {
+        _player = player;
+    }
+
 }

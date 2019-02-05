@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33389702033412908}
   - component: {fileID: 23093884554330932}
   - component: {fileID: 135427793572286594}
-  - component: {fileID: 114372195993934860}
   - component: {fileID: 54907281883594014}
   - component: {fileID: 82057465407471172}
+  - component: {fileID: 114157965177710178}
   m_Layer: 11
   m_Name: Missile
   m_TagString: Bullet
@@ -228,7 +228,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &114372195993934860
+--- !u!114 &114157965177710178
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -236,11 +236,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1687201839998744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6dd69ec02fffc84cb734c8bb1d0990a, type: 3}
+  m_Script: {fileID: 11500000, guid: ef15163fc4a122243b9f3705148417b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effect: {fileID: 1062947126571356, guid: 2f10ceb23770d994a80944f99edf9e61, type: 2}
-  _shoot: {fileID: 8300000, guid: 60942073a9bc7524cbc8b9b2a00594d8, type: 3}
+  _bulletDamage: 1
+  _destroyTime: 3
+  _seName: 
 --- !u!135 &135427793572286594
 SphereCollider:
   m_ObjectHideFlags: 1

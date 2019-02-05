@@ -41,7 +41,7 @@ public class Barrier : MonoBehaviour {
 
         controller = GameController.Instance;
 
-        _animator = _obj.GetComponent<Animator>();
+        //_animator = _obj.GetComponent<Animator>();
 
         _guard = GameObject.Find("Guard");
 
@@ -61,7 +61,7 @@ public class Barrier : MonoBehaviour {
         if (Input.GetButton("L1"))
         {
             _guard.SetActive(true);
-            _animator.SetBool("Guard", true);
+            //_animator.SetBool("Guard", true);
             transform.LookAt(target.transform, Vector3.up);
             _guard.GetComponent<BoxCollider>().enabled = true;
             _barrier = true;
@@ -69,7 +69,7 @@ public class Barrier : MonoBehaviour {
         else
         {
             _guard.SetActive(false);
-            _animator.SetBool("Guard", false);
+            //_animator.SetBool("Guard", false);
             _guard.GetComponent<BoxCollider>().enabled = false;
             _barrier = false;
         }

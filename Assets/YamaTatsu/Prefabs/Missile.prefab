@@ -22,10 +22,10 @@ GameObject:
   - component: {fileID: 33840664162938434}
   - component: {fileID: 23401610791661452}
   - component: {fileID: 135186355377433064}
-  - component: {fileID: 114128159380509242}
   - component: {fileID: 54328864627620798}
   - component: {fileID: 96686482256517460}
   - component: {fileID: 82745686170223800}
+  - component: {fileID: 114124007292784046}
   m_Layer: 11
   m_Name: Missile
   m_TagString: Bullet
@@ -299,7 +299,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &114128159380509242
+--- !u!114 &114124007292784046
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -307,11 +307,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1747848215082422}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6dd69ec02fffc84cb734c8bb1d0990a, type: 3}
+  m_Script: {fileID: 11500000, guid: ef15163fc4a122243b9f3705148417b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _effect: {fileID: 0}
-  _shoot: {fileID: 8300000, guid: 60942073a9bc7524cbc8b9b2a00594d8, type: 3}
+  _bulletDamage: 1
+  _destroyTime: 3
+  _seName: 
 --- !u!135 &135186355377433064
 SphereCollider:
   m_ObjectHideFlags: 1

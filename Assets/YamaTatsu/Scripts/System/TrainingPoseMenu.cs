@@ -199,6 +199,7 @@ public class TrainingPoseMenu : MonoBehaviour {
                     {
                         case (int)POSE_MENU.CONTINUE:
                             //メニュー画面を閉じる
+                            _pauseManager.GetComponent<Pausable>().SetPause();
                             _menuFlag = false;
                             _popFlag = false;
                             _startFlag = false;

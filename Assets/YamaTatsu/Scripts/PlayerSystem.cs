@@ -76,6 +76,32 @@ public class PlayerSystem : MonoBehaviour {
 
     public string getSub()
     {
+        if(_char == "Unity-Chan")
+        {
+            _subWeapon = "MissilePod"; 
+        }
+        else if(_char == "Ion")
+        {
+            _subWeapon = "HealPod";
+        }
+        else if(_char == "Queendiva")
+        {
+            _subWeapon = "Bit";
+        }
+        else if (_char == "Misyara")
+        {
+            _subWeapon = "MissilePod";
+        }
+        else if (_char == "Noah")
+        {
+            _subWeapon = "MissilePod";
+        }
+        else if (_char == "Anathema")
+        {
+            _subWeapon = "MissilePod";
+        }
+
+
         return _subWeapon;
     }
 
