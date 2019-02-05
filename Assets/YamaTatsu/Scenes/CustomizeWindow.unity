@@ -1782,6 +1782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 1
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 1
   _type: 0
@@ -2711,6 +2712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 1
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 1
   _type: 0
@@ -5346,7 +5348,7 @@ Prefab:
     - target: {fileID: 224190607804721088, guid: 094464dfa3d6cf145bd88133fdf17b4d,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -93
+      value: -108
       objectReference: {fileID: 0}
     - target: {fileID: 224190607804721088, guid: 094464dfa3d6cf145bd88133fdf17b4d,
         type: 2}
@@ -6769,6 +6771,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 1
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 1
   _type: 0
@@ -7180,6 +7183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 1
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 1
   _type: 0
@@ -12502,6 +12506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 100
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 1
   _type: 0
@@ -15610,6 +15615,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 1
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 1
   _type: 0
@@ -17848,6 +17854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 24
   _roundsPerSecond: 2
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 2
   _type: 0
@@ -19630,6 +19637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 1
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 1
   _type: 0
@@ -19890,6 +19898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 1
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 1
   _type: 0
@@ -25812,6 +25821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 24
   _roundsPerSecond: 2
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 2
   _type: 0
@@ -27795,6 +27805,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 100
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 1
   _type: 0
@@ -28402,7 +28413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -267, y: 179}
+  m_AnchoredPosition: {x: -267, y: 197}
   m_SizeDelta: {x: 500, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1749462143
@@ -30597,7 +30608,7 @@ Prefab:
     - target: {fileID: 224458596673934210, guid: 0d0908a4c1583554bb94f6cc5cbe3b49,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 61
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 224458596673934210, guid: 0d0908a4c1583554bb94f6cc5cbe3b49,
         type: 2}
@@ -32524,7 +32535,7 @@ Prefab:
     - target: {fileID: 224458596673934210, guid: 0d0908a4c1583554bb94f6cc5cbe3b49,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -10
+      value: -24
       objectReference: {fileID: 0}
     - target: {fileID: 224458596673934210, guid: 0d0908a4c1583554bb94f6cc5cbe3b49,
         type: 2}
@@ -33481,6 +33492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 1
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 1
   _type: 0

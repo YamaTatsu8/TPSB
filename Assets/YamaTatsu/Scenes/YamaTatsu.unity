@@ -207,7 +207,6 @@ MonoBehaviour:
   _player: {fileID: 0}
   target: {fileID: 1198759351}
   _tps: {fileID: 0}
-  _offsetVec: {x: 0, y: 0, z: 0}
 --- !u!81 &485360588
 AudioListener:
   m_ObjectHideFlags: 0
@@ -813,6 +812,11 @@ Prefab:
     - target: {fileID: 4334846718425540, guid: 9233ad0c050c76c4682c026a91600896, type: 2}
       propertyPath: m_RootOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 224652842264666390, guid: 9233ad0c050c76c4682c026a91600896,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9233ad0c050c76c4682c026a91600896, type: 2}
