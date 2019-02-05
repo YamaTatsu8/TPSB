@@ -141,11 +141,15 @@ public class Attack : MonoBehaviour {
         if (controller.TriggerDown(Trigger.LEFT))
         {
             _animator.SetBool("Attack",true);
-            if (_weaponFlag == true)
+            var _anistate = _animator.GetCurrentAnimatorStateInfo(0);
+
+            Debug.Log(_anistate.normalizedTime);
+
+            if (_weaponFlag == true && _animator.GetBool("Attack") && _anistate.normalizedTime >= 0.8f)
             {
                 _weapon1.GetComponent<WeaponManager>().Attack();
             }
-            else if(_weaponFlag == false)
+            else if(_weaponFlag == false && _animator.GetBool("Attack") == true)
             {
                 _weapon2.GetComponent<WeaponManager>().Attack();
             }
