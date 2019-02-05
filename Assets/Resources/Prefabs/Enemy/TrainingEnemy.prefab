@@ -2330,7 +2330,7 @@ GameObject:
   - component: {fileID: 65929421342381190}
   - component: {fileID: 114420030950069580}
   - component: {fileID: 114141658609080288}
-  - component: {fileID: 95400496812663266}
+  - component: {fileID: 95726936688786002}
   m_Layer: 9
   m_Name: TrainingEnemy
   m_TagString: Player
@@ -4344,7 +4344,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1478915215324580}
-  m_LocalRotation: {x: 0.0027491883, y: -0.061828945, z: 0.004609383, w: 0.9980723}
+  m_LocalRotation: {x: 0.0027491886, y: -0.061828945, z: 0.0046093836, w: 0.9980723}
   m_LocalPosition: {x: -0.016096681, y: 0.000118210985, z: -0.00045832127}
   m_LocalScale: {x: 1.0000032, y: 1.0000025, z: 1.000002}
   m_Children:
@@ -5864,7 +5864,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!95 &95400496812663266
+--- !u!95 &95726936688786002
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -5873,7 +5873,7 @@ Animator:
   m_GameObject: {fileID: 1757820051682588}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 8f0565f23a2b58541a475bd3c1393052, type: 3}
-  m_Controller: {fileID: 9100000, guid: dd130e47f94ff334bb5e12cb657de61a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4ae92ec656a0c4c439510ca721de4d12, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5914,9 +5914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d585fcde1bc55948b26ef3b12f0fbdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _range: 5
   _weapon: {fileID: 1515331521153956}
-  _isWait: 0
 --- !u!114 &114165331016181170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6051,7 +6049,7 @@ MonoBehaviour:
   _roundsPerSecond: 30
   _reloadTime: 2
   _mode: 1
-  _bulletPrefab: {fileID: 1177161402986960, guid: c48d4a84b1502604695a57a1b325104d,
+  _bulletPrefab: {fileID: 1177161402986960, guid: ced3f1831bbcbd54eb4031aaf81ead3a,
     type: 2}
 --- !u!114 &114850250085357376
 MonoBehaviour:

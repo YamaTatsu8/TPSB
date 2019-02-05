@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChangeSpriteSearchRoom : MonoBehaviour
+public class ChangeSprite : MonoBehaviour
 {
     //　定数
-    private const int MAX_BAR = 2;        //　最大BAR数
-    private const int MIN_BAR = 1;        //　最小BAR数
+    private int MAX_BAR = 3;        //　最大BAR数
+    private int MIN_BAR = 1;        //　最小BAR数
 
     private GameController _controller;   //　ゲームコントローラー
+    private GameObject _fadeObj;            //　fadeobj
     private int _cursorNum;               //　Bar番号
     private string _cursorName;
 
@@ -17,6 +18,11 @@ public class ChangeSpriteSearchRoom : MonoBehaviour
     private Sprite _noSelect;
     [SerializeField]
     private Sprite _select;
+    [SerializeField]
+    private int _returnNum = 3;
+
+    private bool _isReturn = false;
+    private bool _isStartFade;              //　フェードが開始されているかチェックするフラグ
 
     // Use this for initialization
     void Start()
@@ -38,11 +44,28 @@ public class ChangeSpriteSearchRoom : MonoBehaviour
         GameObject obj = GameObject.Find(_cursorName + _cursorNum.ToString());
         obj.GetComponent<Image>().sprite = _select;
         obj.gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+
+        MAX_BAR = this.gameObject.transform.childCount;
+        _isReturn = false;
+        _isStartFade = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //　ステージが遷移されていたら
+        if (_fadeObj == null)
+        {
+            Fade fade = new Fade();
+            _fadeObj = fade.CreateFade();
+            _fadeObj.GetComponentInChildren<Fade>().FadeIn();
+        }
+        //　フェードが終了していたらシーンを変更する
+        if (_fadeObj.GetComponentInChildren<Fade>().isCheckedFadeOut() && _isStartFade)
+        {
+            _isStartFade = false;
+            _isReturn = true;
+        }
         //　コントローラー更新
         _controller.ControllerUpdate();
 
@@ -82,10 +105,25 @@ public class ChangeSpriteSearchRoom : MonoBehaviour
                 ResetStageImage();
                 _cursorNum++;
             }
+
             //　カーソルを下にずらす
             GameObject obj = GameObject.Find(_cursorName + _cursorNum.ToString());
             obj.GetComponent<Image>().sprite = _select;
             obj.gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+        }
+        if (_cursorNum == _returnNum)
+        {
+            if (_controller.ButtonDown(Button.A)) 
+            {
+                //　フェードアウトを開始する
+                if (_fadeObj == null)
+                {
+                    Fade fade = new Fade();
+                    _fadeObj = fade.CreateFade();
+                }
+                _fadeObj.GetComponentInChildren<Fade>().FadeOut();
+                _isStartFade = true;
+            }
         }
     }
 
@@ -97,5 +135,10 @@ public class ChangeSpriteSearchRoom : MonoBehaviour
         GameObject beforeObj = GameObject.Find(_cursorName + _cursorNum.ToString());
         beforeObj.GetComponent<Image>().sprite = _noSelect;
         beforeObj.gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+    }
+
+    public bool ReturnToMenu()
+    {
+        return _isReturn;
     }
 }

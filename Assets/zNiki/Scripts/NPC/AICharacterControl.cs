@@ -6,54 +6,31 @@ using UnityEngine.AI;
 public class AICharacterControl : MonoBehaviour
 {
     private float _rotationSmooth = 2.5f;
+    private bool _isWait;
 
     // 追跡するターゲットの場所
     private Transform _target = null;
 
     [SerializeField]
-    private float _range = 5.0f;
-
-    [SerializeField]
-    private Animator _animator = null;
-
-    [SerializeField]
     private GameObject _weapon = null;
-
-    [SerializeField]
-    private Transform _view = null;
-
-    // NavMeshAgent
-    [SerializeField]
-    private NavMeshAgent _agent = null;
 
     // Use this for initialization
     void Start()
     {
-        _target = GameObject.Find("Player").transform;
+        Initialize();
+    }
 
-        _animator = GetComponent<Animator>();
+    public void Initialize()
+    {
+        _target = GameObject.Find("Player").transform;
+        _isWait = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_agent.enabled == true)
-        {
-            if (_target != null)
-            {
-                _agent.SetDestination(_target.position);
-            }
-            if (_agent.remainingDistance > _agent.stoppingDistance)
-            {
-                this.gameObject.GetComponent<Rigidbody>().velocity = _agent.desiredVelocity;
-
-                _animator.SetBool("Walk", true);
-            }
-            else
-            {
-                _animator.SetBool("Walk", false);
-            }
-        }
+        //　待機状態なら以下の処理を行わない
+        if (_isWait) { return; }
 
         // プレイヤーの方向を向く
         Quaternion targetRotation = Quaternion.LookRotation(_target.position - transform.position);
@@ -61,54 +38,12 @@ public class AICharacterControl : MonoBehaviour
         targetRotation.z = 0.0f;
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _rotationSmooth);
 
-        // 壁が前にある際に、NavMeshAgentを切ってから壁を越えれるようにジャンプする
-        Ray ray = new Ray(_view.transform.position, _view.transform.forward);
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, _range))
-        {
-            if (hit.collider.tag == "Ground" && _agent.enabled == true)
-            {
-                _agent.enabled = false;
-
-                float targetHeight = hit.collider.transform.localScale.y;
-                Vector3 dis = (hit.point - this.transform.position);
-
-                Vector3 jumpForce = new Vector3(dis.x, targetHeight * 12.5f, dis.z);
-
-                this.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                this.GetComponent<Rigidbody>().AddForce(jumpForce * 500);
-
-                _animator.SetBool("Jump", true);
-
-                this.Delay(targetHeight * 1.5f, () =>
-                {
-                    _animator.SetBool("Jump", false);
-                    _animator.SetBool("Fall", true);
-                });
-
-                this.Delay(targetHeight * 3.0f, () =>
-                {
-                    _animator.SetBool("Fall", false);
-                    _agent.enabled = true;
-                });
-            }
-        }
+        _weapon.GetComponent<EnemyWeaponManager>().Attack();
     }
 
-    private void OnTriggerStay(Collider other)
+    public void SetWaitingMode(bool wait)
     {
-        if (other.GetComponent<Collider>().tag == "Player")
-        {
-            _weapon.GetComponent<EnemyWeaponManager>().Attack();
-
-            _animator.SetBool("Attack", true);
-        }
-        else
-        {
-            _animator.SetBool("Attack", false);
-        }
+        _isWait = wait;
     }
 
     public Vector3 GetTargetPosition()
