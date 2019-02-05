@@ -24,7 +24,7 @@ public class RayCastShoot : MonoBehaviour
     private float _bulletSpeed;
 
     // 射程
-    private float _range = 30.0f;
+    private float _range = 100.0f;
 
     // 対象の位置
     private Vector3 _targetPos = Vector3.zero;
@@ -78,11 +78,31 @@ public class RayCastShoot : MonoBehaviour
                         bulletClone.GetComponent<Rigidbody>().velocity = (_targetPos - bulletClone.transform.position).normalized * _bulletSpeed;
                     }
                     break;
+
                 case BulletType.Missile:
                     StartCoroutine(Missile(bulletClone, this.GetComponent<RayCastShoot>(), _muzzle.position));
                     break;
+
                 case BulletType.Laser:
+
+                    RaycastHit hit;
+
+                    bulletClone.GetComponent<LineRenderer>().SetPosition(0, transform.position);
+
+                    if (Physics.Raycast(ray, out hit, _range))
+                    {
+                        bulletClone.GetComponent<LineRenderer>().SetPosition(1, hit.point + ray.direction);
+                        //bulletClone.GetComponent<BoxCollider>().center = (((hit.point + ray.direction) - transform.position) / 2);
+                        bulletClone.GetComponent<BoxCollider>().center = hit.point;
+                    }
+                    else
+                    {
+                        bulletClone.GetComponent<LineRenderer>().SetPosition(1, ray.origin + ray.direction * _range);
+                        //bulletClone.GetComponent<BoxCollider>().center = (((ray.origin + ray.direction * _range) - transform.position) / 2);
+                        bulletClone.GetComponent<BoxCollider>().center = (((ray.origin + ray.direction * _range) - transform.position) / 2);
+                    }
                     break;
+
                 case BulletType.Heal:
                     // 弾をキャラの子に
                     bulletClone.transform.parent = this.transform.parent;
@@ -91,24 +111,13 @@ public class RayCastShoot : MonoBehaviour
                     // 回復
                     bulletClone.GetComponent<BulletController>().IsAttack = false;
                     break;
+
                 case BulletType.Bit:
                     break;
+
                 default:
                     break;
             }
-            
-            //RaycastHit hit;
-
-            //if (Physics.Raycast(ray, out hit, _range))
-            //{
-            //    // レイのヒットした地点に飛ばす
-            //    bulletClone.GetComponent<Rigidbody>().velocity = (hit.point - bulletClone.transform.position).normalized * _bulletSpeed;
-            //}
-            //else
-            //{
-            //    // 射程距離分進んだ地点に飛ばす
-            //    bulletClone.GetComponent<Rigidbody>().velocity = (ray.GetPoint(_range) - bulletClone.transform.position).normalized * _bulletSpeed;
-            //}
 
             bulletClone.GetComponent<BulletController>().DeleteBullet(bulletClone);
 

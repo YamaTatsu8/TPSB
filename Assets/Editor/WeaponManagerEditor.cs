@@ -33,7 +33,8 @@ public class WeaponManagerEditor : Editor
 
         weapon._reloadTime = Mathf.Max(1, EditorGUILayout.FloatField("リロードにかかる時間", weapon._reloadTime));
 
-        if (weapon._type != BulletType.Heal)
+        // 特定のタイプでは設定できないもの
+        if (weapon._type != BulletType.Heal && weapon._type != BulletType.Laser)
         {
             weapon._bulletSpeed = Mathf.Max(1, EditorGUILayout.FloatField("弾速", weapon._bulletSpeed));
         }
