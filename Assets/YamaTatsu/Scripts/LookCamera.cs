@@ -168,7 +168,6 @@ public class LookCamera : MonoBehaviour {
                 nearDis = tmpDis;
                 //nearObjName = obs.name;
                 targetObj = obs;
-                Debug.Log(targetObj);
             }
 
         }
@@ -198,7 +197,6 @@ public class LookCamera : MonoBehaviour {
                 nearDis = tmpDis;
                 //nearObjName = obs.name;
                 targetObj = obs;
-                Debug.Log("player:" + targetObj);
             }
 
         }
