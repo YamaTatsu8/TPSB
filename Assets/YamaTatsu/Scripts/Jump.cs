@@ -14,8 +14,14 @@ public class Jump : MonoBehaviour
     private Vector3 _jump = new Vector3(0, 0, 0);
 
     //エネルギーの消費量
+    [SerializeField]
     private float _ep = 5;
 
+    //jump消費量
+    [SerializeField]
+    private float _jumpEP = 50;
+
+    [SerializeField]
     private float _recoveryEP = 1;
 
     Rigidbody rb;
@@ -87,7 +93,7 @@ public class Jump : MonoBehaviour
             //飛ぶモーションに変更
             //_animator.SetBool("Jump", true);
 
-            gage.GetComponent<EP>().UseEp(50);
+            gage.GetComponent<EP>().UseEp(_jumpEP);
         }
         else
         {
