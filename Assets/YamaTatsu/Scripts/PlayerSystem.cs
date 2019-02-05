@@ -86,7 +86,7 @@ public class PlayerSystem : MonoBehaviour {
         }
         else if(_char == "Queendiva")
         {
-            _subWeapon = "Bit";
+            _subWeapon = "BitPod";
         }
         else if (_char == "Misyara")
         {
