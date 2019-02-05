@@ -22,7 +22,6 @@ public class AICharacterControl : MonoBehaviour
 
     public void Initialize()
     {
-        _target = GameObject.Find("Player").transform;
         _isWait = false;
     }
 
@@ -32,13 +31,20 @@ public class AICharacterControl : MonoBehaviour
         //　待機状態なら以下の処理を行わない
         if (_isWait) { return; }
 
-        // プレイヤーの方向を向く
-        Quaternion targetRotation = Quaternion.LookRotation(_target.position - transform.position);
-        targetRotation.x = 0.0f;
-        targetRotation.z = 0.0f;
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _rotationSmooth);
+        if (_target == null)
+        {
+            _target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        else
+        {
+            // プレイヤーの方向を向く
+            Quaternion targetRotation = Quaternion.LookRotation(_target.position - transform.position);
+            targetRotation.x = 0.0f;
+            targetRotation.z = 0.0f;
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _rotationSmooth);
 
-        _weapon.GetComponent<EnemyWeaponManager>().Attack();
+            _weapon.GetComponent<EnemyWeaponManager>().Attack();
+        }
     }
 
     public void SetWaitingMode(bool wait)

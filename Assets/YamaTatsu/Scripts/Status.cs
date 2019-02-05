@@ -52,6 +52,7 @@ public class Status : MonoBehaviour {
             _HP = 100;
         }
 
+        if (_hitObj == null) { return; }
         if (!_hitObj.activeSelf) { return; }
         _time -= Time.deltaTime;
         if (_time <= 0.0f)
