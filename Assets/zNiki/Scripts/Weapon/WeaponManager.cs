@@ -37,6 +37,9 @@ public class WeaponManager : MonoBehaviour
     // SEの名前
     public string _seName = "";
 
+    // ガトリングの片割れ
+    public GameObject _gatling = null;
+
     // ビット用管理リスト
     public List<GameObject> _bits;
 
@@ -176,6 +179,10 @@ public class WeaponManager : MonoBehaviour
                         break;
                     case Selector.AUTO:
                         Shot(_fireRate);
+                        if (_gatling != null)
+                        {
+                            _gatling.GetComponent<WeaponManager>().Attack();
+                        }
                         break;
                     case Selector.BURST:
                         BurstShot();

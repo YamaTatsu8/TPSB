@@ -81,6 +81,7 @@ public class RayCastShoot : MonoBehaviour
             switch (_type)
             {
                 case BulletType.Normal:
+                case BulletType.Gatling:
                     if (_targetPos != Vector3.zero)
                     {
                         bulletClone.GetComponent<Rigidbody>().velocity = (_targetPos - bulletClone.transform.position).normalized * _bulletSpeed;
@@ -110,9 +111,6 @@ public class RayCastShoot : MonoBehaviour
                     {
                         bulletClone.GetComponent<LineRenderer>().SetPosition(1, ray.origin + ray.direction * _range);
                     }
-                    break;
-
-                case BulletType.Gatling:
                     break;
 
                 case BulletType.Heal:

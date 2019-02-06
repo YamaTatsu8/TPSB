@@ -48,6 +48,10 @@ public class WeaponManagerEditor : Editor
 
             weapon._mode = (WeaponManager.Selector)EditorGUILayout.EnumPopup("射撃モード", weapon._mode);
         }
+        else if (weapon._type == BulletType.Gatling)
+        {
+            weapon._gatling = EditorGUILayout.ObjectField("ガトリングの片割れ", weapon._gatling, typeof(GameObject), false) as GameObject;
+        }
         else if (weapon._type == BulletType.Bit)
         {
             SerializedProperty prop = serializedObject.FindProperty("_bits");
