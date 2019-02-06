@@ -5205,6 +5205,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1047765635152560, guid: 11d8a17bf5cbb504badc2aeb917fabd9,
     type: 2}
   _seName: Laser
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!114 &114016135445937790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6398,6 +6400,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1820548280620412, guid: 57f4f91a3a1c915439b4ce2a47ff4b5d,
     type: 2}
   _seName: Gatling
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!114 &114620095515279752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6451,6 +6455,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1728188175131922, guid: b6ab4fe588332264f8e4931c24163b8d,
     type: 2}
   _seName: SMG
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!114 &114636671797399750
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6784,6 +6790,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1690340862790088, guid: 64c8824fd18996449b01cb1bd2c5abf9,
     type: 2}
   _seName: Rifle
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!114 &114746865638654850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7056,6 +7064,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1769052643642674, guid: 0d8c7527940629f428e521fcb8ec795e,
     type: 2}
   _seName: Rifle2
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!114 &114857052584370548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7545,7 +7555,7 @@ CapsuleCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1151670425903290}
-  m_Material: {fileID: 13400000, guid: e71131771fe0bec499f99e62139dcb5a, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
