@@ -163,6 +163,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (_remainingBullets < _capacity && _routine == null)
         {
+            Debug.Log("reload");
             this.transform.GetChild(1).GetComponent<DisplayData>().IsReloading = true;
 
             _isBurst = true;
