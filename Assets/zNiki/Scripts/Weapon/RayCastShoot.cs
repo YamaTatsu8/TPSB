@@ -32,6 +32,9 @@ public class RayCastShoot : MonoBehaviour
     // 弾の種類
     private BulletType _type;
 
+    // 
+    private List<GameObject> _bits;
+
     // Use this for initialization
     void Start ()
     {
@@ -46,13 +49,18 @@ public class RayCastShoot : MonoBehaviour
         _bulletPrefab = this.GetComponent<WeaponManager>()._bulletPrefab;
 
         _type = this.GetComponent<WeaponManager>()._type;
+
+        _bits = this.GetComponent<WeaponManager>()._bits;
     }
 
     public bool Shot(float fireRate)
     {
         _fireRate = fireRate;
 
-        _targetPos = transform.root.GetComponent<Attack>().getPosition();
+        if (transform.root.GetComponent<Attack>())
+        {
+            _targetPos = transform.root.GetComponent<Attack>().getPosition();
+        }
 
         if (Time.time > _nextTime)
         {
@@ -80,6 +88,7 @@ public class RayCastShoot : MonoBehaviour
                     break;
 
                 case BulletType.Missile:
+                    Debug.Log(this._targetPos);
                     StartCoroutine(Missile(bulletClone, this.GetComponent<RayCastShoot>(), _muzzle.position));
                     break;
 
@@ -92,15 +101,18 @@ public class RayCastShoot : MonoBehaviour
                     if (Physics.Raycast(ray, out hit, _range))
                     {
                         bulletClone.GetComponent<LineRenderer>().SetPosition(1, hit.point + ray.direction);
-                        //bulletClone.GetComponent<BoxCollider>().center = (((hit.point + ray.direction) - transform.position) / 2);
                         bulletClone.GetComponent<BoxCollider>().center = hit.point;
+                        bulletClone.GetComponent<BoxCollider>().size = new Vector3(ray.origin.x - hit.point.x, 1,ray.origin.z - hit.point.z);
                     }
                     else
                     {
                         bulletClone.GetComponent<LineRenderer>().SetPosition(1, ray.origin + ray.direction * _range);
-                        //bulletClone.GetComponent<BoxCollider>().center = (((ray.origin + ray.direction * _range) - transform.position) / 2);
                         bulletClone.GetComponent<BoxCollider>().center = (((ray.origin + ray.direction * _range) - transform.position) / 2);
+                        bulletClone.GetComponent<BoxCollider>().size = ((ray.origin + ray.direction * _range) - transform.position);
                     }
+                    break;
+
+                case BulletType.Gatling:
                     break;
 
                 case BulletType.Heal:
@@ -108,12 +120,36 @@ public class RayCastShoot : MonoBehaviour
                     bulletClone.transform.parent = this.transform.parent;
                     // 弾の位置を再調整
                     bulletClone.transform.position = this.transform.parent.position;
-                    // 回復
+                    // 回復できるようにする
                     bulletClone.GetComponent<BulletController>().IsAttack = false;
                     break;
 
                 case BulletType.Bit:
-                    break;
+                    // ビットを配列に追加
+                    _bits.Add(bulletClone);
+
+                    // ビットをキャラの子に
+                    bulletClone.transform.parent = this.transform.parent;
+
+                    // ビットの位置を再調整
+                    switch (_bits.Count)
+                    {
+                        case 1:
+                            bulletClone.transform.position = this.transform.parent.position + new Vector3(-0.3f, 2.0f, 0);
+                            break;
+                        case 2:
+                            bulletClone.transform.position = this.transform.parent.position + new Vector3(0.3f, 2.0f, 0);
+                            break;
+                        case 3:
+                            bulletClone.transform.position = this.transform.parent.position + new Vector3(-0.5f, 1.5f, 0);
+                            break;
+                        case 4:
+                            bulletClone.transform.position = this.transform.parent.position + new Vector3(0.5f, 1.5f, 0);
+                            break;
+                        default:
+                            break;
+                    }
+                    return true;
 
                 default:
                     break;

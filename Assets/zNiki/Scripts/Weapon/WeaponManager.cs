@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class WeaponManager : MonoBehaviour
 
     // SEの名前
     public string _seName = "";
+
+    // ビット用管理リスト
+    public List<GameObject> _bits;
 
     // 残弾数
     private int _remainingBullets = 0;
@@ -109,6 +113,22 @@ public class WeaponManager : MonoBehaviour
                 _isShot = true;
             }
         }
+
+        if (_type == BulletType.Bit)
+        {
+            for (int i = _bits.Count - 1; i >= 0; i--)
+            {
+                if (_bits[i] == null)
+                {
+                    _bits.Remove(_bits[i]);
+                }
+            }
+
+            if (_remainingBullets == 0 && _bits.Count == 0)
+            {
+                Reload();
+            }
+        }
     }
 
     private void OnEnable()
@@ -131,9 +151,17 @@ public class WeaponManager : MonoBehaviour
 
     public void Attack()
     {
-        if (_remainingBullets == 0)
+        if(_type == BulletType.Bit)
         {
-            this.Reload();
+            if (_isShot && _remainingBullets != 0)
+            {
+                Shot(0.0f);
+                _isShot = false;
+            }
+        }
+        else if (_remainingBullets == 0)
+        {
+            Reload();
         }
         else
         {

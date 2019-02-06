@@ -7,7 +7,6 @@ using UnityEditor;
 [CanEditMultipleObjects]
 public class WeaponManagerEditor : Editor
 {
-
     public override void OnInspectorGUI()
     {
         WeaponManager weapon = target as WeaponManager;
@@ -48,6 +47,18 @@ public class WeaponManagerEditor : Editor
             weapon._roundsPerSecond = Mathf.Max(1, EditorGUILayout.IntField("1秒間に撃てる数  ", weapon._roundsPerSecond));
 
             weapon._mode = (WeaponManager.Selector)EditorGUILayout.EnumPopup("射撃モード", weapon._mode);
+        }
+        else if (weapon._type == BulletType.Bit)
+        {
+            SerializedProperty prop = serializedObject.FindProperty("_bits");
+
+            serializedObject.Update();
+            EditorGUI.BeginChangeCheck();
+            EditorGUILayout.PropertyField(prop, true);
+            if (EditorGUI.EndChangeCheck())
+            {
+                serializedObject.ApplyModifiedProperties();
+            }
         }
 
         EditorUtility.SetDirty(target);
