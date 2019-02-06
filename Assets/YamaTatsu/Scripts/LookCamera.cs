@@ -80,10 +80,10 @@ public class LookCamera : MonoBehaviour {
         }
 
         //R1押されたらロックオンの切り替え
-        if(controller.ButtonDown(Button.R1))
-        {
-            _targetFlag = !_targetFlag;
-        }
+        //if(controller.ButtonDown(Button.R1))
+        //{
+        //    _targetFlag = !_targetFlag;
+        //}
 
         //falseの場合、敵をロックする
         if (_targetFlag == false)
@@ -128,12 +128,12 @@ public class LookCamera : MonoBehaviour {
                 transform.eulerAngles.z);
         }
 
-        if (controller.ButtonDown(Button.R3))
-        {
-            _flag = !_flag;
+        //if (controller.ButtonDown(Button.R3))
+        //{
+        //    _flag = !_flag;
 
-            _tps = _flag ? _right : _left;
-        }
+        //    _tps = _flag ? _right : _left;
+        //}
 
     }
 

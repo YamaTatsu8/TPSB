@@ -32,6 +32,8 @@ public class ModeMenu : MonoBehaviour {
     private RectTransform _roomJoin;
     [SerializeField]
     private RectTransform _trainingRoom;
+    [SerializeField]
+    private RectTransform _exit;
 
     //シーン名前
     private string _sceneName = "";
@@ -42,7 +44,8 @@ public class ModeMenu : MonoBehaviour {
     {
         CREATEROOM,
         ROOMJOIN,
-        TRAININGROOM
+        TRAININGROOM,
+        EXIT
     }
 
     //モード選択
@@ -50,7 +53,8 @@ public class ModeMenu : MonoBehaviour {
     {
         CREATE,
         JOIN,
-        TRAINIG
+        TRAINIG,
+        EXIT
     }
 
     //どこを選択しているか
@@ -78,7 +82,7 @@ public class ModeMenu : MonoBehaviour {
         _fadeOut.GetComponentInChildren<Fade>().FadeIn();
 
         //全て非表示にする
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             _info[i].enabled = false;
         }
@@ -87,6 +91,8 @@ public class ModeMenu : MonoBehaviour {
         _createRoom = GameObject.Find("CreateRoom").GetComponent<RectTransform>();
         _roomJoin = GameObject.Find("RoomJoin").GetComponent<RectTransform>();
         _trainingRoom = GameObject.Find("TrainingRoom").GetComponent<RectTransform>();
+        _exit = GameObject.Find("Exit").GetComponent<RectTransform>();
+
 
         _nextFlag = false;
 
@@ -104,11 +110,11 @@ public class ModeMenu : MonoBehaviour {
         //CreateRoomより上に行ったらTrainingroomに行く
         if(_state < (int)MODE_SELECT.CREATEROOM)
         {
-            _state = (int)MODE_SELECT.TRAININGROOM;
+            _state = (int)MODE_SELECT.EXIT;
         }
 
         //Trainingroomより下に行ったらCreateRoomに行く
-        if(_state > (int)MODE_SELECT.TRAININGROOM)
+        if(_state > (int)MODE_SELECT.EXIT)
         {
             _state = (int)MODE_SELECT.CREATEROOM;
         }
@@ -123,6 +129,8 @@ public class ModeMenu : MonoBehaviour {
                 _roomJoin.localScale = new Vector3(1, 1, 1);
                 _trainingRoom.GetComponent<Image>().sprite = _sprite;
                 _trainingRoom.localScale = new Vector3(1, 1, 1);
+                _exit.GetComponent<Image>().sprite = _sprite;
+                _exit.localScale = new Vector3(1.0f, 1.0f, 1);
                 break;
             case (int)MODE_SELECT.ROOMJOIN:
                 _createRoom.GetComponent<Image>().sprite = _sprite;
@@ -131,6 +139,8 @@ public class ModeMenu : MonoBehaviour {
                 _roomJoin.localScale = new Vector3(1.2f, 1.2f, 1);
                 _trainingRoom.GetComponent<Image>().sprite = _sprite;
                 _trainingRoom.localScale = new Vector3(1, 1, 1);
+                _exit.GetComponent<Image>().sprite = _sprite;
+                _exit.localScale = new Vector3(1.0f, 1.0f, 1);
                 break;
             case (int)MODE_SELECT.TRAININGROOM:
                 _createRoom.GetComponent<Image>().sprite = _sprite;
@@ -139,11 +149,23 @@ public class ModeMenu : MonoBehaviour {
                 _roomJoin.localScale = new Vector3(1, 1, 1);
                 _trainingRoom.GetComponent<Image>().sprite = _sprite2;
                 _trainingRoom.localScale = new Vector3(1.2f, 1.2f, 1);
+                _exit.GetComponent<Image>().sprite = _sprite;
+                _exit.localScale = new Vector3(1.0f, 1.0f, 1);
+                break;
+            case (int)MODE_SELECT.EXIT:
+                _createRoom.GetComponent<Image>().sprite = _sprite;
+                _createRoom.localScale = new Vector3(1, 1, 1);
+                _roomJoin.GetComponent<Image>().sprite = _sprite;
+                _roomJoin.localScale = new Vector3(1, 1, 1);
+                _trainingRoom.GetComponent<Image>().sprite = _sprite;
+                _trainingRoom.localScale = new Vector3(1.0f, 1.0f, 1);
+                _exit.GetComponent<Image>().sprite = _sprite2;
+                _exit.localScale = new Vector3(1.2f, 1.2f, 1);
                 break;
         }
 
         //_stateに合わせて説明のテキストを変更
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             if (_state == i)
             {
@@ -184,6 +206,13 @@ public class ModeMenu : MonoBehaviour {
                     _fadeOut.GetComponentInChildren<Fade>().FadeOut();
                     _fadeFlag = true;
                     _modeNum = (int)MODE.TRAINIG;
+                    break;
+                case (int)MODE_SELECT.EXIT:
+                    #if UNITY_EDITOR
+                    UnityEditor.EditorApplication.isPlaying = false;
+                    #elif UNITY_STANDALONE
+                    Application.Quit();
+                    #endif
                     break;
             }
         }

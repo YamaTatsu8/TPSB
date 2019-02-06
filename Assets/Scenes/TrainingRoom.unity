@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: a8bd5146304e3f1418a0eeebbe30510c, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.00072955026, g: 0.2825276, b: 0.24656606, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -337,6 +337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 660072579}
   - component: {fileID: 660072580}
+  - component: {fileID: 660072581}
   m_Layer: 0
   m_Name: RoomManager
   m_TagString: Untagged
@@ -370,6 +371,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 998313476}
   _pop: {fileID: 0}
+--- !u!114 &660072581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 660072578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69116ac205112f149a94d9c6df3f3bbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bgmName: training
 --- !u!1001 &733327081
 Prefab:
   m_ObjectHideFlags: 0
@@ -2089,13 +2102,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1701575681}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: 0.12177493, y: 0.6300651, z: -0.76026577, w: 0.10092013}
+  m_LocalPosition: {x: 0, y: 64.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 100.7, y: 161.8, z: 0}
 --- !u!1001 &1739124148
 Prefab:
   m_ObjectHideFlags: 0
