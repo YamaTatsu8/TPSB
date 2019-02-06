@@ -82,7 +82,8 @@ public class WeaponManager : MonoBehaviour
     {
         _fireRate = 1.0f / _roundsPerSecond;
 
-        _muzzle = this.transform.GetChild(0).transform;
+        //_muzzle = this.transform.GetChild(0).transform;
+        _muzzle = this.transform.Find("Muzzle").transform;
 
         _remainingBullets = _capacity;
 
@@ -191,7 +192,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (_remainingBullets < _capacity && _routine == null)
         {
-            this.transform.GetChild(1).GetComponent<DisplayData>().IsReloading = true;
+            this.transform.Find("WeaponUI").GetComponent<DisplayData>().IsReloading = true;
 
             _isBurst = true;
 
