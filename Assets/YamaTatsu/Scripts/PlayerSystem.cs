@@ -94,11 +94,11 @@ public class PlayerSystem : MonoBehaviour {
         }
         else if (_char == "Noah")
         {
-            _subWeapon = "GatlingPod";
+            _subWeapon = "Gatling";
         }
         else if (_char == "Anathema")
         {
-            _subWeapon = "GridPod";
+            _subWeapon = "GridShot";
         }
 
 
