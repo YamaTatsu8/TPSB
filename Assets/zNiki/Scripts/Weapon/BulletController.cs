@@ -25,6 +25,11 @@ public class BulletController: MonoBehaviour
     // オーディオマネージャー
     private AudioManager _audioManager;
 
+    public int BulletDamage
+    {
+        get { return _bulletDamage; }
+    }
+
     public bool IsAttack
     {
         set { _isAttack = value; }

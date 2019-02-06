@@ -101,14 +101,14 @@ public class RayCastShoot : MonoBehaviour
                     if (Physics.Raycast(ray, out hit, _range))
                     {
                         bulletClone.GetComponent<LineRenderer>().SetPosition(1, hit.point + ray.direction);
-                        bulletClone.GetComponent<BoxCollider>().center = hit.point;
-                        bulletClone.GetComponent<BoxCollider>().size = new Vector3(ray.origin.x - hit.point.x, 1,ray.origin.z - hit.point.z);
+                        if (hit.transform.tag == "Enemy")
+                        {
+                            hit.transform.GetComponent<Status>().hitDamage(bulletClone.GetComponent<BulletController>().BulletDamage);
+                        }
                     }
                     else
                     {
                         bulletClone.GetComponent<LineRenderer>().SetPosition(1, ray.origin + ray.direction * _range);
-                        bulletClone.GetComponent<BoxCollider>().center = (((ray.origin + ray.direction * _range) - transform.position) / 2);
-                        bulletClone.GetComponent<BoxCollider>().size = ((ray.origin + ray.direction * _range) - transform.position);
                     }
                     break;
 
