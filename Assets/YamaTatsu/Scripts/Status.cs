@@ -31,7 +31,7 @@ public class Status : MonoBehaviour {
             _isEnemy = true;
             _hitNum = 0;
             _time = 3.0f;
-            _hitStr = "H I T";
+            _hitStr = " H I T";
             _hitObj = GameObject.Find("HitCnt");
             _hitObj.SetActive(false);
         }
