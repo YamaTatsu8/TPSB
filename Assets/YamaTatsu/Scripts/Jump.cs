@@ -40,6 +40,9 @@ public class Jump : MonoBehaviour
     //アニメーター
     private Animator _animator;
 
+    //pauseフラグ
+    private bool _pauseFlag;
+
     // Use this for initialization
     void Start()
     {
@@ -51,6 +54,8 @@ public class Jump : MonoBehaviour
 
         gage = canvas;
 
+        _pauseFlag = false;
+
     }
 
     // Update is called once per frame
@@ -59,7 +64,11 @@ public class Jump : MonoBehaviour
 
         controller.ControllerUpdate();
 
-        Fly();
+        //ポーズフラグが立ったら通らない
+        if (_pauseFlag == false)
+        {
+            Fly();
+        }
 
     }
 
@@ -117,6 +126,11 @@ public class Jump : MonoBehaviour
             rb.velocity += (Vector3.forward * 0.1f) / rb.mass;
 
         }
+    }
+
+    public void SetPauseFlag(bool flag)
+    {
+        _pauseFlag = flag;
     }
 
 }

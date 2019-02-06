@@ -21,6 +21,9 @@ public class Move : MonoBehaviour {
     //移動方向
     private Vector3 moveDirection = Vector3.zero;
 
+    //pauseフラグ
+    private bool _pauseFlag;
+
     //
     private Rigidbody rb;
 
@@ -65,6 +68,8 @@ public class Move : MonoBehaviour {
 
         _walkFoot.SetActive(false);
 
+        _pauseFlag = false;
+
     }
 
     // Update is called once per frame
@@ -94,7 +99,11 @@ public class Move : MonoBehaviour {
             moveZ = Input.GetAxis("L-StickVertical") * _speed * 2;
         }
 
-        Boost();
+        //フラグが立った時は通らない
+        if (_pauseFlag == false)
+        {
+            Boost();
+        }
 
     }
 
@@ -120,17 +129,8 @@ public class Move : MonoBehaviour {
                 rb.velocity = moveForward * _speed + new Vector3(0, rb.velocity.y, 0);
                 _animator.SetFloat("Speed", moveDirection.magnitude);
 
-                //カメラの方向に体を向ける
-                // = Quaternion.LookRotation(moveForward);
-
                 _model.transform.LookAt(transform.position + moveForward);
-                //transform.LookAt(transform.position + moveForward);
-
-                {
-                    //Vector3 diff = transform.position - Player_pos;
-                    //transform.rotation = Quaternion.LookRotation(new Vector3(diff.x,0,diff.z));
-                    //Player_pos = transform.position;
-                }
+       
             }
             else
             {
@@ -183,6 +183,12 @@ public class Move : MonoBehaviour {
         {
             _animator.SetBool("Fall", true);
         }
+    }
+
+    //ポーズさせる
+    public void SetPauseFlag(bool _flag)
+    {
+        _pauseFlag = _flag;
     }
 
 }

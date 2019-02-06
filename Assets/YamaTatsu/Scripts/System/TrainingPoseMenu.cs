@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class TrainingPoseMenu : MonoBehaviour {
 
@@ -40,6 +41,9 @@ public class TrainingPoseMenu : MonoBehaviour {
 
     //フェード
     private GameObject _fadeOut;
+
+    //敵
+    private GameObject _enemy;
 
     //シーンが終わった時のフラグ
     private bool _nextFlag;
@@ -119,6 +123,8 @@ public class TrainingPoseMenu : MonoBehaviour {
         _attackBar.localScale = new Vector3(0, 0, 0);
 
         _startFlag = false;
+
+        _enemy = GameObject.Find("TrainingEnemy");
 
     }
 
@@ -258,10 +264,12 @@ public class TrainingPoseMenu : MonoBehaviour {
                     {
                         case (int)NPC_OPTION.IDLE:
                             //npcにセットする
+                            _enemy.GetComponents<AICharacterControl>()[0].SetWaitingMode(true);
                             _npcState = 0;
                             _npcFlag = false;
                             break;
                         case (int)NPC_OPTION.ATTACK:
+                            _enemy.GetComponents<AICharacterControl>()[0].SetWaitingMode(false);
                             _npcState = 0;
                             _npcFlag = false;
                             break;

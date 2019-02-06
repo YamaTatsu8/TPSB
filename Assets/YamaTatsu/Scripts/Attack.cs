@@ -143,8 +143,6 @@ public class Attack : MonoBehaviour {
             _animator.SetBool("Attack",true);
             var _anistate = _animator.GetCurrentAnimatorStateInfo(0);
 
-            Debug.Log(_anistate.normalizedTime);
-
             if (_weaponFlag == true && _animator.GetBool("Attack") && _anistate.normalizedTime >= 0.8f)
             {
                 _weapon1.GetComponent<WeaponManager>().Attack();
