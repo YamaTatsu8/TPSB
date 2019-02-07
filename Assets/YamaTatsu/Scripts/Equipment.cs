@@ -340,7 +340,7 @@ public class Equipment : MonoBehaviour {
         {
            
             if (_mainFlag == false)
-                {
+            {
                     _state = ChooseState(_state);
 
                 if (_state < (int)EQUIPMENT_STATE.MODEL)
