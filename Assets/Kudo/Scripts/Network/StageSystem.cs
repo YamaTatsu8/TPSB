@@ -14,6 +14,8 @@ public class StageSystem : Util.SingletonMonoBehaviour<StageSystem> {
 
     private string _stageName = "";
 
+    private static StageSystem _playerManager;            //　複数生成されないようのオブジェクト
+
     public string StageName
     {
         get
@@ -24,6 +26,17 @@ public class StageSystem : Util.SingletonMonoBehaviour<StageSystem> {
         {
             _stageName = value;
         }
+    }
+
+    void Awake()
+    {
+        //　シーンオブサーバーが１つしか存在しないようにする
+        if (_playerManager == null)
+        {
+            _playerManager = FindObjectOfType<StageSystem>() as StageSystem;
+            DontDestroyOnLoad(_playerManager);
+        }
+
     }
 
     public void SetStageName()
