@@ -170,12 +170,10 @@ public class NetworkSceneObserver : MonoBehaviour
             //　ゲームプレイシーン
             case (int)SCENE_STATE.GamePlayScene:
                 GameObject gameManaObj = GameObject.Find("GameManager");
-                NetworkPlayerReady manager = GameObject.FindObjectOfType<NetworkPlayerReady>();
 
-                if(manager != null)
-                {
-                    GameObject.Destroy(manager);
-                }
+                StageSystem system = GameObject.FindObjectOfType<StageSystem>();
+                system.SetStageName();
+
                 if (gameManaObj.GetComponent<NetworkPlayScene>().getFlag())
                 {
                     _nowScene = (int)SCENE_STATE.ResultScene;

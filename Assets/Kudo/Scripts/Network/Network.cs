@@ -60,6 +60,12 @@ public class Network : Photon.MonoBehaviour {
     {
         Debug.Log("Roomには入りました");
 
+        StageSystem system = GameObject.FindObjectOfType<StageSystem>();
+        if (system == null)
+        {
+            PhotonNetwork.Instantiate("StageSystem", Vector3.zero, Quaternion.identity, 0);
+        }
+
         _joinFlag = true;
     }
 

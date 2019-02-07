@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageSystem : MonoBehaviour {
+public class StageSystem : Util.SingletonMonoBehaviour<StageSystem> {
 
     private string _stageName = "";
 
@@ -18,7 +18,8 @@ public class StageSystem : MonoBehaviour {
         }
     }
 
-    void Start () {
+    public void SetStageName()
+    {
         GameObject obj = GameObject.Find("SceneManagerObject");
         StageSelectManager ssm = obj.GetComponent<NetworkSceneObserver>().GetStageSelectSceneData();
 
@@ -26,7 +27,4 @@ public class StageSystem : MonoBehaviour {
 
     }
 
-    void Update () {
-		
-	}
 }
