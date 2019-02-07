@@ -99,6 +99,8 @@ public class NetworkWeaponManager : MonoBehaviour
         _con = GameController.Instance;
 
         _audioManager = AudioManager.Instance;
+
+        _photonView = GetComponent<PhotonView>();
     }
 
     private void Start()

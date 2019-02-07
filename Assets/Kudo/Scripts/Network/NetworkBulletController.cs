@@ -77,6 +77,18 @@ public class NetworkBulletController: MonoBehaviour
                 Destroy(this.gameObject);
             }
 
+            if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Target")
+            {
+                collision.gameObject.GetComponent<NetworkStatus>().hitDamage(_bulletDamage);
+
+                if (_seName != "")
+                {
+                    _audioManager.PlaySE(_seName);
+                }
+
+                Destroy(this.gameObject);
+            }
+
             if (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Ground")
             {
                 if (_seName != "")
@@ -91,7 +103,7 @@ public class NetworkBulletController: MonoBehaviour
         {
             if (collision.gameObject.tag == "Player" && !_isHealed)
             {
-                collision.gameObject.GetComponent<Status>().RecoveryHP(_bulletDamage);
+                collision.gameObject.GetComponent<NetworkStatus>().RecoveryHP(_bulletDamage);
 
                 _isHealed = true;
             }
