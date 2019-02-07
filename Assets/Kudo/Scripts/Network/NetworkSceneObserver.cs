@@ -11,7 +11,7 @@ public class NetworkSceneObserver : MonoBehaviour
         TitleScene,
         ModeMenuScene,
         RoomSetting,
-        RoomJoinScene,
+        RoomCheck,
         CustomizeScene,
         StageSelectScene,
         GamePlayScene,
@@ -44,7 +44,6 @@ public class NetworkSceneObserver : MonoBehaviour
         _title = new TitleSceneManager();
         _title.Initialize();
         _modeMenu = new ModeMenuManager();
-        _roomJoin = new RoomChackerManager();
         _stageSelect = new StageSelectManager();
         _result = new ResultSceneManager();
 
@@ -84,29 +83,67 @@ public class NetworkSceneObserver : MonoBehaviour
                 break;
             // -モードメニューシーンの更新処理
             case (int)SCENE_STATE.ModeMenuScene:
-                if(!_modeMenu.SceneUpdate())
+                GameObject modeMenu = GameObject.Find("ModeMenu");
+                if (modeMenu == null) { return; }
+                else
                 {
-                    switch (_modeMenu.State)
+                    GameObject load = GameObject.Find("LoadCanvas");
+                    if (load != null)
                     {
-                        case 0:
-                                _network.ConectNetwork();
-
-                                _nowScene = (int)SCENE_STATE.StageSelectScene;
-                                _stageSelect.Initialize();
-                                ChangeScene("Network" + SCENE_STATE.StageSelectScene.ToString());
-                            break;
-                        case 1:
-                            _network.ConectNetwork();
-
-                            _nowScene = (int)SCENE_STATE.CustomizeScene;
-                            ChangeScene("NetworkCustomizeWindow");
-                            break;
-                        case 2:
-                            _nowScene = (int)SCENE_STATE.CustomizeScene;
-                            ChangeScene("CustomizeWindow");
-                            break;
+                        load.GetComponent<Loading>().FinalReset();
                     }
                 }
+                if (modeMenu.GetComponent<ModeMenu>().GetNextFlag())
+                {
+                    string selectName = modeMenu.GetComponent<ModeMenu>().SelectedSceneName();
+
+                    Loading load = new Loading();
+                    GameObject loadObj = load.CreateLoading();
+
+                    if (selectName == SCENE_STATE.RoomSetting.ToString())
+                    {
+                        _nowScene = (int)SCENE_STATE.StageSelectScene;
+                        _stageSelect.Initialize();
+                        ChangeScene("Network" + SCENE_STATE.StageSelectScene.ToString());
+                    }
+                    if (selectName == SCENE_STATE.RoomCheck.ToString())
+                    {
+                        _network.ConectNetwork();
+
+                        _nowScene = (int)SCENE_STATE.CustomizeScene;
+                        ChangeScene("NetworkCustomizeWindow");
+                    }
+                    //if (selectName == SCENE_STATE.TrainingRoom.ToString())
+                    //{
+                    //    _nowScene = (int)SCENE_STATE.CustomizeWindow;
+                    //    loadObj.GetComponent<Loading>().NextScene(SCENE_STATE.CustomizeWindow.ToString());
+                    //    //ChangeScene("CustomizeWindow");
+                    //}
+                }
+
+                //if (!_modeMenu.SceneUpdate())
+                //{
+                //    switch (_modeMenu.State)
+                //    {
+                //        case 0:
+                //                _network.ConectNetwork();
+
+                //                _nowScene = (int)SCENE_STATE.StageSelectScene;
+                //                _stageSelect.Initialize();
+                //                ChangeScene("Network" + SCENE_STATE.StageSelectScene.ToString());
+                //            break;
+                //        case 1:
+                //            _network.ConectNetwork();
+
+                //            _nowScene = (int)SCENE_STATE.CustomizeScene;
+                //            ChangeScene("NetworkCustomizeWindow");
+                //            break;
+                //        case 2:
+                //            _nowScene = (int)SCENE_STATE.CustomizeScene;
+                //            ChangeScene("CustomizeWindow");
+                //            break;
+                //    }
+                //}
                 break;
 
             //　ルームセッティングの更新処理
