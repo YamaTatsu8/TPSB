@@ -10,10 +10,11 @@ public class StageSystem : Util.SingletonMonoBehaviour<StageSystem> {
     //マテリアル
     private Material _skybox;
 
+    [SerializeField]
     private bool _isCreate = false;
-
+    [SerializeField]
     private string _stageName = "";
-
+    [SerializeField]
     private static StageSystem _playerManager;            //　複数生成されないようのオブジェクト
 
     public string StageName
