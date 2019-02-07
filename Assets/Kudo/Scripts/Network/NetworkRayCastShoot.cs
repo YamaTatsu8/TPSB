@@ -104,7 +104,7 @@ public class NetworkRayCastShoot : MonoBehaviour
                         bulletClone.GetComponent<LineRenderer>().SetPosition(1, hit.point + ray.direction);
                         if (hit.transform.tag == "Enemy")
                         {
-                            hit.transform.GetComponent<Status>().hitDamage(bulletClone.GetComponent<BulletController>().BulletDamage);
+                            hit.transform.GetComponent<Status>().hitDamage(bulletClone.GetComponent<NetworkBulletController>().BulletDamage);
                         }
                     }
                     else
@@ -119,7 +119,7 @@ public class NetworkRayCastShoot : MonoBehaviour
                     // 弾の位置を再調整
                     bulletClone.transform.position = this.transform.parent.position;
                     // 回復できるようにする
-                    bulletClone.GetComponent<BulletController>().IsAttack = false;
+                    bulletClone.GetComponent<NetworkBulletController>().IsAttack = false;
                     break;
 
                 case BulletType.Bit:
@@ -153,7 +153,7 @@ public class NetworkRayCastShoot : MonoBehaviour
                     break;
             }
 
-            bulletClone.GetComponent<BulletController>().DeleteBullet(bulletClone);
+            bulletClone.GetComponent<NetworkBulletController>().DeleteBullet(bulletClone);
 
             return true;
         }
