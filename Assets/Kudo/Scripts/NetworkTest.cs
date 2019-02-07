@@ -79,7 +79,6 @@ public class NetworkTest: Photon.MonoBehaviour {
         GameObject go = PhotonNetwork.Instantiate("Prefabs/PlayerModel/" + playerSystem.getChar(), Vector3.zero, Quaternion.identity, 0);
         if (go.GetComponent<PhotonView>().ownerId != 1)
         {
-            //pos.x *= -1;
             pos.z *= -1;
         }
 

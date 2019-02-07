@@ -40,43 +40,29 @@ public class NetworkMove : MonoBehaviour {
     private Camera _mainCamera;
 
     //アニメーター
-<<<<<<< HEAD
     [SerializeField]
-=======
->>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     private Animator _animator;
 
     //model
     [SerializeField]
     private GameObject _model;
 
-<<<<<<< HEAD
     [SerializeField]
     private GameObject _obj;
 
     // -PhotonView
-=======
-    // -ネットワーク
->>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     private PhotonView _photonView;
 
     // Use this for initialization
     void Start () {
 
-<<<<<<< HEAD
         
-=======
->>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
         controller = GameController.Instance;
 
         //
         rb = GetComponent<Rigidbody>();
 
-<<<<<<< HEAD
         _animator = _obj.GetComponent<Animator>();
-=======
-        _animator = GetComponent<Animator>();
->>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 
         gage = canvas;
 
@@ -84,16 +70,11 @@ public class NetworkMove : MonoBehaviour {
 
         // -PhotonViewのコンポーネント
         _photonView = GetComponent<PhotonView>();
-<<<<<<< HEAD
-=======
-
->>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     }
 
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
         // -自身でなかったらreturn
         if(!_photonView.isMine)
         {
@@ -124,38 +105,6 @@ public class NetworkMove : MonoBehaviour {
         }
 
         Boost();
-=======
-
-        controller.ControllerUpdate();
-
-        // -誰がボタンを押したかをチェック
-        if(_photonView.isMine)
-        {
-            if (Input.GetAxis("L-StickHorizontal") != 0 || Input.GetAxis("L-StickVertical") != 0)
-            {
-                _walkFoot.SetActive(true);
-            }
-            else
-            {
-                _walkFoot.SetActive(false);
-            }
-
-            //移動
-            if (_boostFlag == false)
-            {
-                moveX = Input.GetAxis("L-StickHorizontal") * _speed;
-                moveZ = Input.GetAxis("L-StickVertical") * _speed;
-            }
-            else
-            {
-                moveX = Input.GetAxis("L-StickHorizontal") * _speed * 2;
-                moveZ = Input.GetAxis("L-StickVertical") * _speed * 2;
-            }
-
-            Boost();
-
-        }
->>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 
     }
 
@@ -170,10 +119,7 @@ public class NetworkMove : MonoBehaviour {
 
             if (moveDirection.magnitude > 0.1f)
             {
-<<<<<<< HEAD
                
-=======
->>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
                 // カメラの方向から、X-Z平面の単位ベクトルを取得
                 Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
 

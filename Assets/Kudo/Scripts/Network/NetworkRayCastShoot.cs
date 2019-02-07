@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-<<<<<<< HEAD
 public class NetworkRayCastShoot : MonoBehaviour
-=======
-public class NetworkRayCastShoot : Photon.MonoBehaviour
->>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 {
     // 発射間隔
     private float _fireRate;
@@ -27,7 +23,6 @@ public class NetworkRayCastShoot : Photon.MonoBehaviour
     // 弾速
     private float _bulletSpeed = 50.0f;
 
-<<<<<<< HEAD
     // 射程
     private float _range = 30.0f;
 
@@ -37,13 +32,6 @@ public class NetworkRayCastShoot : Photon.MonoBehaviour
     // 弾の種類
     private BulletType _type;
 
-=======
-    // 射程(DrawLineの距離)
-    private float _range = 30.0f;
-
-    private Vector3 _targetPos = Vector3.zero;
-
->>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     // Use this for initialization
     void Start ()
     {
@@ -54,11 +42,8 @@ public class NetworkRayCastShoot : Photon.MonoBehaviour
         _muzzle = this.GetComponent<NetworkWeaponManager>().Muzzle;
 
         _bulletPrefab = this.GetComponent<NetworkWeaponManager>().BulletPrefab;
-<<<<<<< HEAD
 
         _type = this.GetComponent<NetworkWeaponManager>().Type;
-=======
->>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     }
 
     public bool Shot(float fireRate)
@@ -79,7 +64,6 @@ public class NetworkRayCastShoot : Photon.MonoBehaviour
 
             // 弾丸の生成
             GameObject bulletClone = Instantiate<GameObject>(_bulletPrefab);
-<<<<<<< HEAD
 
             // 弾丸の位置を調整
             bulletClone.transform.position = _muzzle.position;
@@ -102,17 +86,6 @@ public class NetworkRayCastShoot : Photon.MonoBehaviour
             }
             
             //RaycastHit hit;
-=======
-            // bulletCloneの位置を調整
-            bulletClone.transform.position = _muzzle.position;
-
-            RaycastHit hit;
-
-            if (_targetPos != Vector3.zero)
-            {
-                bulletClone.GetComponent<Rigidbody>().velocity = (_targetPos - bulletClone.transform.position).normalized * _bulletSpeed;
-            }
->>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 
             //if (Physics.Raycast(ray, out hit, _range))
             //{
@@ -125,17 +98,12 @@ public class NetworkRayCastShoot : Photon.MonoBehaviour
             //    bulletClone.GetComponent<Rigidbody>().velocity = (ray.GetPoint(_range) - bulletClone.transform.position).normalized * _bulletSpeed;
             //}
 
-<<<<<<< HEAD
             bulletClone.GetComponent<NetworkBulletController>().DeleteBullet(bulletClone);
-=======
-            bulletClone.GetComponent<BulletController>().DeleteBullet(bulletClone);
->>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 
             return true;
         }
         return false;
     }
-<<<<<<< HEAD
 
     public static IEnumerator Missile(GameObject bulletClone, NetworkRayCastShoot r, Vector3 muzzlePos)
     {
@@ -172,6 +140,4 @@ public class NetworkRayCastShoot : Photon.MonoBehaviour
             yield return null;
         }
     }
-=======
->>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 }

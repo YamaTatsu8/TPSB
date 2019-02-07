@@ -10,9 +10,9 @@ public class NetworkPlayScene :  Util.SingletonMonoBehaviour<NetworkPlayScene>{
     //Player
     private GameObject _player;
 
-    ////敵
-    //[SerializeField]
-    //private GameObject _enemy;
+    //敵
+    [SerializeField]
+    private GameObject _enemy;
 
     //終了フラグ
     private bool _flag = false;
@@ -23,8 +23,6 @@ public class NetworkPlayScene :  Util.SingletonMonoBehaviour<NetworkPlayScene>{
 
     private bool _playerFlag = false;
 
-    [SerializeField]
-    private Network _network;
 
     // Use this for initialization
     void Start()
@@ -38,13 +36,12 @@ public class NetworkPlayScene :  Util.SingletonMonoBehaviour<NetworkPlayScene>{
         //プレイヤーを探す
         _player = GameObject.FindGameObjectWithTag("Player");
 
-        ////敵を探す
-        //_enemy = GameObject.Find("Enemy");
+        //敵を探す
+        _enemy = GameObject.Find("Enemy");
 
         //レンダリング設定
         RenderSettings.ambientSkyColor = Color.gray;
 
-        _network.PlayerInstantiate();
     }
 
     // Update is called once per frame
