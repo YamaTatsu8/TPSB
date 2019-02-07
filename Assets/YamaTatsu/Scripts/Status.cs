@@ -59,6 +59,7 @@ public class Status : MonoBehaviour {
         {
             _hitNum = 0;
             _time = 3.0f;
+            _HP = 100;
             _hitObj.SetActive(false);
         }
 
@@ -81,11 +82,11 @@ public class Status : MonoBehaviour {
             _hitObj.GetComponent<Text>().text = _hitNum.ToString() + _hitStr;
             _time = 3.0f;
         }
-        else
+        if (_HP >= 1)
         {
             _HP -= damage;
-            //_animator.SetTrigger("Damage");
         }
+        //_animator.SetTrigger("Damage");
     }
 
     public void RecoveryHP(int heal)
