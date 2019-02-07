@@ -127,12 +127,6 @@ public class Attack : MonoBehaviour {
             return;
         }
 
-        //R1押されたらロックオンの切り替え
-        //if (controller.ButtonDown(Button.R1))
-        //{
-        //    _targetFlag = !_targetFlag;
-        //}
-
         if (controller.ButtonDown(Button.X))
         {
             _weaponFlag = !_weaponFlag;
