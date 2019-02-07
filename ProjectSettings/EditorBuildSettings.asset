@@ -29,4 +29,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ResultScene.unity
     guid: e53c93bc46666074badfccedba4e0a4e
+  - enabled: 1
+    path: Assets/Kudo/Scenes/Network/NetworkTitleScene.unity
+    guid: c2eec34207ae662468e24b7ab8d064cd
+  - enabled: 1
+    path: Assets/Kudo/Scenes/Network/ModeMenuScene.unity
+    guid: 5f8ca65718f872b44b31a1ecbb353031
+  - enabled: 1
+    path: Assets/Kudo/Scenes/Network/NetworkCustomizeWindow.unity
+    guid: 0eb51a24e90ea884fb130b0fedbf7b70
+  - enabled: 1
+    path: Assets/Kudo/Scenes/Network/NetWorkModeMenu.unity
+    guid: 27b75bce99509464583c7b6e44aac7d7
+  - enabled: 1
+    path: Assets/Kudo/Scenes/Network/NetworkPlayScene.unity
+    guid: f3308551930d47c479333c23ac7e8d60
+  - enabled: 1
+    path: Assets/Kudo/Scenes/Network/NetworkStageSelectScene.unity
+    guid: 2c7a46b906cad604bb91afd72a6f0879
+  - enabled: 1
+    path: Assets/Kudo/Scenes/Network/RoomCheck.unity
+    guid: 63ecbb5732ef73b40b874028b3e4d641
+  - enabled: 1
+    path: Assets/Kudo/Scenes/Network/RoomSetting.unity
+    guid: 3173fdbba2dbac049a21c5171017f0f0
   m_configObjects: {}
