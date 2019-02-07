@@ -54,6 +54,7 @@ public class Pausable : MonoBehaviour
                 pauseUIInstance = GameObject.Instantiate(pauseUIPrefab) as GameObject;
                 _player.GetComponent<Move>().SetPauseFlag(true);
                 _player.GetComponent<Jump>().SetPauseFlag(true);
+                _player.GetComponent<Attack>().SetPauseFlag(true);
                 Time.timeScale = 0f;
             }
             else
@@ -61,6 +62,7 @@ public class Pausable : MonoBehaviour
                 Destroy(pauseUIInstance);
                 _player.GetComponent<Move>().SetPauseFlag(false);
                 _player.GetComponent<Jump>().SetPauseFlag(false);
+                _player.GetComponent<Attack>().SetPauseFlag(false);
                 Time.timeScale = 1f;
             }
         }
@@ -72,6 +74,7 @@ public class Pausable : MonoBehaviour
         Destroy(pauseUIInstance);
         _player.GetComponent<Move>().SetPauseFlag(false);
         _player.GetComponent<Jump>().SetPauseFlag(false);
+        _player.GetComponent<Attack>().SetPauseFlag(false);
         Time.timeScale = 1f;
     }
 
