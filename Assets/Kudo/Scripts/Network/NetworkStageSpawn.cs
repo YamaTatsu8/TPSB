@@ -12,7 +12,7 @@ public class NetworkStageSpawn : MonoBehaviour {
     private Material _skybox;
 
 	// Use this for initialization
-	void Start () {
+	public void StageSpawn () {
 
         //オブサーバーを探す
         //GameObject obj = GameObject.Find("SceneManagerObject");

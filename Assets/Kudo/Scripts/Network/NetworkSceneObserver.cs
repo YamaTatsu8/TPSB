@@ -210,9 +210,6 @@ public class NetworkSceneObserver : MonoBehaviour
             case (int)SCENE_STATE.GamePlayScene:
                 GameObject gameManaObj = GameObject.Find("GameManager");
 
-                StageSystem system = GameObject.FindObjectOfType<StageSystem>();
-                system.SetStageName();
-
                 if (gameManaObj.GetComponent<NetworkPlayScene>().getFlag())
                 {
                     _nowScene = (int)SCENE_STATE.ResultScene;
