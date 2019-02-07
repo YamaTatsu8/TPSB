@@ -1169,10 +1169,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _capacity: 30
   _roundsPerSecond: 100
+  _bulletSpeed: 50
   _reloadTime: 2
   _mode: 1
-  _bulletPrefab: {fileID: 1243580894668578, guid: 8e6f70bc3d53d4440974079dd2b144fa,
+  _type: 0
+  _bulletPrefab: {fileID: 1690859834969262, guid: 48a82f2e728e0074a9de78c6b4e8b278,
     type: 2}
+  _seName: 
+  _gatling: {fileID: 0}
+  _bits: []
   _weaponUI: {fileID: 1458696149164016}
 --- !u!222 &222029761441050442
 CanvasRenderer:

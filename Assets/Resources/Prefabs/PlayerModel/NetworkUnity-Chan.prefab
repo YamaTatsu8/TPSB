@@ -2922,6 +2922,7 @@ GameObject:
   - component: {fileID: 114088865158584026}
   - component: {fileID: 114175567908505766}
   - component: {fileID: 114146827255570804}
+  - component: {fileID: 114342137829188244}
   m_Layer: 9
   m_Name: NetworkUnity-Chan
   m_TagString: Player
@@ -8719,8 +8720,8 @@ MonoBehaviour:
   - {fileID: 114146827255570804}
   - {fileID: 4463927972224442}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 26
-  instantiationId: 26
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114095913146171324
@@ -9563,6 +9564,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114342137829188244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1637821243807764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee6b6b822a14944e89ed64c6ba46c61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _id: 0
 --- !u!114 &114348616819685054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10934,8 +10947,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 4139799556348236, guid: ba6b24bab7ce4a04594f7781a5ca0aea, type: 2}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 27
-  instantiationId: 27
+  viewIdField: 0
+  instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114914228445402408

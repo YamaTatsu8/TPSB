@@ -849,13 +849,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _capacity: 30
-  _roundsPerSecond: 1
+  _roundsPerSecond: 50
+  _bulletSpeed: 50
   _reloadTime: 1
   _mode: 1
   _type: 0
-  _bulletPrefab: {fileID: 1728188175131922, guid: beced145914b18847bf9316bedccb44c,
+  _bulletPrefab: {fileID: 1728188175131922, guid: b6ab4fe588332264f8e4931c24163b8d,
     type: 2}
   _seName: 
+  _gatling: {fileID: 0}
+  _bits: []
   _weaponUI: {fileID: 1797617798549556}
 --- !u!114 &114239877121260042
 MonoBehaviour:
