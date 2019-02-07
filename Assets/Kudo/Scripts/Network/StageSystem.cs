@@ -47,7 +47,7 @@ public class StageSystem : Util.SingletonMonoBehaviour<StageSystem> {
         GameObject obj = GameObject.Find("GameManager");
         //オブサーバーをゲットコンポーネント
         //StageSelectManager test = obj.GetComponent<NetworkSceneObserver>().GetStageSelectSceneData();
-        string test = obj.GetComponent<StageSystem>().StageName;
+        string test = _stageName;
 
         _stage = PhotonNetwork.Instantiate("Prefabs/Stages/" + test, Vector3.zero, Quaternion.identity, 0);
 
