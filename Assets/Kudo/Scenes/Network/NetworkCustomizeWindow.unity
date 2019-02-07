@@ -5629,8 +5629,8 @@ GameObject:
   - component: {fileID: 803836955}
   - component: {fileID: 803836957}
   - component: {fileID: 803836956}
-  - component: {fileID: 803836958}
   - component: {fileID: 803836959}
+  - component: {fileID: 803836958}
   m_Layer: 5
   m_Name: BackGround
   m_TagString: Untagged
@@ -5711,13 +5711,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 803836954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c06e21157a0cf1c44aa197307f74be90, type: 3}
+  m_Script: {fileID: 11500000, guid: 04e62880e498df74e863f52130fc2197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _modelObj: {fileID: 0}
-  _state: 0
   _mainState: 0
-  _pos: {x: -200, y: 0, z: 0}
   canvas: {fileID: 1301332281}
   _modelBarCan: {fileID: 1050433549}
   _playerSystem: {fileID: 841047180}
@@ -5727,7 +5725,7 @@ MonoBehaviour:
   _select: {fileID: 8300000, guid: dcb50913229bf8d40a481ceaf812e2cc, type: 3}
   _cansel: {fileID: 8300000, guid: d9873c05e3c95f849a18e4dbfa3d73c8, type: 3}
   _bub: {fileID: 8300000, guid: 006e197e7c9b7b445a3f9cf319a61fd1, type: 3}
-  _weaponState: 4
+  _weaponState: 0
   _sprite: {fileID: 21300000, guid: a86edf38168a1db4c87f7905cf0f5b38, type: 3}
   _sprite2: {fileID: 21300000, guid: bbc91d84a2264c946bda65b5d94f6e5a, type: 3}
 --- !u!82 &803836959
