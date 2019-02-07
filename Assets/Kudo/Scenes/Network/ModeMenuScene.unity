@@ -542,7 +542,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &126372897
 GameObject:
@@ -1229,48 +1229,6 @@ Transform:
   m_Father: {fileID: 717662760}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &239567748
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4750644110148688, guid: d01a6ed3bda4a7446973957675720283, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 44.951912
-      objectReference: {fileID: 0}
-    - target: {fileID: 4750644110148688, guid: d01a6ed3bda4a7446973957675720283, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -42.70372
-      objectReference: {fileID: 0}
-    - target: {fileID: 4750644110148688, guid: d01a6ed3bda4a7446973957675720283, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 68.42525
-      objectReference: {fileID: 0}
-    - target: {fileID: 4750644110148688, guid: d01a6ed3bda4a7446973957675720283, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4750644110148688, guid: d01a6ed3bda4a7446973957675720283, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4750644110148688, guid: d01a6ed3bda4a7446973957675720283, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4750644110148688, guid: d01a6ed3bda4a7446973957675720283, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4750644110148688, guid: d01a6ed3bda4a7446973957675720283, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d01a6ed3bda4a7446973957675720283, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &245378691
 GameObject:
   m_ObjectHideFlags: 0
@@ -2151,7 +2109,6 @@ GameObject:
   m_Component:
   - component: {fileID: 394554676}
   - component: {fileID: 394554675}
-  - component: {fileID: 394554674}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2159,13 +2116,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &394554674
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 394554673}
-  m_Enabled: 1
 --- !u!20 &394554675
 Camera:
   m_ObjectHideFlags: 0
@@ -2217,7 +2167,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &409626084
 GameObject:
@@ -3126,7 +3076,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &559907672
 GameObject:
@@ -4252,7 +4202,7 @@ MonoBehaviour:
   delay: 0
   style: 1
   playOnAwake: 1
-  m_progress: 0.11838058
+  m_progress: 0.15826742
   usePosition: 0
   useRotation: 0
   useScale: 1
@@ -4646,7 +4596,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &813898054
 GameObject:
@@ -4980,7 +4930,7 @@ MonoBehaviour:
   delay: 0
   style: 1
   playOnAwake: 1
-  m_progress: 0.11838058
+  m_progress: 0.15826742
   usePosition: 0
   useRotation: 0
   useScale: 1
@@ -9195,7 +9145,7 @@ Transform:
   - {fileID: 1185406690}
   - {fileID: 933314373}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1461055969
 GameObject:
@@ -9705,7 +9655,7 @@ MonoBehaviour:
   delay: 0
   style: 1
   playOnAwake: 1
-  m_progress: 0.11838058
+  m_progress: 0.15826742
   usePosition: 0
   useRotation: 0
   useScale: 1
@@ -13355,7 +13305,7 @@ MonoBehaviour:
   delay: 0
   style: 1
   playOnAwake: 1
-  m_progress: 0.11838058
+  m_progress: 0.15826742
   usePosition: 0
   useRotation: 0
   useScale: 1
