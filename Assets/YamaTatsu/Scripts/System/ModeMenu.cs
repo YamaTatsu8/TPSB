@@ -103,11 +103,6 @@ public class ModeMenu : MonoBehaviour {
         //コントローラアップデート
         _controller.ControllerUpdate();
 
-        if (_fadeFlag == true)
-        {
-            return;
-        }
-
         //
         _state = ChooseState(_state);
 
