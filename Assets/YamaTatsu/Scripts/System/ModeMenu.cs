@@ -93,7 +93,6 @@ public class ModeMenu : MonoBehaviour {
         _trainingRoom = GameObject.Find("TrainingRoom").GetComponent<RectTransform>();
         _exit = GameObject.Find("Exit").GetComponent<RectTransform>();
 
-
         _nextFlag = false;
 
     }
@@ -103,6 +102,11 @@ public class ModeMenu : MonoBehaviour {
 
         //コントローラアップデート
         _controller.ControllerUpdate();
+
+        if (_fadeFlag == true)
+        {
+            return;
+        }
 
         //
         _state = ChooseState(_state);
