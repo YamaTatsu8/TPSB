@@ -325,6 +325,8 @@ public class Equipment : MonoBehaviour {
             }
             else if (_selectFlag == true)
             {
+                //タイトルシーンに遷移
+                _playerSystem.GetComponent<PlayerSystem>().Init();
                 _backFlag = true;
             }
         }
@@ -631,8 +633,6 @@ public class Equipment : MonoBehaviour {
                     {
                         case (int)NEXT_STATE.YES:
                         //次のシーンに移動    
-                        //タイトルシーンに遷移
-                        _playerSystem.GetComponent<PlayerSystem>().Init();
                         Fade fade = new Fade();
 
                             _fadeOut = fade.CreateFade();
