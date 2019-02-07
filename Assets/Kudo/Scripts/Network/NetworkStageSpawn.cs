@@ -15,13 +15,15 @@ public class NetworkStageSpawn : MonoBehaviour {
 	void Start () {
 
         //オブサーバーを探す
-        GameObject obj = GameObject.Find("SceneManagerObject");
+        //GameObject obj = GameObject.Find("SceneManagerObject");
+        GameObject obj = GameObject.Find("Gamemanager");
         //オブサーバーをゲットコンポーネント
-        StageSelectManager test = obj.GetComponent<NetworkSceneObserver>().GetStageSelectSceneData();
+        //StageSelectManager test = obj.GetComponent<NetworkSceneObserver>().GetStageSelectSceneData();
+        string test = obj.GetComponent<NetworkPlayScene>().StageName;
 
-        _stage = (GameObject)Instantiate(Resources.Load("Prefabs/Stages/" + test.GetSelectStageName()));
+        _stage = (GameObject)Instantiate(Resources.Load("Prefabs/Stages/" + test));
 
-        _skybox = (Material)Resources.Load("Material/" + test.GetSelectStageName() + "BackGround");
+        _skybox = (Material)Resources.Load("Material/" + test + "BackGround");
 
         RenderSettings.skybox = _skybox;
 
