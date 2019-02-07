@@ -79,8 +79,13 @@ public class NetworkLookCamera : MonoBehaviour {
             return;
         }
 
+        if (_target == null)
+        {
+            return;
+        }
+
         //R1押されたらロックオンの切り替え
-        if(controller.ButtonDown(Button.R1))
+        if (controller.ButtonDown(Button.R1))
         {
             _targetFlag = !_targetFlag;
         }
