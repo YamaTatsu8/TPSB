@@ -8,6 +8,7 @@ public class NetworkPlayerReady : MonoBehaviour {
     private bool _isRedey = false;
 
     private PhotonView _photonView;
+    private int _id = 0;
 
     private bool _isNextScene = false;
     private bool[] _playerFlag = new bool[2];
@@ -38,17 +39,34 @@ public class NetworkPlayerReady : MonoBehaviour {
         }
     }
 
+    public int ID
+    {
+        get
+        {
+            return _id;
+        }
+    }
+
+    private void OnGUI()
+    {
+        // 状態の表示
+        GUILayout.Label("");
+        GUILayout.Label("");
+        GUILayout.Label("");
+        GUILayout.Label("");
+
+    }
+
     void Awake () {
 
         _photonView = GetComponent<PhotonView>();
 
-        this.name = "NetworkPlayerManager" + _photonView.ownerId;
+        _id = _photonView.ownerId;
 
         //　シーンオブサーバーが１つしか存在しないようにする
         if (_playerManager == null)
         {
             _playerManager = FindObjectOfType<NetworkPlayerReady>() as NetworkPlayerReady;
-
             DontDestroyOnLoad(_playerManager);
         }
 
@@ -64,19 +82,17 @@ public class NetworkPlayerReady : MonoBehaviour {
         int flagCnt = 0;
         for(int i = 0; i < PhotonNetwork.playerList.Length; i++)
         {
-            GameObject manager = null;
-            switch(i)
+            GameObject manager = GameObject.Find("NetworkPlayerManager");
+            switch (i)
             {
                 case 0:
-                    manager = GameObject.Find("NetworkPlayerManager1");
-                    if(manager != null)
+                    if(manager != null && manager.GetComponent<NetworkPlayerReady>().ID == 1)
                     {
                         _playerFlag[i] = manager.GetComponent<NetworkPlayerReady>().ReadyFlag;
                     }
                     break;
                 case 1:
-                    manager = GameObject.Find("NetworkPlayerManager2");
-                    if (manager != null)
+                    if (manager != null && manager.GetComponent<NetworkPlayerReady>().ID == 2)
                     {
                         _playerFlag[i] = manager.GetComponent<NetworkPlayerReady>().ReadyFlag;
                     }

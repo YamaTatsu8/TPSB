@@ -21,10 +21,10 @@ public class NetworkRayCastShoot : MonoBehaviour
     private GameObject _bulletPrefab;
 
     // 弾速
-    private float _bulletSpeed = 50.0f;
+    private float _bulletSpeed;
 
     // 射程
-    private float _range = 30.0f;
+    private float _range = 100.0f;
 
     // 対象の位置
     private Vector3 _targetPos = Vector3.zero;
@@ -32,25 +32,35 @@ public class NetworkRayCastShoot : MonoBehaviour
     // 弾の種類
     private BulletType _type;
 
+    // 
+    private List<GameObject> _bits;
+
     // Use this for initialization
     void Start ()
     {
-        _fireRate = 1.0f / this.GetComponent<NetworkWeaponManager>().RoundsPerSecond;
-        
+        _bulletSpeed = this.GetComponent<NetworkWeaponManager>()._bulletSpeed;
+
+        _fireRate = 1.0f / this.GetComponent<NetworkWeaponManager>()._roundsPerSecond;
+
         _fpsCam = Camera.FindObjectOfType<Camera>();
 
         _muzzle = this.GetComponent<NetworkWeaponManager>().Muzzle;
 
-        _bulletPrefab = this.GetComponent<NetworkWeaponManager>().BulletPrefab;
+        _bulletPrefab = this.GetComponent<NetworkWeaponManager>()._bulletPrefab;
 
-        _type = this.GetComponent<NetworkWeaponManager>().Type;
+        _type = this.GetComponent<NetworkWeaponManager>()._type;
+
+        _bits = this.GetComponent<NetworkWeaponManager>()._bits;
     }
 
     public bool Shot(float fireRate)
     {
         _fireRate = fireRate;
 
-        _targetPos = transform.root.GetComponent<NetworkAttack>().getPosition();
+        if (transform.root.GetComponent<NetworkAttack>())
+        {
+            _targetPos = transform.root.GetComponent<NetworkAttack>().getPosition();
+        }
 
         if (Time.time > _nextTime)
         {
@@ -71,34 +81,79 @@ public class NetworkRayCastShoot : MonoBehaviour
             switch (_type)
             {
                 case BulletType.Normal:
+                case BulletType.Gatling:
                     if (_targetPos != Vector3.zero)
                     {
                         bulletClone.GetComponent<Rigidbody>().velocity = (_targetPos - bulletClone.transform.position).normalized * _bulletSpeed;
                     }
                     break;
+
                 case BulletType.Missile:
+                    Debug.Log(this._targetPos);
                     StartCoroutine(Missile(bulletClone, this.GetComponent<NetworkRayCastShoot>(), _muzzle.position));
                     break;
+
                 case BulletType.Laser:
+
+                    RaycastHit hit;
+
+                    bulletClone.GetComponent<LineRenderer>().SetPosition(0, transform.position);
+
+                    if (Physics.Raycast(ray, out hit, _range))
+                    {
+                        bulletClone.GetComponent<LineRenderer>().SetPosition(1, hit.point + ray.direction);
+                        if (hit.transform.tag == "Enemy")
+                        {
+                            hit.transform.GetComponent<Status>().hitDamage(bulletClone.GetComponent<BulletController>().BulletDamage);
+                        }
+                    }
+                    else
+                    {
+                        bulletClone.GetComponent<LineRenderer>().SetPosition(1, ray.origin + ray.direction * _range);
+                    }
                     break;
+
+                case BulletType.Heal:
+                    // 弾をキャラの子に
+                    bulletClone.transform.parent = this.transform.parent;
+                    // 弾の位置を再調整
+                    bulletClone.transform.position = this.transform.parent.position;
+                    // 回復できるようにする
+                    bulletClone.GetComponent<BulletController>().IsAttack = false;
+                    break;
+
+                case BulletType.Bit:
+                    // ビットを配列に追加
+                    _bits.Add(bulletClone);
+
+                    // ビットをキャラの子に
+                    bulletClone.transform.parent = this.transform.parent;
+
+                    // ビットの位置を再調整
+                    switch (_bits.Count)
+                    {
+                        case 1:
+                            bulletClone.transform.position = this.transform.parent.position + new Vector3(-0.3f, 2.0f, 0);
+                            break;
+                        case 2:
+                            bulletClone.transform.position = this.transform.parent.position + new Vector3(0.3f, 2.0f, 0);
+                            break;
+                        case 3:
+                            bulletClone.transform.position = this.transform.parent.position + new Vector3(-0.5f, 1.5f, 0);
+                            break;
+                        case 4:
+                            bulletClone.transform.position = this.transform.parent.position + new Vector3(0.5f, 1.5f, 0);
+                            break;
+                        default:
+                            break;
+                    }
+                    return true;
+
                 default:
                     break;
             }
-            
-            //RaycastHit hit;
 
-            //if (Physics.Raycast(ray, out hit, _range))
-            //{
-            //    // レイのヒットした地点に飛ばす
-            //    bulletClone.GetComponent<Rigidbody>().velocity = (hit.point - bulletClone.transform.position).normalized * _bulletSpeed;
-            //}
-            //else
-            //{
-            //    // 射程距離分進んだ地点に飛ばす
-            //    bulletClone.GetComponent<Rigidbody>().velocity = (ray.GetPoint(_range) - bulletClone.transform.position).normalized * _bulletSpeed;
-            //}
-
-            bulletClone.GetComponent<NetworkBulletController>().DeleteBullet(bulletClone);
+            bulletClone.GetComponent<BulletController>().DeleteBullet(bulletClone);
 
             return true;
         }
