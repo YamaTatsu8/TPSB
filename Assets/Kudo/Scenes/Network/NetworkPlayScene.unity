@@ -302,26 +302,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114030697294127076, guid: 86290520fa74c984db6d4a70d38d7d22, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86290520fa74c984db6d4a70d38d7d22, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &926106192 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1268276915771060, guid: 86290520fa74c984db6d4a70d38d7d22,
-    type: 2}
-  m_PrefabInternal: {fileID: 926106191}
---- !u!114 &926106193
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 926106192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9da14f09751d8949b76319c5c82af47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1459498002
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,8 +435,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114628785353386640, guid: 03c1b34710ce47a49a2f25dba8e44e70, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03c1b34710ce47a49a2f25dba8e44e70, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1646771918 stripped
@@ -461,7 +443,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1974833966891072, guid: 03c1b34710ce47a49a2f25dba8e44e70,
     type: 2}
   m_PrefabInternal: {fileID: 1646771917}
---- !u!114 &1646771919
+--- !u!4 &1646771919 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4048723456472348, guid: 03c1b34710ce47a49a2f25dba8e44e70,
+    type: 2}
+  m_PrefabInternal: {fileID: 1646771917}
+--- !u!114 &1646771920
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -469,9 +456,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1646771918}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8993ca714c907949bbd93853ef15e54, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownerId: 0
+  group: 0
+  OwnerShipWasTransfered: 0
+  prefixBackup: -1
+  synchronization: 3
+  onSerializeTransformOption: 3
+  onSerializeRigidBodyOption: 2
+  ownershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 1646771919}
+  ObservedComponentsFoldoutOpen: 1
+  viewIdField: 1
+  instantiationId: 1
+  currentMasterID: -1
+  isRuntimeInstantiated: 0
 --- !u!1001 &1757238194
 Prefab:
   m_ObjectHideFlags: 0
