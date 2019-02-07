@@ -25,7 +25,6 @@ public class EnemyBulletController : MonoBehaviour
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Target")
         {
             Destroy(this.gameObject);
-
             collision.gameObject.GetComponent<Status>().hitDamage(_bulletDamage);
         }
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Wall")

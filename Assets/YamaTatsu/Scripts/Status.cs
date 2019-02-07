@@ -21,6 +21,9 @@ public class Status : MonoBehaviour {
     private string _hitStr;
     private float _time;
 
+    private GameObject _enemy;
+    private bool _isTraining;
+
     // Use this for initialization
     void Start () {
 
@@ -31,11 +34,23 @@ public class Status : MonoBehaviour {
             _isEnemy = true;
             _hitNum = 0;
             _time = 3.0f;
-            _hitStr = " H I T";
+            _hitStr = " damage!!";
             _hitObj = GameObject.Find("HitCnt");
             _hitObj.SetActive(false);
         }
-        else { _isEnemy = false; }
+        else
+        {
+            _isEnemy = false;
+
+            if ((_enemy = GameObject.Find("TrainingEnemy")) != null)
+            {
+                _isTraining = true;
+            }
+            else
+            {
+                _isTraining = false;
+            }
+        }
     }
 	
 	// Update is called once per frame
@@ -50,6 +65,16 @@ public class Status : MonoBehaviour {
         if(_HP >= 100)
         {
             _HP = 100;
+        }
+
+        if(_isTraining)
+        {
+            _time -= Time.deltaTime;
+            if (_time <= 0.0f)
+            {
+                _HP = 100;
+                _time = 1.0f;
+            }
         }
 
         if (_hitObj == null) { return; }
@@ -78,15 +103,31 @@ public class Status : MonoBehaviour {
         if (_isEnemy)
         {
             if (!_hitObj.activeSelf) { _hitObj.SetActive(true); }
-            _hitNum++;
+            _hitNum += damage;
             _hitObj.GetComponent<Text>().text = _hitNum.ToString() + _hitStr;
             _time = 1.0f;
 
-            float hp = _HP;
-            hp -= damage;
-            if (hp >= 1)
+            if (_HP >= 1)
             {
-                _HP -= damage;
+                float hp = _HP;
+                hp -= damage;
+                if (hp >= 1)
+                {
+                    _HP -= damage;
+                }
+            }
+        }
+        else if (_isTraining)
+        {
+            _time = 1.0f;
+            if (_HP >= 1)
+            {
+                float hp = _HP;
+                hp -= damage;
+                if (hp >= 1)
+                {
+                    _HP -= damage;
+                }
             }
         }
         else
