@@ -89,15 +89,17 @@ public class NetworkSceneObserver : MonoBehaviour
                     switch (_modeMenu.State)
                     {
                         case 0:
-                            _nowScene = (int)SCENE_STATE.RoomSetting;
-                            ChangeScene("RoomSetting");
-                            _network.ConectNetwork();
+                                _network.ConectNetwork();
+
+                                _nowScene = (int)SCENE_STATE.StageSelectScene;
+                                _stageSelect.Initialize();
+                                ChangeScene("Network" + SCENE_STATE.StageSelectScene.ToString());
                             break;
                         case 1:
-                            _nowScene = (int)SCENE_STATE.RoomJoinScene;
-                            _roomJoin.Initialize();
-                            ChangeScene("RoomCheck");
                             _network.ConectNetwork();
+
+                            _nowScene = (int)SCENE_STATE.CustomizeScene;
+                            ChangeScene("NetworkCustomizeWindow");
                             break;
                         case 2:
                             _nowScene = (int)SCENE_STATE.CustomizeScene;
@@ -112,43 +114,45 @@ public class NetworkSceneObserver : MonoBehaviour
                 GameObject ssp_rs = GameObject.Find("StageSelectParent");
                 if (ssp_rs.GetComponent<ChangeSprite>().ReturnToMenu())
                 {
+
+                    _nowScene = (int)SCENE_STATE.GamePlayScene;
+                    ChangeScene("NetworkPlayScene");
                     _network.CreateRoom();
-
-                    _nowScene = (int)SCENE_STATE.StageSelectScene;
-                    _stageSelect.Initialize();
-                    ChangeScene("Network" + SCENE_STATE.StageSelectScene.ToString());
                 }
+
                 break;
 
-            // -ルームチェックシーンの更新処理
-            case (int)SCENE_STATE.RoomJoinScene:
-                if(!_roomJoin.SceneUpdate())
-                {
-                    switch (_roomJoin.State)
-                    {
-                        case 0:
-                            _nowScene = (int)SCENE_STATE.CustomizeScene;
-                            ChangeScene("NetworkCustomizeWindow");
-                            break;
-                        case 1:
-                            _nowScene = (int)SCENE_STATE.ModeMenuScene;
-                            _modeMenu.Initialize();
-                            ChangeScene(SCENE_STATE.ModeMenuScene.ToString());
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                break;
+            //// -ルームチェックシーンの更新処理
+            //case (int)SCENE_STATE.RoomJoinScene:
+            //    if(!_roomJoin.SceneUpdate())
+            //    {
+            //        switch (_roomJoin.State)
+            //        {
+            //            case 0:
+            //                _nowScene = (int)SCENE_STATE.CustomizeScene;
+            //                ChangeScene("NetworkCustomizeWindow");
+            //                break;
+            //            case 1:
+            //                _nowScene = (int)SCENE_STATE.ModeMenuScene;
+            //                _modeMenu.Initialize();
+            //                ChangeScene(SCENE_STATE.ModeMenuScene.ToString());
+            //                break;
+            //            default:
+            //                break;
+            //        }
+            //    }
+            //    break;
 
             //　カスタマイズシーンの更新処理
             case (int)SCENE_STATE.CustomizeScene:
                 GameObject cusObj = GameObject.Find("BackGround");
 
-                if(cusObj.GetComponent<NetworkEquipment>().GetNextFlag())
+                if(cusObj.GetComponent<Equipment>().GetNextFlag())
                 {
                     _nowScene = (int)SCENE_STATE.GamePlayScene;
                     ChangeScene("NetworkPlayScene");
+                    _network.CreateRoom();
+
                     //_nowScene = (int)SCENE_STATE.GamePlayScene;
                     //ChangeScene("Test");
                 }

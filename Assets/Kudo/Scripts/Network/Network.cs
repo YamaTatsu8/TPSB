@@ -79,12 +79,7 @@ public class Network : Photon.MonoBehaviour {
     public void CreateRoom()
     {
         RoomOptions roomOptions = new RoomOptions();
-        InputField inputName = GameObject.Find("RoomNameInput").GetComponent<InputField>();
-        string text = inputName.text;
-        if (text == "")
-        {
-            text = "Room" + PhotonNetwork.GetRoomList().Length;
-        }
+        string text = "Room" + PhotonNetwork.GetRoomList().Length;
         roomOptions.IsVisible = true;
         roomOptions.IsOpen = true;
         roomOptions.MaxPlayers = 2; // ルームに入れる人数を2人に指定
@@ -115,7 +110,11 @@ public class Network : Photon.MonoBehaviour {
     /// </summary>
     public void PlayerManagerInstantiate()
     {
-        PhotonNetwork.Instantiate("NetworkPlayerManager", Vector3.zero, Quaternion.identity, 0);
+        NetworkPlayerReady playerReady = GameObject.FindObjectOfType<NetworkPlayerReady>();
+        if(playerReady == null)
+        {
+            PhotonNetwork.Instantiate("NetworkPlayerManager", Vector3.zero, Quaternion.identity, 0);
+        }
     }
 
     /// <summary>

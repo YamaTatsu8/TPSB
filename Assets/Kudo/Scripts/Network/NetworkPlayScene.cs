@@ -48,6 +48,17 @@ public class NetworkPlayScene :  Util.SingletonMonoBehaviour<NetworkPlayScene>{
 
     void Update()
     {
+        if(_isCreate)
+        {
+            return;
+        }
+        NetworkPlayerReady manager = GameObject.FindObjectOfType<NetworkPlayerReady>();
+
+        if (manager != null)
+        {
+            GameObject.Destroy(manager);
+        }
+
         int _cnt = 0;
         for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
         {
