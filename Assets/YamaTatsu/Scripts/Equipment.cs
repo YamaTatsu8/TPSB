@@ -190,6 +190,7 @@ public class Equipment : MonoBehaviour {
         YES,
         NO
     }
+    
 
     // Use this for initialization
     void Start ()
@@ -343,7 +344,7 @@ public class Equipment : MonoBehaviour {
            
             if (_mainFlag == false)
             {
-                    _state = ChooseState(_state);
+                _state = ChooseState(_state);
 
                 if (_state < (int)EQUIPMENT_STATE.MODEL)
                 {

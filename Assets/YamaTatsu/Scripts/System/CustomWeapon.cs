@@ -41,10 +41,11 @@ public class CustomWeapon : MonoBehaviour {
     //ポーズのアニメーションに設定
     public void SetPose(string name)
     {
-       
         _animator.SetBool("Pose", true);
         for (int i = 0; i < 4; i++)
         {
+            Debug.Log(_weapon[i]);
+
             if (_weapon[i].name == name)
             {
                 _weapon[i].SetActive(true);

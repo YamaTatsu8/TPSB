@@ -35,6 +35,8 @@ public class ModeMenu : MonoBehaviour {
     [SerializeField]
     private RectTransform _exit;
 
+    private AudioManager _audioManager;
+
     //シーン名前
     private string _sceneName = "";
     
@@ -92,6 +94,10 @@ public class ModeMenu : MonoBehaviour {
         _roomJoin = GameObject.Find("RoomJoin").GetComponent<RectTransform>();
         _trainingRoom = GameObject.Find("TrainingRoom").GetComponent<RectTransform>();
         _exit = GameObject.Find("Exit").GetComponent<RectTransform>();
+
+        _audioManager = AudioManager.Instance;
+
+        _audioManager.PlayBGM("custma");
 
         _nextFlag = false;
 
@@ -184,7 +190,7 @@ public class ModeMenu : MonoBehaviour {
         //決定
         if(_controller.ButtonDown(Button.A))
         {
-            
+            _audioManager.PlaySE("select09");
             switch (_state)
             {
                 case (int)MODE_SELECT.CREATEROOM:
@@ -248,21 +254,26 @@ public class ModeMenu : MonoBehaviour {
     private int ChooseState(int mstate)
     {
         int state = mstate;
+        
 
         if (_controller.CheckDirectionOnce(Direction.Left, StickType.LEFTSTICK))
         {
+            _audioManager.PlaySE("select09");
             state -= 1;
         }
         else if (_controller.CheckDirectionOnce(Direction.Right, StickType.LEFTSTICK))
         {
+            _audioManager.PlaySE("select09");
             state += 1;
         }
         else if (_controller.CheckDirectionOnce(Direction.Front, StickType.LEFTSTICK))
         {
+            _audioManager.PlaySE("select09");
             state -= 1;
         }
         else if (_controller.CheckDirectionOnce(Direction.Back, StickType.LEFTSTICK))
         {
+            _audioManager.PlaySE("select09");
             state += 1;
         }
 

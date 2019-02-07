@@ -249,6 +249,7 @@ public class NetworkEquipment : MonoBehaviour {
         //モデルのリスト
         ModelAdd("ModelList", _modelList);
 
+       
         _playerSystem = GameObject.Find("PlayerSystem");
 
         _playerSystem.GetComponent<PlayerSystem>().setChar("Unity-Chan");
