@@ -49,7 +49,7 @@ public class StageSystem : Util.SingletonMonoBehaviour<StageSystem> {
         //StageSelectManager test = obj.GetComponent<NetworkSceneObserver>().GetStageSelectSceneData();
         string test = _stageName;
 
-        _stage = PhotonNetwork.Instantiate("Prefabs/Stages/" + test, Vector3.zero, Quaternion.identity, 0);
+        _stage = PhotonNetwork.Instantiate("Prefabs/Stages/Network" + test, Vector3.zero, Quaternion.identity, 0);
 
         _skybox = (Material)Resources.Load("Material/" + test + "BackGround");
 
