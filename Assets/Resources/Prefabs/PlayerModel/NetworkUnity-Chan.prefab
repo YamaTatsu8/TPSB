@@ -634,7 +634,6 @@ GameObject:
   - component: {fileID: 136546160041616584}
   - component: {fileID: 114752841955521862}
   - component: {fileID: 114923234100396102}
-  - component: {fileID: 114749083037341158}
   - component: {fileID: 114979296567139680}
   - component: {fileID: 82924269440841092}
   - component: {fileID: 114637422679824298}
@@ -10492,8 +10491,7 @@ MonoBehaviour:
   _reloadTime: 2
   _mode: 1
   _type: 1
-  _bulletPrefab: {fileID: 1512723301003088, guid: 75486be8ed5482a4f9e8984beeecadbc,
-    type: 2}
+  _bulletPrefab: {fileID: 0}
   _seName: 
   _weaponUI: {fileID: 1998737920759534}
 --- !u!114 &114391922516703554
@@ -11768,25 +11766,9 @@ MonoBehaviour:
   _reloadTime: 2
   _mode: 1
   _type: 0
-  _bulletPrefab: {fileID: 1243580894668578, guid: 8e6f70bc3d53d4440974079dd2b144fa,
-    type: 2}
+  _bulletPrefab: {fileID: 0}
   _seName: 
   _weaponUI: {fileID: 1865106032174496}
---- !u!114 &114749083037341158
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1109283745987630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eee10efb5e982284a8b19cb934e1e573, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _limitTime: 2
-  _HP: 10
-  _obj: {fileID: 1109283745987630}
-  _guard: {fileID: 1914673236664184}
 --- !u!114 &114752841955521862
 MonoBehaviour:
   m_ObjectHideFlags: 1

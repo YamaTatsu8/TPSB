@@ -19,9 +19,14 @@ public class ChangeSprite : MonoBehaviour
     [SerializeField]
     private Sprite _select;
     [SerializeField]
-    private int _returnNum = 3;
+    private int _returnNum = 2;
+    [SerializeField]
+    private bool _isRoomSetting = true;
 
     private bool _isReturn = false;
+    private bool _isSearchRoom = false;
+    private bool _isCreateRoom = false;
+    private bool _isFinished = false;
     private bool _isStartFade;              //　フェードが開始されているかチェックするフラグ
 
     // Use this for initialization
@@ -47,6 +52,8 @@ public class ChangeSprite : MonoBehaviour
 
         MAX_BAR = this.gameObject.transform.childCount;
         _isReturn = false;
+        _isSearchRoom = false;
+        _isCreateRoom = false;
         _isStartFade = false;
     }
 
@@ -63,8 +70,17 @@ public class ChangeSprite : MonoBehaviour
         //　フェードが終了していたらシーンを変更する
         if (_fadeObj.GetComponentInChildren<Fade>().isCheckedFadeOut() && _isStartFade)
         {
+            if (_isRoomSetting)
+            {
+                if (_cursorNum == 2){ _isCreateRoom = true; }
+                else{ _isReturn = true; }
+            }
+            else
+            {
+                if(_cursorNum == 1) { _isSearchRoom = true; }
+                else { _isReturn = true; }
+            }
             _isStartFade = false;
-            _isReturn = true;
         }
         //　コントローラー更新
         _controller.ControllerUpdate();
@@ -113,19 +129,18 @@ public class ChangeSprite : MonoBehaviour
             obj.GetComponent<Image>().sprite = _select;
             obj.gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
         }
-        if (_cursorNum == _returnNum)
+
+
+        if (_controller.ButtonDown(Button.A))
         {
-            if (_controller.ButtonDown(Button.A)) 
+            //　フェードアウトを開始する
+            if (_fadeObj == null)
             {
-                //　フェードアウトを開始する
-                if (_fadeObj == null)
-                {
-                    Fade fade = new Fade();
-                    _fadeObj = fade.CreateFade();
-                }
-                _fadeObj.GetComponentInChildren<Fade>().FadeOut();
-                _isStartFade = true;
+                Fade fade = new Fade();
+                _fadeObj = fade.CreateFade();
             }
+            _fadeObj.GetComponentInChildren<Fade>().FadeOut();
+            _isStartFade = true;
         }
     }
 
@@ -142,5 +157,13 @@ public class ChangeSprite : MonoBehaviour
     public bool ReturnToMenu()
     {
         return _isReturn;
+    }
+    public bool CreateRoom()
+    {
+        return _isCreateRoom;
+    }
+    public bool SearchRoom()
+    {
+        return _isSearchRoom;
     }
 }
