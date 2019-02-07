@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NetworkHP : MonoBehaviour {
+public class HP : MonoBehaviour {
 
     private Image gage;
 
@@ -31,7 +31,7 @@ public class NetworkHP : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        _HP = _obj.GetComponent<NetworkStatus>().getHP();
+        _HP = _obj.GetComponent<Status>().getHP();
         //gageの描画の変更
         gage.fillAmount = (_HP / _MAX_HP) * _fillProp;
     }

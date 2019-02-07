@@ -2566,7 +2566,7 @@ GameObject:
   - component: {fileID: 114139801718975998}
   - component: {fileID: 114612262047537058}
   - component: {fileID: 114855714666951094}
-  - component: {fileID: 114354563190845726}
+  - component: {fileID: 114560566582434228}
   m_Layer: 9
   m_Name: Canvas
   m_TagString: Untagged
@@ -3161,7 +3161,7 @@ GameObject:
   - component: {fileID: 82441829025534754}
   - component: {fileID: 114846334136279238}
   m_Layer: 0
-  m_Name: NetworkRifle (1)
+  m_Name: NetworkRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10443,19 +10443,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114354563190845726
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1477230335793648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b652bddd323e38b4898554b0113b227c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _MAX_HP: 100
-  _obj: {fileID: 1109283745987630}
 --- !u!114 &114357078749897012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11082,6 +11069,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114560566582434228
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1477230335793648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d5b9852dfe7bb4b9480a87129ef181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MAX_HP: 100
+  _obj: {fileID: 1109283745987630}
 --- !u!114 &114562429893426482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11438,8 +11438,8 @@ MonoBehaviour:
   _weapon:
   - {fileID: 1302172943431572}
   - {fileID: 1777468789172228}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1606825673296654, guid: f179a2877ed8b654e824eb5e6cc3daa4, type: 2}
+  - {fileID: 1552043485942082, guid: d1e47bd6506cef548a99b31e99637771, type: 2}
   _obj: {fileID: 1109283745987630}
 --- !u!114 &114653240328827872
 MonoBehaviour:
