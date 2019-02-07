@@ -94,7 +94,7 @@ public class PlayerSystem : MonoBehaviour {
         }
         else if (_char == "Noah")
         {
-            _subWeapon = "Gatling";
+            _subWeapon = "Gatling1";
         }
         else if (_char == "Anathema")
         {

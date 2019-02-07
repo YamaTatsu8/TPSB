@@ -67,8 +67,6 @@ public class LookCamera : MonoBehaviour {
 
             target = serchTag(gameObject, "Enemy",_player);
 
-            Debug.Log(_target);
-
             _cameraObj = GameObject.Find("CameraObj");
 
             _right = GameObject.Find("CameraRight");

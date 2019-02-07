@@ -6807,7 +6807,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1119696926904552}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -7982,6 +7982,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1690340862790088, guid: 64c8824fd18996449b01cb1bd2c5abf9,
     type: 2}
   _seName: Rifle
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!114 &114236225062169348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8294,6 +8296,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1769052643642674, guid: 0d8c7527940629f428e521fcb8ec795e,
     type: 2}
   _seName: Rifle2
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!114 &114332342013347230
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8765,6 +8769,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1728188175131922, guid: b6ab4fe588332264f8e4931c24163b8d,
     type: 2}
   _seName: SMG
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!114 &114470756699741418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8932,6 +8938,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1047765635152560, guid: 11d8a17bf5cbb504badc2aeb917fabd9,
     type: 2}
   _seName: Laser
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!114 &114568619243186228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8948,10 +8956,12 @@ MonoBehaviour:
   _bulletSpeed: 1
   _reloadTime: 30
   _mode: 0
-  _type: 3
+  _type: 4
   _bulletPrefab: {fileID: 1169101671998024, guid: d28b4386871604a438ddf78440a6d10a,
     type: 2}
   _seName: 
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!114 &114573087530156092
 MonoBehaviour:
   m_ObjectHideFlags: 1

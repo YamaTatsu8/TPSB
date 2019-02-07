@@ -174,6 +174,7 @@ public class Attack : MonoBehaviour {
         if (controller.TriggerDown(Trigger.RIGHT))
         {
             _subWeapon.GetComponent<WeaponManager>().Attack();
+            _model.transform.LookAt(_target.transform);
         }
 
         Player_pos = transform.position;

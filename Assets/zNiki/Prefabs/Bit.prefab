@@ -148,6 +148,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1193201116522380, guid: 89f838bbd69eb1d49b59c13b30f1465d,
     type: 2}
   _seName: 
+  _gatling: {fileID: 0}
   _bits: []
 --- !u!114 &114895289881465434
 MonoBehaviour:
@@ -160,7 +161,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240faba787efbf14c950e56f0125df41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetPos: {x: 0, y: 0, z: 0}
 --- !u!135 &135759405368361920
 SphereCollider:
   m_ObjectHideFlags: 1

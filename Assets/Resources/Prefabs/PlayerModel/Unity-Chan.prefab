@@ -1471,7 +1471,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1301893993563502
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
@@ -5385,7 +5385,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4829438839366764}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4402085056214264
 Transform:
@@ -5557,14 +5557,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1301893993563502}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.343, y: 1.105, z: -0.237}
+  m_LocalPosition: {x: -0.343, y: 1.431, z: -0.333}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4818141085553516}
   - {fileID: 224079679860418298}
   - {fileID: 224805684132067452}
-  m_Father: {fileID: 4829438839366764}
-  m_RootOrder: 3
+  m_Father: {fileID: 4811648116401810}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4478825858927028
 Transform:
@@ -5806,7 +5806,7 @@ Transform:
   m_Children:
   - {fileID: 4519721563865096}
   m_Father: {fileID: 4829438839366764}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4537264134231374
 Transform:
@@ -6337,7 +6337,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4829438839366764}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4725854169178640
 Transform:
@@ -6579,8 +6579,9 @@ Transform:
   m_Children:
   - {fileID: 4423292314151928}
   - {fileID: 4019804404129988}
+  - {fileID: 4476359244775522}
   m_Father: {fileID: 4829438839366764}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4814550783052620
 Transform:
@@ -6704,7 +6705,6 @@ Transform:
   - {fileID: 224679991256746822}
   - {fileID: 4912654669836060}
   - {fileID: 4157415271406566}
-  - {fileID: 4476359244775522}
   - {fileID: 4811648116401810}
   - {fileID: 4724083620099646}
   - {fileID: 4392924990919244}
@@ -7711,7 +7711,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c19d0da81dfcaea49a7206b456adad39, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8736,6 +8736,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1690340862790088, guid: 64c8824fd18996449b01cb1bd2c5abf9,
     type: 2}
   _seName: Rifle
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!114 &114083384069367034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9347,6 +9349,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1687201839998744, guid: ce28f8ff2e65ef1409403c698f1eb2d1,
     type: 2}
   _seName: Missile
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!114 &114308864993535618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9367,6 +9371,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1047765635152560, guid: 11d8a17bf5cbb504badc2aeb917fabd9,
     type: 2}
   _seName: Laser
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!114 &114313642499854258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -9940,6 +9946,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1728188175131922, guid: b6ab4fe588332264f8e4931c24163b8d,
     type: 2}
   _seName: SMG
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!114 &114535212063393026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10204,6 +10212,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1769052643642674, guid: 0d8c7527940629f428e521fcb8ec795e,
     type: 2}
   _seName: Rifle2
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!114 &114649561326426544
 MonoBehaviour:
   m_ObjectHideFlags: 1

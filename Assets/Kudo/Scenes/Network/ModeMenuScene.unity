@@ -4605,7 +4605,7 @@ MonoBehaviour:
   delay: 0
   style: 1
   playOnAwake: 1
-  m_progress: 0.989067
+  m_progress: 0.15813614
   usePosition: 0
   useRotation: 0
   useScale: 1
@@ -9902,7 +9902,7 @@ MonoBehaviour:
   delay: 0
   style: 1
   playOnAwake: 1
-  m_progress: 0.989067
+  m_progress: 0.15813614
   usePosition: 0
   useRotation: 0
   useScale: 1
@@ -10270,7 +10270,7 @@ MonoBehaviour:
   delay: 0
   style: 1
   playOnAwake: 1
-  m_progress: 0.989067
+  m_progress: 0.15813614
   usePosition: 0
   useRotation: 0
   useScale: 1
@@ -11284,7 +11284,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1666749047}
   - component: {fileID: 1666749046}
-  - component: {fileID: 1666749045}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -11292,13 +11291,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1666749045
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1666749044}
-  m_Enabled: 1
 --- !u!20 &1666749046
 Camera:
   m_ObjectHideFlags: 0
@@ -13705,7 +13697,7 @@ MonoBehaviour:
   delay: 0
   style: 1
   playOnAwake: 1
-  m_progress: 0.989067
+  m_progress: 0.15813614
   usePosition: 0
   useRotation: 0
   useScale: 1

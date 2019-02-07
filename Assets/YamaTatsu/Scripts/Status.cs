@@ -90,6 +90,7 @@ public class Status : MonoBehaviour {
 
     public void RecoveryHP(int heal)
     {
+        Debug.Log("回復");
         _HP += heal;
     }
 

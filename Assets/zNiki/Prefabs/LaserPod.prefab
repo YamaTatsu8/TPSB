@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 114950247475128936}
   - component: {fileID: 114058159204738640}
   m_Layer: 11
-  m_Name: BeamPod
+  m_Name: LaserPod
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -544,6 +544,7 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1927141940541670, guid: cb2de32c857a5c748a458065e8fc9dcf,
     type: 2}
   _seName: 
+  _gatling: {fileID: 0}
   _bits: []
 --- !u!114 &114060676107194528
 MonoBehaviour:
