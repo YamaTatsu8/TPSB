@@ -26,6 +26,8 @@ public class NetworkPlayScene :  Util.SingletonMonoBehaviour<NetworkPlayScene>{
     [SerializeField]
     private Network _network;
 
+    private bool _isCreate = false;
+
     // Use this for initialization
     void Start()
     {
@@ -44,13 +46,23 @@ public class NetworkPlayScene :  Util.SingletonMonoBehaviour<NetworkPlayScene>{
 
     }
 
-    // Update is called once per frame
     void Update()
     {
+        int _cnt = 0;
+        for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
+        {
+            _cnt++;
+            if (_cnt == 2)
+            {
+                _network.PlayerInstantiate();
+                _isCreate = true;
+            }
 
+
+        }
     }
 
-    public void Search(bool falg)
+        public void Search(bool falg)
     {
         if(!falg)
         {
