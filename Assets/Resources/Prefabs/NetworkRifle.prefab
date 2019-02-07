@@ -258,7 +258,6 @@ GameObject:
   - component: {fileID: 114017073859405916}
   - component: {fileID: 114271468152327170}
   - component: {fileID: 114707115020509544}
-  - component: {fileID: 114511704819883224}
   m_Layer: 5
   m_Name: WeaponUI
   m_TagString: Untagged
@@ -1136,20 +1135,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 9999
---- !u!114 &114511704819883224
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1625668477869348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a6c8e4e091333e4e8ab7935bcf282e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _capacityText: {fileID: 114368358995389818}
-  _remainingBulletsText: {fileID: 114493391156848380}
-  _reloadTimeSlider: {fileID: 114857672802773056}
 --- !u!114 &114677073334325452
 MonoBehaviour:
   m_ObjectHideFlags: 1
