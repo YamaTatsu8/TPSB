@@ -33,8 +33,6 @@ public class CustomWeapon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-
        
 	}
 
@@ -44,8 +42,6 @@ public class CustomWeapon : MonoBehaviour {
         _animator.SetBool("Pose", true);
         for (int i = 0; i < 4; i++)
         {
-            Debug.Log(_weapon[i]);
-
             if (_weapon[i].name == name)
             {
                 _weapon[i].SetActive(true);
