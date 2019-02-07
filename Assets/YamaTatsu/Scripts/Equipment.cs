@@ -356,8 +356,6 @@ public class Equipment : MonoBehaviour {
                 //Bボタンが押されたらタイトルシーンに戻る
                 if (_controller.ButtonDown(Button.B))
                 {
-                    //タイトルシーンに遷移
-                    _playerSystem.GetComponent<PlayerSystem>().Init();
                     _popFlag = true;
                     _selectFlag = true;
                 }
@@ -632,8 +630,10 @@ public class Equipment : MonoBehaviour {
                     switch (_nextState)
                     {
                         case (int)NEXT_STATE.YES:
-                            //次のシーンに移動    
-                            Fade fade = new Fade();
+                        //次のシーンに移動    
+                        //タイトルシーンに遷移
+                        _playerSystem.GetComponent<PlayerSystem>().Init();
+                        Fade fade = new Fade();
 
                             _fadeOut = fade.CreateFade();
 

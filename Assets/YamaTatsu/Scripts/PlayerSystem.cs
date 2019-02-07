@@ -115,13 +115,13 @@ public class PlayerSystem : MonoBehaviour {
     public void setMain1(string weapon)
     {
         _mainWeapon1 = weapon;
-        //_model.GetComponent<CustomWeapon>().SetPose(weapon);
+        _model.GetComponent<CustomWeapon>().SetPose(weapon);
     }
 
     public void setMain2(string weapon)
     {
         _mainWeapon2 = weapon;
-        //_model.GetComponent<CustomWeapon>().SetPose(weapon);
+        _model.GetComponent<CustomWeapon>().SetPose(weapon);
     }
 
     public void setSub(string weapon)
