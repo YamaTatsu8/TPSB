@@ -180,8 +180,6 @@ public class RoomSettingManager : MonoBehaviour {
                 break;
         }
 
-        _cursor.transform.position = obj.transform.position;
-
     }
 
 }
