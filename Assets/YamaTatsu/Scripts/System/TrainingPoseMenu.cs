@@ -141,14 +141,12 @@ public class TrainingPoseMenu : MonoBehaviour {
                 _popFlag = true;
                 _menuFlag = true;
                 _startFlag = true;
-                Debug.Log("通った");
             }
             else
             {
                 _popFlag = false;
                 _menuFlag = false;
                 _startFlag = false;
-                Debug.Log("通る");
             }
         }
     
@@ -240,7 +238,7 @@ public class TrainingPoseMenu : MonoBehaviour {
                 }
                 else if (_npcState < 0)
                 {
-                    _menuState = 1;
+                    _npcState = 1;
                 }
 
                 switch (_npcState)

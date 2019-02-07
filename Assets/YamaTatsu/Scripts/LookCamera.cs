@@ -84,7 +84,7 @@ public class LookCamera : MonoBehaviour {
         //}
 
         //falseの場合、敵をロックする
-        if (_targetFlag == false)
+        //if (_targetFlag == false)
         {
             Vector3 pos;
 
@@ -105,26 +105,26 @@ public class LookCamera : MonoBehaviour {
                 transform.eulerAngles.y,
                 transform.eulerAngles.z);
         }
-        else if(_targetFlag == true)
-        {
-            //trueの場合、フリールックカメラに切り替える
-            Vector3 pos;
+        //else if(_targetFlag == true)
+        //{
+        //    //trueの場合、フリールックカメラに切り替える
+        //    Vector3 pos;
 
-            pos = (_tps.transform.position - _cameraObj.transform.position);
+        //    pos = (_tps.transform.position - _cameraObj.transform.position);
 
-            //playerのポジションに入れる
-            transform.position = _tps.transform.position + pos.normalized * 3 + _offset;
+        //    //playerのポジションに入れる
+        //    transform.position = _tps.transform.position + pos.normalized * 3 + _offset;
 
-            if (_cameraObj)
-            {
-                LockOnTargetObjcet(_cameraObj);
-            }
-            float angle_x = 180f <= transform.eulerAngles.x ? transform.eulerAngles.x - 360 : transform.eulerAngles.x;
-            transform.eulerAngles = new Vector3(
-                Mathf.Clamp(angle_x, ANGLE_LIMIT_DOWN, ANGLE_LIMIT_UP),
-                transform.eulerAngles.y,
-                transform.eulerAngles.z);
-        }
+        //    if (_cameraObj)
+        //    {
+        //        LockOnTargetObjcet(_cameraObj);
+        //    }
+        //    float angle_x = 180f <= transform.eulerAngles.x ? transform.eulerAngles.x - 360 : transform.eulerAngles.x;
+        //    transform.eulerAngles = new Vector3(
+        //        Mathf.Clamp(angle_x, ANGLE_LIMIT_DOWN, ANGLE_LIMIT_UP),
+        //        transform.eulerAngles.y,
+        //        transform.eulerAngles.z);
+        //}
 
         //if (controller.ButtonDown(Button.R3))
         //{

@@ -84,7 +84,7 @@ public class Status : MonoBehaviour {
         else
         {
             _HP -= damage;
-            _animator.SetTrigger("Damage");
+            //_animator.SetTrigger("Damage");
         }
     }
 

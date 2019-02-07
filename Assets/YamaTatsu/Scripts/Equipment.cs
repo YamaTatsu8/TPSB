@@ -317,6 +317,24 @@ public class Equipment : MonoBehaviour {
 
         _controller.ControllerUpdate();
 
+        if (_fadeOut.GetComponentInChildren<Fade>().isCheckedFadeOut() && _fadeFlag == true)
+        {
+            if (_selectFlag == false)
+            {
+                _sceneNextFlag = true;
+            }
+            else if (_selectFlag == true)
+            {
+                _backFlag = true;
+            }
+        }
+
+        //fadeフラグがtrueになったら以下の処理をしない
+        if (_fadeFlag)
+        {
+            return;
+        }
+
         //どこを選択しているかのState
         if (_nextFlag == false)
         {
@@ -696,17 +714,7 @@ public class Equipment : MonoBehaviour {
             }
         }
 
-        if (_fadeOut.GetComponentInChildren<Fade>().isCheckedFadeOut() && _fadeFlag == true)
-        {
-            if (_selectFlag == false)
-            {
-                _sceneNextFlag = true;
-            }
-            else if(_selectFlag == true)
-            {
-                _backFlag = true;
-            }
-        }
+        
 
 
 
