@@ -81,8 +81,15 @@ public class Status : MonoBehaviour {
             _hitNum++;
             _hitObj.GetComponent<Text>().text = _hitNum.ToString() + _hitStr;
             _time = 1.0f;
+
+            float hp = _HP;
+            hp -= damage;
+            if (hp >= 1)
+            {
+                _HP -= damage;
+            }
         }
-        if (_HP >= 1)
+        else
         {
             _HP -= damage;
         }
