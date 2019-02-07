@@ -288,9 +288,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114311477722118652, guid: 5aa61930680be094c99d56b68a80791a, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 5aa61930680be094c99d56b68a80791a, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1583130438 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1955880255721714, guid: 5aa61930680be094c99d56b68a80791a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1264695269}
+--- !u!114 &1583130439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1583130438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2604c57de906a41bd29ba03f71aeb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1650949264
 Prefab:
   m_ObjectHideFlags: 0
@@ -298,16 +315,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 224894278594293102, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224576869597649694, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4721518828701420, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90, type: 2}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -340,75 +347,85 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114945442605296200, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
+    - target: {fileID: 114882811222861506, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
         type: 2}
       propertyPath: viewIdField
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114945442605296200, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
+    - target: {fileID: 114882811222861506, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
         type: 2}
       propertyPath: instantiationId
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114849978976373186, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
+    - target: {fileID: 114945442605296200, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
         type: 2}
       propertyPath: viewIdField
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114849978976373186, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
+    - target: {fileID: 114945442605296200, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
         type: 2}
       propertyPath: instantiationId
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114679184944517826, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
+    - target: {fileID: 114849978976373186, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
         type: 2}
       propertyPath: viewIdField
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114679184944517826, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
+    - target: {fileID: 114849978976373186, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
         type: 2}
       propertyPath: instantiationId
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114486006174937226, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
+    - target: {fileID: 114679184944517826, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
         type: 2}
       propertyPath: viewIdField
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114486006174937226, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
+    - target: {fileID: 114679184944517826, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
         type: 2}
       propertyPath: instantiationId
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114290182723029578, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
+    - target: {fileID: 114486006174937226, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
         type: 2}
       propertyPath: viewIdField
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114290182723029578, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
+    - target: {fileID: 114486006174937226, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
         type: 2}
       propertyPath: instantiationId
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114240761013126362, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
+    - target: {fileID: 114290182723029578, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
         type: 2}
       propertyPath: viewIdField
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114240761013126362, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
+    - target: {fileID: 114290182723029578, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
         type: 2}
       propertyPath: instantiationId
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114126587247699278, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
+    - target: {fileID: 114240761013126362, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
         type: 2}
       propertyPath: viewIdField
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 114126587247699278, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
+    - target: {fileID: 114240761013126362, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
         type: 2}
       propertyPath: instantiationId
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114126587247699278, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
+        type: 2}
+      propertyPath: viewIdField
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114126587247699278, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90,
+        type: 2}
+      propertyPath: instantiationId
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1798060005409788, guid: 4cc45f6d6bb14c54f94a41b2bc6f9e90, type: 2}
       propertyPath: m_IsActive
@@ -582,7 +599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2093376897
 Transform:
   m_ObjectHideFlags: 0

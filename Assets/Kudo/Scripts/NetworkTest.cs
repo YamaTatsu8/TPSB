@@ -6,19 +6,6 @@ using UnityEngine.UI;
 public class NetworkTest: Photon.MonoBehaviour {
 
     private const string ROOM_NAME = "RoomA";
-    GameObject go;
-
-    public int ID
-    {
-        get
-        {
-            if(go != null)
-            {
-                return go.GetComponent<PhotonView>().ownerId;
-            }
-            return 0;
-        }
-    }
 
     void Start () {
         // PhotonServerへの接続
@@ -89,11 +76,11 @@ public class NetworkTest: Photon.MonoBehaviour {
     {
         Vector3 pos = new Vector3(2, 21, -15);
         PlayerSystem playerSystem = GameObject.FindObjectOfType<PlayerSystem>();
-        go = PhotonNetwork.Instantiate("Prefabs/PlayerModel/" + playerSystem.getChar(), Vector3.zero, Quaternion.identity, 0);
-        go.name = "Player" + go.GetComponent<PhotonView>().ownerId.ToString();
+        GameObject go = PhotonNetwork.Instantiate("Prefabs/PlayerModel/" + playerSystem.getChar(), Vector3.zero, Quaternion.identity, 0);
         if (go.GetComponent<PhotonView>().ownerId != 1)
         {
-            pos *= -1;
+            //pos.x *= -1;
+            pos.z *= -1;
         }
 
         go.transform.position = pos;

@@ -31,9 +31,8 @@ public class NetworkJump : MonoBehaviour
     //アニメーター
     private Animator _animator;
 
-    // -ネットワーク
+    // -PhotonView
     private PhotonView _photonView;
-
 
     // Use this for initialization
     void Start()
@@ -46,9 +45,6 @@ public class NetworkJump : MonoBehaviour
 
         gage = canvas;
 
-        //_gage = gage.GetComponent<EP>();
-
-        //アニメーターのコンポーネント
         _animator = GetComponent<Animator>();
 
         // -PhotonViewのコンポーネント
@@ -58,8 +54,8 @@ public class NetworkJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // -Photon上で自身ではなかったらreturn
-        if (!_photonView.isMine)
+        // -自身でなかったらreturn
+        if(!_photonView.isMine)
         {
             return;
         }
@@ -67,8 +63,6 @@ public class NetworkJump : MonoBehaviour
         controller.ControllerUpdate();
 
         Fly();
-
-        //Boost();
 
     }
 
@@ -93,25 +87,24 @@ public class NetworkJump : MonoBehaviour
             gage.GetComponent<EP>().UseEp(5);
             //gage.GetComponent<EP>().get();
 
-
-
         }
-        else if(Input.GetButton("A"))
+        else if(Input.GetButton("A") && gage.GetComponent<EP>().getBoostFlag() == true)
         {
             rb.velocity = new Vector3(rb.velocity.x, 10, rb.velocity.z);
             _groundFlag = false;
 
             //飛ぶモーションに変更
-            _animator.SetBool("Jump", true);
+            //_animator.SetBool("Jump", true);
 
             gage.GetComponent<EP>().UseEp(50);
         }
         else
         {
-            _animator.SetBool("Jump", false);
+            //_animator.SetBool("Jump", false);
             gage.GetComponent<EP>().RecoveryEP(3);
         }
-        
+
+ 
     }
 
     //ブーストする関数
@@ -127,11 +120,6 @@ public class NetworkJump : MonoBehaviour
             rb.velocity += (Vector3.forward * 0.1f) / rb.mass;
 
         }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-       
     }
 
 }

@@ -110,6 +110,13 @@ public class NetworkEquipment : MonoBehaviour {
     //シーン移動のフラグ
     private bool _sceneNextFlag = false;
 
+    // -ReadyFlagを管理するPlayerManager
+    private NetworkPlayerReady _readyFlag;
+
+    // -PhotonでPlayerManagerを生成する
+    private Network _network;
+
+
     //どこを選んでいるかのState
     private enum EQUIPMENT_STATE
     {
@@ -204,7 +211,7 @@ public class NetworkEquipment : MonoBehaviour {
         _cursor.position = _modelImage.position;
 
         //メイン武器のリスト作成
-        WeaponAdd("NetworkWeaponList", _weaponList);
+        WeaponAdd("WeaponList", _weaponList);
 
         //モデルのリスト
         //WeaponAdd("ModelList", _modelList);
@@ -242,137 +249,205 @@ public class NetworkEquipment : MonoBehaviour {
 
         _model = GameObject.Find("PlayerModel");
 
+        _network = GameObject.Find("NetworkManager").GetComponent<Network>();
+        _network.PlayerManagerInstantiate();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 
         _controller.ControllerUpdate();
 
-        //どこを選択しているかのState
-        if (_nextFlag == false)
+        if(_readyFlag == null)
         {
-            if (_mainFlag == false)
+            _readyFlag = GameObject.FindObjectOfType<NetworkPlayerReady>();
+        }
+
+        if(_readyFlag == null)
+        {
+            return;
+        }
+
+        if(!_readyFlag.ReadyFlag)
+        {
+            //どこを選択しているかのState
+            if (_nextFlag == false)
             {
-                _state = ChooseState(_state);
-
-                if (_state < (int)EQUIPMENT_STATE.MODEL)
+                if (_mainFlag == false)
                 {
-                    _state = (int)EQUIPMENT_STATE.MAIN_WEAPON2;
+                    _state = ChooseState(_state);
+
+                    if (_state < (int)EQUIPMENT_STATE.MODEL)
+                    {
+                        _state = (int)EQUIPMENT_STATE.MAIN_WEAPON2;
+                    }
+
+                    if (_state > (int)EQUIPMENT_STATE.MAIN_WEAPON2)
+                    {
+                        _state = (int)EQUIPMENT_STATE.MODEL;
+                    }
+
+                    //メインからNextまでの選択
+                    switch (_state)
+                    {
+                        case (int)EQUIPMENT_STATE.MODEL:
+                            _cursor.position = _modelImage.position;
+                            break;
+                        case (int)EQUIPMENT_STATE.MAIN_WEAPON1:
+                            _cursor.position = _mainWeapon1.position;
+                            break;
+                        case (int)EQUIPMENT_STATE.MAIN_WEAPON2:
+                            _cursor.position = _mainWeapon2.position;
+                            break;
+                    }
+
+                    if (_controller.ButtonDown(Button.A) && _barFlag == false)
+                    {
+                        ChooseMenu((EQUIPMENT_STATE)_state);
+                        _audioSource.PlayOneShot(_decision);
+                    }
+
                 }
-
-                if (_state > (int)EQUIPMENT_STATE.MAIN_WEAPON2)
+                else
                 {
-                    _state = (int)EQUIPMENT_STATE.MODEL;
-                }                
+                    //コントローラ操作
+                    _mainState = ChooseState(_mainState);
 
-                //メインからNextまでの選択
-                switch (_state)
-                {
-                    case (int)EQUIPMENT_STATE.MODEL:
-                        _cursor.position = _modelImage.position;
-                        break;
-                    case (int)EQUIPMENT_STATE.MAIN_WEAPON1:
-                        _cursor.position = _mainWeapon1.position;
-                        break;
-                    case (int)EQUIPMENT_STATE.MAIN_WEAPON2:
-                        _cursor.position = _mainWeapon2.position;
-                        break;
+                    if (_mainState < (int)WEAPON_STATE.WEAPON1)
+                    {
+                        _mainState = (int)WEAPON_STATE.WEAPON4;
+                    }
+
+                    if (_mainState > (int)WEAPON_STATE.WEAPON4)
+                    {
+                        _mainState = (int)WEAPON_STATE.WEAPON1;
+                    }
+
+                    if (_weaponState == 0)
+                    {
+                        switch (_mainState)
+                        {
+                            case (int)WEAPON_STATE.WEAPON1:
+                                _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                                break;
+                            case (int)WEAPON_STATE.WEAPON2:
+                                _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                                break;
+                            case (int)WEAPON_STATE.WEAPON3:
+                                _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                                break;
+                            case (int)WEAPON_STATE.WEAPON4:
+                                _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                                break;
+                        }
+                    }
+                    else if (_weaponState == 1)
+                    {
+                        switch (_mainState)
+                        {
+                            case (int)WEAPON_STATE.WEAPON1:
+                                _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                                break;
+                            case (int)WEAPON_STATE.WEAPON2:
+                                _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                                break;
+                            case (int)WEAPON_STATE.WEAPON3:
+                                _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                                break;
+                            case (int)WEAPON_STATE.WEAPON4:
+                                _cusor2.localPosition = _weaponImage[_mainState].localPosition;
+                                break;
+                        }
+                    }
+
+                    if (_controller.ButtonDown(Button.A))
+                    {
+                        _barFlag = false;
+                        switch (_weaponState)
+                        {
+                            case (int)WEAPON_MAIN.MAIN1:
+                                //選んだ武器を装備
+                                if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != _playerSystem.GetComponent<PlayerSystem>().getMain2() && _playerSystem.GetComponent<PlayerSystem>().getMain2() != _weaponList[_mainState][0].ToString())
+                                {
+                                    _audioSource.PlayOneShot(_decision);
+                                    _playerSystem.GetComponent<PlayerSystem>().setMain1(_weaponList[_mainState][0].ToString());
+                                    _mainWeapon1.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
+                                    _model.GetComponent<WeaponEquipment>().setWeapon1(_weaponList[_mainState][0].ToString());
+                                }
+                                else
+                                {
+                                    //キャンセル音
+                                    _audioSource.PlayOneShot(_bub);
+                                }
+                                break;
+                            case (int)WEAPON_MAIN.MAIN2:
+                                //選んだ武器を装備
+                                if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != _playerSystem.GetComponent<PlayerSystem>().getMain2() && _playerSystem.GetComponent<PlayerSystem>().getMain1() != _weaponList[_mainState][0].ToString())
+                                {
+                                    _audioSource.PlayOneShot(_decision);
+                                    _playerSystem.GetComponent<PlayerSystem>().setMain2(_weaponList[_mainState][0].ToString());
+                                    _mainWeapon2.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
+                                    _model.GetComponent<WeaponEquipment>().setWeapon2(_weaponList[_mainState][0].ToString());
+                                }
+                                else
+                                {
+                                    //キャンセル音
+                                    _audioSource.PlayOneShot(_bub);
+                                }
+                                break;
+                        }
+
+                    }
+
+                    if (_controller.ButtonDown(Button.B))
+                    {
+                        _audioSource.PlayOneShot(_cansel);
+                        _barFlag = false;
+                    }
+
                 }
-
-                if (_controller.ButtonDown(Button.A) && _barFlag == false)
-                {
-                    ChooseMenu((EQUIPMENT_STATE)_state);
-                    _audioSource.PlayOneShot(_decision);
-                }
-
             }
             else
-            { 
+            {
                 //コントローラ操作
-                _mainState = ChooseState(_mainState);
-               
-                if (_mainState < (int)WEAPON_STATE.WEAPON1)
+                _nextState = ChooseState(_nextState);
+
+                if (_nextState < (int)NEXT_STATE.YES)
                 {
-                    _mainState = (int)WEAPON_STATE.WEAPON4;
+                    _nextState = (int)NEXT_STATE.NO;
                 }
 
-                if (_mainState > (int)WEAPON_STATE.WEAPON4)
+                if (_nextState > (int)NEXT_STATE.NO)
                 {
-                    _mainState = (int)WEAPON_STATE.WEAPON1;
+                    _nextState = (int)NEXT_STATE.YES;
                 }
-                
-                if (_weaponState == 0)
+
+                switch (_nextState)
                 {
-                    switch (_mainState)
-                    {
-                        case (int)WEAPON_STATE.WEAPON1:
-                            _cusor2.localPosition = _weaponImage[_mainState].localPosition;
-                            break;
-                        case (int)WEAPON_STATE.WEAPON2:
-                            _cusor2.localPosition = _weaponImage[_mainState].localPosition;
-                            break;
-                        case (int)WEAPON_STATE.WEAPON3:
-                            _cusor2.localPosition = _weaponImage[_mainState].localPosition;
-                            break;
-                        case (int)WEAPON_STATE.WEAPON4:
-                            _cusor2.localPosition = _weaponImage[_mainState].localPosition;
-                            break;
-                    }
+                    case (int)NEXT_STATE.YES:
+                        _yes.GetComponent<Image>().color = new Color(255, 255, 255);
+                        _no.GetComponent<Image>().color = new Color(0, 0, 0);
+                        break;
+                    case (int)NEXT_STATE.NO:
+                        _yes.GetComponent<Image>().color = new Color(0, 0, 0);
+                        _no.GetComponent<Image>().color = new Color(255, 255, 255);
+                        break;
                 }
-                else if (_weaponState == 1)
-                {   
-                    switch (_mainState)
-                    {
-                        case (int)WEAPON_STATE.WEAPON1:
-                            _cusor2.localPosition = _weaponImage[_mainState].localPosition;
-                            break;
-                        case (int)WEAPON_STATE.WEAPON2:
-                            _cusor2.localPosition = _weaponImage[_mainState].localPosition;
-                            break;
-                        case (int)WEAPON_STATE.WEAPON3:
-                            _cusor2.localPosition = _weaponImage[_mainState].localPosition;
-                            break;
-                        case (int)WEAPON_STATE.WEAPON4:
-                            _cusor2.localPosition = _weaponImage[_mainState].localPosition;
-                            break;
-                    }
-                }
-        
-                if (_controller.ButtonDown(Button.A))
+
+                if (_controller.ButtonDown(Button.A) && _fadeFlag == false)
                 {
-                    _barFlag = false;
-                    switch (_weaponState)
+
+                    _audioSource.PlayOneShot(_decision);
+                    switch (_nextState)
                     {
-                        case (int)WEAPON_MAIN.MAIN1:
-                            //選んだ武器を装備
-                            if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != _playerSystem.GetComponent<PlayerSystem>().getMain2() && _playerSystem.GetComponent<PlayerSystem>().getMain2() != _weaponList[_mainState][0].ToString())
-                            {
-                                _audioSource.PlayOneShot(_decision);
-                                _playerSystem.GetComponent<PlayerSystem>().setMain1(_weaponList[_mainState][0].ToString());
-                                _mainWeapon1.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
-                                _model.GetComponent<WeaponEquipment>().setWeapon1(_weaponList[_mainState][0].ToString());
-                            }
-                            else
-                            {
-                                //キャンセル音
-                                _audioSource.PlayOneShot(_bub);
-                            }
+                        case (int)NEXT_STATE.YES:
+                            // -PlayerManagerのreadyFlagをtrueにする
+                            _readyFlag.SetPlayerReady(true);
+
                             break;
-                        case (int)WEAPON_MAIN.MAIN2:
-                            //選んだ武器を装備
-                            if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != _playerSystem.GetComponent<PlayerSystem>().getMain2() && _playerSystem.GetComponent<PlayerSystem>().getMain1() != _weaponList[_mainState][0].ToString())
-                            {
-                                _audioSource.PlayOneShot(_decision);
-                                _playerSystem.GetComponent<PlayerSystem>().setMain2(_weaponList[_mainState][0].ToString());
-                                _mainWeapon2.GetComponent<WeaponName>().setName(_weaponList[_mainState][0].ToString());
-                                _model.GetComponent<WeaponEquipment>().setWeapon2(_weaponList[_mainState][0].ToString());
-                            }
-                            else
-                            {
-                                //キャンセル音
-                                _audioSource.PlayOneShot(_bub);
-                            }
+                        case (int)NEXT_STATE.NO:
+                            _popFlag = false;
+                            _nextFlag = false;
                             break;
                     }
 
@@ -381,107 +456,76 @@ public class NetworkEquipment : MonoBehaviour {
                 if (_controller.ButtonDown(Button.B))
                 {
                     _audioSource.PlayOneShot(_cansel);
-                    _barFlag = false;
+                    _popFlag = false;
+                    _nextFlag = false;
                 }
 
             }
+
+            //確認場面
+            if (_popFlag == true)
+            {
+                PopZoom();
+                _nextFlag = true;
+            }
+            else
+            {
+                PopBack();
+            }
+            //バーのフラグ
+            if (_barFlag == true)
+            {
+                BarZoom();
+                _mainFlag = true;
+            }
+            else
+            {
+                _mainState = 0;
+                ZoomBack();
+                _mainFlag = false;
+            }
+
+
+            if (_controller.ButtonDown(Button.START))
+            {
+                if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != "Main1" || _playerSystem.GetComponent<PlayerSystem>().getMain2() != "Main2")
+                {
+                    _popFlag = true;
+                }
+            }
+
         }
         else
         {
-            //コントローラ操作
-            _nextState = ChooseState(_nextState);
 
-            if (_nextState < (int)NEXT_STATE.YES)
+            // -Bボタンを押したらreadyをキャンセル（flagをflaseにする）
+            if (_controller.ButtonDown(Button.B))
             {
-                _nextState = (int)NEXT_STATE.NO;
+                _readyFlag.SetPlayerReady(false);
             }
 
-            if (_nextState > (int)NEXT_STATE.NO)
+            // -PlayerManagerのscene移動フラグがtrueになったらシーン移動開始
+            //次のシーンに移動 
+            if (_readyFlag.NextSceneFlag)
             {
-                _nextState = (int)NEXT_STATE.YES;
-            }
+                if (!_fadeFlag)
+                {
+                    Fade fade = new Fade();
 
-            switch (_nextState)
-            {
-                case (int)NEXT_STATE.YES:
-                    _yes.GetComponent<Image>().color = new Color(255, 255, 255);
-                    _no.GetComponent<Image>().color = new Color(0, 0, 0);
-                    break;
-                case (int)NEXT_STATE.NO:
-                    _yes.GetComponent<Image>().color = new Color(0, 0, 0);
-                    _no.GetComponent<Image>().color = new Color(255, 255, 255);
-                    break;
-            }
+                    _fadeOut = fade.CreateFade();
 
-            if (_controller.ButtonDown(Button.A) && _fadeFlag == false)
-            {
-              
-                    _audioSource.PlayOneShot(_decision);
-                    switch (_nextState)
-                    {
-                        case (int)NEXT_STATE.YES:
-                            //次のシーンに移動    
-                            Fade fade = new Fade();
+                    _fadeOut.GetComponentInChildren<Fade>().FadeOut();
 
-                            _fadeOut = fade.CreateFade();
-
-                            _fadeOut.GetComponentInChildren<Fade>().FadeOut();
-
-                            _fadeFlag = true;
-                            break;
-                        case (int)NEXT_STATE.NO:
-                            _popFlag = false;
-                            _nextFlag = false;
-                            break;
-                    }
+                    _fadeFlag = true;
+                }
 
             }
 
-            if(_controller.ButtonDown(Button.B))
-            {
-                _audioSource.PlayOneShot(_cansel);
-                _popFlag = false;
-                _nextFlag = false;
-            }
-
+            if (_fadeOut.GetComponentInChildren<Fade>().isCheckedFadeOut() && _fadeFlag == true)
+                {
+                    _sceneNextFlag = true;
+                }
         }
-
-        //確認場面
-        if(_popFlag == true)
-        {
-            PopZoom();
-            _nextFlag = true;
-        }
-        else
-        {
-            PopBack();
-        }
-        //バーのフラグ
-        if(_barFlag == true)
-        {
-            BarZoom();
-            _mainFlag = true;
-        }
-        else
-        {
-            _mainState = 0;
-            ZoomBack();
-            _mainFlag = false;
-        }
-
-        if(_fadeOut.GetComponentInChildren<Fade>().isCheckedFadeOut() && _fadeFlag == true)
-        {
-            _sceneNextFlag = true;
-        }
-
-        if (_controller.ButtonDown(Button.START))
-        {
-            if (_playerSystem.GetComponent<PlayerSystem>().getMain1() != "Main1" || _playerSystem.GetComponent<PlayerSystem>().getMain2() != "Main2")
-            {
-                _popFlag = true;
-            }
-        }
-
     }
 
     //選択しているボタンが押された時

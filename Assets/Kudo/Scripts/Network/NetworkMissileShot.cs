@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class NetworkMissileShot : Photon.MonoBehaviour {
+public class NetworkMissileShot : MonoBehaviour {
 
     //ミサイル
     [SerializeField]
@@ -27,8 +28,12 @@ public class NetworkMissileShot : Photon.MonoBehaviour {
     //
     private bool _flag = true;
 
-    // -ネットワーク
-    private PhotonView _photonView;
+    //
+    [SerializeField]
+    private Slider _slider;
+
+    // -PhotonView
+    PhotonView _photonView;
 
     // Use this for initialization
     void Start () {
@@ -45,50 +50,62 @@ public class NetworkMissileShot : Photon.MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        // -Photon上で自身ではなかったらreturn
-        if (!_photonView.isMine)
+        // 自身でなかったらreturn
+        if(!_photonView.isMine)
         {
             return;
         }
 
         controller.ControllerUpdate();
 
-            if (controller.TriggerDown(Trigger.RIGHT) && _flag == true)
+        if (controller.TriggerDown(Trigger.RIGHT) && _flag == true) 
+        {
+            _flag = false;
+    
+            if (_magazin < 6)
             {
-                _flag = false;
+                //_missiles[_magazin] = (GameObject)Instantiate(Resources.Load("Prefabs/Missile"));
+                _missiles[_magazin] = PhotonNetwork.Instantiate("NetworkMissile", transform.position, Quaternion.identity, 0);
+                _missiles[_magazin].transform.position = this.transform.position;
+                //_missiles[_magazin].GetComponent<Missile>().Shot();
+                _magazin++;
+            }
+            else
+            {
+                _reload = true;
+            }
+        }
+        
+        if(controller.TriggerDown(Trigger.RIGHT) == false)
+        {
+            _flag = true;
+        }
 
-                if (_magazin < 6)
-                {
-                    //_missiles[_magazin] = (GameObject)Instantiate(Resources.Load("Prefabs/Missile"));
-                    _missiles[_magazin] = PhotonNetwork.Instantiate("NetworkMissile", transform.position, Quaternion.identity, 0);
-                    _missiles[_magazin].transform.position = this.transform.position;
-                    //_missiles[_magazin].GetComponent<Missile>().Shot();
-                    _magazin++;
-                }
-                else
-                {
-                    _reload = true;
-                }
+        if(_reload == true)
+        {
+            _time += Time.deltaTime;
+
+            if(_time > 5.0f)
+            {
+                _reload = false;
+                _magazin = 0;
+                _time = 0;
             }
 
-            if (controller.TriggerDown(Trigger.RIGHT) == false)
-            {
-                _flag = true;
-            }
+            _slider.value = _time / 5;
 
-            if (_reload == true)
-            {
-                _time += Time.deltaTime;
+        }
 
-                if (_time > 5.0f)
-                {
-                    _reload = false;
-                    _magazin = 0;
-                    _time = 0;
-                }
-            }
+    }
 
+    public int getCount()
+    {
+        return 6 - _magazin;
+    }
 
+    public float getTime()
+    {
+        return _time;
     }
 
 }
