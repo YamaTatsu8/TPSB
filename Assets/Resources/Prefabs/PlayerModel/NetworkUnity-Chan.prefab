@@ -930,7 +930,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1207215315719192
 GameObject:
   m_ObjectHideFlags: 1
@@ -10204,8 +10204,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 4373881119575180}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 6
+  instantiationId: 6
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114391004868651856
@@ -10257,8 +10257,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 224131119601284950}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 7
+  instantiationId: 7
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114404175175861312
@@ -10371,8 +10371,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 4153621268081430}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 5
+  instantiationId: 5
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114432236378708210
@@ -10422,10 +10422,10 @@ MonoBehaviour:
   _model: {fileID: 1323646954957296}
   _target: {fileID: 0}
   _weapon:
-  - {fileID: 1394714148992278, guid: 2935c22f3cb6088498273a50db70cb5e, type: 2}
-  - {fileID: 1092367180115964, guid: 97ccf4ace8c7d3841a0d43dd919d05c9, type: 2}
-  - {fileID: 1606825673296654, guid: f179a2877ed8b654e824eb5e6cc3daa4, type: 2}
-  - {fileID: 1552043485942082, guid: d1e47bd6506cef548a99b31e99637771, type: 2}
+  - {fileID: 1565217609599190}
+  - {fileID: 1598514340725282}
+  - {fileID: 1113161202645724}
+  - {fileID: 1206840562757414}
   _obj: {fileID: 1319098206444430}
 --- !u!114 &114441674208055610
 MonoBehaviour:
@@ -10512,8 +10512,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 4139799556348236, guid: ba6b24bab7ce4a04594f7781a5ca0aea, type: 2}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 2
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114469480990659330
@@ -11029,8 +11029,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 224909617500112412}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 3
+  instantiationId: 3
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114594264111912764
@@ -11323,8 +11323,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 4926759543178500}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 8
+  instantiationId: 8
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114676687732612988
@@ -11869,8 +11869,8 @@ MonoBehaviour:
   - {fileID: 114604046282322486}
   - {fileID: 4253173469261876}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 1
+  instantiationId: 1
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114885439841185980
@@ -11911,8 +11911,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 4287640641816340}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 4
+  instantiationId: 4
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114899568827374486
