@@ -190,7 +190,7 @@ public class NetworkSceneObserver : MonoBehaviour
                 {
                     _nowScene = (int)SCENE_STATE.GamePlayScene;
                     ChangeScene("NetworkPlayScene");
-                    _network.CreateRoom();
+                    _network.CreateOrJoinRoom();
 
                     //_nowScene = (int)SCENE_STATE.GamePlayScene;
                     //ChangeScene("Test");

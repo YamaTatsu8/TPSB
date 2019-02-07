@@ -60,10 +60,13 @@ public class Network : Photon.MonoBehaviour {
     {
         Debug.Log("Roomには入りました");
 
+        PlayerInstantiate();
+
         StageSystem system = GameObject.FindObjectOfType<StageSystem>();
         if (system == null)
         {
-            PhotonNetwork.Instantiate("StageSystem", Vector3.zero, Quaternion.identity, 0);
+            GameObject go = PhotonNetwork.Instantiate("StageSystem", Vector3.zero, Quaternion.identity, 0);
+            go.name = "StageSystem" + go.GetComponent<PhotonView>().ownerId;
         }
 
         _joinFlag = true;
@@ -86,8 +89,8 @@ public class Network : Photon.MonoBehaviour {
     {
         RoomOptions roomOptions = new RoomOptions();
         string text = "Room" + PhotonNetwork.GetRoomList().Length;
-        roomOptions.IsVisible = true;
-        roomOptions.IsOpen = true;
+        //roomOptions.IsVisible = true;
+        //roomOptions.IsOpen = true;
         roomOptions.MaxPlayers = 2; // ルームに入れる人数を2人に指定
         // 指定した名前、オプションのルームを作成
         PhotonNetwork.JoinOrCreateRoom(text, roomOptions, null);
@@ -132,5 +135,19 @@ public class Network : Photon.MonoBehaviour {
         {
             PhotonNetwork.JoinRandomRoom();
         }
+    }
+
+    public void CreateOrJoinRoom()
+    {
+        // ルームが一つもなかったらルームを作成、そうでなかったらルームに入る（指定のルーム）
+        if (PhotonNetwork.GetRoomList().Length == 0)
+        {
+            CreateRoom();
+        }
+        else
+        {
+            PhotonNetwork.JoinRandomRoom();
+        }
+
     }
 }

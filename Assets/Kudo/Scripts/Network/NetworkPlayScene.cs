@@ -47,29 +47,29 @@ public class NetworkPlayScene :  Util.SingletonMonoBehaviour<NetworkPlayScene>{
 
     void Update()
     {
-        if(_isCreate)
-        {
-            return;
-        }
-        StageSystem system = GameObject.FindObjectOfType<StageSystem>();
-        if(system != null)
-        {
-            system.SetStageName();
-            system.StageSpawn();
-        }
+        //if (_isCreate)
+        //{
+        //    return;
+        //}
+        ////StageSystem system = GameObject.FindObjectOfType<StageSystem>();
+        ////if(system != null && !system.IsCreate)
+        ////{
+        ////    system.SetStageName();
+        ////    system.StageSpawn();
+        ////}
 
-        int _cnt = 0;
-        for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
-        {
-            _cnt++;
-            if (_cnt == 2)
-            {
-                _network.PlayerInstantiate();
-                _isCreate = true;
-            }
+        //int _cnt = 0;
+        //for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
+        //{
+        //    _cnt++;
+        //    if (_cnt == 2)
+        //    {
+        //        _network.PlayerInstantiate();
+        //        _isCreate = true;
+        //    }
 
 
-        }
+        //}
     }
 
         public void Search(bool falg)
