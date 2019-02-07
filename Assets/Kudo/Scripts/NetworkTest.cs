@@ -44,7 +44,6 @@ public class NetworkTest: Photon.MonoBehaviour {
     {
         Debug.Log("Roomには入りました");
 
-        PlayerInstantiate();
     }
 
     /// <summary>
@@ -83,6 +82,14 @@ public class NetworkTest: Photon.MonoBehaviour {
         }
 
         go.transform.position = pos;
+    }
+
+    /// <summary>
+    /// PlayerManagerをInstanceする関数
+    /// </summary>
+    public void PlayerManagerInstantiate()
+    {
+        PhotonNetwork.Instantiate("NetworkPlayerManager", Vector3.zero, Quaternion.identity, 0);
     }
 
     /// <summary>

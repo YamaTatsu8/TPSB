@@ -17,7 +17,7 @@ public class NetworkSceneObserver : MonoBehaviour
         GamePlayScene,
         ResultScene
     }
-    private int _nowScene = (int)SCENE_STATE.TitleScene;    //　現在のシーン
+    private int _nowScene = (int)SCENE_STATE.StageSelectScene;    //　現在のシーン
 
     private TitleSceneManager _title;                       //　タイトルシーンのスクリプト
     private ModeMenuManager _modeMenu;                      // -モードメニューシーンのスクリプト
