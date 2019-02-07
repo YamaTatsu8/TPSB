@@ -128,7 +128,7 @@ public class NetworkEquipment : MonoBehaviour {
     private NetworkPlayerReady _readyFlag;
 
     // -PhotonでPlayerManagerを生成する
-    private NetworkTest _network;
+    private Network _network;
 
 
     //どこを選んでいるかのState
@@ -313,7 +313,7 @@ public class NetworkEquipment : MonoBehaviour {
 
         _model = GameObject.Find("PlayerModel");
 
-        _network = GameObject.Find("NetworkManager").GetComponent<NetworkTest>();
+        _network = GameObject.Find("NetworkManager").GetComponent<Network>();
         _network.PlayerManagerInstantiate();
     }
 

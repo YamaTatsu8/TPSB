@@ -388,7 +388,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 225372868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a2604c57de906a41bd29ba03f71aeb6, type: 3}
+  m_Script: {fileID: 11500000, guid: 587653232de4b5e4d81739a5fbd8d649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &412255203
@@ -1055,46 +1055,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &1677286449
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1677286451}
-  - component: {fileID: 1677286450}
-  m_Layer: 0
-  m_Name: SceneManagerObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1677286450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1677286449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a71d914f85dcbee4bb62b13ac4037355, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1677286451
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1677286449}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 361.3738, y: 212.29453, z: -0.41505432}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1703846580
 GameObject:
   m_ObjectHideFlags: 0

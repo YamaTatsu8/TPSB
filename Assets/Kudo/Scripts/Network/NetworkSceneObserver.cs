@@ -10,18 +10,17 @@ public class NetworkSceneObserver : MonoBehaviour
     {
         TitleScene,
         ModeMenuScene,
-        RoomSettingScene,
+        RoomSetting,
         RoomJoinScene,
         CustomizeScene,
         StageSelectScene,
         GamePlayScene,
         ResultScene
     }
-    private int _nowScene = (int)SCENE_STATE.StageSelectScene;    //　現在のシーン
+    private int _nowScene = (int)SCENE_STATE.TitleScene;    //　現在のシーン
 
     private TitleSceneManager _title;                       //　タイトルシーンのスクリプト
     private ModeMenuManager _modeMenu;                      // -モードメニューシーンのスクリプト
-    private RoomSettingManager _roomSetting;                // -ルームセッティングシーンのスクリプト
     private RoomChackerManager _roomJoin;                   // -クライアント側のルームチェックシーン
     private StageSelectManager _stageSelect;                //　ステージセレクトシーンのスクリプト
     private ResultSceneManager _result;                     //　リザルトシーンのスクリプト
@@ -45,7 +44,6 @@ public class NetworkSceneObserver : MonoBehaviour
         _title = new TitleSceneManager();
         _title.Initialize();
         _modeMenu = new ModeMenuManager();
-        _roomSetting = new RoomSettingManager();
         _roomJoin = new RoomChackerManager();
         _stageSelect = new StageSelectManager();
         _result = new ResultSceneManager();
@@ -91,8 +89,7 @@ public class NetworkSceneObserver : MonoBehaviour
                     switch (_modeMenu.State)
                     {
                         case 0:
-                            _nowScene = (int)SCENE_STATE.RoomSettingScene;
-                            _roomSetting.Initialize();
+                            _nowScene = (int)SCENE_STATE.RoomSetting;
                             ChangeScene("RoomSetting");
                             _network.ConectNetwork();
                             break;
@@ -110,14 +107,17 @@ public class NetworkSceneObserver : MonoBehaviour
                 }
                 break;
 
-            // -ルームセッティングシーンの更新処理
-            case (int)SCENE_STATE.RoomSettingScene:
-                if (!_roomSetting.SceneUpdate())
+            //　ルームセッティングの更新処理
+            case (int)SCENE_STATE.RoomSetting:
+                GameObject ssp_rs = GameObject.Find("StageSelectParent");
+                if (ssp_rs.GetComponent<ChangeSprite>().ReturnToMenu())
                 {
+                    _network.CreateRoom();
+
                     _nowScene = (int)SCENE_STATE.StageSelectScene;
                     _stageSelect.Initialize();
                     ChangeScene("Network" + SCENE_STATE.StageSelectScene.ToString());
-                } 
+                }
                 break;
 
             // -ルームチェックシーンの更新処理
