@@ -263,15 +263,21 @@ public class TrainingPoseMenu : MonoBehaviour {
                         case (int)NPC_OPTION.IDLE:
                             //npcにセットする
                             _enemy.GetComponents<AICharacterControl>()[0].SetWaitingMode(true);
-                            _npcState = 0;
+                            //_npcState = 0;
                             _npcFlag = false;
                             break;
                         case (int)NPC_OPTION.ATTACK:
                             _enemy.GetComponents<AICharacterControl>()[0].SetWaitingMode(false);
-                            _npcState = 0;
+                            //_npcState = 0;
                             _npcFlag = false;
                             break;
                     }
+                }
+
+                //Bが押されたらキャンセル
+                if(_controller.ButtonDown(Button.B))
+                {
+                    _npcFlag = false;
                 }
 
             }
