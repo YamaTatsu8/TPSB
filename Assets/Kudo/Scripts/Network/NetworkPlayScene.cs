@@ -51,11 +51,11 @@ public class NetworkPlayScene :  Util.SingletonMonoBehaviour<NetworkPlayScene>{
         {
             return;
         }
-        NetworkPlayerReady manager = GameObject.FindObjectOfType<NetworkPlayerReady>();
-
-        if (manager != null)
+        StageSystem system = GameObject.FindObjectOfType<StageSystem>();
+        if(system != null)
         {
-            GameObject.Destroy(manager);
+            system.SetStageName();
+            system.StageSpawn();
         }
 
         int _cnt = 0;
@@ -65,9 +65,6 @@ public class NetworkPlayScene :  Util.SingletonMonoBehaviour<NetworkPlayScene>{
             if (_cnt == 2)
             {
                 _network.PlayerInstantiate();
-                StageSystem system = GameObject.FindObjectOfType<StageSystem>();
-                system.SetStageName();
-                system.StageSpawn();
                 _isCreate = true;
             }
 
