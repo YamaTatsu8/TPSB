@@ -28,19 +28,6 @@ public class NetworkPlayScene :  Util.SingletonMonoBehaviour<NetworkPlayScene>{
 
     private bool _isCreate = false;
 
-    private string _stageName = "";
-
-    public string StageName
-    {
-        get
-        {
-            return _stageName;
-        }
-        set
-        {
-            _stageName = value;
-        }
-    }
     // Use this for initialization
     void Start()
     {
@@ -50,10 +37,6 @@ public class NetworkPlayScene :  Util.SingletonMonoBehaviour<NetworkPlayScene>{
 
         _fadeOut.GetComponentInChildren<Fade>().FadeIn();
 
-        GameObject obj = GameObject.Find("SceneManagerObject");
-        StageSelectManager ssm = obj.GetComponent<NetworkSceneObserver>().GetStageSelectSceneData();
-
-        _stageName = ssm.GetSelectStageName();
         ////敵を探す
         //_enemy = GameObject.Find("Enemy");
 
