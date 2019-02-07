@@ -95,6 +95,8 @@ public class ModeMenu : MonoBehaviour {
 
         _nextFlag = false;
 
+        _fadeFlag = false;
+
     }
 	
 	// Update is called once per frame
@@ -104,7 +106,10 @@ public class ModeMenu : MonoBehaviour {
         _controller.ControllerUpdate();
 
         //
-        _state = ChooseState(_state);
+        if (_fadeFlag == false)
+        {
+            _state = ChooseState(_state);
+        }
 
         //CreateRoomより上に行ったらTrainingroomに行く
         if(_state < (int)MODE_SELECT.CREATEROOM)

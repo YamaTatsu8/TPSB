@@ -357,6 +357,7 @@ public class Equipment : MonoBehaviour {
                 if (_controller.ButtonDown(Button.B))
                 {
                     //タイトルシーンに遷移
+                    _playerSystem.GetComponent<PlayerSystem>().Init();
                     _popFlag = true;
                     _selectFlag = true;
                 }
