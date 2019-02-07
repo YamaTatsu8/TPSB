@@ -79,6 +79,8 @@ public class BulletController: MonoBehaviour
             if (collision.gameObject.tag == "Player" && !_isHealed)
             {
                 collision.gameObject.GetComponent<Status>().RecoveryHP(_bulletDamage);
+                
+                Destroy(this.gameObject.GetComponent("Rigidbody"));
 
                 _isHealed = true;
             }
