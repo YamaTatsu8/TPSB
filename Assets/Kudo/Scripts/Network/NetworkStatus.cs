@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class NetworkStatus : MonoBehaviour {
 
@@ -25,6 +26,21 @@ public class NetworkStatus : MonoBehaviour {
 
     bool _deadFlag = false;
 
+    [SerializeField]
+    private GameObject _canvas;
+
+    public float HP
+    {
+        get
+        {
+            return _HP;
+        }
+        set
+        {
+            _HP = value;
+        }
+    }
+
     // Use this for initialization
     void Start () {
 
@@ -42,6 +58,11 @@ public class NetworkStatus : MonoBehaviour {
         else { _isEnemy = false; }
 
         _photonView = GetComponent<PhotonView>();
+
+        if(_photonView.isMine)
+        {
+            _canvas.SetActive(true);
+        }
     }
 	
 	// Update is called once per frame
@@ -72,6 +93,7 @@ public class NetworkStatus : MonoBehaviour {
             _hitObj.SetActive(false);
         }
 
+        SetShereHP(_HP);
         _animator.SetTrigger("Idle");
     }
 
@@ -115,5 +137,38 @@ public class NetworkStatus : MonoBehaviour {
     {
         return (float)_HP;
     }
-  
+
+    public void SetShereHP(float num)
+    {
+        if (!_photonView.isMine)
+        {
+            return;
+        }
+
+        var properties = new ExitGames.Client.Photon.Hashtable();
+        properties.Add("Number", num);
+
+        PhotonNetwork.player.SetCustomProperties(properties);
+
+    }
+
+    public void OnPhotonPlayerPropertiesChanged(object[] i_playerAndUpdatedProps)
+    {
+
+        var player = i_playerAndUpdatedProps[0] as PhotonPlayer;
+        var properties = i_playerAndUpdatedProps[1] as ExitGames.Client.Photon.Hashtable;
+
+        object flagvalue = null;
+        if (properties.TryGetValue("Number", out flagvalue))
+        {
+            float receiveNum = (float)flagvalue;
+            var playerObjects = GameObject.FindGameObjectsWithTag("Player");
+            var playerObject = playerObjects.FirstOrDefault(obj => obj.GetComponent<PhotonView>().ownerId == player.ID);
+
+            playerObject.GetComponent<NetworkStatus>().HP = receiveNum;
+
+            return;
+        }
+    }
+
 }

@@ -215,7 +215,7 @@ public class NetworkAttack : MonoBehaviour {
     {
         Vector3 pos = Vector3.zero;
 
-        if (_targetFlag == false)
+        if (_targetFlag == false || _target != null)
         {
             pos = _target.transform.position + new Vector3(0, 1, 0);
         }
