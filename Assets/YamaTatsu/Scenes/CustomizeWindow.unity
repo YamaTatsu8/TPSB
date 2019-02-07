@@ -1679,75 +1679,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
-  m_WarningMessage: '
-
-    Transform ''JNT_Head'' has been deleted
-
-    Transform ''JNT_Neck'' has been deleted
-
-    Transform ''JNT_IndexFinger_L_02'' has been deleted
-
-    Transform ''JNT_IndexFinger_L_01'' has been deleted
-
-    Transform ''JNT_MiddleFinger_L_02'' has been deleted
-
-    Transform ''JNT_MiddleFinger_L_01'' has been deleted
-
-    Transform ''JNT_ThumbFinger_L_02'' has been deleted
-
-    Transform ''JNT_ThumbFinger_L_01'' has been deleted
-
-    Transform ''JNT_Hand_L'' has been deleted
-
-    Transform ''JNT_ForeArm_L'' has been deleted
-
-    Transform ''JNT_Arm_L'' has been deleted
-
-    Transform ''JNT_Shoulder_L'' has been deleted
-
-    Transform ''JNT_IndexFinger_R_02'' has been deleted
-
-    Transform ''JNT_IndexFinger_R_01'' has been deleted
-
-    Transform ''JNT_ThumbFinger_R_02'' has been deleted
-
-    Transform ''JNT_ThumbFinger_R_01'' has been deleted
-
-    Transform ''JNT_MiddleFinger_R_02'' has been deleted
-
-    Transform ''JNT_MiddleFinger_R_01'' has been deleted
-
-    Transform ''JNT_Hand_R'' has been deleted
-
-    Transform ''JNT_ForeArm_R'' has been deleted
-
-    Transform ''JNT_Arm_R'' has been deleted
-
-    Transform ''JNT_Shoulder_R'' has been deleted
-
-    Transform ''JNT_Spine_02'' has been deleted
-
-    Transform ''JNT_Spine_01'' has been deleted
-
-    Transform ''JNT_ToeBase_L'' has been deleted
-
-    Transform ''JNT_Foot_L'' has been deleted
-
-    Transform ''JNT_Leg_L'' has been deleted
-
-    Transform ''JNT_UpLeg_L'' has been deleted
-
-    Transform ''JNT_ToeBase_R'' has been deleted
-
-    Transform ''JNT_Foot_R'' has been deleted
-
-    Transform ''JNT_Leg_R'' has been deleted
-
-    Transform ''JNT_UpLeg_R'' has been deleted
-
-    Transform ''JNT_Hip'' has been deleted
-
-    Transform ''JNT_Root'' has been deleted'
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -3755,6 +3687,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1728188175131922, guid: beced145914b18847bf9316bedccb44c,
     type: 2}
   _seName: 
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!95 &476163585
 Animator:
   serializedVersion: 3
@@ -6707,6 +6641,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1243580894668578, guid: 8e6f70bc3d53d4440974079dd2b144fa,
     type: 2}
   _seName: 
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!1 &822484280
 GameObject:
   m_ObjectHideFlags: 0
@@ -12425,6 +12361,8 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 1690340862790088, guid: 64c8824fd18996449b01cb1bd2c5abf9,
     type: 2}
   _seName: 
+  _gatling: {fileID: 0}
+  _bits: []
 --- !u!95 &1602408439
 Animator:
   serializedVersion: 3

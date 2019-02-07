@@ -6969,7 +6969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _capacity: 30
-  _roundsPerSecond: 1
+  _roundsPerSecond: 100
   _bulletSpeed: 50
   _reloadTime: 1
   _mode: 1
@@ -7854,7 +7854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
-  _boost: 16
+  _boost: 9
   canvas: {fileID: 223554560681110562}
   _walkFoot: {fileID: 1597508792521268}
   _mainCamera: {fileID: 0}

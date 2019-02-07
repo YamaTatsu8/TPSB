@@ -15,8 +15,6 @@ public class TrainingPoseMenu : MonoBehaviour {
     private RectTransform _pop;
 
     //メニュー一覧
-    private RectTransform _contineBar;
-
     private RectTransform _npcBar;
 
     private RectTransform _exitMenu;
@@ -54,7 +52,6 @@ public class TrainingPoseMenu : MonoBehaviour {
     //ポーズメニュー一覧
     private enum POSE_MENU
     {
-        CONTINUE,
         NPC,
         EXIT
     }
@@ -106,8 +103,6 @@ public class TrainingPoseMenu : MonoBehaviour {
 
         //Find
         _pop = GameObject.Find("Pop").GetComponent<RectTransform>();
-
-        _contineBar = GameObject.Find("Continue").GetComponent<RectTransform>();
 
         _npcBar = GameObject.Find("NPC").GetComponent<RectTransform>();
 
@@ -168,29 +163,22 @@ public class TrainingPoseMenu : MonoBehaviour {
                 //メニュー操作
                 _menuState = ChooseStateRL(_menuState);
 
-                if(_menuState > 2)
+                if(_menuState > 1)
                 {
                     _menuState = 0;
                 }
                 else if(_menuState < 0)
                 {
-                    _menuState = 2;
+                    _menuState = 1;
                 }
 
                 switch (_menuState)
                 {
-                    case (int)POSE_MENU.CONTINUE:
-                        _contineBar.GetComponent<Image>().color = new Color(255, 255, 255);
-                        _npcBar.GetComponent<Image>().color = new Color(0, 0, 0);
-                        _exitMenu.GetComponent<Image>().color = new Color(0, 0, 0);
-                        break;
                     case (int)POSE_MENU.NPC:
-                        _contineBar.GetComponent<Image>().color = new Color(0, 0, 0);
                         _npcBar.GetComponent<Image>().color = new Color(255, 255, 255);
                         _exitMenu.GetComponent<Image>().color = new Color(0, 0, 0);
                         break;
                     case (int)POSE_MENU.EXIT:
-                        _contineBar.GetComponent<Image>().color = new Color(0, 0, 0);
                         _npcBar.GetComponent<Image>().color = new Color(0, 0, 0);
                         _exitMenu.GetComponent<Image>().color = new Color(255, 255, 255);
                         break;
@@ -201,14 +189,6 @@ public class TrainingPoseMenu : MonoBehaviour {
                 {
                     switch (_menuState)
                     {
-                        case (int)POSE_MENU.CONTINUE:
-                            //メニュー画面を閉じる
-                            _pauseManager.GetComponent<Pausable>().SetPause();
-                            _menuFlag = false;
-                            _popFlag = false;
-                            _startFlag = false;
-                            _menuState = 0;
-                            break;
                         case (int)POSE_MENU.NPC:
                             _npcFlag = true;
                             //NPC_OPTIONを開く
@@ -278,6 +258,8 @@ public class TrainingPoseMenu : MonoBehaviour {
                 if(_controller.ButtonDown(Button.B))
                 {
                     _npcFlag = false;
+                    _idleBar.localScale = new Vector3(0, 0, 0);
+                    _attackBar.localScale = new Vector3(0, 0, 0);
                 }
 
             }
@@ -291,8 +273,6 @@ public class TrainingPoseMenu : MonoBehaviour {
         
                 switch (_menuState)
             {
-                case (int)POSE_MENU.CONTINUE:
-                    break;
                 case (int)POSE_MENU.NPC:
                     break;
                 case (int)POSE_MENU.EXIT:
