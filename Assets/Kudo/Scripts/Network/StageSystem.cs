@@ -71,4 +71,22 @@ public class StageSystem : Util.SingletonMonoBehaviour<StageSystem> {
         _isCreate = true;
     }
 
+    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+
+        if (stream.isWriting)
+        {
+            //データの送信
+            stream.SendNext(_stageName);
+            Debug.Log("データを送信しました！");
+        }
+        else
+        {
+            //データの受信
+            string text = (string)stream.ReceiveNext();
+            this._stageName = text;
+            Debug.Log("データを受信しました！");
+        }
+    }
+
 }
