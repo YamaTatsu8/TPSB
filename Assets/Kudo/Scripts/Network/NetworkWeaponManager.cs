@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+<<<<<<< HEAD
 public class NetworkWeaponManager : MonoBehaviour
+=======
+public class NetworkWeaponManager : Photon.MonoBehaviour
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 {
     // セレクタ
     private enum Selector
@@ -34,10 +38,13 @@ public class NetworkWeaponManager : MonoBehaviour
     [SerializeField]
     private Selector _mode = Selector.AUTO;
 
+<<<<<<< HEAD
     // 撃つ弾の種類
     [SerializeField]
     private BulletType _type = BulletType.Normal;
 
+=======
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     // 弾を撃てるか
     private bool _isShot = true;
 
@@ -47,6 +54,7 @@ public class NetworkWeaponManager : MonoBehaviour
     // 銃口
     private Transform _muzzle;
 
+<<<<<<< HEAD
     // 弾のプレハブ
     [SerializeField]
     private GameObject _bulletPrefab;
@@ -66,6 +74,20 @@ public class NetworkWeaponManager : MonoBehaviour
     // -PhotonView
     private PhotonView _photonView;
     // -UIを武器がActive時に表示するようにする
+=======
+    // コントローラー
+    private GameController _con;
+
+    // 弾のプレハブ
+    [SerializeField]
+    private GameObject _bulletPrefab;
+    
+    private IEnumerator _routine;
+
+    // -ネットワーク
+    private PhotonView _photonView;
+    // -UI
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     [SerializeField]
     private GameObject _weaponUI;
 
@@ -94,11 +116,14 @@ public class NetworkWeaponManager : MonoBehaviour
         get { return _muzzle; }
     }
 
+<<<<<<< HEAD
     public BulletType Type
     {
         get { return _type; }
     }
 
+=======
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     public GameObject BulletPrefab
     {
         get { return _bulletPrefab; }
@@ -115,14 +140,18 @@ public class NetworkWeaponManager : MonoBehaviour
 
         _con = GameController.Instance;
 
+<<<<<<< HEAD
         _audioManager = AudioManager.Instance;
 
+=======
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
         _photonView = GetComponent<PhotonView>();
         if(_photonView.isMine)
         {
             _weaponUI.SetActive(true);
         }
     }
+<<<<<<< HEAD
 
     private void Start()
     {
@@ -135,6 +164,9 @@ public class NetworkWeaponManager : MonoBehaviour
         }
     }
 
+=======
+    
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     private void Update()
     {
         _con.ControllerUpdate();
@@ -210,6 +242,10 @@ public class NetworkWeaponManager : MonoBehaviour
 
             _routine = this.DelayMethodForSpecifiedTime(_reloadTime, () =>
             {
+<<<<<<< HEAD
+=======
+                Debug.Log("Reload");
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
                 _remainingBullets = _capacity;
 
                 _routine = null;
@@ -223,11 +259,14 @@ public class NetworkWeaponManager : MonoBehaviour
     {
         if (this.GetComponent<NetworkRayCastShoot>().Shot(fireRate))
         {
+<<<<<<< HEAD
             if (_seName != "")
             {
                 _audioManager.PlaySE(_seName);
             }
 
+=======
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
             _remainingBullets--;
         }
     }
@@ -237,7 +276,11 @@ public class NetworkWeaponManager : MonoBehaviour
         if (_isBurst)
         {
             _isBurst = false;
+<<<<<<< HEAD
             _routine = this.DelayMethod(0, () =>
+=======
+            _routine = this.DelayMethodOnce(0, () =>
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
             {
                 Shot(_fireRate);
                 this.Delay(1.0f / _roundsPerSecond, () =>

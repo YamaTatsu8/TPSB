@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+<<<<<<< HEAD
 using UnityEngine.UI;
 
 public class Network : Photon.MonoBehaviour {
@@ -16,21 +17,48 @@ public class Network : Photon.MonoBehaviour {
         set
         {
             _joinFlag = value;
+=======
+
+public class Network : Photon.MonoBehaviour {
+
+    private const string ROOM_NAME = "RoomA";
+
+    GameObject go;
+
+    public int ID
+    {
+        get
+        {
+            if(go != null)
+            {
+                return go.GetComponent<PhotonView>().ownerId;
+            }
+            return 0;
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
         }
     }
 
     void Start () {
         // PhotonServerへの接続
+<<<<<<< HEAD
         //PhotonNetwork.ConnectUsingSettings("1.0");
         //PhotonNetwork.sendRate = 120;
         //PhotonNetwork.sendRateOnSerialize = 120;
+=======
+        PhotonNetwork.ConnectUsingSettings("1.0");
+        PhotonNetwork.sendRate = 120;
+        PhotonNetwork.sendRateOnSerialize = 120;
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 
     }
 
     private void OnGUI()
     {
         // 状態の表示
+<<<<<<< HEAD
         GUILayout.Label("");
+=======
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
         GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
     }
 
@@ -41,6 +69,7 @@ public class Network : Photon.MonoBehaviour {
     {
         Debug.Log("Lobbyに入りました");
 
+<<<<<<< HEAD
         //JoinRoom();
         // ルームが一つもなかったらルームを作成、そうでなかったらルームに入る（指定のルーム）
         //if(PhotonNetwork.GetRoomList().Length == 0)
@@ -51,6 +80,17 @@ public class Network : Photon.MonoBehaviour {
         //{
         //    PhotonNetwork.JoinRoom(ROOM_NAME);
         //}
+=======
+        // ルームが一つもなかったらルームを作成、そうでなかったらルームに入る（指定のルーム）
+        if(PhotonNetwork.GetRoomList().Length == 0)
+        {
+            CreateRoom();
+        }
+        else
+        {
+            PhotonNetwork.JoinRoom(ROOM_NAME);
+        }
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     }
 
     /// <summary>
@@ -59,6 +99,7 @@ public class Network : Photon.MonoBehaviour {
     void OnJoinedRoom()
     {
         Debug.Log("Roomには入りました");
+<<<<<<< HEAD
 
         _joinFlag = true;
     }
@@ -128,4 +169,21 @@ public class Network : Photon.MonoBehaviour {
             PhotonNetwork.JoinRandomRoom();
         }
     }
+=======
+        go = PhotonNetwork.Instantiate("NetworkPlayer", Vector3.zero, Quaternion.identity, 0);
+        go.name = "Player" + go.GetComponent<PhotonView>().ownerId.ToString();
+    }
+
+    /// <summary>
+    /// ルームを作成する関数
+    /// </summary>
+    void CreateRoom()
+    {
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = 2; // ルームに入れる人数を2人に指定
+        // 指定した名前、オプションのルームを作成
+        PhotonNetwork.JoinOrCreateRoom(ROOM_NAME, roomOptions, null);
+
+    }
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 }

@@ -18,8 +18,13 @@ public class NetworkLookCamera : MonoBehaviour {
     //offset
     private Vector3 _offset = new Vector3(0, 2, 0);
 
+<<<<<<< HEAD
     //ロックオン解除時のオブジェ
     private GameObject _cameraObj;
+=======
+    [SerializeField]
+    private GameObject target;
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 
     //コントローラのスクリプト
     GameController controller;
@@ -40,19 +45,34 @@ public class NetworkLookCamera : MonoBehaviour {
     //カメラフラグ
     private bool _cameraFlag = false;
 
+<<<<<<< HEAD
     //ロックオン解除フラグ
     private bool _targetFlag;
 
+=======
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     // Use this for initialization
     void Start () {
 
         controller = GameController.Instance;
 
+<<<<<<< HEAD
+=======
+        //target = GameObject.FindGameObjectWithTag("Target");
+
+        //_right = GameObject.Find("CameraRight");
+
+        //_left = GameObject.Find("CameraLeft");
+
+        //_tps = _right;
+        
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     }
 	
 	// Update is called once per frame
 	void Update () {
 
+<<<<<<< HEAD
         Debug.Log("かめら_player:" + _player);
 
         if (_cameraFlag == false)
@@ -64,15 +84,28 @@ public class NetworkLookCamera : MonoBehaviour {
                 Debug.Log("Update_target:" + _target);
 
                 _cameraObj = GameObject.Find("CameraObj");
+=======
+        if(_cameraFlag == false)
+        {
+
+            // -ターゲットが見つかるまでターゲットを探し続ける
+            if(target == null || _right == null || _left == null)
+            {
+                target = GameObject.FindGameObjectWithTag("Enemy");
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 
                 _right = GameObject.Find("CameraRight");
 
                 _left = GameObject.Find("CameraLeft");
+<<<<<<< HEAD
 
+=======
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
             }
             else
             {
                 _cameraFlag = true;
+<<<<<<< HEAD
 
             }
             _tps = _right;
@@ -91,15 +124,35 @@ public class NetworkLookCamera : MonoBehaviour {
             Vector3 pos;
 
             pos = (_tps.transform.position - _target.transform.position);
+=======
+            }
+
+            _tps = _right;
+
+            return;
+        }
+
+        if (target != null)
+        {
+            Vector3 pos;
+
+            //
+            pos = (_tps.transform.position - target.transform.position);
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 
             //playerのポジションに入れる
             transform.position = _tps.transform.position + pos.normalized * 3 + _offset;
 
+<<<<<<< HEAD
+=======
+            _target = target;
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 
             if (_target)
             {
                 LockOnTargetObjcet(_target);
             }
+<<<<<<< HEAD
             float angle_x = 180f <= transform.eulerAngles.x ? transform.eulerAngles.x - 360 : transform.eulerAngles.x;
             transform.eulerAngles = new Vector3(
                 Mathf.Clamp(angle_x, ANGLE_LIMIT_DOWN, ANGLE_LIMIT_UP),
@@ -122,6 +175,9 @@ public class NetworkLookCamera : MonoBehaviour {
             {
                 LockOnTargetObjcet(_cameraObj);
             }
+=======
+
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
             float angle_x = 180f <= transform.eulerAngles.x ? transform.eulerAngles.x - 360 : transform.eulerAngles.x;
             transform.eulerAngles = new Vector3(
                 Mathf.Clamp(angle_x, ANGLE_LIMIT_DOWN, ANGLE_LIMIT_UP),
@@ -136,6 +192,7 @@ public class NetworkLookCamera : MonoBehaviour {
             _tps = _flag ? _right : _left;
         }
 
+<<<<<<< HEAD
     }
 
     private void LockOnTargetObjcet(GameObject target)
@@ -216,4 +273,18 @@ public class NetworkLookCamera : MonoBehaviour {
             _player = obj;
         }
     }
+=======
+
+    }
+
+    private void LockOnTargetObjcet(GameObject target)
+    {
+
+         //target.transform.position + new Vector3(0, 0.5f, 0);
+
+        transform.LookAt(target.transform, Vector3.up);
+    }
+
+    
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 }

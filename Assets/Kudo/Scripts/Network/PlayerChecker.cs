@@ -8,15 +8,24 @@ public class PlayerChecker : Photon.MonoBehaviour {
     [SerializeField]
     private int _id = 0;
 
+<<<<<<< HEAD
+=======
+    // networkManegerからIDを取得
+    Network _network;
+
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     // ネットワークビュー
     private PhotonView _photonView;
 
     GameObject[] _obj;
     PhotonPlayer[] _photonPlayer = new PhotonPlayer[2];
 
+<<<<<<< HEAD
     // 変更が出来たらtrue
     private bool _isChange = false;
 
+=======
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     public int ID
     {
         get
@@ -29,6 +38,7 @@ public class PlayerChecker : Photon.MonoBehaviour {
         // NetworkViewのコンポーネント
         _photonView = GetComponent<PhotonView>();
 
+<<<<<<< HEAD
         _id = _photonView.ownerId;
 
         this.name = "Player" + _photonView.ownerId;
@@ -51,6 +61,13 @@ public class PlayerChecker : Photon.MonoBehaviour {
             return;
         }
 
+=======
+        _network = GameObject.FindObjectOfType<Network>();
+
+	}
+	
+	void Update () {
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
         _obj = GameObject.FindGameObjectsWithTag("Player");
 
         for (int i = 0; i < PhotonNetwork.playerList.Length; i++)
@@ -62,6 +79,7 @@ public class PlayerChecker : Photon.MonoBehaviour {
             }
         }
 
+<<<<<<< HEAD
         for (int i = 0; i < _obj.Length; i++)
         {
             if (_obj[i].GetComponent<PlayerChecker>().ID != _id)
@@ -69,6 +87,16 @@ public class PlayerChecker : Photon.MonoBehaviour {
                 //_obj[i].tag = "Enemy";
                 _obj[i].layer = LayerMask.NameToLayer("Enemy");
                 _isChange = true;
+=======
+        for (int i = 0; i< _obj.Length; i++)
+        {
+            if (_obj[i].GetComponent<PlayerChecker>().ID != _id)
+            {
+                if (_photonView.isMine)
+                {
+                    _obj[i].tag = "Enemy";
+                }
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
             }
         }
     }

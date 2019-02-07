@@ -14,15 +14,23 @@ public class NetworkAttack : MonoBehaviour {
     private bool _changeWeapon = true;
 
     //武器の名前
+<<<<<<< HEAD
     [SerializeField]
     private string _weaponName1;
     [SerializeField]
+=======
+    private string _weaponName1;
+
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     private string _weaponName2;
 
     private string _subWeaponName;
 
+<<<<<<< HEAD
     private GameObject _cameraObj;
 
+=======
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     //武器のオブジェクト
     [SerializeField]
     private GameObject _weapon1;
@@ -50,7 +58,10 @@ public class NetworkAttack : MonoBehaviour {
     private GameObject _model;
 
     //敵
+<<<<<<< HEAD
     [SerializeField]
+=======
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     private GameObject _target;
 
     //
@@ -60,6 +71,7 @@ public class NetworkAttack : MonoBehaviour {
     [SerializeField]
     private GameObject[] _weapon;
 
+<<<<<<< HEAD
     [SerializeField]
     private GameObject _obj;
 
@@ -67,6 +79,9 @@ public class NetworkAttack : MonoBehaviour {
     private bool _targetFlag;
 
     // -PhotonView
+=======
+    // -ネットワーク
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     private PhotonView _photonView;
 
     // Use this for initialization
@@ -74,6 +89,7 @@ public class NetworkAttack : MonoBehaviour {
 
         controller = GameController.Instance;
 
+<<<<<<< HEAD
         _animator = _obj.GetComponent<Animator>();
 
         //PlayerSystemから情報をもらってくる
@@ -86,6 +102,16 @@ public class NetworkAttack : MonoBehaviour {
         _subWeaponName = playerSystem.getSub();
 
         for(int i = 0; i < _weapon.Length; i++)
+=======
+        //PlayerSystemから情報をもらってくる
+        PlayerSystem playerSystem = FindObjectOfType<PlayerSystem>();
+
+        _weaponName1 = playerSystem.getMain1();
+        _weaponName2 = playerSystem.getMain2();
+        _subWeaponName = playerSystem.getSub();
+
+        for (int i = 0; i < _weapon.Length; i++)
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
         {
             if(_weapon[i].name == _weaponName1)
             {
@@ -98,12 +124,24 @@ public class NetworkAttack : MonoBehaviour {
             }
         }
 
+<<<<<<< HEAD
         _flag = false;
 
+=======
+
+        _flag = false;
+
+        //Resorcesから武器を探して装備する
+        //_weapon1 = (GameObject)Instantiate(Resources.Load("Prefabs/" + _weaponName1));
+
+        //_weapon2 = (GameObject)Instantiate(Resources.Load("Prefabs/" + _weaponName2));
+
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
         _weapon1.SetActive(true);
 
         _weapon2.SetActive(false);
 
+<<<<<<< HEAD
         _target = serchTag(gameObject, "Player");
 
         _cameraObj = GameObject.Find("CameraObj");
@@ -115,10 +153,27 @@ public class NetworkAttack : MonoBehaviour {
         _photonView = GetComponent<PhotonView>();
 
         //playerSystem.Init();  ←　リザルトシーンに移動
+=======
+        //右手の子供にする
+        //_weapon1.transform.parent = _rightHand.transform;
+        //_weapon1.transform.position = _rightHand.transform.position;
+
+        //_weapon2.transform.parent = _rightHand.transform;
+        //_weapon2.transform.position = _rightHand.transform.position;
+
+        //アニメーターのコンポーネント
+        _animator = GetComponent<Animator>();
+
+        _target = GameObject.FindGameObjectWithTag("Enemy");
+
+        // -photonviewのコンポーネント
+        _photonView = GetComponent<PhotonView>();
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     }
 	
 	// Update is called once per frame
 	void Update () {
+<<<<<<< HEAD
         // 自身でなかったらreturn
         if(!_photonView.isMine)
         {
@@ -190,6 +245,62 @@ public class NetworkAttack : MonoBehaviour {
         if (controller.TriggerDown(Trigger.RIGHT))
         {
             _subWeapon.GetComponent<NetworkWeaponManager>().Attack();
+=======
+
+        controller.ControllerUpdate();
+
+        //Debug.Log(_changeWeapon);
+
+        // -誰がボタンを押したかをチェックする(自身が触ったらtrue
+        if (_photonView.isMine)
+        {
+            if (controller.ButtonDown(Button.X))
+            {
+                _weaponFlag = !_weaponFlag;
+                if (_weaponFlag == true)
+                {
+                    _weapon2.SetActive(false);
+                    _weapon1.SetActive(true);
+                }
+                else if (_weaponFlag == false)
+                {
+                    _weapon1.SetActive(false);
+                    _weapon2.SetActive(true);
+                }
+            }
+
+            Debug.Log(_weaponName2);
+
+
+            if (controller.TriggerDown(Trigger.LEFT))
+            {
+                Vector3 diff = transform.position - Player_pos;
+
+                if (_weaponFlag == true)
+                {
+                    _weapon1.GetComponent<NetworkWeaponManager>().Attack();
+                }
+                else if (_weaponFlag == false)
+                {
+                    _weapon2.GetComponent<NetworkWeaponManager>().Attack();
+                }
+                //transform.rotation = Quaternion.LookRotation(new Vector3(diff.x, 0, diff.z));
+
+                if (_flag == false)
+                {
+                    _model.transform.LookAt(_target.transform);
+                    //_flag = true;
+                }
+                //攻撃モーション
+                _animator.SetBool("Attack", true);
+            }
+            else
+            {
+                //攻撃モーション
+                _animator.SetBool("Attack", false);
+            }
+
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
         }
 
         Player_pos = transform.position;
@@ -207,12 +318,16 @@ public class NetworkAttack : MonoBehaviour {
         {
 
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     }
 
     //
     public Vector3 getPosition()
     {
+<<<<<<< HEAD
         Vector3 pos = Vector3.zero;
 
         if (_targetFlag == false)
@@ -253,6 +368,18 @@ public class NetworkAttack : MonoBehaviour {
         //最も近かったオブジェクトを返す
         //return GameObject.Find(nearObjName);
         return targetObj;
+=======
+        if (transform.tag == "Player")
+        {
+            _target = GameObject.FindGameObjectWithTag("Enemy");
+            return _target.transform.position + new Vector3(0, 1, 0);
+        }
+        else
+        {
+            _target = GameObject.FindGameObjectWithTag("Player");
+            return _target.transform.position + new Vector3(0, 0.5f, 0);
+        }
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
     }
 
 }

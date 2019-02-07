@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+<<<<<<< HEAD
 using UnityEngine.UI;
 
 public class NetworkMissileShot : MonoBehaviour {
+=======
+
+public class NetworkMissileShot : Photon.MonoBehaviour {
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 
     //ミサイル
     [SerializeField]
@@ -28,12 +33,17 @@ public class NetworkMissileShot : MonoBehaviour {
     //
     private bool _flag = true;
 
+<<<<<<< HEAD
     //
     [SerializeField]
     private Slider _slider;
 
     // -PhotonView
     PhotonView _photonView;
+=======
+    // -ネットワーク
+    private PhotonView _photonView;
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 
     // Use this for initialization
     void Start () {
@@ -50,6 +60,7 @@ public class NetworkMissileShot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+<<<<<<< HEAD
         // 自身でなかったらreturn
         if(!_photonView.isMine)
         {
@@ -94,10 +105,54 @@ public class NetworkMissileShot : MonoBehaviour {
 
             _slider.value = _time / 5;
 
+=======
+
+        controller.ControllerUpdate();
+
+        // -誰がボタンを押したか確認
+        if(_photonView.isMine)
+        {
+            if (controller.TriggerDown(Trigger.RIGHT) && _flag == true)
+            {
+                _flag = false;
+
+                if (_magazin < 6)
+                {
+                    //_missiles[_magazin] = (GameObject)Instantiate(Resources.Load("Prefabs/Missile"));
+                    _missiles[_magazin] = PhotonNetwork.Instantiate("NetworkMissile", transform.position, Quaternion.identity, 0);
+                    _missiles[_magazin].transform.position = this.transform.position;
+                    //_missiles[_magazin].GetComponent<Missile>().Shot();
+                    _magazin++;
+                }
+                else
+                {
+                    _reload = true;
+                }
+            }
+
+            if (controller.TriggerDown(Trigger.RIGHT) == false)
+            {
+                _flag = true;
+            }
+
+            if (_reload == true)
+            {
+                _time += Time.deltaTime;
+
+                if (_time > 5.0f)
+                {
+                    _reload = false;
+                    _magazin = 0;
+                    _time = 0;
+                }
+            }
+
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
         }
 
     }
 
+<<<<<<< HEAD
     public int getCount()
     {
         return 6 - _magazin;
@@ -108,4 +163,6 @@ public class NetworkMissileShot : MonoBehaviour {
         return _time;
     }
 
+=======
+>>>>>>> 302a37d95035faead75c65fed7201c2371f53c1f
 }
