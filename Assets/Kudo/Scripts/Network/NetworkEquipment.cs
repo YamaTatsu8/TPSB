@@ -510,18 +510,18 @@ public class NetworkEquipment : MonoBehaviour {
             {
                 if (!_fadeFlag)
                 {
-                    Fade fade = new Fade();
+                    //Fade fade = new Fade();
 
-                    _fadeOut = fade.CreateFade();
+                    //_fadeOut = fade.CreateFade();
 
-                    _fadeOut.GetComponentInChildren<Fade>().FadeOut();
+                    //_fadeOut.GetComponentInChildren<Fade>().FadeOut();
 
                     _fadeFlag = true;
                 }
 
             }
 
-            if (_fadeOut.GetComponentInChildren<Fade>().isCheckedFadeOut() && _fadeFlag == true)
+            if (/*_fadeOut.GetComponentInChildren<Fade>().isCheckedFadeOut() && */_fadeFlag == true)
                 {
                     _sceneNextFlag = true;
                 }

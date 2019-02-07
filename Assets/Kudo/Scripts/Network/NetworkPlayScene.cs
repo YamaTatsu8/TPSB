@@ -8,7 +8,7 @@ public class NetworkPlayScene :  Util.SingletonMonoBehaviour<NetworkPlayScene>{
     GameObject _fadeOut;
 
     //Player
-    private GameObject _player;
+    private GameObject[] _player;
 
     ////敵
     //[SerializeField]
@@ -35,8 +35,6 @@ public class NetworkPlayScene :  Util.SingletonMonoBehaviour<NetworkPlayScene>{
 
         _fadeOut.GetComponentInChildren<Fade>().FadeIn();
 
-        //プレイヤーを探す
-        _player = GameObject.FindGameObjectWithTag("Player");
 
         ////敵を探す
         //_enemy = GameObject.Find("Enemy");
@@ -44,7 +42,6 @@ public class NetworkPlayScene :  Util.SingletonMonoBehaviour<NetworkPlayScene>{
         //レンダリング設定
         RenderSettings.ambientSkyColor = Color.gray;
 
-        _network.PlayerInstantiate();
     }
 
     // Update is called once per frame
