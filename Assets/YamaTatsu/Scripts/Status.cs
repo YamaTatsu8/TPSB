@@ -80,7 +80,7 @@ public class Status : MonoBehaviour {
             if (!_hitObj.activeSelf) { _hitObj.SetActive(true); }
             _hitNum++;
             _hitObj.GetComponent<Text>().text = _hitNum.ToString() + _hitStr;
-            _time = 3.0f;
+            _time = 1.0f;
         }
         if (_HP >= 1)
         {
