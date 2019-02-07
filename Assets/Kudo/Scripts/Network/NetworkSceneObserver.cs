@@ -102,6 +102,8 @@ public class NetworkSceneObserver : MonoBehaviour
 
                     if (selectName == SCENE_STATE.RoomSetting.ToString())
                     {
+                        _network.ConectNetwork();
+
                         _nowScene = (int)SCENE_STATE.StageSelectScene;
                         _stageSelect.Initialize();
                         ChangeScene("Network" + SCENE_STATE.StageSelectScene.ToString());
