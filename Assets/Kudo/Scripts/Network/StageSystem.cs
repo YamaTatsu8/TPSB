@@ -17,6 +17,8 @@ public class StageSystem : Util.SingletonMonoBehaviour<StageSystem> {
     [SerializeField]
     private static StageSystem _playerManager;            //　複数生成されないようのオブジェクト
 
+    private PhotonView _photonView;
+
     public string StageName
     {
         get
@@ -29,9 +31,22 @@ public class StageSystem : Util.SingletonMonoBehaviour<StageSystem> {
         }
     }
 
+    public bool IsCreate
+    {
+        get
+        {
+            return _isCreate;
+        }
+        set
+        {
+            _isCreate = value;
+        }
+    }
+
     void Awake()
     {
-        //　シーンオブサーバーが１つしか存在しないようにする
+        _photonView = GetComponent<PhotonView>();
+
         if (_playerManager == null)
         {
             _playerManager = FindObjectOfType<StageSystem>() as StageSystem;
@@ -42,6 +57,10 @@ public class StageSystem : Util.SingletonMonoBehaviour<StageSystem> {
 
     public void SetStageName()
     {
+        if (_isCreate)
+        {
+            return;
+        }
         GameObject obj = GameObject.Find("SceneManagerObject");
         StageSelectManager ssm = obj.GetComponent<NetworkSceneObserver>().GetStageSelectSceneData();
 
@@ -71,6 +90,39 @@ public class StageSystem : Util.SingletonMonoBehaviour<StageSystem> {
 
         _isCreate = true;
     }
+
+    //public void SetStageName(string text)
+    //{
+    //    if (!_photonView.isMine)
+    //    {
+    //        return;
+    //    }
+
+    //    var properties = new ExitGames.Client.Photon.Hashtable();
+    //    properties.Add("Flag", text);
+
+    //    PhotonNetwork.player.SetCustomProperties(properties);
+
+    //}
+
+    //public void OnPhotonPlayerPropertiesChanged(object[] i_playerAndUpdatedProps)
+    //{
+
+    //    var player = i_playerAndUpdatedProps[0] as PhotonPlayer;
+    //    var properties = i_playerAndUpdatedProps[1] as ExitGames.Client.Photon.Hashtable;
+
+    //    object flagvalue = null;
+    //    if (properties.TryGetValue("Flag", out flagvalue))
+    //    {
+    //        bool receiveflag = (bool)flagvalue;
+    //        var playerObjects = GameObject.FindGameObjectsWithTag("StageSystem");
+    //        var playerObject = playerObjects.FirstOrDefault(obj => obj.GetComponent<PhotonView>().ownerId == player.ID);
+
+    //        playerObject.GetComponent<NetworkPlayerReady>().ReadyFlag = receiveflag;
+
+    //        return;
+    //    }
+    //}
 
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
