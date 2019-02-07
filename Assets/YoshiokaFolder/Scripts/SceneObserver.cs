@@ -119,6 +119,11 @@ public class SceneObserver : MonoBehaviour
             //　ルームセッティングの更新処理
             case (int)SCENE_STATE.RoomSetting:
                 GameObject ssp_rs = GameObject.Find("StageSelectParent");
+                if (ssp_rs.GetComponent<ChangeSprite>().CreateRoom())
+                {
+                    _nowScene = (int)SCENE_STATE.CustomizeWindow;
+                    ChangeScene(SCENE_STATE.CustomizeWindow.ToString());
+                }
                 if (ssp_rs.GetComponent<ChangeSprite>().ReturnToMenu())
                 {
                     _nowScene = (int)SCENE_STATE.ModeMenuScene;
@@ -129,6 +134,11 @@ public class SceneObserver : MonoBehaviour
             //　ルームチェックの更新処理
             case (int)SCENE_STATE.RoomCheck:
                 GameObject ssp_rc = GameObject.Find("StageSelectParent");
+                if (ssp_rc.GetComponent<ChangeSprite>().SearchRoom())
+                {
+                    _nowScene = (int)SCENE_STATE.CustomizeWindow;
+                    ChangeScene(SCENE_STATE.CustomizeWindow.ToString());
+                }
                 if (ssp_rc.GetComponent<ChangeSprite>().ReturnToMenu())
                 {
                     _nowScene = (int)SCENE_STATE.ModeMenuScene;
