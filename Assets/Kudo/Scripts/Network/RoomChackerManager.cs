@@ -25,20 +25,8 @@ public class RoomChackerManager : MonoBehaviour {
     private Network _network;
     private int _connectCount = 0;
     private bool _isConnecting = false;
-    // ルームに入ったかをフラグで管理
-    private bool _isJoinRoom = false;
 
-    public bool JoinFlag
-    {
-        get
-        {
-            return _isJoinRoom;
-        }
-        set
-        {
-            _isJoinRoom = value;
-        }
-    }
+    private bool _isjoinRoom;
 
     public int State
     {
@@ -102,6 +90,8 @@ public class RoomChackerManager : MonoBehaviour {
         //　フェードが終了していたらシーンを変更する
         if (_fadeObj.GetComponentInChildren<Fade>().isCheckedFadeOut() && _isStartFade)
         {
+            Debug.Log("ルームを見つけたのでシーンの移動をします");
+
             _isStartFade = false;
             return false;
         }
@@ -113,18 +103,29 @@ public class RoomChackerManager : MonoBehaviour {
     {
         _controller.ControllerUpdate();
 
-        if (_isJoinRoom)
+        if (_network == null)
         {
-            //　フェード開始
-            Fade fade = new Fade();
-            _fadeObj = fade.CreateFade();
-            _fadeObj.GetComponentInChildren<Fade>().FadeOut();
-            _isStartFade = true;
+            return;
+        }
+
+        if (_network.JoinFlag)
+        {
+            if (!_isjoinRoom)
+            {
+                Debug.Log("ルームを見つけました");
+                //　フェード開始
+                Fade fade = new Fade();
+                _fadeObj = fade.CreateFade();
+                _fadeObj.GetComponentInChildren<Fade>().FadeOut();
+                _isStartFade = true;
+
+                _isjoinRoom = true;
+            }
 
         }
         else
         {
-            //　Aボタンが押されたらフェードアウトを開始する
+            //　Aボタンが押されたら
             if (_controller.ButtonDown(Button.A) && !_isStartFade)
             {
                 switch (_state)

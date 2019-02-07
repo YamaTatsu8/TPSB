@@ -124,7 +124,7 @@ public class NetworkSceneObserver : MonoBehaviour
             case (int)SCENE_STATE.RoomJoinScene:
                 if(!_roomJoin.SceneUpdate())
                 {
-                    switch(_roomJoin.State)
+                    switch (_roomJoin.State)
                     {
                         case 0:
                             _nowScene = (int)SCENE_STATE.CustomizeScene;
@@ -148,7 +148,7 @@ public class NetworkSceneObserver : MonoBehaviour
                 if(cusObj.GetComponent<NetworkEquipment>().GetNextFlag())
                 {
                     _nowScene = (int)SCENE_STATE.GamePlayScene;
-                    ChangeScene("NetworkTest");
+                    ChangeScene("NetworkPlayScene");
                     //_nowScene = (int)SCENE_STATE.GamePlayScene;
                     //ChangeScene("Test");
                 }
@@ -166,11 +166,17 @@ public class NetworkSceneObserver : MonoBehaviour
             //　ゲームプレイシーン
             case (int)SCENE_STATE.GamePlayScene:
                 GameObject gameManaObj = GameObject.Find("GameManager");
+                NetworkPlayerReady manager = GameObject.FindObjectOfType<NetworkPlayerReady>();
 
-                if (gameManaObj.GetComponent<NetworkPlaySceneManager>().EndedScene())
+                if(manager != null)
+                {
+                    GameObject.Destroy(manager);
+                }
+                if (gameManaObj.GetComponent<NetworkPlayScene>().getFlag())
                 {
                     _nowScene = (int)SCENE_STATE.ResultScene;
                     _result.Initialize();
+                    _result.SetBattleResult(gameManaObj.GetComponent<NetworkPlayScene>().getFightFlag());
                     ChangeScene(SCENE_STATE.ResultScene.ToString());
                 }
                 break;

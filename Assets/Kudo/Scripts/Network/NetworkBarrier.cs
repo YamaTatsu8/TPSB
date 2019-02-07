@@ -26,6 +26,9 @@ public class NetworkBarrier : MonoBehaviour {
     //アニメーター
     private Animator _animator;
 
+    [SerializeField]
+    private GameObject _obj;
+
     //Guardのオブジェクト
     [SerializeField]
     private GameObject _guard;
@@ -33,30 +36,28 @@ public class NetworkBarrier : MonoBehaviour {
     //展開
     private bool _barrier = false;
 
-    // -ネットワーク
+    // -PhotonView
     private PhotonView _photonView;
 
     // Use this for initialization
     void Start () {
 
-        Debug.Log(_guard);
-
         controller = GameController.Instance;
 
-        _animator = GetComponent<Animator>();
+        _animator = _obj.GetComponent<Animator>();
 
         _guard = GameObject.Find("Guard");
 
         _guard.SetActive(false);
 
-        // -ネットワーク
+        // -PhotonViewのコンポーネント
         _photonView = GetComponent<PhotonView>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        // -Photon上で自身ではなかったらreturn
-        if (!_photonView.isMine)
+        // -自身でなかったらreturn
+        if(!_photonView.isMine)
         {
             return;
         }
@@ -65,26 +66,25 @@ public class NetworkBarrier : MonoBehaviour {
 
         controller.ControllerUpdate();
 
-            //左ショルダーボタンが押された時
-            if (Input.GetButton("L1"))
-            {
-                _guard.SetActive(true);
-                _animator.SetBool("Guard", true);
-                transform.LookAt(target.transform, Vector3.up);
-                _guard.GetComponent<BoxCollider>().enabled = true;
-                _barrier = true;
-            }
-            else
-            {
-                _guard.SetActive(false);
-                _animator.SetBool("Guard", false);
-                _guard.GetComponent<BoxCollider>().enabled = false;
-                _barrier = false;
-            }
-
+        //左ショルダーボタンが押された時
+        if (Input.GetButton("L1"))
+        {
+            _guard.SetActive(true);
+            _animator.SetBool("Guard", true);
+            transform.LookAt(target.transform, Vector3.up);
+            _guard.GetComponent<BoxCollider>().enabled = true;
+            _barrier = true;
+        }
+        else
+        {
+            _guard.SetActive(false);
+            _animator.SetBool("Guard", false);
+            _guard.GetComponent<BoxCollider>().enabled = false;
+            _barrier = false;
+        }
 
         // 0になったらバリアを消す       
-        if (_HP <= 0)
+        if(_HP <= 0)
         {
             Destroy(_object);
         }

@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class Network : Photon.MonoBehaviour {
 
-    GameObject go;
+    private bool _joinFlag = false;
 
-    public int ID
+    public bool JoinFlag
     {
         get
         {
-            if(go != null)
-            {
-                return go.GetComponent<PhotonView>().ownerId;
-            }
-            return 0;
+            return _joinFlag;
+        }
+        set
+        {
+            _joinFlag = value;
         }
     }
 
@@ -41,7 +41,7 @@ public class Network : Photon.MonoBehaviour {
     {
         Debug.Log("Lobbyに入りました");
 
-        JoinRoom();
+        //JoinRoom();
         // ルームが一つもなかったらルームを作成、そうでなかったらルームに入る（指定のルーム）
         //if(PhotonNetwork.GetRoomList().Length == 0)
         //{
@@ -60,11 +60,7 @@ public class Network : Photon.MonoBehaviour {
     {
         Debug.Log("Roomには入りました");
 
-        RoomChackerManager joinFlag = GameObject.FindObjectOfType<RoomChackerManager>();
-        if(joinFlag != null)
-        {
-            joinFlag.JoinFlag = true;
-        }
+        _joinFlag = true;
     }
 
     /// <summary>
@@ -102,16 +98,24 @@ public class Network : Photon.MonoBehaviour {
     /// </summary>
     public void PlayerInstantiate()
     {
-        Vector3 pos = new Vector3(2, 21, -15);
+        Vector3 pos = new Vector3(2, 21, -36);
         PlayerSystem playerSystem = GameObject.FindObjectOfType<PlayerSystem>();
-        go = PhotonNetwork.Instantiate("Prefabs/PlayerModel/" + playerSystem.getChar(), Vector3.zero, Quaternion.identity, 0);
-        go.name = "Player" + go.GetComponent<PhotonView>().ownerId.ToString();
+        GameObject go = PhotonNetwork.Instantiate("Prefabs/PlayerModel/Network" + playerSystem.getChar(), Vector3.zero, Quaternion.identity, 0);
         if (go.GetComponent<PhotonView>().ownerId != 1)
         {
-            pos *= -1;
+            //pos.x *= -1;
+            pos.z *= -1;
         }
 
         go.transform.position = pos;
+    }
+
+    /// <summary>
+    /// PlayerManagerをInstanceする関数
+    /// </summary>
+    public void PlayerManagerInstantiate()
+    {
+        PhotonNetwork.Instantiate("NetworkPlayerManager", Vector3.zero, Quaternion.identity, 0);
     }
 
     /// <summary>

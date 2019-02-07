@@ -18,8 +18,8 @@ public class NetworkLookCamera : MonoBehaviour {
     //offset
     private Vector3 _offset = new Vector3(0, 2, 0);
 
-    [SerializeField]
-    private GameObject target;
+    //ロックオン解除時のオブジェ
+    private GameObject _cameraObj;
 
     //コントローラのスクリプト
     GameController controller;
@@ -40,63 +40,88 @@ public class NetworkLookCamera : MonoBehaviour {
     //カメラフラグ
     private bool _cameraFlag = false;
 
+    //ロックオン解除フラグ
+    private bool _targetFlag;
+
     // Use this for initialization
     void Start () {
 
         controller = GameController.Instance;
 
-        //target = GameObject.FindGameObjectWithTag("Target");
-
-        //_right = GameObject.Find("CameraRight");
-
-        //_left = GameObject.Find("CameraLeft");
-
-        //_tps = _right;
-        
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if(_cameraFlag == false)
-        {
+        Debug.Log("かめら_player:" + _player);
 
-            // -ターゲットが見つかるまでターゲットを探し続ける
-            if(target == null || _right == null || _left == null)
+        if (_cameraFlag == false)
+        {
+            if (_target == null || _cameraObj == null || _right == null || _left == null)
             {
-                target = GameObject.FindGameObjectWithTag("Enemy");
+                _target = serchTag(gameObject, "Player");
+
+                Debug.Log("Update_target:" + _target);
+
+                _cameraObj = GameObject.Find("CameraObj");
 
                 _right = GameObject.Find("CameraRight");
 
                 _left = GameObject.Find("CameraLeft");
+
             }
             else
             {
                 _cameraFlag = true;
+
             }
-
             _tps = _right;
-
             return;
         }
 
-        if (target != null)
+        //R1押されたらロックオンの切り替え
+        if(controller.ButtonDown(Button.R1))
+        {
+            _targetFlag = !_targetFlag;
+        }
+
+        //falseの場合、敵をロックする
+        if (_targetFlag == false)
         {
             Vector3 pos;
 
-            //
-            pos = (_tps.transform.position - target.transform.position);
+            pos = (_tps.transform.position - _target.transform.position);
 
             //playerのポジションに入れる
             transform.position = _tps.transform.position + pos.normalized * 3 + _offset;
 
-            _target = target;
 
             if (_target)
             {
                 LockOnTargetObjcet(_target);
             }
+            float angle_x = 180f <= transform.eulerAngles.x ? transform.eulerAngles.x - 360 : transform.eulerAngles.x;
+            transform.eulerAngles = new Vector3(
+                Mathf.Clamp(angle_x, ANGLE_LIMIT_DOWN, ANGLE_LIMIT_UP),
+                transform.eulerAngles.y,
+                transform.eulerAngles.z);
+        }
+        else if(_targetFlag == true)
+        {
+            //trueの場合、フリールックカメラに切り替える
+            Vector3 pos;
 
+            
+
+            pos = (_tps.transform.position - _cameraObj.transform.position);
+
+            //playerのポジションに入れる
+            transform.position = _tps.transform.position + pos.normalized * 3 + _offset;
+
+            if (_cameraObj)
+            {
+                LockOnTargetObjcet(_cameraObj);
+            }
             float angle_x = 180f <= transform.eulerAngles.x ? transform.eulerAngles.x - 360 : transform.eulerAngles.x;
             transform.eulerAngles = new Vector3(
                 Mathf.Clamp(angle_x, ANGLE_LIMIT_DOWN, ANGLE_LIMIT_UP),
@@ -111,16 +136,84 @@ public class NetworkLookCamera : MonoBehaviour {
             _tps = _flag ? _right : _left;
         }
 
-
     }
 
     private void LockOnTargetObjcet(GameObject target)
     {
-
-         //target.transform.position + new Vector3(0, 0.5f, 0);
-
-        transform.LookAt(target.transform, Vector3.up);
+        transform.LookAt(target.transform.position + new Vector3(0, 1.0f, 0), Vector3.up);
     }
 
-    
+    //カメラフラグの取得
+    public bool GetFlag()
+    {
+        return _targetFlag;
+    }
+
+    GameObject serchTag(GameObject nowObj, string tagName)
+    {
+        float tmpDis = 0;           //距離用一時変数
+        float nearDis = 0;          //最も近いオブジェクトの距離
+        //string nearObjName = "";    //オブジェクト名称
+        GameObject targetObj = null; //オブジェクト
+
+        //タグ指定されたオブジェクトを配列で取得する
+        foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
+        {
+            //自身と取得したオブジェクトの距離を取得
+            tmpDis = Vector3.Distance(obs.transform.position, nowObj.transform.position);
+
+            //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
+            //一時変数に距離を格納
+            if ( nearDis < tmpDis && _player != null && _player != obs)
+            {
+                nearDis = tmpDis;
+                //nearObjName = obs.name;
+                targetObj = obs;
+                Debug.Log("関数_targetobj:" + targetObj);
+            }
+
+        }
+        //最も近かったオブジェクトを返す
+        //return GameObject.Find(nearObjName);
+        return targetObj;
+    }
+
+    //指定されたタグの中で最も近いものを取得
+    GameObject serchTagObj(GameObject nowObj, string tagName)
+    {
+        float tmpDis = 0;           //距離用一時変数
+        float nearDis = 0;          //最も近いオブジェクトの距離
+        //string nearObjName = "";    //オブジェクト名称
+        GameObject targetObj = null; //オブジェクト
+
+        //タグ指定されたオブジェクトを配列で取得する
+        foreach (GameObject obs in GameObject.FindGameObjectsWithTag(tagName))
+        {
+            //自身と取得したオブジェクトの距離を取得
+            tmpDis = Vector3.Distance(obs.transform.position, nowObj.transform.position);
+
+            //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
+            //一時変数に距離を格納
+            if (nearDis == 0 || nearDis > tmpDis)
+            {
+                    nearDis = tmpDis;
+                    //nearObjName = obs.name;
+                    targetObj = obs;
+
+            }
+
+        }
+
+        //最も近かったオブジェクトを返す
+        //return GameObject.Find(nearObjName);
+        return targetObj;
+    }
+
+    public void SetPlayer(GameObject obj)
+    {
+        if(_player == null)
+        {
+            _player = obj;
+        }
+    }
 }

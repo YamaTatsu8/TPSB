@@ -8,9 +8,6 @@ public class PlayerChecker : Photon.MonoBehaviour {
     [SerializeField]
     private int _id = 0;
 
-    // networkManegerからIDを取得
-    Network _network;
-
     // ネットワークビュー
     private PhotonView _photonView;
 
@@ -32,19 +29,24 @@ public class PlayerChecker : Photon.MonoBehaviour {
         // NetworkViewのコンポーネント
         _photonView = GetComponent<PhotonView>();
 
-        _network = GameObject.FindObjectOfType<Network>();
+        _id = _photonView.ownerId;
 
-        this.name = "Player" + _id;
-	}
-	
-	void Update () {
+        this.name = "Player" + _photonView.ownerId;
+
+        //カメラに自分をセットさせる
+        Camera.main.GetComponent<NetworkLookCamera>().SetPlayer(this.gameObject);
+
+    }
+
+    void Update()
+    {
         // -Photon上で自身ではなかったらreturn
         if (!_photonView.isMine)
         {
             return;
         }
 
-        if(_isChange)
+        if (_isChange)
         {
             return;
         }
@@ -60,11 +62,12 @@ public class PlayerChecker : Photon.MonoBehaviour {
             }
         }
 
-        for (int i = 0; i< _obj.Length; i++)
+        for (int i = 0; i < _obj.Length; i++)
         {
             if (_obj[i].GetComponent<PlayerChecker>().ID != _id)
             {
-                    _obj[i].tag = "Enemy";
+                //_obj[i].tag = "Enemy";
+                _obj[i].layer = LayerMask.NameToLayer("Enemy");
                 _isChange = true;
             }
         }

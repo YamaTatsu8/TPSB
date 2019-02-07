@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class NetworkPlayerManager : MonoBehaviour {
+public class NetworkPlayerReady : MonoBehaviour {
 
     private bool _isRedey = false;
 
@@ -11,6 +11,8 @@ public class NetworkPlayerManager : MonoBehaviour {
 
     private bool _isNextScene = false;
     private bool[] _playerFlag = new bool[2];
+
+    private static NetworkPlayerReady _playerManager;            //　複数生成されないようのオブジェクト
 
     public bool ReadyFlag
     {
@@ -36,14 +38,23 @@ public class NetworkPlayerManager : MonoBehaviour {
         }
     }
 
-	void Awake () {
+    void Awake () {
 
         _photonView = GetComponent<PhotonView>();
 
         this.name = "NetworkPlayerManager" + _photonView.ownerId;
+
+        //　シーンオブサーバーが１つしか存在しないようにする
+        if (_playerManager == null)
+        {
+            _playerManager = FindObjectOfType<NetworkPlayerReady>() as NetworkPlayerReady;
+
+            DontDestroyOnLoad(_playerManager);
+        }
+
     }
-	
-	void Update () {
+
+    void Update () {
 		
         if(!_photonView.isMine)
         {
@@ -60,14 +71,14 @@ public class NetworkPlayerManager : MonoBehaviour {
                     manager = GameObject.Find("NetworkPlayerManager1");
                     if(manager != null)
                     {
-                        _playerFlag[i] = manager.GetComponent<NetworkPlayerManager>().ReadyFlag;
+                        _playerFlag[i] = manager.GetComponent<NetworkPlayerReady>().ReadyFlag;
                     }
                     break;
                 case 1:
                     manager = GameObject.Find("NetworkPlayerManager2");
                     if (manager != null)
                     {
-                        _playerFlag[i] = manager.GetComponent<NetworkPlayerManager>().ReadyFlag;
+                        _playerFlag[i] = manager.GetComponent<NetworkPlayerReady>().ReadyFlag;
                     }
                     break;
                 default:
@@ -102,6 +113,11 @@ public class NetworkPlayerManager : MonoBehaviour {
 
     public void OnPhotonPlayerPropertiesChanged(object[] i_playerAndUpdatedProps)
     {
+        if (_isNextScene)
+        {
+            return;
+        }
+
         var player = i_playerAndUpdatedProps[0] as PhotonPlayer;
         var properties = i_playerAndUpdatedProps[1] as ExitGames.Client.Photon.Hashtable;
 
@@ -112,7 +128,7 @@ public class NetworkPlayerManager : MonoBehaviour {
             var playerObjects = GameObject.FindGameObjectsWithTag("PlayerManager");
             var playerObject = playerObjects.FirstOrDefault(obj => obj.GetComponent<PhotonView>().ownerId == player.ID);
 
-            playerObject.GetComponent<NetworkPlayerManager>().ReadyFlag = receiveflag;
+            playerObject.GetComponent<NetworkPlayerReady>().ReadyFlag = receiveflag;
 
             return;
         }
@@ -120,6 +136,11 @@ public class NetworkPlayerManager : MonoBehaviour {
 
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
+        if (_isNextScene)
+        {
+            return;
+        }
+
         if (stream.isWriting)
         {
             //データの送信

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NetworkWeaponManager : Photon.MonoBehaviour
+public class NetworkWeaponManager : MonoBehaviour
 {
     // セレクタ
     private enum Selector
@@ -34,6 +34,10 @@ public class NetworkWeaponManager : Photon.MonoBehaviour
     [SerializeField]
     private Selector _mode = Selector.AUTO;
 
+    // 撃つ弾の種類
+    [SerializeField]
+    private BulletType _type = BulletType.Normal;
+
     // 弾を撃てるか
     private bool _isShot = true;
 
@@ -43,18 +47,25 @@ public class NetworkWeaponManager : Photon.MonoBehaviour
     // 銃口
     private Transform _muzzle;
 
-    // コントローラー
-    private GameController _con;
-
     // 弾のプレハブ
     [SerializeField]
     private GameObject _bulletPrefab;
+
+    // SEの名前
+    [SerializeField]
+    private string _seName = "";
     
     private IEnumerator _routine;
 
-    // -ネットワーク
+    // コントローラー
+    private GameController _con;
+
+    // オーディオマネージャー
+    private AudioManager _audioManager;
+
+    // -PhotonView
     private PhotonView _photonView;
-    // -UI
+    // -UIを武器がActive時に表示するようにする
     [SerializeField]
     private GameObject _weaponUI;
 
@@ -83,6 +94,11 @@ public class NetworkWeaponManager : Photon.MonoBehaviour
         get { return _muzzle; }
     }
 
+    public BulletType Type
+    {
+        get { return _type; }
+    }
+
     public GameObject BulletPrefab
     {
         get { return _bulletPrefab; }
@@ -99,13 +115,26 @@ public class NetworkWeaponManager : Photon.MonoBehaviour
 
         _con = GameController.Instance;
 
+        _audioManager = AudioManager.Instance;
+
         _photonView = GetComponent<PhotonView>();
         if(_photonView.isMine)
         {
             _weaponUI.SetActive(true);
         }
     }
-    
+
+    private void Start()
+    {
+        _isBurst = true;
+        _isShot = true;
+
+        if (_routine != null)
+        {
+            StopCoroutine(_routine);
+        }
+    }
+
     private void Update()
     {
         _con.ControllerUpdate();
@@ -181,7 +210,6 @@ public class NetworkWeaponManager : Photon.MonoBehaviour
 
             _routine = this.DelayMethodForSpecifiedTime(_reloadTime, () =>
             {
-                Debug.Log("Reload");
                 _remainingBullets = _capacity;
 
                 _routine = null;
@@ -195,6 +223,11 @@ public class NetworkWeaponManager : Photon.MonoBehaviour
     {
         if (this.GetComponent<NetworkRayCastShoot>().Shot(fireRate))
         {
+            if (_seName != "")
+            {
+                _audioManager.PlaySE(_seName);
+            }
+
             _remainingBullets--;
         }
     }
@@ -204,7 +237,7 @@ public class NetworkWeaponManager : Photon.MonoBehaviour
         if (_isBurst)
         {
             _isBurst = false;
-            _routine = this.DelayMethodOnce(0, () =>
+            _routine = this.DelayMethod(0, () =>
             {
                 Shot(_fireRate);
                 this.Delay(1.0f / _roundsPerSecond, () =>
