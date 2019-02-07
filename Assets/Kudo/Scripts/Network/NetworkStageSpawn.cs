@@ -16,10 +16,10 @@ public class NetworkStageSpawn : MonoBehaviour {
 
         //オブサーバーを探す
         //GameObject obj = GameObject.Find("SceneManagerObject");
-        GameObject obj = GameObject.Find("Gamemanager");
+        GameObject obj = GameObject.Find("GameManager");
         //オブサーバーをゲットコンポーネント
         //StageSelectManager test = obj.GetComponent<NetworkSceneObserver>().GetStageSelectSceneData();
-        string test = obj.GetComponent<NetworkPlayScene>().StageName;
+        string test = obj.GetComponent<StageSystem>().StageName;
 
         _stage = (GameObject)Instantiate(Resources.Load("Prefabs/Stages/" + test));
 
