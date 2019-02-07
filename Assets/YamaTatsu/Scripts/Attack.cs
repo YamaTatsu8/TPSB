@@ -66,6 +66,9 @@ public class Attack : MonoBehaviour {
     //ロックオン解除フラグ
     private bool _targetFlag;
 
+    //pauseフラグ
+    private bool _pauseFlag;
+
     // Use this for initialization
     void Start () {
 
@@ -108,6 +111,8 @@ public class Attack : MonoBehaviour {
         //サブ武器の取得
         _subWeapon = GameObject.Find(_subWeaponName);
 
+        _pauseFlag = false;
+
         playerSystem.Init();
     }
 	
@@ -115,6 +120,12 @@ public class Attack : MonoBehaviour {
 	void Update () {
 
         controller.ControllerUpdate();
+
+        //フラグが立った時は通らない
+        if (_pauseFlag == true)
+        {
+            return;
+        }
 
         //R1押されたらロックオンの切り替え
         //if (controller.ButtonDown(Button.R1))
@@ -238,6 +249,11 @@ public class Attack : MonoBehaviour {
         //最も近かったオブジェクトを返す
         //return GameObject.Find(nearObjName);
         return targetObj;
+    }
+
+    public void SetPauseFlag(bool _flag)
+    {
+        _pauseFlag = _flag;
     }
 
 }
