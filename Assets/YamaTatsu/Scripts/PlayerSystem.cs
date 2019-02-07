@@ -31,7 +31,7 @@ public class PlayerSystem : MonoBehaviour {
     //
     void Awake()
     {
-        
+
     }
 
     private void Start()
@@ -115,12 +115,22 @@ public class PlayerSystem : MonoBehaviour {
     public void setMain1(string weapon)
     {
         _mainWeapon1 = weapon;
+        if(_model == null)
+        {
+            _model = GameObject.Find(_char);
+        }
         _model.GetComponent<CustomWeapon>().SetPose(weapon);
     }
 
     public void setMain2(string weapon)
     {
         _mainWeapon2 = weapon;
+
+        if (_model == null)
+        {
+            _model = GameObject.Find(_char);
+        }
+
         _model.GetComponent<CustomWeapon>().SetPose(weapon);
     }
 
@@ -137,8 +147,13 @@ public class PlayerSystem : MonoBehaviour {
         _mainWeapon2 = "Main2";
 
         _char = "Unity-Chan";
+
+        getSub();
     }
 
-
+    public void FindObj()
+    {
+        _model = GameObject.Find(_char);
+    }
 
 }
