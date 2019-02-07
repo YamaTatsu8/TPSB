@@ -5,6 +5,7 @@ using UnityEngine;
 public class TitleSceneManager : MonoBehaviour
 {
     private GameController _controller;     //　ゲームコントローラー
+    private AudioManager _audioManager;     //　AudioManager
     private GameObject _fadeObj;            //　fadeobj
 
     private bool _isStartFade;              //　フェードが開始されているかチェックするフラグ
@@ -21,6 +22,7 @@ public class TitleSceneManager : MonoBehaviour
     public void Initialize()
     {
         _controller = GameController.Instance;
+        _audioManager = AudioManager.Instance;
         _isStartFade = false;
     }
 
@@ -75,6 +77,7 @@ public class TitleSceneManager : MonoBehaviour
             || (_controller.ButtonDown(Button.Y))
             || (_controller.ButtonDown(Button.START)))
         {
+            _audioManager.PlaySE("decision17");
             //　フェードアウトを開始する
             if (_fadeObj == null)
             {
