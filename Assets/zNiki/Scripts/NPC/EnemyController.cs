@@ -36,6 +36,8 @@ public class EnemyController : MonoBehaviour
     {
         _agent = GetComponent<NavMeshAgent>();
 
+        _target = GameObject.FindGameObjectWithTag("Player");
+
         // 後で別の場所に移す
         _point = GameObject.Find("PointNum");
         
@@ -44,6 +46,10 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_target == null)
+        {
+            _target = GameObject.FindGameObjectWithTag("Player");
+        }
         _targetPos = _target.transform.position;
 
         //　キャラクターを追いかける状態であればキャラクターの目的地を再設定
