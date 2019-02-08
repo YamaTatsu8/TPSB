@@ -107,7 +107,7 @@ public class NetworkAttack : MonoBehaviour {
 
         _weapon2.SetActive(false);
 
-        _target = serchTag(gameObject,"Enemy");
+        _target = serchTag(gameObject,"Player");
 
         _cameraObj = GameObject.Find("CameraObj");
 
@@ -128,6 +128,11 @@ public class NetworkAttack : MonoBehaviour {
         if (!_photonView.isMine)
         {
             return;
+        }
+
+        if (_target == null)
+        {
+            _target = serchTag(gameObject, "Player");
         }
 
         controller.ControllerUpdate();
