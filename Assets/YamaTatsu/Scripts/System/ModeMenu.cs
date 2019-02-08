@@ -34,6 +34,8 @@ public class ModeMenu : MonoBehaviour {
     private RectTransform _trainingRoom;
     [SerializeField]
     private RectTransform _exit;
+    [SerializeField]
+    private RectTransform _solo;
 
     private AudioManager _audioManager;
 
@@ -47,6 +49,7 @@ public class ModeMenu : MonoBehaviour {
         CREATEROOM,
         ROOMJOIN,
         TRAININGROOM,
+        SOLOMODE,
         EXIT
     }
 
@@ -56,6 +59,7 @@ public class ModeMenu : MonoBehaviour {
         CREATE,
         JOIN,
         TRAINIG,
+        SOLO,
         EXIT
     }
 
@@ -94,6 +98,7 @@ public class ModeMenu : MonoBehaviour {
         _roomJoin = GameObject.Find("RoomJoin").GetComponent<RectTransform>();
         _trainingRoom = GameObject.Find("TrainingRoom").GetComponent<RectTransform>();
         _exit = GameObject.Find("Exit").GetComponent<RectTransform>();
+        _solo = GameObject.Find("SoloMode").GetComponent<RectTransform>();
 
         _audioManager = AudioManager.Instance;
 
@@ -217,6 +222,14 @@ public class ModeMenu : MonoBehaviour {
                     _fadeFlag = true;
                     _modeNum = (int)MODE.TRAINIG;
                     break;
+                case (int)MODE_SELECT.SOLOMODE:
+                    //次のシーンに移動    
+                    Fade fade4 = new Fade();
+                    _fadeOut = fade4.CreateFade();
+                    _fadeOut.GetComponentInChildren<Fade>().FadeOut();
+                    _fadeFlag = true;
+                    _modeNum = (int)MODE.SOLO;
+                    break;
                 case (int)MODE_SELECT.EXIT:
                     #if UNITY_EDITOR
                     UnityEditor.EditorApplication.isPlaying = false;
@@ -242,6 +255,10 @@ public class ModeMenu : MonoBehaviour {
                     break;
                 case (int)MODE.TRAINIG:
                     _sceneName = "TrainingRoom";
+                    _nextFlag = true;
+                    break;
+                case (int)MODE.SOLO:
+                    _sceneName = "Customaize";
                     _nextFlag = true;
                     break;
             }
