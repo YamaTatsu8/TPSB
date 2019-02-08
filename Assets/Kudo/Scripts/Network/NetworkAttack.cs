@@ -251,12 +251,12 @@ public class NetworkAttack : MonoBehaviour {
 
             //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
             //一時変数に距離を格納
-            if (nearDis < tmpDis && this.gameObject != obs)
+            if (nearDis < tmpDis && _player != null && _player != obs)
             {
                 nearDis = tmpDis;
                 //nearObjName = obs.name;
                 targetObj = obs;
-                Debug.Log("PlayerID:" + _photonView.isMine + "::" + targetObj);
+                Debug.Log("PlayerID:" + _photonView.ownerId + "::" + targetObj);
             }
 
         }
