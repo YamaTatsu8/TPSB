@@ -109,7 +109,7 @@ public class NetworkAttack : MonoBehaviour {
 
         _weapon2.SetActive(false);
 
-        _target = serchTag(gameObject,"Player");
+        //_target = serchTag(gameObject,"Player");
 
         _cameraObj = GameObject.Find("CameraObj");
 
@@ -135,8 +135,8 @@ public class NetworkAttack : MonoBehaviour {
         if (_player == null || _target == null)
         {
             _player = Camera.main.GetComponent<NetworkLookCamera>().Player;
-
-            _target = serchTag(gameObject, "Player");
+            object[] args1 = new object[] { gameObject, "Player" };
+            _photonView.RPC("serchTag",PhotonTargets.All, args1);
         }
 
         controller.ControllerUpdate();
@@ -236,7 +236,8 @@ public class NetworkAttack : MonoBehaviour {
         return pos;
     }
 
-    GameObject serchTag(GameObject nowObj, string tagName)
+    [PunRPC]
+    void serchTag(GameObject nowObj, string tagName)
     {
         float tmpDis = 0;           //距離用一時変数
         float nearDis = 0;          //最も近いオブジェクトの距離
@@ -255,14 +256,14 @@ public class NetworkAttack : MonoBehaviour {
             {
                 nearDis = tmpDis;
                 //nearObjName = obs.name;
-                targetObj = obs;
+                _target = obs;
                 Debug.Log("PlayerID:" + _photonView.ownerId + "::" + targetObj);
             }
 
         }
         //最も近かったオブジェクトを返す
         //return GameObject.Find(nearObjName);
-        return targetObj;
+        //return targetObj;
     }
 
     public void SetPauseFlag(bool _flag)
