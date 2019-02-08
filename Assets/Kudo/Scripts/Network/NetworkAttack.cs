@@ -82,9 +82,9 @@ public class NetworkAttack : MonoBehaviour {
         //PlayerSystemから情報をもらってくる
         PlayerSystem playerSystem = FindObjectOfType<PlayerSystem>();
 
-        _weaponName1 = playerSystem.getMain1();
+        _weaponName1 = "Network" + playerSystem.getMain1();
 
-        _weaponName2 = playerSystem.getMain2();
+        _weaponName2 = "Network" + playerSystem.getMain2();
 
         _subWeaponName = playerSystem.getSub();
 
