@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 
-public class NetworkStatus : MonoBehaviour {
+public class NetworkStatus : Photon.MonoBehaviour {
 
     //　HP
     [SerializeField]
@@ -93,7 +93,6 @@ public class NetworkStatus : MonoBehaviour {
             _hitObj.SetActive(false);
         }
 
-        SetShereHP(_HP);
         _animator.SetTrigger("Idle");
     }
 
@@ -118,11 +117,13 @@ public class NetworkStatus : MonoBehaviour {
             if (hp >= 1)
             {
                 _HP -= damage;
+                SetShereHP(_HP);
             }
         }
         else
         {
             _HP -= damage;
+            SetShereHP(_HP);
         }
         //_animator.SetTrigger("Damage");
     }
@@ -131,6 +132,7 @@ public class NetworkStatus : MonoBehaviour {
     {
         Debug.Log("回復");
         _HP += heal;
+        SetShereHP(_HP);
     }
 
     public float getHP()
