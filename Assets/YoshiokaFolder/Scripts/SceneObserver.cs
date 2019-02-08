@@ -225,7 +225,7 @@ public class SceneObserver : MonoBehaviour
                     _nowScene = (int)SCENE_STATE.Solo;
                     Loading load = new Loading();
                     GameObject loadObj = load.CreateLoading();
-                    loadObj.GetComponent<Loading>().NextScene(SCENE_STATE.TrainingRoom.ToString());
+                    loadObj.GetComponent<Loading>().NextScene(SCENE_STATE.Solo.ToString());
                 }
                 if (custObj.GetComponent<Equipment>().GetBackFlag())
                 {
