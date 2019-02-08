@@ -167,7 +167,8 @@ public class NetworkWeaponManager : MonoBehaviour
         {
             if (_isShot && _remainingBullets != 0)
             {
-                Shot(0.0f);
+                object[] args1 = new object[] { 0.0f };
+                _photonView.RPC("Shot", PhotonTargets.All, args1);
                 _isShot = false;
             }
         }

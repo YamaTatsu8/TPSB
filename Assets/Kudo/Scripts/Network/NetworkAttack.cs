@@ -252,7 +252,7 @@ public class NetworkAttack : MonoBehaviour {
                 nearDis = tmpDis;
                 //nearObjName = obs.name;
                 targetObj = obs;
-                Debug.Log("PlayerID:" + _photonView.ownerId + "::" + targetObj);
+                Debug.Log(targetObj);
             }
 
         }
