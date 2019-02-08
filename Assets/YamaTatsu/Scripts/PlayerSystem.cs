@@ -42,6 +42,8 @@ public class PlayerSystem : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
         }
 
+        Debug.Log("sss");
+
         _char = "Unity-Chan";
 
         _mainWeapon1 = "Main1";
@@ -146,9 +148,10 @@ public class PlayerSystem : MonoBehaviour {
 
         _mainWeapon2 = "Main2";
 
+        getSub();
+
         _char = "Unity-Chan";
 
-        getSub();
     }
 
     public void FindObj()

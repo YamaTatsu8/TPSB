@@ -16,6 +16,7 @@ public class SceneObserver : MonoBehaviour
         TrainingRoom,
         CustomizeWindow,
         Solo,
+        SoloPlay,
         StageSelectScene,
         PlayScene,
         ResultScene
@@ -222,7 +223,7 @@ public class SceneObserver : MonoBehaviour
                 }
                 if (custObj.GetComponent<Equipment>().GetNextFlag())
                 {
-                    _nowScene = (int)SCENE_STATE.Solo;
+                    _nowScene = (int)SCENE_STATE.SoloPlay;
                     Loading load = new Loading();
                     GameObject loadObj = load.CreateLoading();
                     loadObj.GetComponent<Loading>().NextScene(SCENE_STATE.Solo.ToString());
@@ -232,6 +233,9 @@ public class SceneObserver : MonoBehaviour
                     _nowScene = (int)SCENE_STATE.ModeMenuScene;
                     ChangeScene(SCENE_STATE.ModeMenuScene.ToString());
                 }
+                break;
+
+            case (int)SCENE_STATE.SoloPlay:
                 break;
 
             //　ステージセレクトシーンの更新処理
