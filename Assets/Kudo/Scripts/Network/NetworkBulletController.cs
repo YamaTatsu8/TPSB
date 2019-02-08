@@ -79,10 +79,10 @@ public class NetworkBulletController: MonoBehaviour
 
             if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Target")
             {
-                if(!collision.gameObject.GetComponent<PhotonView>().isMine)
-                {
-                    return;
-                }
+                //if(collision.gameObject.GetComponent<PhotonView>().isMine)
+                //{
+                //    return;
+                //}
                 collision.gameObject.GetComponent<NetworkStatus>().hitDamage(_bulletDamage);
                 //object[] args1 = new object[] { _bulletDamage };
 
