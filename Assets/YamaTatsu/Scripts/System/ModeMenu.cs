@@ -200,7 +200,7 @@ public class ModeMenu : MonoBehaviour {
         }
 
         //_stateに合わせて説明のテキストを変更
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 5; i++)
         {
             if (_state == i)
             {
