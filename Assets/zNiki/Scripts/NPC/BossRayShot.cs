@@ -152,7 +152,7 @@ public class BossRayShot : MonoBehaviour
                     break;
             }
 
-            bulletClone.GetComponent<BulletController>().DeleteBullet(bulletClone);
+            bulletClone.GetComponent<EnemyBulletController>().DeleteBullet(bulletClone);
 
             return true;
         }
