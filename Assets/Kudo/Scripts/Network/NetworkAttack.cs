@@ -72,6 +72,8 @@ public class NetworkAttack : MonoBehaviour {
     // -PhotonView
     private PhotonView _photonView;
 
+    private GameObject _player;
+
     // Use this for initialization
     void Start () {
 
@@ -119,6 +121,7 @@ public class NetworkAttack : MonoBehaviour {
         // -PhtonViewのコンポーネント
         _photonView = GetComponent<PhotonView>();
 
+        _player = Camera.main.GetComponent<NetworkLookCamera>().Player;
         //playerSystem.Init();
     }
 	
@@ -221,7 +224,7 @@ public class NetworkAttack : MonoBehaviour {
     {
         Vector3 pos = Vector3.zero;
 
-        if (_targetFlag == false || _target != null)
+        if (_targetFlag == false && _target != null)
         {
             pos = _target.transform.position + new Vector3(0, 1, 0);
         }
@@ -247,7 +250,7 @@ public class NetworkAttack : MonoBehaviour {
 
             //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
             //一時変数に距離を格納
-            if (nearDis < tmpDis && Camera.main.GetComponent<NetworkLookCamera>().Player != obs)
+            if (nearDis < tmpDis && _player != obs)
             {
                 nearDis = tmpDis;
                 //nearObjName = obs.name;
