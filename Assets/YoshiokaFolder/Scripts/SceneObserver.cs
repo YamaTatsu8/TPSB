@@ -15,6 +15,7 @@ public class SceneObserver : MonoBehaviour
         RoomCheck,
         TrainingRoom,
         CustomizeWindow,
+        Solo,
         StageSelectScene,
         PlayScene,
         ResultScene
@@ -113,6 +114,11 @@ public class SceneObserver : MonoBehaviour
                         loadObj.GetComponent<Loading>().NextScene(SCENE_STATE.CustomizeWindow.ToString());
                         //ChangeScene("CustomizeWindow");
                     }
+                    if (selectName == "Customaize")
+                    {
+                        _nowScene = (int)SCENE_STATE.Solo;
+                        loadObj.GetComponent<Loading>().NextScene(SCENE_STATE.CustomizeWindow.ToString());
+                    }
                 }
                 break;
 
@@ -200,7 +206,33 @@ public class SceneObserver : MonoBehaviour
                     _nowScene = (int)SCENE_STATE.ModeMenuScene;
                     ChangeScene(SCENE_STATE.ModeMenuScene.ToString());
                 }
-                break;                
+                break;
+
+            case (int)SCENE_STATE.Solo:
+                GameObject custObj = GameObject.Find("BackGround");
+
+                if (custObj == null) { return; }
+                else
+                {
+                    GameObject load = GameObject.Find("LoadCanvas");
+                    if (load != null)
+                    {
+                        load.GetComponent<Loading>().FinalReset();
+                    }
+                }
+                if (custObj.GetComponent<Equipment>().GetNextFlag())
+                {
+                    _nowScene = (int)SCENE_STATE.Solo;
+                    Loading load = new Loading();
+                    GameObject loadObj = load.CreateLoading();
+                    loadObj.GetComponent<Loading>().NextScene(SCENE_STATE.TrainingRoom.ToString());
+                }
+                if (custObj.GetComponent<Equipment>().GetBackFlag())
+                {
+                    _nowScene = (int)SCENE_STATE.ModeMenuScene;
+                    ChangeScene(SCENE_STATE.ModeMenuScene.ToString());
+                }
+                break;
 
             //　ステージセレクトシーンの更新処理
             case (int)SCENE_STATE.StageSelectScene:
