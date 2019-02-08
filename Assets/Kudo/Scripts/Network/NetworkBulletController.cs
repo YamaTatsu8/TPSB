@@ -58,10 +58,10 @@ public class NetworkBulletController: MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
-        if (_photonView.isMine)
-        {
-            return;
-        }
+        //if (!_photonView.isMine)
+        //{
+        //    return;
+        //}
 
         if (_isAttack)
         {
@@ -79,10 +79,14 @@ public class NetworkBulletController: MonoBehaviour
 
             if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Target")
             {
-                //collision.gameObject.GetComponent<NetworkStatus>().hitDamage(_bulletDamage);
-                object[] args1 = new object[] { _bulletDamage };
+                if(!collision.gameObject.GetComponent<PhotonView>().isMine)
+                {
+                    return;
+                }
+                collision.gameObject.GetComponent<NetworkStatus>().hitDamage(_bulletDamage);
+                //object[] args1 = new object[] { _bulletDamage };
 
-                collision.gameObject.GetComponent<NetworkStatus>().GetComponent<PhotonView>().RPC("hitDamage", PhotonTargets.All, args1);
+                //collision.gameObject.GetComponent<NetworkStatus>().GetComponent<PhotonView>().RPC("hitDamage", PhotonTargets.All, args1);
 
                 if (_seName != "")
                 {
@@ -106,10 +110,10 @@ public class NetworkBulletController: MonoBehaviour
         {
             if (collision.gameObject.tag == "Player" && !_isHealed)
             {
-                //collision.gameObject.GetComponent<NetworkStatus>().RecoveryHP(_bulletDamage);
+                collision.gameObject.GetComponent<NetworkStatus>().RecoveryHP(_bulletDamage);
                 object[] args2 = new object[] { _bulletDamage };
 
-                collision.gameObject.GetComponent<NetworkStatus>().GetComponent<PhotonView>().RPC("RecoveryHP", PhotonTargets.All, args2);
+                //collision.gameObject.GetComponent<NetworkStatus>().GetComponent<PhotonView>().RPC("RecoveryHP", PhotonTargets.All, args2);
 
                 _isHealed = true;
             }
