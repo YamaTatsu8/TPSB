@@ -108,6 +108,12 @@ public class Attack : MonoBehaviour {
 
         _cameraObj = GameObject.Find("CameraObj");
 
+        Debug.Log(_weaponName1);
+        Debug.Log(_weapon);
+        Debug.Log(_weapon1);
+        Debug.Log(_weapon2);
+        Debug.Log(_cameraObj);
+
         //サブ武器の取得
         _subWeapon = GameObject.Find(_subWeaponName);
 
@@ -236,7 +242,6 @@ public class Attack : MonoBehaviour {
                 nearDis = tmpDis;
                 //nearObjName = obs.name;
                 targetObj = obs;
-                Debug.Log(targetObj);
             }
 
         }
