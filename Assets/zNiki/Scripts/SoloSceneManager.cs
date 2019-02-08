@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoloSceneManager : MonoBehaviour {
 
     private GameController _controller;     //　ゲームコントローラー
-    public bool _isFinish;
+    public bool _isFinish = false;
 
     public bool _isWin = false;
 
@@ -14,6 +14,8 @@ public class SoloSceneManager : MonoBehaviour {
     private GameObject _boss;
     private GameObject _fadeObj;            //　フェード
     private bool _isStartFade;              //　フェードが開始されているかチェックするフラグ
+    private Material _stageSkybox;          //　スカイボックス保存用
+    private GameObject _tank;
 
     // Use this for initialization
     void Start ()
@@ -26,9 +28,7 @@ public class SoloSceneManager : MonoBehaviour {
         _controller = GameController.Instance;
         _isStartFade = false;
 
-        _player = GameObject.FindGameObjectWithTag("Player");
-
-        _boss = GameObject.FindGameObjectWithTag("Enemy");
+       
     }
 
     // Update is called once per frame
@@ -48,23 +48,46 @@ public class SoloSceneManager : MonoBehaviour {
             Fade fade = new Fade();
             _fadeObj = fade.CreateFade();
             _fadeObj.GetComponentInChildren<Fade>().FadeIn();
+            _player = GameObject.FindGameObjectWithTag("Player");
+            _tank = GameObject.Find("Enemy");
+            _boss = GameObject.FindGameObjectWithTag("Enemy");
+
+            _stageSkybox = (Material)Instantiate(Resources.Load("Material/" + "Stage2" + "BackGround"));
+            RenderSettings.skybox = _stageSkybox;
         }
         //　フェードが終了していたらシーンを変更する
         if (_fadeObj.GetComponentInChildren<Fade>().isCheckedFadeOut() && _isStartFade)
         {
             _isStartFade = false;
+            _isFinish = true;
             return false;
         }
-        if (_boss.GetComponent<EnemyController>()._enemyHealth == 0)
+        if (_boss.GetComponent<Status>().getHP() <= 0)
         {
             _isWin = true;
-
-            _isFinish = true;
+            //　フェードアウトを開始する
+            if (_fadeObj == null)
+            {
+                Fade fade = new Fade();
+                _fadeObj = fade.CreateFade();
+            }
+            _fadeObj.GetComponentInChildren<Fade>().FadeOut();
+            _isStartFade = true;
+            Destroy(_tank);
         }
-        else if (_player.GetComponent<Status>().getHP() == 0)
+        if (_player.GetComponent<Status>().getHP() <= 0)
         {
-            _isFinish = true;
+            //　フェードアウトを開始する
+            if (_fadeObj == null)
+            {
+                Fade fade = new Fade();
+                _fadeObj = fade.CreateFade();
+            }
+            _fadeObj.GetComponentInChildren<Fade>().FadeOut();
+            _isStartFade = true;
+            Destroy(_player);
         }
+
         return true;
     }
 
@@ -80,22 +103,5 @@ public class SoloSceneManager : MonoBehaviour {
         }
 
         _controller.ControllerUpdate();
-
-        //　ボタンが押されたら
-        if ((_controller.ButtonDown(Button.A))
-            || (_controller.ButtonDown(Button.B))
-            || (_controller.ButtonDown(Button.X))
-            || (_controller.ButtonDown(Button.Y))
-            || (_controller.ButtonDown(Button.START)))
-        {
-            //　フェードアウトを開始する
-            if (_fadeObj == null)
-            {
-                Fade fade = new Fade();
-                _fadeObj = fade.CreateFade();
-            }
-            _fadeObj.GetComponentInChildren<Fade>().FadeOut();
-            _isStartFade = true;
-        }
     }
 }

@@ -43,8 +43,10 @@ public class ResultSceneManager : MonoBehaviour
         //　戦っていたステージを読み込む
         GameObject obj = GameObject.Find("SceneManagerObject");
         StageSelectManager ssm = obj.GetComponent<SceneObserver>().GetStageSelectSceneData();
-        _stage = (GameObject)Instantiate(Resources.Load("Prefabs/Stages/" + ssm.GetSelectStageName()));
-        StageHeightAdjustment(ssm.GetSelectStageName());
+        _stage = (GameObject)Instantiate(Resources.Load("Prefabs/Stages/" + "Stage1"));
+        //_stage = (GameObject)Instantiate(Resources.Load("Prefabs/Stages/" + ssm.GetSelectStageName()));
+        StageHeightAdjustment("Stage1");
+        //StageHeightAdjustment(ssm.GetSelectStageName());
 
         //　戦っていたキャラクターを読み込む
         GameObject ps = GameObject.Find("PlayerSystem");
@@ -61,7 +63,8 @@ public class ResultSceneManager : MonoBehaviour
         ps.GetComponent<PlayerSystem>().Init();
 
         //　戦っていたskyboxを読み込む
-        _stageSkybox = (Material)Instantiate(Resources.Load("Material/" + ssm.GetSelectStageName() + "BackGround"));
+        _stageSkybox = (Material)Instantiate(Resources.Load("Material/" + "Stage2" + "BackGround"));
+        //_stageSkybox = (Material)Instantiate(Resources.Load("Material/" + ssm.GetSelectStageName() + "BackGround"));
         RenderSettings.skybox = _stageSkybox;
         //　ステージのライティングを初期化
         RenderSettings.ambientSkyColor = Color.gray;

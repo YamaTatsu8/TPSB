@@ -236,6 +236,20 @@ public class SceneObserver : MonoBehaviour
                 break;
 
             case (int)SCENE_STATE.SoloPlay:
+                GameObject sm = GameObject.Find("SceneManager");
+
+                GameObject load2 = GameObject.Find("LoadCanvas");
+                if (load2 != null)
+                {
+                    load2.GetComponent<Loading>().FinalReset();
+                }
+                if (sm.GetComponent<SoloSceneManager>()._isFinish)
+                {
+                    _nowScene = (int)SCENE_STATE.ResultScene;
+                    _result.Initialize();
+                    _result.SetBattleResult(sm.GetComponent<SoloSceneManager>()._isWin);
+                    ChangeScene(SCENE_STATE.ResultScene.ToString());
+                }
                 break;
 
             //　ステージセレクトシーンの更新処理
