@@ -34,7 +34,7 @@ public class PlayerChecker : Photon.MonoBehaviour {
         this.name = "Player" + _photonView.ownerId;
 
         //カメラに自分をセットさせる
-        Camera.main.GetComponent<NetworkLookCamera>().SetPlayer(this.gameObject);
+        Camera.main.GetComponent<NetworkLookCamera>().Player = this.gameObject;
 
     }
 
