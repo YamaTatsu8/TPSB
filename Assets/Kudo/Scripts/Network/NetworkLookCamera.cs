@@ -51,7 +51,10 @@ public class NetworkLookCamera : MonoBehaviour {
         }
         set
         {
-            _player = value;
+            if (_player == null)
+            {
+                _player = value;
+            }
         }
     }
 
