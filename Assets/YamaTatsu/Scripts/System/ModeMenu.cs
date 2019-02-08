@@ -144,6 +144,8 @@ public class ModeMenu : MonoBehaviour {
                 _roomJoin.localScale = new Vector3(1, 1, 1);
                 _trainingRoom.GetComponent<Image>().sprite = _sprite;
                 _trainingRoom.localScale = new Vector3(1, 1, 1);
+                _solo.GetComponent<Image>().sprite = _sprite;
+                _solo.localScale = new Vector3(1, 1, 1);
                 _exit.GetComponent<Image>().sprite = _sprite;
                 _exit.localScale = new Vector3(1.0f, 1.0f, 1);
                 break;
@@ -154,6 +156,8 @@ public class ModeMenu : MonoBehaviour {
                 _roomJoin.localScale = new Vector3(1.2f, 1.2f, 1);
                 _trainingRoom.GetComponent<Image>().sprite = _sprite;
                 _trainingRoom.localScale = new Vector3(1, 1, 1);
+                _solo.GetComponent<Image>().sprite = _sprite;
+                _solo.localScale = new Vector3(1, 1, 1);
                 _exit.GetComponent<Image>().sprite = _sprite;
                 _exit.localScale = new Vector3(1.0f, 1.0f, 1);
                 break;
@@ -164,6 +168,20 @@ public class ModeMenu : MonoBehaviour {
                 _roomJoin.localScale = new Vector3(1, 1, 1);
                 _trainingRoom.GetComponent<Image>().sprite = _sprite2;
                 _trainingRoom.localScale = new Vector3(1.2f, 1.2f, 1);
+                _solo.GetComponent<Image>().sprite = _sprite;
+                _solo.localScale = new Vector3(1, 1, 1);
+                _exit.GetComponent<Image>().sprite = _sprite;
+                _exit.localScale = new Vector3(1.0f, 1.0f, 1);
+                break;
+            case (int)MODE_SELECT.SOLOMODE:
+                _createRoom.GetComponent<Image>().sprite = _sprite;
+                _createRoom.localScale = new Vector3(1, 1, 1);
+                _roomJoin.GetComponent<Image>().sprite = _sprite;
+                _roomJoin.localScale = new Vector3(1, 1, 1);
+                _trainingRoom.GetComponent<Image>().sprite = _sprite;
+                _trainingRoom.localScale = new Vector3(1, 1, 1);
+                _solo.GetComponent<Image>().sprite = _sprite2;
+                _solo.localScale = new Vector3(1.2f, 1.2f, 1);
                 _exit.GetComponent<Image>().sprite = _sprite;
                 _exit.localScale = new Vector3(1.0f, 1.0f, 1);
                 break;
@@ -174,6 +192,8 @@ public class ModeMenu : MonoBehaviour {
                 _roomJoin.localScale = new Vector3(1, 1, 1);
                 _trainingRoom.GetComponent<Image>().sprite = _sprite;
                 _trainingRoom.localScale = new Vector3(1.0f, 1.0f, 1);
+                _solo.GetComponent<Image>().sprite = _sprite;
+                _solo.localScale = new Vector3(1, 1, 1);
                 _exit.GetComponent<Image>().sprite = _sprite2;
                 _exit.localScale = new Vector3(1.2f, 1.2f, 1);
                 break;
