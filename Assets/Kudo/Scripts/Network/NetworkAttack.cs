@@ -121,7 +121,6 @@ public class NetworkAttack : MonoBehaviour {
         // -PhtonViewのコンポーネント
         _photonView = GetComponent<PhotonView>();
 
-        _player = Camera.main.GetComponent<NetworkLookCamera>().Player;
         //playerSystem.Init();
     }
 	
@@ -133,8 +132,10 @@ public class NetworkAttack : MonoBehaviour {
             return;
         }
 
-        if (_target == null)
+        if (_player == null || _target == null)
         {
+            _player = Camera.main.GetComponent<NetworkLookCamera>().Player;
+
             _target = serchTag(gameObject, "Player");
         }
 
@@ -250,12 +251,12 @@ public class NetworkAttack : MonoBehaviour {
 
             //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
             //一時変数に距離を格納
-            if (nearDis < tmpDis && _player != obs)
+            if (nearDis < tmpDis && this.gameObject != obs)
             {
                 nearDis = tmpDis;
                 //nearObjName = obs.name;
                 targetObj = obs;
-                Debug.Log(targetObj);
+                Debug.Log("PlayerID:" + _photonView.isMine + "::" + targetObj);
             }
 
         }
