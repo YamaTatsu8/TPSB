@@ -119,7 +119,7 @@ public class NetworkAttack : MonoBehaviour {
         // -PhtonViewのコンポーネント
         _photonView = GetComponent<PhotonView>();
 
-        playerSystem.Init();
+        //playerSystem.Init();
     }
 	
 	// Update is called once per frame
@@ -161,11 +161,11 @@ public class NetworkAttack : MonoBehaviour {
 
             if (_weaponFlag == true && _animator.GetBool("Attack") && _anistate.normalizedTime >= 0.8f)
             {
-                _weapon1.GetComponent<WeaponManager>().Attack();
+                _weapon1.GetComponent<NetworkWeaponManager>().Attack();
             }
             else if(_weaponFlag == false && _animator.GetBool("Attack") == true)
             {
-                _weapon2.GetComponent<WeaponManager>().Attack();
+                _weapon2.GetComponent<NetworkWeaponManager>().Attack();
             }
             
             if (_flag == false)
@@ -189,7 +189,7 @@ public class NetworkAttack : MonoBehaviour {
 
         if (controller.TriggerDown(Trigger.RIGHT))
         {
-            _subWeapon.GetComponent<WeaponManager>().Attack();
+            _subWeapon.GetComponent<NetworkWeaponManager>().Attack();
             _model.transform.LookAt(_target.transform);
         }
 
