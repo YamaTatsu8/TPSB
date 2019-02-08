@@ -36,6 +36,7 @@ public class BossRayShot : MonoBehaviour
     private List<GameObject> _bits;
 
     // Use this for initialization
+
     void Start()
     {
         _bulletSpeed = this.GetComponent<BossWeapon>()._bulletSpeed;

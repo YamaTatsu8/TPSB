@@ -30,7 +30,7 @@ public class EnemyController : MonoBehaviour
 
     // 後で別の場所に移す
     private GameObject _point;
-
+    
     // Use this for initialization
     void Start()
     {
@@ -38,6 +38,7 @@ public class EnemyController : MonoBehaviour
 
         // 後で別の場所に移す
         _point = GameObject.Find("PointNum");
+        
     }
 
     // Update is called once per frame
@@ -83,8 +84,6 @@ public class EnemyController : MonoBehaviour
         _enemyHealth -= damage;
         if (_enemyHealth <= 0)
         {
-            int n = int.Parse(_point.GetComponent<Text>().text) + 1;
-            _point.GetComponent<Text>().text = n.ToString();
             Destroy(gameObject);
         }
     }
