@@ -104,10 +104,10 @@ public class NetworkRayCastShoot : MonoBehaviour
                         bulletClone.GetComponent<LineRenderer>().SetPosition(1, hit.point + ray.direction);
                         if (hit.transform.tag == "Enemy")
                         {
-                            //hit.transform.GetComponent<NetworkStatus>().hitDamage(bulletClone.GetComponent<NetworkBulletController>().BulletDamage);
-                            object[] args1 = new object[] { bulletClone.GetComponent<NetworkBulletController>().BulletDamage };
+                            hit.transform.GetComponent<NetworkStatus>().hitDamage(bulletClone.GetComponent<NetworkBulletController>().BulletDamage);
+                            //object[] args1 = new object[] { bulletClone.GetComponent<NetworkBulletController>().BulletDamage };
 
-                            hit.transform.GetComponent<NetworkStatus>().GetComponent<PhotonView>().RPC("hitDamage", PhotonTargets.All, args1);
+                            //hit.transform.GetComponent<NetworkStatus>().GetComponent<PhotonView>().RPC("hitDamage", PhotonTargets.All, args1);
                         }
                     }
                     else
