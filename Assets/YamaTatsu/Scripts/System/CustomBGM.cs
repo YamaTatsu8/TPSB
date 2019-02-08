@@ -15,10 +15,6 @@ public class CustomBGM : MonoBehaviour {
 
         _audio = AudioManager.Instance;
 
-        Debug.Log(_audio);
-
-        _audio.GetComponent<AudioManager>().PlayBGM(_bgmName);
-
         _audio.PlayBGM(_bgmName);
 
     }
