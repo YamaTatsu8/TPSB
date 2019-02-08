@@ -59,12 +59,12 @@ public class Status : MonoBehaviour {
         // HPが0以下の場合破壊
         if(_HP < 0)
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
 
         if(_HP >= 100)
         {
-            _HP = 100;
+            //_HP = 100;
         }
 
         if(_isTraining)

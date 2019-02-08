@@ -119,7 +119,7 @@ public class Attack : MonoBehaviour {
 
         _pauseFlag = false;
 
-        playerSystem.Init();
+       
     }
 	
 	// Update is called once per frame

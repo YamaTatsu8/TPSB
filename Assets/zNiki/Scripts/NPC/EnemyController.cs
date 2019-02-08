@@ -55,11 +55,9 @@ public class EnemyController : MonoBehaviour
         //　キャラクターを追いかける状態であればキャラクターの目的地を再設定
         if (_state == State.Chase)
         {
-            Debug.Log("Chase1");
             //　攻撃する距離だったら攻撃
             if (_agent.remainingDistance < 5.0f && Mathf.Abs(_agent.transform.position.y - _target.transform.position.y) <= 3)
             {
-                Debug.Log("Chase2");
                 _state = State.Attack;
             }
             else
@@ -76,8 +74,6 @@ public class EnemyController : MonoBehaviour
             var dir = Vector3.RotateTowards(transform.forward, playerDirection, _rotateSpeed * Time.deltaTime, 0f);
             //　算出した方向の角度を敵の角度に設定
             transform.rotation = Quaternion.LookRotation(dir);
-
-            _weapon.GetComponent<BossWeapon>().Attack();
 
             _state = State.Chase;
             Debug.Log("Attack");
