@@ -101,6 +101,7 @@ public class NetworkStatus : Photon.MonoBehaviour {
         return true;
     }
 
+    [PunRPC]
     //ダメージを与える処理
     public void hitDamage(int damage)
     {
@@ -117,22 +118,23 @@ public class NetworkStatus : Photon.MonoBehaviour {
             if (hp >= 1)
             {
                 _HP -= damage;
-                SetShereHP(_HP);
+                //SetShereHP(_HP);
             }
         }
         else
         {
             _HP -= damage;
-            SetShereHP(_HP);
+            //SetShereHP(_HP);
         }
         //_animator.SetTrigger("Damage");
     }
 
+    [PunRPC]
     public void RecoveryHP(int heal)
     {
         Debug.Log("回復");
         _HP += heal;
-        SetShereHP(_HP);
+        //SetShereHP(_HP);
     }
 
     public float getHP()
@@ -140,37 +142,37 @@ public class NetworkStatus : Photon.MonoBehaviour {
         return (float)_HP;
     }
 
-    public void SetShereHP(float num)
-    {
-        if (!_photonView.isMine)
-        {
-            return;
-        }
+    //public void SetShereHP(float num)
+    //{
+    //    if (!_photonView.isMine)
+    //    {
+    //        return;
+    //    }
 
-        var properties = new ExitGames.Client.Photon.Hashtable();
-        properties.Add("Number", num);
+    //    var properties = new ExitGames.Client.Photon.Hashtable();
+    //    properties.Add("Number", num);
 
-        PhotonNetwork.player.SetCustomProperties(properties);
+    //    PhotonNetwork.player.SetCustomProperties(properties);
 
-    }
+    //}
 
-    public void OnPhotonPlayerPropertiesChanged(object[] i_playerAndUpdatedProps)
-    {
+    //public void OnPhotonPlayerPropertiesChanged(object[] i_playerAndUpdatedProps)
+    //{
 
-        var player = i_playerAndUpdatedProps[0] as PhotonPlayer;
-        var properties = i_playerAndUpdatedProps[1] as ExitGames.Client.Photon.Hashtable;
+    //    var player = i_playerAndUpdatedProps[0] as PhotonPlayer;
+    //    var properties = i_playerAndUpdatedProps[1] as ExitGames.Client.Photon.Hashtable;
 
-        object flagvalue = null;
-        if (properties.TryGetValue("Number", out flagvalue))
-        {
-            float receiveNum = (float)flagvalue;
-            var playerObjects = GameObject.FindGameObjectsWithTag("Player");
-            var playerObject = playerObjects.FirstOrDefault(obj => obj.GetComponent<PhotonView>().ownerId == player.ID);
+    //    object flagvalue = null;
+    //    if (properties.TryGetValue("Number", out flagvalue))
+    //    {
+    //        float receiveNum = (float)flagvalue;
+    //        var playerObjects = GameObject.FindGameObjectsWithTag("Player");
+    //        var playerObject = playerObjects.FirstOrDefault(obj => obj.GetComponent<PhotonView>().ownerId == player.ID);
 
-            playerObject.GetComponent<NetworkStatus>().HP = receiveNum;
+    //        playerObject.GetComponent<NetworkStatus>().HP = receiveNum;
 
-            return;
-        }
-    }
+    //        return;
+    //    }
+    //}
 
 }

@@ -66,6 +66,9 @@ public class NetworkAttack : MonoBehaviour {
     //ロックオン解除フラグ
     private bool _targetFlag;
 
+    //pauseフラグ
+    private bool _pauseFlag;
+
     // -PhotonView
     private PhotonView _photonView;
 
@@ -79,9 +82,9 @@ public class NetworkAttack : MonoBehaviour {
         //PlayerSystemから情報をもらってくる
         PlayerSystem playerSystem = FindObjectOfType<PlayerSystem>();
 
-        _weaponName1 = "Network" + playerSystem.getMain1();
+        _weaponName1 = playerSystem.getMain1();
 
-        _weaponName2 = "Network" + playerSystem.getMain2();
+        _weaponName2 = playerSystem.getMain2();
 
         _subWeaponName = playerSystem.getSub();
 
@@ -104,41 +107,36 @@ public class NetworkAttack : MonoBehaviour {
 
         _weapon2.SetActive(false);
 
-        _target = serchTag(gameObject, "Player");
+        _target = serchTag(gameObject,"Enemy");
 
         _cameraObj = GameObject.Find("CameraObj");
 
         //サブ武器の取得
-        _subWeapon = GameObject.Find("SubWeapon");
+        _subWeapon = GameObject.Find(_subWeaponName);
+
+        _pauseFlag = false;
 
         // -PhtonViewのコンポーネント
         _photonView = GetComponent<PhotonView>();
 
-        //playerSystem.Init();  ←　リザルトシーンに移動
+        playerSystem.Init();
     }
 	
 	// Update is called once per frame
 	void Update () {
         // 自身でなかったらreturn
-        if(!_photonView.isMine)
+        if (!_photonView.isMine)
         {
             return;
         }
 
-        if(_target == null)
-        {
-            _target = serchTag(gameObject, "Player");
-        }
-
         controller.ControllerUpdate();
 
-        //R1押されたらロックオンの切り替え
-        if (controller.ButtonDown(Button.R1))
+        //フラグが立った時は通らない
+        if (_pauseFlag == true)
         {
-            _targetFlag = !_targetFlag;
+            return;
         }
-
-        //Debug.Log(_changeWeapon);
 
         if (controller.ButtonDown(Button.X))
         {
@@ -159,13 +157,15 @@ public class NetworkAttack : MonoBehaviour {
         if (controller.TriggerDown(Trigger.LEFT))
         {
             _animator.SetBool("Attack",true);
-            if (_weaponFlag == true)
+            var _anistate = _animator.GetCurrentAnimatorStateInfo(0);
+
+            if (_weaponFlag == true && _animator.GetBool("Attack") && _anistate.normalizedTime >= 0.8f)
             {
-                _weapon1.GetComponent<NetworkWeaponManager>().Attack();
+                _weapon1.GetComponent<WeaponManager>().Attack();
             }
-            else if(_weaponFlag == false)
+            else if(_weaponFlag == false && _animator.GetBool("Attack") == true)
             {
-                _weapon2.GetComponent<NetworkWeaponManager>().Attack();
+                _weapon2.GetComponent<WeaponManager>().Attack();
             }
             
             if (_flag == false)
@@ -189,7 +189,8 @@ public class NetworkAttack : MonoBehaviour {
 
         if (controller.TriggerDown(Trigger.RIGHT))
         {
-            _subWeapon.GetComponent<NetworkWeaponManager>().Attack();
+            _subWeapon.GetComponent<WeaponManager>().Attack();
+            _model.transform.LookAt(_target.transform);
         }
 
         Player_pos = transform.position;
@@ -241,18 +242,23 @@ public class NetworkAttack : MonoBehaviour {
 
             //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
             //一時変数に距離を格納
-            if (nearDis < tmpDis && this != obs)
+            if (nearDis < tmpDis)
             {
                 nearDis = tmpDis;
                 //nearObjName = obs.name;
                 targetObj = obs;
-                //Debug.Log(targetObj);
+                Debug.Log(targetObj);
             }
 
         }
         //最も近かったオブジェクトを返す
         //return GameObject.Find(nearObjName);
         return targetObj;
+    }
+
+    public void SetPauseFlag(bool _flag)
+    {
+        _pauseFlag = _flag;
     }
 
 }
