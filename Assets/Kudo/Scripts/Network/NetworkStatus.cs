@@ -105,6 +105,11 @@ public class NetworkStatus : Photon.MonoBehaviour {
     //ダメージを与える処理
     public void hitDamage(int damage)
     {
+        if (!_photonView.isMine)
+        {
+            return;
+        }
+
         //　ターゲットが敵の場合
         if (_isEnemy)
         {
@@ -132,6 +137,11 @@ public class NetworkStatus : Photon.MonoBehaviour {
     [PunRPC]
     public void RecoveryHP(int heal)
     {
+        if (!_photonView.isMine)
+        {
+            return;
+        }
+
         Debug.Log("回復");
         _HP += heal;
         //SetShereHP(_HP);

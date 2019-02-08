@@ -247,7 +247,7 @@ public class NetworkAttack : MonoBehaviour {
 
             //オブジェクトの距離が近いか、距離0であればオブジェクト名を取得
             //一時変数に距離を格納
-            if (nearDis < tmpDis)
+            if (nearDis < tmpDis && Camera.main.GetComponent<NetworkLookCamera>().Player != obs)
             {
                 nearDis = tmpDis;
                 //nearObjName = obs.name;

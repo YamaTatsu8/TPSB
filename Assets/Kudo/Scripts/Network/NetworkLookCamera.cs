@@ -43,6 +43,18 @@ public class NetworkLookCamera : MonoBehaviour {
     //ロックオン解除フラグ
     private bool _targetFlag;
 
+    public GameObject Player
+    {
+        get
+        {
+            return _player;
+        }
+        set
+        {
+            _player = value;
+        }
+    }
+
     // Use this for initialization
     void Start () {
 
@@ -214,11 +226,4 @@ public class NetworkLookCamera : MonoBehaviour {
         return targetObj;
     }
 
-    public void SetPlayer(GameObject obj)
-    {
-        if(_player == null)
-        {
-            _player = obj;
-        }
-    }
 }
