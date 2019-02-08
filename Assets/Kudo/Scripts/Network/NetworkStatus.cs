@@ -142,7 +142,7 @@ public class NetworkStatus : Photon.MonoBehaviour {
 
         Debug.Log("回復");
         _HP += heal;
-        //SetShereHP(_HP);
+        SetShereHP(_HP);
     }
 
     public float getHP()
@@ -170,10 +170,10 @@ public class NetworkStatus : Photon.MonoBehaviour {
         var player = i_playerAndUpdatedProps[0] as PhotonPlayer;
         var properties = i_playerAndUpdatedProps[1] as ExitGames.Client.Photon.Hashtable;
 
-        object flagvalue = null;
-        if (properties.TryGetValue("Number", out flagvalue))
+        object value = null;
+        if (properties.TryGetValue("Number", out value))
         {
-            float receiveNum = (float)flagvalue;
+            float receiveNum = (float)value;
             var playerObjects = GameObject.FindGameObjectsWithTag("Player");
             var playerObject = playerObjects.FirstOrDefault(obj => obj.GetComponent<PhotonView>().ownerId == player.ID);
 
